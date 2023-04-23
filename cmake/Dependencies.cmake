@@ -1,0 +1,89 @@
+find_package(OpenGL REQUIRED)
+
+include(FetchContent)
+set(FETCH_CONTENT_QUIET FALSE)
+
+FetchContent_Declare(
+    glew
+
+    URL         https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0.zip
+    URL_HASH    MD5=970535b75b1b69ebd018a0fa05af63d1
+    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/glew
+)
+
+FetchContent_Declare(
+    sdl2
+
+    URL         https://github.com/libsdl-org/SDL/releases/download/release-2.26.5/SDL2-2.26.5.zip
+    URL_HASH    MD5=0664f3980570c4641128866e6c9f2e29
+    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/sdl2
+)
+
+FetchContent_Declare(
+    sdl2_image
+
+    URL         https://github.com/libsdl-org/SDL_image/releases/download/release-2.6.3/SDL2_image-2.6.3.zip
+    URL_HASH    MD5=ecedb5078bbd31e7d1552e2b1443d2f6
+    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/sdl2_image
+)
+
+FetchContent_Declare(
+    sdl2_ttf
+
+    URL         https://github.com/libsdl-org/SDL_ttf/releases/download/release-2.20.2/SDL2_ttf-2.20.2.zip
+    URL_HASH    MD5=7258258fdb2a4adb0072d337f94305f9
+    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/sdl2_ttf
+)
+
+FetchContent_Declare(
+    spdlog
+
+    URL         https://github.com/gabime/spdlog/archive/refs/tags/v1.11.0.zip
+    URL_HASH    MD5=cd620e0f103737a122a3b6539bd0a57a
+    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/spdlog
+)
+
+FetchContent_Declare(
+    googletest
+
+    URL         https://github.com/google/googletest/archive/refs/tags/v1.13.0.zip
+    URL_HASH    MD5=a1279c6fb5bf7d4a5e0d0b2a4adb39ac
+    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/googletest
+)
+
+set(BUILD_SHARED_LIBS FALSE)
+
+set(SDL2IMAGE_INSTALL OFF)
+set(SDL2IMAGE_VENDORED ON)
+
+set(SDL2TTF_INSTALL OFF)
+set(SDL2TTF_VENDORED ON)
+
+# For Windows: Prevent overriding the parent project's compiler/linker settings
+set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
+
+FetchContent_MakeAvailable(sdl2 sdl2_image sdl2_ttf spdlog googletest)
+
+FetchContent_GetProperties(glew)
+if (NOT ${glew_POPULATED})
+    FetchContent_Populate(glew)
+    add_subdirectory(${CMAKE_SOURCE_DIR}/lib/glew/build/cmake)
+endif()
+
+set(DEPENDENCY_LIBRARIES
+    ${OPENGL_LIBRARY}
+    glew_s
+
+    SDL2::SDL2-static
+    SDL2::SDL2main
+    SDL2_image::SDL2_image-static
+    SDL2_ttf::SDL2_ttf-static
+
+    spdlog::spdlog
+)
+
+set(DEPENDENCY_INCLUDE_DIRS
+    ${CMAKE_SOURCE_DIR}/lib/sdl2/include/
+    ${CMAKE_SOURCE_DIR}/lib/glew/include/
+    ${CMAKE_SOURCE_DIR}/lib/spdlog/include/
+)
