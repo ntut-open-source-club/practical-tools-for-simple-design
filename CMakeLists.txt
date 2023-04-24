@@ -35,7 +35,7 @@ if (MSVC)
     )
 else()
     target_compile_options(Sample PRIVATE
-        -Wall -pedantic -Wextra
+        -Wall -Wextra -pedantic
     )
 endif()
 
@@ -48,11 +48,11 @@ target_link_libraries(Tests
     GTest::gtest_main
 )
 if (MSVC)
-    target_compile_options(Sample PRIVATE
+    target_compile_options(Tests PRIVATE
         /W4
     )
 else()
-    target_compile_options(Sample PRIVATE
+    target_compile_options(Tests PRIVATE
         -Wall -Wextra -pedantic
     )
 endif()
