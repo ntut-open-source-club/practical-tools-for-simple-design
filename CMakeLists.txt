@@ -28,9 +28,15 @@ target_include_directories(Sample SYSTEM PRIVATE
 target_include_directories(Sample PRIVATE
     ${CMAKE_SOURCE_DIR}/include
 )
-target_compile_options(Sample PRIVATE
-    -Wall -pedantic
-)
+if (MSVC)
+    target_compile_options(Sample PRIVATE
+        /W4
+    )
+else()
+    target_compile_options(Sample PRIVATE
+        -Wall -pedantic -Wextra
+    )
+endif()
 
 add_executable(Tests
     ${TEST_FILES}
@@ -38,6 +44,16 @@ add_executable(Tests
 target_link_libraries(Tests
     GTest::gtest_main
 )
+if (MSVC)
+    target_compile_options(Sample PRIVATE
+        /W4
+    )
+else()
+    target_compile_options(Sample PRIVATE
+        -Wall -Wextra -pedantic
+    )
+endif()
+
 
 include(GoogleTest)
 gtest_discover_tests(Tests)
