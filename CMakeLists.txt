@@ -3,6 +3,7 @@ project(PracticalToolsForSimpleDesign)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF)
 
 include(cmake/Dependencies.cmake)
 
@@ -38,6 +39,8 @@ else()
     )
 endif()
 
+enable_testing()
+
 add_executable(Tests
     ${TEST_FILES}
 )
@@ -53,7 +56,6 @@ else()
         -Wall -Wextra -pedantic
     )
 endif()
-
 
 include(GoogleTest)
 gtest_discover_tests(Tests)
