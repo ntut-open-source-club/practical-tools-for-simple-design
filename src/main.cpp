@@ -1,8 +1,29 @@
-#include <spdlog/spdlog.h>
+#include "App.hpp"
 
-int main(int argc, char **argv) {
-    spdlog::set_pattern("%n [%^%l%$] %v");
-    spdlog::set_level(spdlog::level::debug);
+#include <iostream>
 
-    spdlog::debug("[{}]", "Sample Text");
+#include "Core/Context.hpp"
+
+int main() {
+    Core::Context context;
+
+    App app;
+
+    while (!app.GetExit()) {
+        switch (app.GetCurrentState()) {
+        case App::State::START:
+            app.Start();
+            break;
+
+        case App::State::UPDATE:
+            app.Update();
+            break;
+
+        case App::State::END:
+            app.End();
+            break;
+        }
+
+        context.Update();
+    }
 }

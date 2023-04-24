@@ -9,10 +9,23 @@ include(cmake/Dependencies.cmake)
 
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
 set(SRC_FILES
+    ${SRC_DIR}/Core/Context.cpp
+
+    ${SRC_DIR}/Util/Logger.cpp
+    ${SRC_DIR}/Util/Time.cpp
+
+    ${SRC_DIR}/App.cpp
     ${SRC_DIR}/main.cpp
 )
 set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
 set(INCLUDE_FILES
+    ${INCLUDE_DIR}/Core/Context.hpp
+
+    ${INCLUDE_DIR}/Util/Logger.hpp
+    ${INCLUDE_DIR}/Util/Time.hpp
+
+    ${INCLUDE_DIR}/App.hpp
+    ${INCLUDE_DIR}/config.h
 )
 set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
 set(TEST_FILES
@@ -22,6 +35,9 @@ set(TEST_FILES
 
 add_executable(Sample
     ${SRC_FILES}
+)
+target_link_libraries(Sample
+    ${DEPENDENCY_LINK_LIBRARIES}
 )
 target_include_directories(Sample SYSTEM PRIVATE
     ${DEPENDENCY_INCLUDE_DIRS}
