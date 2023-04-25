@@ -12,7 +12,7 @@
 #include "Util/Logger.hpp"
 #include "Util/Time.hpp"
 
-#include "config.h"
+#include "config.hpp"
 
 namespace Core {
 Context::Context() {

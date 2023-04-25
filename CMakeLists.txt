@@ -25,7 +25,7 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/Time.hpp
 
     ${INCLUDE_DIR}/App.hpp
-    ${INCLUDE_DIR}/config.h
+    ${INCLUDE_DIR}/config.hpp
 )
 set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
 set(TEST_FILES
