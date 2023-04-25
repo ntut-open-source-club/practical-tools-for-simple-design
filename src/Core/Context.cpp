@@ -11,11 +11,12 @@
 
 #include "Util/Logger.hpp"
 #include "Util/Time.hpp"
+#include "Util/Event/KeyboardEvent.hpp"
 
 #include "config.hpp"
 
 namespace Core {
-Context::Context() : m_Exit(false) {
+Context::Context()  {
     Util::Logger::Init();
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {

@@ -28,7 +28,7 @@ private:
 
     SDL_Event m_Event;
 
-    bool m_Exit;
+    bool m_Exit = false;
 };
 } // namespace Core
 
