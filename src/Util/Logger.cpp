@@ -1,9 +1,11 @@
 #include "Util/Logger.hpp"
 
+#include "config.hpp"
+
 namespace Util {
 void Logger::Init() {
     spdlog::set_pattern("%n [%^%l%$] %v");
-    spdlog::set_level(spdlog::level::debug);
+    SetLevel(DEFAULT_LOG_LEVEL);
 }
 
 void Logger::SetLevel(Logger::Level level) {
