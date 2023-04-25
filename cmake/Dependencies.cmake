@@ -35,11 +35,11 @@ FetchContent_Declare(
     SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/sdl2_ttf
 )
 
-FetchContent_Declare(
+FetchContent_Declare( # At this time 1.11.0 has some issues formatting `const unsigned char *`
     spdlog
 
-    URL         https://github.com/gabime/spdlog/archive/refs/tags/v1.11.0.zip
-    URL_HASH    MD5=cd620e0f103737a122a3b6539bd0a57a
+    URL         https://github.com/gabime/spdlog/archive/refs/tags/v1.10.0.zip
+    URL_HASH    MD5=031565384b28f29e44c6e7fb247ad48a
     SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/spdlog
 )
 
@@ -70,7 +70,7 @@ if (NOT ${glew_POPULATED})
     add_subdirectory(${CMAKE_SOURCE_DIR}/lib/glew/build/cmake)
 endif()
 
-set(DEPENDENCY_LIBRARIES
+set(DEPENDENCY_LINK_LIBRARIES
     ${OPENGL_LIBRARY}
     glew_s
 
