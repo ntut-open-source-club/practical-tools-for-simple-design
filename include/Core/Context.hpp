@@ -19,9 +19,16 @@ public:
 
     void Update();
 
+    bool GetExit() const { return m_Exit; }
+    void SetExit(bool exit) { m_Exit = exit; }
+
 private:
     SDL_Window *m_Window;
     SDL_GLContext m_GlContext;
+
+    SDL_Event m_Event;
+
+    bool m_Exit;
 };
 } // namespace Core
 

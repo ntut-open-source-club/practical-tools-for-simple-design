@@ -15,7 +15,7 @@
 #include "config.hpp"
 
 namespace Core {
-Context::Context() {
+Context::Context() : m_Exit(false) {
     Util::Logger::Init();
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -80,6 +80,12 @@ Context::~Context() {
 }
 
 void Context::Update() {
+    while (SDL_PollEvent(&m_Event) != 0) {
+        if (m_Event.type == SDL_QUIT) {
+            m_Exit = true;
+        }
+    }
+
     Util::Time::Update();
     SDL_GL_SwapWindow(m_Window);
 }

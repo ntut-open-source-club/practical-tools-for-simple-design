@@ -1,6 +1,8 @@
 #ifndef APP_HPP
 #define APP_HPP
 
+#include <SDL.h>
+
 class App {
 public:
     enum class State {
@@ -14,11 +16,12 @@ public:
     void End();
 
     State GetCurrentState() const { return m_CurrentState; }
-    bool GetExit() const { return m_Exit; }
 
 private:
     State m_CurrentState = State::START;
-    bool m_Exit = false;
+
+    int m_KeyLen;
+    const Uint8 *m_KeyState = SDL_GetKeyboardState(&m_KeyLen);
 };
 
 #endif

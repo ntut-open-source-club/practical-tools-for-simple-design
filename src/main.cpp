@@ -9,7 +9,7 @@ int main() {
 
     App app;
 
-    while (!app.GetExit()) {
+    while (!context.GetExit()) {
         switch (app.GetCurrentState()) {
         case App::State::START:
             app.Start();
@@ -21,6 +21,7 @@ int main() {
 
         case App::State::END:
             app.End();
+            context.SetExit(true);
             break;
         }
 
