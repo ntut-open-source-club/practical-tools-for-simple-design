@@ -1,6 +1,7 @@
 #ifndef CORE_CONTEXT_HPP
 #define CORE_CONTEXT_HPP
 
+#include "Util/Event.hpp"
 #include <SDL.h>
 
 namespace Core {
@@ -26,7 +27,7 @@ private:
     SDL_Window *m_Window;
     SDL_GLContext m_GlContext;
 
-    SDL_Event m_Event;
+    Util::Event m_Event;
 
     bool m_Exit = false;
 };

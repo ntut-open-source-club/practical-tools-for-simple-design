@@ -3,7 +3,7 @@
 #include <SDL.h>
 
 #include "Util/Logger.hpp"
-#include "Util/Event/KeyboardEvent.hpp"
+#include "Util/PTSDScancode.hpp"
 void App::Start() {
     LOG_TRACE("Start");
 
@@ -11,10 +11,8 @@ void App::Start() {
 }
 
 void App::Update() {
-    // TODO: Wrap this into Core
-    if (m_KeyState[SDL_SCANCODE_ESCAPE] != 0) {
-        m_CurrentState = State::END;
-    }
+// don't know how to read if context is closed, so i'm leaving this blank for now
+
 }
 
 void App::End() {

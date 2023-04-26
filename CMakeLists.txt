@@ -14,7 +14,7 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Logger.cpp
     ${SRC_DIR}/Util/Time.cpp
 
-     ${SRC_DIR}/Util//Event/KeyboardEvent.cpp
+     ${SRC_DIR}/Util//Event.cpp
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/main.cpp

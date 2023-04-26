@@ -1,5 +1,7 @@
 #include "Core/Context.hpp"
 
+#include <SDL_events.h>
+#include <SDL_video.h>
 #include <iostream>
 
 #include <GL/glew.h>
@@ -9,14 +11,15 @@
 
 #include <SDL_opengl.h>
 
+#include "Util/PTSDScancode.hpp"
+#include "Util/Event.hpp"
 #include "Util/Logger.hpp"
 #include "Util/Time.hpp"
-#include "Util/Event/KeyboardEvent.hpp"
 
 #include "config.hpp"
 
 namespace Core {
-Context::Context()  {
+Context::Context() {
     Util::Logger::Init();
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -74,6 +77,7 @@ Context::Context()  {
 Context::~Context() {
     SDL_DestroyWindow(m_Window);
     SDL_GL_DeleteContext(m_GlContext);
+    SDL_VideoQuit();
 
     TTF_Quit();
     IMG_Quit();
@@ -81,9 +85,29 @@ Context::~Context() {
 }
 
 void Context::Update() {
-    while (SDL_PollEvent(&m_Event) != 0) {
-        if (m_Event.type == SDL_QUIT) {
+    while (m_Event.Poll()) {
+        if (m_Event.IsLButtonPressed()) {
+            LOG_DEBUG("Left button pressed");
+        }
+        if (m_Event.IsRButtonPressed()) {
+            LOG_DEBUG("Right button pressed");
+        }
+        if (m_Event.IsMButtonPressed()) {
+            LOG_DEBUG("Middle button pressed");
+        }
+        if (m_Event.IfScrolling()) {
+            auto [x, y] = m_Event.GetScrollDistance();
+            LOG_DEBUG("Scrolling: x: {}, y: {}", x, y);
+        }
+        if (m_Event.IsMouseMoving()) {
+            LOG_DEBUG("Mouse moving");
+        }
+
+        if (m_Event.IsKeyPressed(PTSDScancode::PTSD_SCANCODE_ESCAPE)) {
             m_Exit = true;
+        }
+        if (m_Event.IsKeyPressed(PTSDScancode::PTSD_SCANCODE_A)) {
+            LOG_DEBUG("A");
         }
     }
 
