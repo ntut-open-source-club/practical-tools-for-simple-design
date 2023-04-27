@@ -1,4 +1,6 @@
-Checks: '-*,bugprone-*,readability-*,modernize-*,-modernize-use-trailing-return-type,-modernize-use-nodiscard'
+Checks: '-*,bugprone-*,
+        readability-*,-readability-convert-member-functions-to-static,
+        modernize-*,-modernize-use-trailing-return-type,-modernize-use-nodiscard'
 CheckOptions:
   - { key: readability-identifier-naming.NamespaceCase,          value: CamelCase  }
   - { key: readability-identifier-naming.ClassCase,              value: CamelCase  }
