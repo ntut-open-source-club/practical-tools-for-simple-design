@@ -10,6 +10,8 @@ include(cmake/Dependencies.cmake)
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
 set(SRC_FILES
     ${SRC_DIR}/Core/Context.cpp
+    ${SRC_DIR}/Core/VertexBuffer.cpp
+    ${SRC_DIR}/Core/IndexBuffer.cpp
 
     ${SRC_DIR}/Util/Logger.cpp
     ${SRC_DIR}/Util/Time.cpp
@@ -20,6 +22,8 @@ set(SRC_FILES
 set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
 set(INCLUDE_FILES
     ${INCLUDE_DIR}/Core/Context.hpp
+    ${INCLUDE_DIR}/Core/VertexBuffer.hpp
+    ${INCLUDE_DIR}/Core/IndexBuffer.hpp
 
     ${INCLUDE_DIR}/Util/Logger.hpp
     ${INCLUDE_DIR}/Util/Time.hpp
