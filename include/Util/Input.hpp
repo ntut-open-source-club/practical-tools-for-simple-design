@@ -3,26 +3,33 @@
 
 #include <utility>
 
-#include <SDL_events.h>
 #include "Util/PTSDScancode.hpp"
+#include <SDL_events.h>
 namespace Util {
 
-class Event {
+class Input {
 public:
-    ~Event() = default;
+    ~Input();
+
+    std::pair<int, int> GetScrollDistance() const;
     bool IsKeyPressed(const PTSDScancode &key) const;
+
     bool IsLButtonPressed() const;
     bool IsRButtonPressed() const;
     bool IsMButtonPressed() const;
-    bool IfScrolling() const;
+    bool IfScroll() const;
     bool IsMouseMoving() const;
-    std::pair<int, int> GetScrollDistance() const;
-    bool Poll();
+    bool Update();
+
+    static Input *GetInstance();
 
 private:
+    Input() = default;
+
     SDL_Event m_Event;
     const Uint8 *m_KeyState = SDL_GetKeyboardState(nullptr);
 
+    static Input *s_Instance;
 };
 
 } // namespace Util

@@ -4,17 +4,11 @@
 
 #include "Core/Context.hpp"
 
-int main(int argc, char *argv[]) {
-    Core::Context context;
-
+int main(int, char **) {
+    Core::Context *context = Core::Context::GetInstance();
     App app;
 
-    while (!context.GetExit()) {
-        context.Update();
-        if (context.GetExit()){
-            app.End();
-            break ;
-        }
+    while (!context->GetExit()) {
         switch (app.GetCurrentState()) {
         case App::State::START:
             app.Start();
@@ -24,12 +18,11 @@ int main(int argc, char *argv[]) {
             app.Update();
             break;
 
-//        case App::State::END:
-//            app.End();
-//            context.SetExit(true);
-//            break;
-        default:
-            continue ;
+        case App::State::END:
+            app.End();
+            context->SetExit(true);
+            break;
         }
+        context->Update();
     }
 }

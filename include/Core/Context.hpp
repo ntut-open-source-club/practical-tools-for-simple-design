@@ -1,36 +1,39 @@
 #ifndef CORE_CONTEXT_HPP
 #define CORE_CONTEXT_HPP
 
-#include "Util/Event.hpp"
+#include "Util/Input.hpp"
 #include <SDL.h>
+#include <memory>
 
 namespace Core {
 class Context {
 public:
-    /**
-     * @brief Initialize context for SDL, OpenGL, and create a window
-     */
-    Context();
     Context(const Context &) = delete;
+    ~Context();
     Context &operator=(const Context &) = delete;
     Context(Context &&) = delete;
     Context &operator=(Context &&) = delete;
 
-    ~Context();
+    bool GetExit() const { return m_Exit; }
+
+    void SetExit(bool exit) { m_Exit = exit; }
 
     void Update();
 
-    bool GetExit() const { return m_Exit; }
-    void SetExit(bool exit) { m_Exit = exit; }
+    static Context *GetInstance();
 
 private:
+    /**
+     * @brief Initialize context for SDL, OpenGL, and create a window
+     */
+    Context();
+
     SDL_Window *m_Window;
     SDL_GLContext m_GlContext;
-
-    Util::Event m_Event;
-
     bool m_Exit = false;
-};
-} // namespace Core
 
+    static Context *s_Instance;
+};
+
+} // namespace Core
 #endif

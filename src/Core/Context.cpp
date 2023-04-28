@@ -11,9 +11,9 @@
 
 #include <SDL_opengl.h>
 
-#include "Util/PTSDScancode.hpp"
-#include "Util/Event.hpp"
+#include "Util/Input.hpp"
 #include "Util/Logger.hpp"
+#include "Util/PTSDScancode.hpp"
 #include "Util/Time.hpp"
 
 #include "config.hpp"
@@ -72,7 +72,9 @@ Context::Context() {
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 }
+Context* Context::s_Instance = nullptr;
 
 Context::~Context() {
     SDL_DestroyWindow(m_Window);
@@ -82,36 +84,18 @@ Context::~Context() {
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
+    delete s_Instance;
 }
 
 void Context::Update() {
-    while (m_Event.Poll()) {
-        if (m_Event.IsLButtonPressed()) {
-            LOG_DEBUG("Left button pressed");
-        }
-        if (m_Event.IsRButtonPressed()) {
-            LOG_DEBUG("Right button pressed");
-        }
-        if (m_Event.IsMButtonPressed()) {
-            LOG_DEBUG("Middle button pressed");
-        }
-        if (m_Event.IfScrolling()) {
-            auto [x, y] = m_Event.GetScrollDistance();
-            LOG_DEBUG("Scrolling: x: {}, y: {}", x, y);
-        }
-        if (m_Event.IsMouseMoving()) {
-            LOG_DEBUG("Mouse moving");
-        }
-
-        if (m_Event.IsKeyPressed(PTSDScancode::PTSD_SCANCODE_ESCAPE)) {
-            m_Exit = true;
-        }
-        if (m_Event.IsKeyPressed(PTSDScancode::PTSD_SCANCODE_A)) {
-            LOG_DEBUG("A");
-        }
-    }
-
     Util::Time::Update();
     SDL_GL_SwapWindow(m_Window);
+}
+ Context *Context::GetInstance() {
+    if (s_Instance == nullptr) {
+        s_Instance = new Context();
+        return s_Instance;
+    }
+    return s_Instance;
 }
 } // namespace Core
