@@ -1,4 +1,5 @@
-Checks: '-*,bugprone-*,
+Checks: '-*,
+        bugprone-*,-bugprone-easily-swappable-parameters,
         readability-*,-readability-convert-member-functions-to-static,
         modernize-*,-modernize-use-trailing-return-type,-modernize-use-nodiscard'
 CheckOptions:

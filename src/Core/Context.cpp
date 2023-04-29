@@ -9,13 +9,16 @@
 
 #include <SDL_opengl.h>
 
+#include "Core/DebugMessageCallback.hpp"
+
 #include "Util/Logger.hpp"
 #include "Util/Time.hpp"
 
 #include "config.hpp"
 
 namespace Core {
-Context::Context() : m_Exit(false) {
+Context::Context()
+    : m_Exit(false) {
     Util::Logger::Init();
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -60,14 +63,18 @@ Context::Context() : m_Exit(false) {
         LOG_ERROR(reinterpret_cast<const char *>(glewGetErrorString(err)));
     }
 
+    glEnable(GL_DEBUG_OUTPUT);
+    glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
+    glDebugMessageCallback(Core::OpenGLDebugMessageCallback, nullptr);
+
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
     LOG_INFO("OpenGL Info");
     LOG_INFO("  Vendor: {}", glGetString(GL_VENDOR));
     LOG_INFO("  Renderer: {}", glGetString(GL_RENDERER));
     LOG_INFO("  Version: {}", glGetString(GL_VERSION));
     LOG_INFO("  GLSL Version: {}", glGetString(GL_SHADING_LANGUAGE_VERSION));
-
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
 Context::~Context() {

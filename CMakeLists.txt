@@ -22,6 +22,7 @@ set(SRC_FILES
 set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
 set(INCLUDE_FILES
     ${INCLUDE_DIR}/Core/Context.hpp
+    ${INCLUDE_DIR}/Core/DebugMessageCallback.hpp
     ${INCLUDE_DIR}/Core/VertexBuffer.hpp
     ${INCLUDE_DIR}/Core/IndexBuffer.hpp
 
