@@ -10,9 +10,13 @@ include(cmake/Dependencies.cmake)
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
 set(SRC_FILES
     ${SRC_DIR}/Core/Context.cpp
+    ${SRC_DIR}/Core/DebugMessageCallback.cpp
     ${SRC_DIR}/Core/VertexBuffer.cpp
     ${SRC_DIR}/Core/IndexBuffer.cpp
+    ${SRC_DIR}/Core/Shader.cpp
+    ${SRC_DIR}/Core/Program.cpp
 
+    ${SRC_DIR}/Util/LoadTextFile.cpp
     ${SRC_DIR}/Util/Logger.cpp
     ${SRC_DIR}/Util/Time.cpp
 
@@ -25,7 +29,10 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Core/DebugMessageCallback.hpp
     ${INCLUDE_DIR}/Core/VertexBuffer.hpp
     ${INCLUDE_DIR}/Core/IndexBuffer.hpp
+    ${INCLUDE_DIR}/Core/Shader.hpp
+    ${INCLUDE_DIR}/Core/Program.hpp
 
+    ${INCLUDE_DIR}/Util/LoadTextFile.hpp
     ${INCLUDE_DIR}/Util/Logger.hpp
     ${INCLUDE_DIR}/Util/Time.hpp
 
