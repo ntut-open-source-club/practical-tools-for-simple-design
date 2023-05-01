@@ -8,7 +8,7 @@
 namespace Core {
 class IndexBuffer {
 public:
-    IndexBuffer(const std::vector<float> &indices);
+    explicit IndexBuffer(const std::vector<unsigned int> &indices);
     IndexBuffer(const IndexBuffer &) = delete;
 
     ~IndexBuffer();

@@ -1,7 +1,7 @@
 #include "Core/IndexBuffer.hpp"
 
 namespace Core {
-IndexBuffer::IndexBuffer(const std::vector<float> &indices)
+IndexBuffer::IndexBuffer(const std::vector<unsigned int> &indices)
     : m_Count(indices.size()) {
     glGenBuffers(1, &m_BufferId);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_BufferId);
