@@ -29,6 +29,14 @@ Program::~Program() {
     glDeleteProgram(m_ProgramId);
 }
 
+void Program::Bind() const {
+    glUseProgram(m_ProgramId);
+}
+
+void Program::Unbind() const {
+    glUseProgram(0);
+}
+
 void Program::Validate() const {
     GLint status = GL_FALSE;
 

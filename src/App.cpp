@@ -15,6 +15,7 @@ void App::Update() {
     if (m_KeyState[SDL_SCANCODE_ESCAPE] != 0) {
         m_CurrentState = State::END;
     }
+    m_Triangle.Update();
 }
 
 void App::End() {
