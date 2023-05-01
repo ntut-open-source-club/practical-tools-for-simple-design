@@ -3,6 +3,8 @@
 
 #include <SDL.h>
 
+#include "Triangle.hpp"
+
 class App {
 public:
     enum class State {
@@ -22,6 +24,8 @@ private:
 
     int m_KeyLen;
     const Uint8 *m_KeyState = SDL_GetKeyboardState(&m_KeyLen);
+
+    Triangle m_Triangle;
 };
 
 #endif
