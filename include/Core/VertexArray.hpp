@@ -12,6 +12,7 @@ namespace Core {
 /**
  * I dislike the way `VertexBuffer` and `IndexBuffer` are handled here. This
  * breaks RAII principles
+ *
  * TODO: Maybe find an alternative solution
  */
 class VertexArray {
@@ -27,6 +28,9 @@ public:
     void Unbind() const;
 
     void AddVertexBuffer(std::unique_ptr<VertexBuffer> vertexBuffer);
+    /**
+     * Index buffer must be set or else there will be a segfault
+     */
     void SetIndexBuffer(std::unique_ptr<IndexBuffer> indexBuffer);
 
     void DrawTriangles() const;
