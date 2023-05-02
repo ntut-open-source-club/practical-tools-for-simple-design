@@ -5,10 +5,9 @@
 #include "Core/Context.hpp"
 
 int main(int, char **) {
-    Core::Context *context = Core::Context::GetInstance();
     App app;
-
-    while (!context->GetExit()) {
+    Core::Context::Init();
+    while (!Core::Context::GetExit()) {
         switch (app.GetCurrentState()) {
         case App::State::START:
             app.Start();
@@ -20,9 +19,10 @@ int main(int, char **) {
 
         case App::State::END:
             app.End();
-            context->SetExit(true);
+            Core::Context::SetExit(true);
             break;
         }
-        context->Update();
+        Core::Context::Update();
     }
+    Core::Context::Quit();
 }

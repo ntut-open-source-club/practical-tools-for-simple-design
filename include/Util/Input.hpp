@@ -1,35 +1,28 @@
 #ifndef UTIL_EVENT_HPP
 #define UTIL_EVENT_HPP
 
-#include <utility>
+#include <utility> // for std::pair
 
 #include "Util/PTSDScancode.hpp"
 #include <SDL_events.h>
+
 namespace Util {
 
 class Input {
 public:
-    ~Input();
+    static std::pair<int, int> GetScrollDistance();
+    static bool IsKeyPressed(const PTSDScancode &key);
+    static bool IsLButtonPressed();
+    static bool IsRButtonPressed();
+    static bool IsMButtonPressed();
+    static bool IfScroll();
+    static bool IsMouseMoving();
 
-    std::pair<int, int> GetScrollDistance() const;
-    bool IsKeyPressed(const PTSDScancode &key) const;
-
-    bool IsLButtonPressed() const;
-    bool IsRButtonPressed() const;
-    bool IsMButtonPressed() const;
-    bool IfScroll() const;
-    bool IsMouseMoving() const;
-    bool Update();
-
-    static Input *GetInstance();
+    static bool Update();
 
 private:
-    Input() = default;
-
-    SDL_Event m_Event;
-    const Uint8 *m_KeyState = SDL_GetKeyboardState(nullptr);
-
-    static Input *s_Instance;
+    static SDL_Event s_Event;
+    static const Uint8 *s_KeyState;
 };
 
 } // namespace Util
