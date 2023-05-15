@@ -480,9 +480,9 @@ FodyWeavers.xsd
 *.msm
 *.msp
 
-# JetBrains
+# JetBrains Rider
 *.sln.iml
-/.idea/
+
 # Custom writen VSCode .gitignore
 .vscode/
 
@@ -491,4 +491,3 @@ build/
 
 # Ignore 3rd party dependencies
 lib/
-
