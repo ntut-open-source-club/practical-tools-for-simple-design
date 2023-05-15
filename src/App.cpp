@@ -2,8 +2,10 @@
 
 #include <SDL.h>
 
+#include "Core/Context.hpp"
+#include "Util/Input.hpp"
 #include "Util/Logger.hpp"
-
+#include "Util/PTSDScancode.hpp"
 void App::Start() {
     LOG_TRACE("Start");
 
@@ -11,12 +13,34 @@ void App::Start() {
 }
 
 void App::Update() {
-    // TODO: Wrap this into Core
-    if (m_KeyState[SDL_SCANCODE_ESCAPE] != 0) {
-        m_CurrentState = State::END;
+    while (Util::Input::Update()) {
+        if (Util::Input::IsLButtonPressed()) {
+            LOG_DEBUG("Left button pressed");
+        }
+        if (Util::Input::IsRButtonPressed()) {
+            LOG_DEBUG("Right button pressed");
+        }
+        if (Util::Input::IsMButtonPressed()) {
+            LOG_DEBUG("Middle button pressed");
+        }
+        if (Util::Input::IfScroll()) {
+            auto [x, y] = Util::Input::GetScrollDistance();
+            LOG_DEBUG("Scrolling: x: {}, y: {}", x, y);
+        }
+        if (Util::Input::IsMouseMoving()) {
+            LOG_DEBUG("Mouse moving");
+        }
+
+        if (Util::Input::IsKeyPressed(PTSDScancode::PTSD_SCANCODE_ESCAPE)) {
+            m_CurrentState = State::END;
+        }
+        if (Util::Input::IsKeyPressed(PTSDScancode::PTSD_SCANCODE_A)) {
+            LOG_DEBUG("A");
+        }
     }
 }
 
-void App::End() {
-    LOG_TRACE("End");
-}
+    void App::End() {
+        Core::Context::SetExit(true);
+        LOG_TRACE("End");
+    }

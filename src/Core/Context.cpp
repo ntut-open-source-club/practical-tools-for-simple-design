@@ -1,5 +1,7 @@
 #include "Core/Context.hpp"
 
+#include <SDL_events.h>
+#include <SDL_video.h>
 #include <iostream>
 
 #include <GL/glew.h>
@@ -9,13 +11,15 @@
 
 #include <SDL_opengl.h>
 
+#include "Util/Input.hpp"
 #include "Util/Logger.hpp"
+#include "Util/PTSDScancode.hpp"
 #include "Util/Time.hpp"
 
 #include "config.hpp"
 
 namespace Core {
-Context::Context() : m_Exit(false) {
+void Context::Init() {
     Util::Logger::Init();
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -33,11 +37,11 @@ Context::Context() : m_Exit(false) {
         LOG_ERROR(SDL_GetError());
     }
 
-    m_Window =
+    s_Window =
         SDL_CreateWindow(TITLE, WINDOW_POS_X, WINDOW_POS_Y, WINDOW_WIDTH,
                          WINDOW_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 
-    if (m_Window == nullptr) {
+    if (s_Window == nullptr) {
         LOG_ERROR("Failed to create window");
         LOG_ERROR(SDL_GetError());
     }
@@ -47,9 +51,9 @@ Context::Context() : m_Exit(false) {
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
-    m_GlContext = SDL_GL_CreateContext(m_Window);
+    s_GlContext = SDL_GL_CreateContext(s_Window);
 
-    if (m_GlContext == nullptr) {
+    if (s_GlContext == nullptr) {
         LOG_ERROR("Failed to initialize GL context");
         LOG_ERROR(SDL_GetError());
     }
@@ -68,11 +72,13 @@ Context::Context() : m_Exit(false) {
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
 }
 
-Context::~Context() {
-    SDL_DestroyWindow(m_Window);
-    SDL_GL_DeleteContext(m_GlContext);
+void Context::Quit() {
+    SDL_DestroyWindow(s_Window);
+    SDL_GL_DeleteContext(s_GlContext);
+    SDL_VideoQuit();
 
     TTF_Quit();
     IMG_Quit();
@@ -80,13 +86,12 @@ Context::~Context() {
 }
 
 void Context::Update() {
-    while (SDL_PollEvent(&m_Event) != 0) {
-        if (m_Event.type == SDL_QUIT) {
-            m_Exit = true;
-        }
-    }
-
     Util::Time::Update();
-    SDL_GL_SwapWindow(m_Window);
+    SDL_GL_SwapWindow(s_Window);
 }
+
+ SDL_Window* Context::s_Window = nullptr;
+ SDL_GLContext Context::s_GlContext = nullptr;
+ bool Context::s_Exit = false;
+
 } // namespace Core
