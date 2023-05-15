@@ -3,28 +3,36 @@
 
 #include "Util/Input.hpp"
 #include <SDL.h>
+#include <memory>
 
 namespace Core {
 class Context {
 public:
-    static void Init();
-    static void Quit();
+    Context(const Context &) = delete;
+    ~Context();
+    Context &operator=(const Context &) = delete;
+    Context(Context &&) = delete;
+    Context &operator=(Context &&) = delete;
 
-    static bool GetExit() { return s_Exit; }
+    bool GetExit() const { return m_Exit; }
 
-    static void SetExit(bool exit) { s_Exit = exit; }
+    void SetExit(bool exit) { m_Exit = exit; }
 
-    static void Update();
+    void Update();
 
+    static std::shared_ptr<Context>GetInstance();
 
 private:
     /**
      * @brief Initialize context for SDL, OpenGL, and create a window
      */
+    Context();
 
-    static SDL_Window *s_Window;
-    static SDL_GLContext s_GlContext;
-    static bool s_Exit;
+    SDL_Window *m_Window;
+    SDL_GLContext m_GlContext;
+    bool m_Exit = false;
+
+    static std::shared_ptr<Context> s_Instance;
 };
 
 } // namespace Core

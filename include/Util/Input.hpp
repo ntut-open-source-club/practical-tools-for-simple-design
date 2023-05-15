@@ -1,28 +1,46 @@
 #ifndef UTIL_EVENT_HPP
 #define UTIL_EVENT_HPP
 
+#include <SDL_stdinc.h>
+#include <memory>
 #include <utility> // for std::pair
 
 #include "Util/PTSDScancode.hpp"
 #include <SDL_events.h>
-
 namespace Util {
 
 class Input {
 public:
-    static std::pair<int, int> GetScrollDistance();
-    static bool IsKeyPressed(const PTSDScancode &key);
-    static bool IsLButtonPressed();
-    static bool IsRButtonPressed();
-    static bool IsMButtonPressed();
-    static bool IfScroll();
-    static bool IsMouseMoving();
+    std::pair<int, int> GetScrollDistance() const;
+        std::pair<int, int> GetCursorPosition() const;
 
-    static bool Update();
+    bool IsKeyPressed(const PTSDScancode &key) const;
+    bool IsLButtonPressed() const;
+    bool IsRButtonPressed() const;
+    bool IsMButtonPressed() const;
+    bool IfScroll() const;
+    bool IsMouseMoving() const;
+    void Update();
+
+    static std::shared_ptr<Input>GetInstance();
+
 
 private:
-    static SDL_Event s_Event;
-    static const Uint8 *s_KeyState;
+    Input() = default;
+
+    SDL_Event m_Event;
+    const Uint8 *m_KeyState = SDL_GetKeyboardState(nullptr);
+    std::pair<int, int> m_CursorPosition = {-1, -1};
+    std::pair<int, int> m_ScrollDistance = {0, 0};
+
+    bool m_LBPressed = false;
+    bool m_RBPressed = false;
+    bool m_MBPressed = false;
+    bool m_Scroll = false;
+    bool m_MouseMoving = false;
+
+
+    static std::shared_ptr<Input>s_Instance;
 };
 
 } // namespace Util

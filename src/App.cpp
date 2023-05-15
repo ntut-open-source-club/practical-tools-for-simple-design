@@ -13,34 +13,38 @@ void App::Start() {
 }
 
 void App::Update() {
-    while (Util::Input::Update()) {
-        if (Util::Input::IsLButtonPressed()) {
-            LOG_DEBUG("Left button pressed");
-        }
-        if (Util::Input::IsRButtonPressed()) {
-            LOG_DEBUG("Right button pressed");
-        }
-        if (Util::Input::IsMButtonPressed()) {
-            LOG_DEBUG("Middle button pressed");
-        }
-        if (Util::Input::IfScroll()) {
-            auto [x, y] = Util::Input::GetScrollDistance();
-            LOG_DEBUG("Scrolling: x: {}, y: {}", x, y);
-        }
-        if (Util::Input::IsMouseMoving()) {
-            LOG_DEBUG("Mouse moving");
-        }
+    auto input = Util::Input::GetInstance();
+    auto [x, y] = input->GetCursorPosition();
 
-        if (Util::Input::IsKeyPressed(PTSDScancode::PTSD_SCANCODE_ESCAPE)) {
-            m_CurrentState = State::END;
-        }
-        if (Util::Input::IsKeyPressed(PTSDScancode::PTSD_SCANCODE_A)) {
-            LOG_DEBUG("A");
-        }
+    if (input->IsLButtonPressed()) {
+        LOG_DEBUG("Left button pressed");
     }
+    if (input->IsRButtonPressed()) {
+        LOG_DEBUG("Right button pressed");
+    }
+    if (input->IsMButtonPressed()) {
+        LOG_DEBUG("Middle button pressed");
+    }
+    if (input->IfScroll()) {
+        auto [x, y] = input->GetScrollDistance();
+        LOG_DEBUG("Scrolling: x: {}, y: {}", x, y);
+    }
+    if (input->IsMouseMoving()) {
+        LOG_DEBUG("Mouse moving! x:{}, y{}" , x, y);
+    }
+
+    if (input->IsKeyPressed(PTSDScancode::ESCAPE)) {
+        m_CurrentState = State::END;
+    }
+    if (input->IsKeyPressed(PTSDScancode::A)) {
+        LOG_DEBUG("A");
+    }
+
+//    LOG_DEBUG("Mouse Pos: x:{}, y:{} ", x, y);
+
 }
 
-    void App::End() {
-        Core::Context::SetExit(true);
-        LOG_TRACE("End");
-    }
+void App::End() {
+    Core::Context::GetInstance()->SetExit(true);
+    LOG_TRACE("End");
+}

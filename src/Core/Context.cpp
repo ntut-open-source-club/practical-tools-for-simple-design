@@ -19,7 +19,7 @@
 #include "config.hpp"
 
 namespace Core {
-void Context::Init() {
+Context::Context() {
     Util::Logger::Init();
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -37,11 +37,11 @@ void Context::Init() {
         LOG_ERROR(SDL_GetError());
     }
 
-    s_Window =
+    m_Window =
         SDL_CreateWindow(TITLE, WINDOW_POS_X, WINDOW_POS_Y, WINDOW_WIDTH,
                          WINDOW_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 
-    if (s_Window == nullptr) {
+    if (m_Window == nullptr) {
         LOG_ERROR("Failed to create window");
         LOG_ERROR(SDL_GetError());
     }
@@ -51,9 +51,9 @@ void Context::Init() {
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 1);
 
-    s_GlContext = SDL_GL_CreateContext(s_Window);
+    m_GlContext = SDL_GL_CreateContext(m_Window);
 
-    if (s_GlContext == nullptr) {
+    if (m_GlContext == nullptr) {
         LOG_ERROR("Failed to initialize GL context");
         LOG_ERROR(SDL_GetError());
     }
@@ -74,24 +74,28 @@ void Context::Init() {
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 }
+std::shared_ptr<Context> Context::s_Instance(nullptr);
 
-void Context::Quit() {
-    SDL_DestroyWindow(s_Window);
-    SDL_GL_DeleteContext(s_GlContext);
+Context::~Context() {
+    SDL_DestroyWindow(m_Window);
+    SDL_GL_DeleteContext(m_GlContext);
     SDL_VideoQuit();
 
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
+
 }
 
 void Context::Update() {
     Util::Time::Update();
-    SDL_GL_SwapWindow(s_Window);
+    Util::Input::GetInstance()->Update();
+    SDL_GL_SwapWindow(m_Window);
 }
-
- SDL_Window* Context::s_Window = nullptr;
- SDL_GLContext Context::s_GlContext = nullptr;
- bool Context::s_Exit = false;
-
+std::shared_ptr<Context>Context::GetInstance() {
+    if (s_Instance == nullptr) {
+        s_Instance.reset(new Context());
+    }
+    return s_Instance;
+}
 } // namespace Core
