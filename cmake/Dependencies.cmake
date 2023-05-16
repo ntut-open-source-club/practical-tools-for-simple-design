@@ -1,5 +1,7 @@
 find_package(OpenGL REQUIRED)
 
+cmake_policy(SET CMP0135 NEW)
+
 include(FetchContent)
 set(FETCH_CONTENT_QUIET FALSE)
 

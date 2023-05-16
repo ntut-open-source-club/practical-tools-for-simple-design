@@ -21,6 +21,8 @@ public:
 
     void Validate() const;
 
+    GLuint GetId() const { return m_ProgramId; }
+
 private:
     void CheckStatus() const;
 

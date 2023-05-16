@@ -31,6 +31,8 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Core/DebugMessageCallback.hpp
     ${INCLUDE_DIR}/Core/VertexArray.hpp
     ${INCLUDE_DIR}/Core/VertexBuffer.hpp
+    ${INCLUDE_DIR}/Core/UniformBuffer.hpp
+    ${INCLUDE_DIR}/Core/UniformBuffer.inl
     ${INCLUDE_DIR}/Core/IndexBuffer.hpp
     ${INCLUDE_DIR}/Core/Shader.hpp
     ${INCLUDE_DIR}/Core/Program.hpp

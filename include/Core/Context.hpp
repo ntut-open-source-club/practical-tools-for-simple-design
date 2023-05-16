@@ -20,7 +20,12 @@ public:
     void Update();
 
     bool GetExit() const { return m_Exit; }
+    int GetWindowWidth() const { return m_WindowWidth; }
+    int GetWindowHeight() const { return m_WindowHeight; }
+
     void SetExit(bool exit) { m_Exit = exit; }
+    void SetWindowWidth(int width) { m_WindowWidth = width; }
+    void SetWindowHeight(int height) { m_WindowHeight = height; }
 
 private:
     SDL_Window *m_Window;
@@ -29,6 +34,9 @@ private:
     SDL_Event m_Event;
 
     bool m_Exit;
+
+    int m_WindowWidth;
+    int m_WindowHeight;
 };
 } // namespace Core
 

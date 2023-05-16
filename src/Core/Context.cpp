@@ -18,7 +18,9 @@
 
 namespace Core {
 Context::Context()
-    : m_Exit(false) {
+    : m_Exit(false),
+      m_WindowWidth(WINDOW_WIDTH),
+      m_WindowHeight(WINDOW_HEIGHT) {
     Util::Logger::Init();
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -95,5 +97,6 @@ void Context::Update() {
 
     Util::Time::Update();
     SDL_GL_SwapWindow(m_Window);
+    glClear(GL_COLOR_BUFFER_BIT);
 }
 } // namespace Core
