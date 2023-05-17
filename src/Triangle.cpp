@@ -6,6 +6,8 @@
 #include "Core/VertexArray.hpp"
 #include "Core/VertexBuffer.hpp"
 
+#include "Util/Time.hpp"
+
 Triangle::Triangle()
     : m_Program("../assets/shaders/Triangle.vert",
                 "../assets/shaders/Triangle.frag"),
@@ -13,9 +15,9 @@ Triangle::Triangle()
       m_Matrices(std::make_unique<Core::UniformBuffer<Matrices>>(
           m_Program, "Matrices", 0)) {
     std::vector<float> vertex({
-        -300, -300, // NOLINT
-        300, -300,  // NOLINT
-        0, 300,     // NOLINT
+        -300.0F, -300.0F, // NOLINT
+        300.0F, -300.0F,  // NOLINT
+        0, 300.0F,        // NOLINT
     });
     std::vector<float> color({
         1.0F, 0.0F, 0.0F, //
@@ -40,7 +42,8 @@ void Triangle::Update() {
     m_Program.Validate();
 
     static float counter = 0.0F;
-    const float angle = glm::radians(counter++);
+    counter += static_cast<float>(50.0F * Util::Time::GetDeltaTime());
+    const float angle = glm::radians(counter);
 
     const float width = 1280.0F / 2.0F;
     const float height = 720.0F / 2.0F;
