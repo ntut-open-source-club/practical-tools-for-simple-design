@@ -25,6 +25,8 @@ set(INCLUDE_FILES
 
     ${INCLUDE_DIR}/Util/Logger.hpp
     ${INCLUDE_DIR}/Util/Time.hpp
+    ${INCLUDE_DIR}/Util/Input.hpp
+    ${INCLUDE_DIR}/Util/Keycode.hpp
 
     ${INCLUDE_DIR}/App.hpp
     ${INCLUDE_DIR}/config.hpp

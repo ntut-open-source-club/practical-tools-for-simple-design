@@ -1,9 +1,6 @@
-#include <SDL.h>
-#include <SDL_events.h>
-#include <memory>
-#include <utility>
-
 #include "Util/Input.hpp"
+
+#include <SDL_events.h> // for SDL_Event
 
 namespace Util {
 
@@ -52,8 +49,8 @@ void Input::Update() {
         m_MouseMoving = m_Event.type == SDL_MOUSEMOTION || m_MouseMoving;
     }
 }
-std::shared_ptr<Input> Input::s_Instance = nullptr;
 
+std::shared_ptr<Input> Input::s_Instance = nullptr;
 std::shared_ptr<Input> Input::GetInstance() {
     if (s_Instance == nullptr) {
         s_Instance.reset(new Input());

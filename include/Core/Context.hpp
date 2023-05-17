@@ -1,16 +1,20 @@
 #ifndef CORE_CONTEXT_HPP
 #define CORE_CONTEXT_HPP
 
-#include "Util/Input.hpp"
+#include <memory> // for std::shared_ptr
+
 #include <SDL.h>
-#include <memory>
+
+#include "Util/Input.hpp" // for Input
 
 namespace Core {
 class Context {
 public:
     Context(const Context &) = delete;
-    ~Context();
     Context(Context &&) = delete;
+
+    ~Context();
+
     Context &operator=(const Context &) = delete;
     Context &operator=(Context &&) = delete;
 
@@ -20,7 +24,7 @@ public:
 
     void Update();
 
-    static std::shared_ptr<Context>GetInstance();
+    static std::shared_ptr<Context> GetInstance();
 
 private:
     /**

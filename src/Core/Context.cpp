@@ -1,8 +1,9 @@
 #include "Core/Context.hpp"
 
+#include <iostream>
+
 #include <SDL_events.h>
 #include <SDL_video.h>
-#include <iostream>
 
 #include <GL/glew.h>
 
@@ -72,7 +73,6 @@ Context::Context() {
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-
 }
 std::shared_ptr<Context> Context::s_Instance(nullptr);
 
@@ -84,7 +84,6 @@ Context::~Context() {
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
-
 }
 
 void Context::Update() {
@@ -92,7 +91,7 @@ void Context::Update() {
     Util::Input::GetInstance()->Update();
     SDL_GL_SwapWindow(m_Window);
 }
-std::shared_ptr<Context>Context::GetInstance() {
+std::shared_ptr<Context> Context::GetInstance() {
     if (s_Instance == nullptr) {
         s_Instance.reset(new Context());
     }

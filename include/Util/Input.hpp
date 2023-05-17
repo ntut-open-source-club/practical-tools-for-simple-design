@@ -1,12 +1,14 @@
 #ifndef UTIL_EVENT_HPP
 #define UTIL_EVENT_HPP
 
-// #include <SDL_stdinc.h>
-#include <memory>
+#include <memory> // for std::shared_ptr
 #include <utility> // for std::pair
 
-#include "Util/Keycode.hpp"
-#include <SDL_events.h>
+#include <SDL_events.h> // for SDL_Event
+#include <SDL_stdinc.h> // for Uint8
+
+#include "Util/Keycode.hpp" // for PTSDScancode
+
 namespace Util {
 
 class Input {
