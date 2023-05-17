@@ -6,6 +6,12 @@
 #include <GL/glew.h>
 
 namespace Core {
+/**
+ * In OpenGL, programs are objects composed of multiple shaders files compiled
+ * and linked together. A typical program would require at least a vertex shader
+ * and a fragment shader. However, users could add more optional middle layers
+ * such as geometry shaders or tesselation shaders.
+ */
 class Program {
 public:
     Program(const std::string &vertexShaderFilepath,

@@ -6,6 +6,10 @@
 #include <GL/glew.h>
 
 namespace Core {
+/**
+ * @brief Wrapper for OpenGL Index Buffer Object (a.k.a
+ * `GL_ELEMENT_ARRAY_BUFFER`)
+ */
 class IndexBuffer {
 public:
     explicit IndexBuffer(const std::vector<unsigned int> &indices);

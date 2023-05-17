@@ -7,7 +7,7 @@ namespace Core {
 /**
  * @brief Callback function for OpenGL handling
  *
- * This function is called by OpenGL and if users want to use it they should do
+ * This function is called by OpenGL, if users want to use it they should do
  * so via `glDebugMessageInsert()` and not call it directly
  *
  * @see https://www.khronos.org/opengl/wiki/Debug_Output

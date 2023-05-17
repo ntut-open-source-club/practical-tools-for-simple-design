@@ -9,6 +9,15 @@
 #include "Core/Program.hpp"
 
 namespace Core {
+/**
+ * @brief Wrapper for OpenGL Uniform Buffer Object (a.k.a `GL_UNIFORM_BUFFER`)
+ *
+ * This class uses templates because data is passed in as `void *` in the
+ * original C function, using templates would provide more robust type checking
+ * and no need for manually entering the type size.
+ *
+ * @see https://www.khronos.org/opengl/wiki/Uniform_Buffer_Object
+ */
 template <typename T>
 class UniformBuffer {
 public:

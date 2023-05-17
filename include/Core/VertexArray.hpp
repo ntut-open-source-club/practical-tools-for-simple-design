@@ -10,12 +10,15 @@
 
 namespace Core {
 /**
- * I dislike the way `VertexBuffer` and `IndexBuffer` are handled here. This
- * breaks RAII principles
- *
- * TODO: Maybe find an alternative solution
+ * @brief Wrapper for OpenGL Vertex Array Object
  */
 class VertexArray {
+    /**
+     * I dislike the way `VertexBuffer` and `IndexBuffer` are handled here. This
+     * breaks RAII principles
+     *
+     * TODO: Maybe find an alternative solution
+     */
 public:
     VertexArray();
     VertexArray(const VertexArray &) = delete;

@@ -6,6 +6,9 @@
 #include <GL/glew.h>
 
 namespace Core {
+/**
+ * @brief Wrapper for OpenGL Vertex Buffer Object (a.k.a `GL_ARRAY_BUFFER`)
+ */
 class VertexBuffer {
 public:
     VertexBuffer(const std::vector<float> &vertices,

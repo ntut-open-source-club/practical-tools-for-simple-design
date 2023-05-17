@@ -6,6 +6,9 @@
 #include <GL/glew.h>
 
 namespace Core {
+/**
+ * @see Core::Program
+ */
 class Shader {
 public:
     enum class Type {
