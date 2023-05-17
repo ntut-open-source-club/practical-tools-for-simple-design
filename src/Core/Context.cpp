@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+#include <SDL_events.h>
+#include <SDL_video.h>
+
 #include <GL/glew.h>
 
 #include <SDL_image.h>
@@ -9,13 +12,15 @@
 
 #include <SDL_opengl.h>
 
+#include "Util/Input.hpp"
+#include "Util/Keycode.hpp"
 #include "Util/Logger.hpp"
 #include "Util/Time.hpp"
 
 #include "config.hpp"
 
 namespace Core {
-Context::Context() : m_Exit(false) {
+Context::Context() {
     Util::Logger::Init();
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -69,10 +74,12 @@ Context::Context() : m_Exit(false) {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
+std::shared_ptr<Context> Context::s_Instance(nullptr);
 
 Context::~Context() {
     SDL_DestroyWindow(m_Window);
     SDL_GL_DeleteContext(m_GlContext);
+    SDL_VideoQuit();
 
     TTF_Quit();
     IMG_Quit();
@@ -80,13 +87,14 @@ Context::~Context() {
 }
 
 void Context::Update() {
-    while (SDL_PollEvent(&m_Event) != 0) {
-        if (m_Event.type == SDL_QUIT) {
-            m_Exit = true;
-        }
-    }
-
     Util::Time::Update();
+    Util::Input::GetInstance()->Update();
     SDL_GL_SwapWindow(m_Window);
+}
+std::shared_ptr<Context> Context::GetInstance() {
+    if (s_Instance == nullptr) {
+        s_Instance.reset(new Context());
+    }
+    return s_Instance;
 }
 } // namespace Core
