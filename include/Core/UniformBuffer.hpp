@@ -6,9 +6,7 @@
 
 #include <GL/glew.h>
 
-#include <Core/Program.hpp>
-
-#include <Util/Logger.hpp>
+#include "Core/Program.hpp"
 
 namespace Core {
 template <typename T>

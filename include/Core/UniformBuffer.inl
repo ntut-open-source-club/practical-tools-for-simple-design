@@ -13,8 +13,6 @@ UniformBuffer<T>::UniformBuffer(const Program &program, const std::string &name,
 
     glBindBuffer(GL_UNIFORM_BUFFER, 0);
     glBindBufferBase(GL_UNIFORM_BUFFER, binding, m_BufferId);
-
-    LOG_DEBUG("{}", sizeof(T));
 }
 
 template <typename T>
@@ -25,8 +23,6 @@ UniformBuffer<T>::~UniformBuffer() {
 template <typename T>
 void UniformBuffer<T>::SetData(int offset, const T &data) {
     glBindBuffer(GL_UNIFORM_BUFFER, m_BufferId);
-    // glBindBufferRange(GL_UNIFORM_BUFFER, 0, m_BufferId, 0,
-    //                   static_cast<GLsizeiptr>(sizeof(T)));
     glBufferSubData(GL_UNIFORM_BUFFER, offset,
                     static_cast<GLsizeiptr>(sizeof(T)), &data);
 }
