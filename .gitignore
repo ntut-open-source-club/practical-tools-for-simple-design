@@ -491,3 +491,6 @@ build/
 
 # Ignore 3rd party dependencies
 lib/
+
+# Doxygen generated files
+docs/html/
