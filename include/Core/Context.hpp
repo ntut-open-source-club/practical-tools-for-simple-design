@@ -10,8 +10,8 @@ class Context {
 public:
     Context(const Context &) = delete;
     ~Context();
-    Context &operator=(const Context &) = delete;
     Context(Context &&) = delete;
+    Context &operator=(const Context &) = delete;
     Context &operator=(Context &&) = delete;
 
     bool GetExit() const { return m_Exit; }

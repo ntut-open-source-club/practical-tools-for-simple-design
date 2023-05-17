@@ -12,8 +12,8 @@
 #include <SDL_opengl.h>
 
 #include "Util/Input.hpp"
+#include "Util/Keycode.hpp"
 #include "Util/Logger.hpp"
-#include "Util/PTSDScancode.hpp"
 #include "Util/Time.hpp"
 
 #include "config.hpp"
