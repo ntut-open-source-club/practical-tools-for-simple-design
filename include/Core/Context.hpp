@@ -40,4 +40,5 @@ private:
 };
 
 } // namespace Core
+
 #endif
