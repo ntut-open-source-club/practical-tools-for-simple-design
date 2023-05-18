@@ -2,6 +2,9 @@
 
 #include <iostream>
 
+#include <SDL_events.h>
+#include <SDL_video.h>
+
 #include <GL/glew.h>
 
 #include <SDL_image.h>
@@ -11,6 +14,7 @@
 
 #include "Core/DebugMessageCallback.hpp"
 
+#include "Util/Input.hpp"
 #include "Util/Logger.hpp"
 #include "Util/Time.hpp"
 
@@ -78,10 +82,12 @@ Context::Context()
     LOG_INFO("  Version: {}", glGetString(GL_VERSION));
     LOG_INFO("  GLSL Version: {}", glGetString(GL_SHADING_LANGUAGE_VERSION));
 }
+std::shared_ptr<Context> Context::s_Instance(nullptr);
 
 Context::~Context() {
     SDL_DestroyWindow(m_Window);
     SDL_GL_DeleteContext(m_GlContext);
+    SDL_VideoQuit();
 
     TTF_Quit();
     IMG_Quit();
@@ -89,14 +95,15 @@ Context::~Context() {
 }
 
 void Context::Update() {
-    while (SDL_PollEvent(&m_Event) != 0) {
-        if (m_Event.type == SDL_QUIT) {
-            m_Exit = true;
-        }
-    }
-
     Util::Time::Update();
+    Util::Input::GetInstance()->Update();
     SDL_GL_SwapWindow(m_Window);
     glClear(GL_COLOR_BUFFER_BIT);
+}
+std::shared_ptr<Context> Context::GetInstance() {
+    if (s_Instance == nullptr) {
+        s_Instance.reset(new Context());
+    }
+    return s_Instance;
 }
 } // namespace Core

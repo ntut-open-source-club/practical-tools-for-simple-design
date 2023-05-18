@@ -1,6 +1,8 @@
 #ifndef CORE_CONTEXT_HPP
 #define CORE_CONTEXT_HPP
 
+#include <memory> // for std::shared_ptr
+
 #include <SDL.h>
 
 namespace Core {
@@ -11,13 +13,16 @@ public:
      */
     Context();
     Context(const Context &) = delete;
-    Context &operator=(const Context &) = delete;
     Context(Context &&) = delete;
-    Context &operator=(Context &&) = delete;
 
     ~Context();
 
+    Context &operator=(const Context &) = delete;
+    Context &operator=(Context &&) = delete;
+
     void Update();
+
+    static std::shared_ptr<Context> GetInstance();
 
     bool GetExit() const { return m_Exit; }
     unsigned int GetWindowWidth() const { return m_WindowWidth; }
@@ -31,13 +36,13 @@ private:
     SDL_Window *m_Window;
     SDL_GLContext m_GlContext;
 
-    SDL_Event m_Event;
-
+    static std::shared_ptr<Context> s_Instance;
     bool m_Exit;
 
     unsigned int m_WindowWidth;
     unsigned int m_WindowHeight;
 };
+
 } // namespace Core
 
 #endif

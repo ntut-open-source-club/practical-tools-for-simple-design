@@ -4,12 +4,11 @@
 
 #include "Core/Context.hpp"
 
-int main() {
-    Core::Context context;
-
+int main(int, char **) {
+    auto context = Core::Context::GetInstance();
     App app;
 
-    while (!context.GetExit()) {
+    while (!context->GetExit()) {
         switch (app.GetCurrentState()) {
         case App::State::START:
             app.Start();
@@ -21,10 +20,10 @@ int main() {
 
         case App::State::END:
             app.End();
-            context.SetExit(true);
+            context->SetExit(true);
             break;
         }
-
-        context.Update();
+        context->Update();
     }
+    return 0;
 }
