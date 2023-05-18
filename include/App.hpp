@@ -3,6 +3,8 @@
 
 #include <SDL.h>
 
+#include "Triangle.hpp"
+
 class App {
 public:
     enum class State {
@@ -20,6 +22,7 @@ public:
 private:
     State m_CurrentState = State::START;
 
+    Triangle m_Triangle;
 };
 
 #endif

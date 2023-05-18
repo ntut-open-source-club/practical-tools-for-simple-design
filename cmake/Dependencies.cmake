@@ -1,5 +1,7 @@
 find_package(OpenGL REQUIRED)
 
+cmake_policy(SET CMP0135 NEW)
+
 include(FetchContent)
 set(FETCH_CONTENT_QUIET FALSE)
 
@@ -44,6 +46,14 @@ FetchContent_Declare( # At this time 1.11.0 has some issues formatting `const un
 )
 
 FetchContent_Declare(
+    glm
+
+    URL         https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
+    URL_HASH    MD5=69895110052f0d711c9c54fbf385f6f5
+    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/glm
+)
+
+FetchContent_Declare(
     googletest
 
     URL         https://github.com/google/googletest/archive/refs/tags/v1.13.0.zip
@@ -62,7 +72,7 @@ set(SDL2TTF_VENDORED ON)
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
-FetchContent_MakeAvailable(sdl2 sdl2_image sdl2_ttf spdlog googletest)
+FetchContent_MakeAvailable(sdl2 sdl2_image sdl2_ttf spdlog glm googletest)
 
 FetchContent_GetProperties(glew)
 if (NOT ${glew_POPULATED})
@@ -86,4 +96,5 @@ set(DEPENDENCY_INCLUDE_DIRS
     ${CMAKE_SOURCE_DIR}/lib/sdl2/include/
     ${CMAKE_SOURCE_DIR}/lib/glew/include/
     ${CMAKE_SOURCE_DIR}/lib/spdlog/include/
+    ${CMAKE_SOURCE_DIR}/lib/glm/
 )

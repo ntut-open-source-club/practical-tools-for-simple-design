@@ -30,18 +30,16 @@ void App::Update() {
         LOG_DEBUG("Scrolling: x: {}, y: {}", x, y);
     }
     if (input->IsMouseMoving()) {
-        LOG_DEBUG("Mouse moving! x:{}, y{}" , x, y);
+        LOG_DEBUG("Mouse moving! x:{}, y{}", x, y);
     }
 
     if (input->IsKeyPressed(PTSDScancode::ESCAPE)) {
         m_CurrentState = State::END;
     }
+    m_Triangle.Update();
     if (input->IsKeyPressed(PTSDScancode::A)) {
         LOG_DEBUG("A");
     }
-
-//    LOG_DEBUG("Mouse Pos: x:{}, y:{} ", x, y);
-
 }
 
 void App::End() {
