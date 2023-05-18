@@ -1,8 +1,11 @@
 #ifndef UTIL_EVENT_STUFF_HPP
 #define UTIL_EVENT_STUFF_HPP
 
+#include "pch.hpp" // IWYU pragma: export
+
 // stolen enum from SDL_Scancode
 #include "SDL_scancode.h"
+
 enum class PTSDScancode {
     UNKNOWN = 0,
 

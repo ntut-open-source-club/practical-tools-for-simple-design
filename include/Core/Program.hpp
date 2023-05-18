@@ -1,9 +1,7 @@
 #ifndef CORE_PROGRAM_HPP
 #define CORE_PROGRAM_HPP
 
-#include <string>
-
-#include <GL/glew.h>
+#include "pch.hpp" // IWYU pragma: export
 
 namespace Core {
 /**

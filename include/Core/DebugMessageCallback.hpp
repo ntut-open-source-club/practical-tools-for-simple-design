@@ -1,7 +1,7 @@
 #ifndef CORE_DEBUG_MESSAGE_CALLBACK_HPP
 #define CORE_DEBUG_MESSAGE_CALLBACK_HPP
 
-#include <GL/glew.h>
+#include "pch.hpp" // IWYU pragma: export
 
 namespace Core {
 /**

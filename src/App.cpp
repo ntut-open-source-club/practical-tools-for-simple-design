@@ -1,8 +1,7 @@
 #include "App.hpp"
 
-#include <SDL.h>
-
 #include "Core/Context.hpp"
+
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
 #include "Util/Logger.hpp"

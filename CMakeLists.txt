@@ -66,6 +66,9 @@ target_include_directories(Sample SYSTEM PRIVATE
 target_include_directories(Sample PRIVATE
     ${CMAKE_SOURCE_DIR}/include
 )
+target_precompile_headers(Sample PRIVATE
+    include/pch.hpp
+)
 if (MSVC)
     target_compile_options(Sample PRIVATE
         /W4

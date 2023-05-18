@@ -1,7 +1,5 @@
 #include "Triangle.hpp"
 
-#include <vector>
-
 #include "Core/IndexBuffer.hpp"
 #include "Core/VertexArray.hpp"
 #include "Core/VertexBuffer.hpp"

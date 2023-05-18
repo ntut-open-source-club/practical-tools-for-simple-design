@@ -1,7 +1,8 @@
 #ifndef UTIL_EVENT_HPP
 #define UTIL_EVENT_HPP
 
-#include <memory> // for std::shared_ptr
+#include "pch.hpp" // IWYU pragma: export
+
 #include <utility> // for std::pair
 
 #include <SDL_events.h> // for SDL_Event

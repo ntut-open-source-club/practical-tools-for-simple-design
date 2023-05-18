@@ -1,9 +1,7 @@
 #ifndef CORE_VERTEX_ARRAY_HPP
 #define CORE_VERTEX_ARRAY_HPP
 
-#include <memory>
-
-#include <GL/glew.h>
+#include "pch.hpp" // IWYU pragma: export
 
 #include "Core/IndexBuffer.hpp"
 #include "Core/VertexBuffer.hpp"
