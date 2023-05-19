@@ -21,6 +21,7 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Logger.cpp
     ${SRC_DIR}/Util/Time.cpp
     ${SRC_DIR}/Util/Input.cpp
+    ${SRC_DIR}/Util/Audio.cpp
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/Triangle.cpp
@@ -43,6 +44,7 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/Time.hpp
     ${INCLUDE_DIR}/Util/Input.hpp
     ${INCLUDE_DIR}/Util/Keycode.hpp
+    ${INCLUDE_DIR}/Util/Audio.hpp
 
     ${INCLUDE_DIR}/App.hpp
     ${INCLUDE_DIR}/Triangle.hpp
