@@ -89,6 +89,7 @@ Context::~Context() {
     SDL_GL_DeleteContext(m_GlContext);
     SDL_VideoQuit();
 
+    Mix_Quit();
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();
