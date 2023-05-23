@@ -4,10 +4,10 @@
 #include <SDL_mixer.h>
 #include <memory>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 namespace Util {
-// this thing is kinda mess, will have a remake later
 class Audio {
 public:
     Audio(const Audio &) = delete;
@@ -18,30 +18,43 @@ public:
     Audio &operator=(const Audio &) = delete;
     Audio &operator=(Audio &&) = delete;
 
-    void SetMusicVolume(int volume);
-    void SetSoundVolume(int volume);
+    size_t GetBGMSize() const { return m_BGM.size(); }
+    size_t GetSFXSize() const { return m_SFX.size(); }
+    int GetBGMVolume() const { return Mix_VolumeMusic(-1); }
+    int GetSFXVolume() const { return Mix_Volume(-1,-1); }
 
-    size_t GetMusicCount() const;
-    int GetMusicVolume() const;
-    int GetSoundVolume(int index = -1) const;
-    bool ifPlaying() const;
+    void SetBGMVolume(const int &volume);
+    void SetSFXVolume(const int &volume);
 
-    void LoadMusic(const std::string &path);
 
-    void PlayMusic(int loops, unsigned index);
-    void PauseMusic(int index = -1);
-    void ResumeMusic(int index = -1);
-    void StopMusic(int index = -1);
+    void AddBGM(const std::string &path);
+    void DeleteBGM(const unsigned &index);
+
+    void PlayBGM(const unsigned &index, const int &loopTimes);
+    void StopBGM();
+
+    void ResumeBGM();
+
+
+    void AddSFX(const std::string &path);
+    void DeleteSFX(const unsigned &index);
+
+    void PlaySFX(const unsigned &index, const int &loopTimes);
+    /* index = -1 to stop ALL SFX */
+    void StopSFX(const unsigned &index);
 
     static std::shared_ptr<Audio> GetInstance();
 
 private:
     Audio();
 
-    std::vector<std::shared_ptr<Mix_Music>> m_Music;
+    std::vector<Mix_Chunk *> m_SFX;
+    std::vector<Mix_Music *> m_BGM;
 
+    std::vector<bool> m_Channels = std::vector<bool>(8, false);
     static std::shared_ptr<Audio> s_Instance;
 };
-}
+
+} // namespace Util
 
 #endif // UTIL_AUDIO_HPP

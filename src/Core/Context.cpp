@@ -2,10 +2,10 @@
 
 #include <iostream>
 
-#include <SDL_events.h>
-#include <SDL_video.h>
-
 #include <GL/glew.h>
+#include <SDL_events.h>
+#include <SDL_mixer.h>
+#include <SDL_video.h>
 
 #include <SDL_image.h>
 #include <SDL_ttf.h>
@@ -89,7 +89,6 @@ Context::~Context() {
     SDL_GL_DeleteContext(m_GlContext);
     SDL_VideoQuit();
 
-    Mix_Quit();
     TTF_Quit();
     IMG_Quit();
     SDL_Quit();

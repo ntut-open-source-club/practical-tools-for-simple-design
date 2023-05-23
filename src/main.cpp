@@ -4,26 +4,29 @@
 
 #include "Core/Context.hpp"
 
+#include "Util/Audio.hpp"
 int main(int, char **) {
-    auto context = Core::Context::GetInstance();
-    App app;
+        auto context = Core::Context::GetInstance();
+        App app;
 
-    while (!context->GetExit()) {
-        switch (app.GetCurrentState()) {
-        case App::State::START:
-            app.Start();
-            break;
+        while (!context->GetExit()) {
+            switch (app.GetCurrentState()) {
+            case App::State::START:
+                app.Start();
+                break;
 
-        case App::State::UPDATE:
-            app.Update();
-            break;
+            case App::State::UPDATE:
+                app.Update();
+                break;
 
-        case App::State::END:
-            app.End();
-            context->SetExit(true);
-            break;
+            case App::State::END:
+                app.End();
+                context->SetExit(true);
+                break;
+            }
+            context->Update();
         }
-        context->Update();
-    }
-    return 0;
+        return 0;
+
+
 }

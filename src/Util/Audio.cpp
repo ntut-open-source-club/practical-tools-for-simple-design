@@ -1,83 +1,98 @@
 #include "Util/Audio.hpp"
+
 #include "Util/Logger.hpp"
+#include <SDL.h>
+#include <SDL_mixer.h>
 
 namespace Util {
 
-void Audio::LoadMusic(const std::string &path) {
-    Mix_Music *music = Mix_LoadMUS(path.c_str());
-    if (music == nullptr) {
-        std::string error = Mix_GetError();
-        LOG_DEBUG(R"(Failed to load music:)" + error);
-        return;
+Audio::Audio() {
+    // init SDL_AUdio and SDL_Mixer
+    if (SDL_Init(SDL_INIT_AUDIO) < 0) {
+        LOG_DEBUG("SDL_Audio init failed");
+        exit(1);
     }
-    m_Music.push_back(std::shared_ptr<Mix_Music>(music, Mix_FreeMusic));
-}
-void Audio::SetMusicVolume(int volume) {
-    Mix_VolumeMusic(volume);
-}
-void Audio::SetSoundVolume(int volume) {
-    Mix_Volume(-1, volume);
-}
-size_t Audio::GetMusicCount() const {
-    return m_Music.size();
-}
-int Audio::GetMusicVolume() const {
-    return Mix_VolumeMusic(-1);
-}
-int Audio::GetSoundVolume(int index) const {
-    return Mix_Volume(index, -1);
-}
-void Audio::PlayMusic(int loops, unsigned int index) {
-    if (index >= m_Music.size()) {
-        LOG_DEBUG(R"(Failed to play music: index out of range)");
-        return;
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+        LOG_DEBUG("SDL_Mixer init failed");
+        exit(1);
     }
-    Mix_PlayMusic(m_Music[index].get(), loops);
 }
-void Audio::PauseMusic(int index) {
-    if (index >= m_Music.size()) {
-        LOG_DEBUG(R"(Failed to pause music: index out of range)");
-        return;
+
+Audio::~Audio() {
+    for (auto &i : m_BGM) {
+        Mix_FreeMusic(i);
     }
+    for (auto &i : m_SFX) {
+        Mix_FreeChunk(i);
+    }
+    Mix_Quit();
+}
+
+void Audio::AddBGM(const std::string &path) {
+    auto *temp = Mix_LoadMUS(path.c_str());
+    assert(temp != nullptr);
+    m_BGM.push_back(std::move(temp));
+}
+void Audio::DeleteBGM(const unsigned &index) {
+    assert(index < m_BGM.size());
+    Mix_FreeMusic(m_BGM.at(index));
+    m_BGM.erase(m_BGM.begin() + index);
+}
+void Audio::PlayBGM(const unsigned &index = 0, const int &loopTimes = -1) {
+    assert(index < m_BGM.size());
+    assert(Mix_PlayMusic(m_BGM.at(index), loopTimes) == 0);
+}
+void Audio::StopBGM() {
     Mix_PauseMusic();
 }
-void Audio::ResumeMusic(int index) {
-    if (index >= m_Music.size()) {
-        LOG_DEBUG(R"(Failed to resume music: index out of range)");
-        return;
+void Audio::ResumeBGM() {
+    if (Mix_PausedMusic() != 0) {
+        Mix_ResumeMusic();
     }
-    Mix_ResumeMusic();
 }
-void Audio::StopMusic(int index) {
-    if (index >= m_Music.size()) {
-        LOG_DEBUG(R"(Failed to stop music: index out of range)");
-        return;
+void Audio::AddSFX(const std::string &path) {
+    auto *temp = Mix_LoadWAV(path.c_str());
+    assert(temp != nullptr);
+    m_SFX.push_back(temp);
+}
+
+void Audio::DeleteSFX(const unsigned &index) {
+    assert(index < m_SFX.size());
+    Mix_FreeChunk(m_SFX.at(index));
+    m_SFX.erase(m_SFX.begin() + index);
+}
+
+void Audio::PlaySFX(const unsigned int &index, const int &loopTimes = 0) {
+    assert(index < m_SFX.size());
+    for (size_t i = 0; i < m_Channels.size(); ++i) {
+        if (!m_Channels.at(i)) {
+            Mix_PlayChannel(i, m_SFX.at(index), loopTimes);
+            m_Channels.at(i) = true;
+            Mix_ChannelFinished([](int channel) {
+                Audio::GetInstance()->m_Channels.at(channel) = false;
+            });
+        }
     }
-    Mix_HaltMusic();
 }
+
+void Audio::StopSFX(const unsigned &index) {
+    assert(index < m_SFX.size());
+}
+void Audio::SetSFXVolume(const int &volume) {
+    for (auto &i : m_SFX) {
+        Mix_VolumeChunk(i, volume);
+    }
+}
+void Audio::SetBGMVolume(const int &volume) {
+    Mix_VolumeMusic(volume);
+}
+
 std::shared_ptr<Audio> Audio::s_Instance = nullptr;
 std::shared_ptr<Audio> Audio::GetInstance() {
     if (s_Instance == nullptr) {
         s_Instance.reset(new Audio());
     }
     return s_Instance;
-}
-bool Audio::ifPlaying() const {
-    return Mix_PlayingMusic() != 0;
-}
-Audio::Audio() {
-    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-        std::string error = Mix_GetError();
-        LOG_DEBUG(R"(Failed to initialize SDL_mixer:)" + error);
-        return;
-    }
-}
-Audio::~Audio() {
-    for (auto &i : m_Music) {
-        Mix_FreeMusic(i.get());
-        i.reset();
-    }
-    Mix_CloseAudio();
 }
 
 } // namespace Util
