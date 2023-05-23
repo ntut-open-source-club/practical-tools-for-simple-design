@@ -1,8 +1,6 @@
 #include "Core/Context.hpp"
 
-#include <SDL_image.h>
 #include <SDL_opengl.h>
-#include <SDL_ttf.h>
 #include <SDL_video.h>
 
 #include "Core/DebugMessageCallback.hpp"
