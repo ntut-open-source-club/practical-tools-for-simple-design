@@ -87,6 +87,10 @@ add_executable(Tests
 target_link_libraries(Tests
     GTest::gtest_main
 )
+target_include_directories(Tests SYSTEM PRIVATE
+    lib/googletest/googletest/include
+    lib/googletest/googlemock/include
+)
 if (MSVC)
     target_compile_options(Tests PRIVATE
         /W4
