@@ -1,6 +1,8 @@
 #ifndef UTIL_LOGGER_HPP
 #define UTIL_LOGGER_HPP
 
+#include "pch.hpp" // IWYU pragma: export
+
 #include <spdlog/spdlog.h>
 
 namespace Util::Logger {

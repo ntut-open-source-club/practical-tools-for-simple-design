@@ -4,7 +4,7 @@
 
 namespace Util {
 
-bool Input::IsKeyPressed(const PTSDScancode &key) const {
+bool Input::IsKeyPressed(const Keycode &key) const {
     const auto temp = static_cast<const int>(key);
     return m_KeyState[temp] != 0;
 }

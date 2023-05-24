@@ -1,7 +1,7 @@
 #ifndef UTIL_LOAD_TEXT_FILE_HPP
 #define UTIL_LOAD_TEXT_FILE_HPP
 
-#include <string>
+#include "pch.hpp" // IWYU pragma: export
 
 namespace Util {
 /**

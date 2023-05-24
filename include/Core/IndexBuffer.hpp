@@ -1,9 +1,7 @@
 #ifndef CORE_INDEX_BUFFER_HPP
 #define CORE_INDEX_BUFFER_HPP
 
-#include <vector>
-
-#include <GL/glew.h>
+#include "pch.hpp" // IWYU pragma: export
 
 namespace Core {
 /**

@@ -1,13 +1,14 @@
 #ifndef UTIL_EVENT_HPP
 #define UTIL_EVENT_HPP
 
-#include <memory> // for std::shared_ptr
+#include "pch.hpp" // IWYU pragma: export
+
 #include <utility> // for std::pair
 
 #include <SDL_events.h> // for SDL_Event
 #include <SDL_stdinc.h> // for Uint8
 
-#include "Util/Keycode.hpp" // for PTSDScancode
+#include "Util/Keycode.hpp" // for Keycode
 
 namespace Util {
 
@@ -16,7 +17,7 @@ public:
     std::pair<int, int> GetScrollDistance() const;
     std::pair<int, int> GetCursorPosition() const;
 
-    bool IsKeyPressed(const PTSDScancode &key) const;
+    bool IsKeyPressed(const Keycode &key) const;
     bool IsLButtonPressed() const;
     bool IsRButtonPressed() const;
     bool IsMButtonPressed() const;

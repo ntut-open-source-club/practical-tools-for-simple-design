@@ -1,9 +1,7 @@
 #ifndef CORE_CONTEXT_HPP
 #define CORE_CONTEXT_HPP
 
-#include <memory> // for std::shared_ptr
-
-#include <SDL.h>
+#include "pch.hpp" // IWYU pragma: export
 
 namespace Core {
 class Context {

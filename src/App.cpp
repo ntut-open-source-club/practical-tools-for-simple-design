@@ -1,8 +1,7 @@
 #include "App.hpp"
 
-#include <SDL.h>
-
 #include "Core/Context.hpp"
+
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
 #include "Util/Logger.hpp"
@@ -33,11 +32,11 @@ void App::Update() {
         LOG_DEBUG("Mouse moving! x:{}, y{}", x, y);
     }
 
-    if (input->IsKeyPressed(PTSDScancode::ESCAPE)) {
+    if (input->IsKeyPressed(Keycode::ESCAPE)) {
         m_CurrentState = State::END;
     }
     m_Triangle.Update();
-    if (input->IsKeyPressed(PTSDScancode::A)) {
+    if (input->IsKeyPressed(Keycode::A)) {
         LOG_DEBUG("A");
     }
 }

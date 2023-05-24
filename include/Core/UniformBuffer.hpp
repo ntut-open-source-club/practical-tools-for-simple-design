@@ -1,10 +1,7 @@
 #ifndef CORE_UNIFORM_BUFFER_HPP
 #define CORE_UNIFORM_BUFFER_HPP
 
-#include <memory>
-#include <string>
-
-#include <GL/glew.h>
+#include "pch.hpp" // IWYU pragma: export
 
 #include "Core/Program.hpp"
 
