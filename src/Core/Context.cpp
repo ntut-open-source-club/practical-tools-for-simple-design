@@ -4,7 +4,6 @@
 
 #include <GL/glew.h>
 #include <SDL_events.h>
-#include <SDL_mixer.h>
 #include <SDL_video.h>
 
 #include <SDL_image.h>

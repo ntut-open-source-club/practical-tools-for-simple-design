@@ -7,7 +7,7 @@
 namespace Util {
 
 Audio::Audio() {
-    // init SDL_AUdio and SDL_Mixer
+    // init SDL_Audio and SDL_Mixer
     if (SDL_Init(SDL_INIT_AUDIO) < 0) {
         LOG_DEBUG("SDL_Audio init failed");
         exit(1);
@@ -19,13 +19,19 @@ Audio::Audio() {
 }
 
 Audio::~Audio() {
-    for (auto &i : m_BGM) {
-        Mix_FreeMusic(i);
+    if (s_Instance != nullptr) {
+        // Prevent the callback functions of channels rebuilding the audio
+        // instance after the program entered this destructor
+        Mix_ChannelFinished(nullptr);
+        Mix_HaltGroup(-1);
+        for (auto &i : m_BGM) {
+            Mix_FreeMusic(i);
+        }
+        for (auto &i : m_SFX) {
+            Mix_FreeChunk(i);
+        }
+        Mix_Quit();
     }
-    for (auto &i : m_SFX) {
-        Mix_FreeChunk(i);
-    }
-    Mix_Quit();
 }
 
 void Audio::AddBGM(const std::string &path) {
@@ -62,22 +68,20 @@ void Audio::DeleteSFX(const unsigned &index) {
     m_SFX.erase(m_SFX.begin() + index);
 }
 
-void Audio::PlaySFX(const unsigned int &index, const int &loopTimes = 0) {
+void Audio::PlaySFX(const unsigned int &index, const int &loopTimes) {
     assert(index < m_SFX.size());
     for (size_t i = 0; i < m_Channels.size(); ++i) {
         if (!m_Channels.at(i)) {
             Mix_PlayChannel(i, m_SFX.at(index), loopTimes);
-            m_Channels.at(i) = true;
             Mix_ChannelFinished([](int channel) {
                 Audio::GetInstance()->m_Channels.at(channel) = false;
             });
+            m_Channels.at(i) = true;
+            break;
         }
     }
 }
 
-void Audio::StopSFX(const unsigned &index) {
-    assert(index < m_SFX.size());
-}
 void Audio::SetSFXVolume(const int &volume) {
     for (auto &i : m_SFX) {
         Mix_VolumeChunk(i, volume);
@@ -93,6 +97,10 @@ std::shared_ptr<Audio> Audio::GetInstance() {
         s_Instance.reset(new Audio());
     }
     return s_Instance;
+}
+void Audio::SetMasterVolume(const int &volume) {
+    Mix_VolumeMusic(volume * 0.5 + GetBGMVolume() * 0.5);
+    Mix_MasterVolume(volume);
 }
 
 } // namespace Util
