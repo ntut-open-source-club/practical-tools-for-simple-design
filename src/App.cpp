@@ -27,9 +27,7 @@ void App::Update() {
     if (input->IfScroll()) {
         auto [dx, dy] = input->GetScrollDistance();
         LOG_DEBUG("Scrolling: x: {}, y: {}", dx, dy);
-        if (dy != 0) {
-            LOG_DEBUG(m_Audio->GetMasterVolume());
-        }
+
     }
     if (input->IsMouseMoving()) {
         LOG_DEBUG("Mouse moving! x:{}, y{}", x, y);

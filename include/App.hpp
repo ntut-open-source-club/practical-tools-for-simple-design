@@ -4,7 +4,6 @@
 #include <SDL.h>
 
 #include "Triangle.hpp"
-#include "Util/Audio.hpp"
 class App {
 public:
     enum class State {
@@ -23,7 +22,7 @@ private:
     State m_CurrentState = State::START;
 
     Triangle m_Triangle;
-    std::shared_ptr<Util::Audio> m_Audio = Util::Audio::GetInstance();
+
 };
 
 #endif
