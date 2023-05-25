@@ -4,6 +4,8 @@
 #include <SDL.h>
 
 #include "Triangle.hpp"
+#include "Util/BGM.hpp"
+#include "Util/SFX.hpp"
 class App {
 public:
     enum class State {
@@ -20,9 +22,8 @@ public:
 
 private:
     State m_CurrentState = State::START;
-
     Triangle m_Triangle;
-
+    Util::BGM* m_BGM = nullptr;
 };
 
 #endif

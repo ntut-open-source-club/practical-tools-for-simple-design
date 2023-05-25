@@ -10,6 +10,9 @@
 void App::Start() {
     LOG_TRACE("Start");
     m_CurrentState = State::UPDATE;
+    m_BGM = new Util::BGM("/home/df/Music/BGM"
+                          ".mp3");
+    m_BGM->Play();
 }
 
 void App::Update() {
@@ -27,7 +30,6 @@ void App::Update() {
     if (input->IfScroll()) {
         auto [dx, dy] = input->GetScrollDistance();
         LOG_DEBUG("Scrolling: x: {}, y: {}", dx, dy);
-
     }
     if (input->IsMouseMoving()) {
         LOG_DEBUG("Mouse moving! x:{}, y{}", x, y);
@@ -44,5 +46,6 @@ void App::Update() {
 
 void App::End() {
     Core::Context::GetInstance()->SetExit(true);
+    delete m_BGM;
     LOG_TRACE("End");
 }
