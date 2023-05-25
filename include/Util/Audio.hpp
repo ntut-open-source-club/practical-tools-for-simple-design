@@ -22,26 +22,26 @@ public:
     size_t GetSFXSize() const { return m_SFX.size(); }
     int GetMasterVolume() const { return Mix_MasterVolume(-1); }
     int GetBGMVolume() const { return Mix_VolumeMusic(-1); }
-    int GetSFXVolume() const { return Mix_Volume(-1,-1); }
+    int GetSFXVolume() const { return Mix_Volume(-1, -1); }
 
     void SetMasterVolume(const int &volume);
     void SetBGMVolume(const int &volume);
     void SetSFXVolume(const int &volume);
 
-
     void AddBGM(const std::string &path);
     void DeleteBGM(const unsigned &index);
 
-    void PlayBGM(const unsigned &index, const int &loopTimes);
+    void PlayBGM(const unsigned &index, const int &loopTimes = -1,
+                 const bool &fadeIn = false, const int &fadeInTicks = 0);
     void StopBGM();
 
     void ResumeBGM();
 
-
     void AddSFX(const std::string &path);
     void DeleteSFX(const unsigned &index);
 
-    void PlaySFX(const unsigned &index, const int &loopTimes = 0);
+    void PlaySFX(const unsigned &index, const int &loopTimes = -1,
+                 const bool &fadeIn = false, const int &fadeInTicks = 0);
 
     static std::shared_ptr<Audio> GetInstance();
 
