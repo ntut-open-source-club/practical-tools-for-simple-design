@@ -23,8 +23,6 @@ public:
 private:
     State m_CurrentState = State::START;
     Triangle m_Triangle;
-    Util::BGM m_BGM;
-    std::vector<Util::SFX> m_SFXs;
 };
 
 #endif
