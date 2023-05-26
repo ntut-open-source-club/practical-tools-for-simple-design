@@ -87,7 +87,17 @@ public:
      */
     void FadeIn(const int &tick, const int &loop = -1);
 
+    /**
+ * @brief Pauses the currently playing background music.
+ * @note This function has no effect if there is no background music currently playing.
+     */
+    void Pause();
 
+    /**
+ * @brief Resumes the paused background music.
+ * @note This function has no effect if there is no paused background music.
+     */
+    void Resume();
 
 
 private:

@@ -48,4 +48,15 @@ void BGM::FadeIn(const int &tick, const int &loop) {
     assert(m_BGM != nullptr);
     Mix_FadeInMusic(m_BGM.get(), loop, tick);
 }
+
+void BGM::Pause() {
+    assert(m_BGM != nullptr);
+    Mix_PauseMusic();
+}
+
+void BGM::Resume() {
+    assert(m_BGM != nullptr);
+    Mix_ResumeMusic();
+}
+
 } // namespace Util
