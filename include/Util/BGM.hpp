@@ -7,6 +7,9 @@ namespace Util {
 /**
  * @class BGM
  * @brief Class for handling background music.
+ * @note There can be only one BGM object playing at a time.
+ *      If a BGM object is playing and another BGM object is played,
+ *      the previous one will stop playing.
  */
 class BGM {
 public:
@@ -44,7 +47,8 @@ public:
     /**
      * @brief Sets the volume of the background music.
      * @param volume The desired volume level for the background music. The
-     * valid range is [0, 128]. A value of 0 mutes the music, and a value of 128
+     * valid range is [0, 128]. <br>
+     * A value of 0 mutes the music, and a value of 128
      * sets the maximum volume.
      */
     void SetVolume(const int &volume);
@@ -71,7 +75,7 @@ public:
      *             A value of -1 means it will loop indefinitely.<br>
      *             A non-negative value means it will loop that many times.<br>
      *             Default value: -1
-     * @note Calling this method replaces the currently playing BGM.
+     * @note Calling this function stops any currently playing music and plays.
      */
     void Play(const int &loop = -1);
 
@@ -82,6 +86,9 @@ public:
      * complete.<br> A value of -1 means it will loop indefinitely.
      */
     void FadeIn(const int &tick, const int &loop = -1);
+
+
+
 
 private:
     std::unique_ptr<Mix_Music, void (*)(Mix_Music *)> m_BGM =
