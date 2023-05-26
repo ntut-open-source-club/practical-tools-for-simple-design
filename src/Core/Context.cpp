@@ -8,6 +8,7 @@
 
 #include <SDL_image.h>
 #include <SDL_ttf.h>
+#include <SDL_mixer.h>
 
 #include <SDL_opengl.h>
 
@@ -40,6 +41,16 @@ Context::Context()
         LOG_ERROR("Failed to initialize SDL_ttf");
         LOG_ERROR(SDL_GetError());
     }
+
+    if (Mix_Init(MIX_INIT_MP3) < 0) {
+        LOG_ERROR("Failed to initialize SDL_mixer");
+        LOG_ERROR(SDL_GetError());
+    }
+
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
+                LOG_ERROR("Failed to initialize SDL_mixer");
+                LOG_ERROR(SDL_GetError());
+        }
 
     m_Window =
         SDL_CreateWindow(TITLE, WINDOW_POS_X, WINDOW_POS_Y, WINDOW_WIDTH,
@@ -87,9 +98,14 @@ Context::~Context() {
     SDL_DestroyWindow(m_Window);
     SDL_GL_DeleteContext(m_GlContext);
     SDL_VideoQuit();
+    Mix_HaltGroup(-1);
+    Mix_CloseAudio();
+
+
 
     TTF_Quit();
     IMG_Quit();
+    Mix_Quit();
     SDL_Quit();
 }
 
