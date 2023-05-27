@@ -4,8 +4,7 @@
 #include <SDL.h>
 
 #include "Triangle.hpp"
-#include "Util/BGM.hpp"
-#include "Util/SFX.hpp"
+
 class App {
 public:
     enum class State {
