@@ -39,3 +39,13 @@ TODO
 ### Visual Studio
 
 TODO
+
+## Generate Doxygen Documents
+
+Required: Doxygen 1.9.6
+
+```
+doxygen docs/Doxyfile
+```
+
+Open the generated documents with your favorite browser at `docs/html/index.html`

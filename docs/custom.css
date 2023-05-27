@@ -1,0 +1,16 @@
+div#nav-tree ul.children_ul ul.children_ul ul.children_ul a[class^="namespace"]::before {
+    content: "N ";
+    /* from .icon */
+    font-family: Arial, Helvetica;
+    font-weight: bold;
+    font-size: 12px;
+    height: 14px;
+    width: 16px;
+    display: inline-block;
+    background-color: #0081FA;
+    color: white;
+    text-align: center;
+    border-radius: 4px;
+    margin-left: 2px;
+    margin-right: 6px;
+}
