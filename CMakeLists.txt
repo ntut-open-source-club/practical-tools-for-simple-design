@@ -55,6 +55,7 @@ set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
 set(TEST_FILES
     ${TEST_DIR}/SimpleTest.cpp
     ${TEST_DIR}/NotSimpleTest.cpp
+    ${TEST_DIR}/audio.cpp
 )
 
 add_executable(Sample
