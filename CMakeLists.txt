@@ -26,7 +26,6 @@ set(SRC_FILES
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/Triangle.cpp
-    ${SRC_DIR}/main.cpp
 )
 set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
 set(INCLUDE_FILES
@@ -56,10 +55,12 @@ set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
 set(TEST_FILES
     ${TEST_DIR}/SimpleTest.cpp
     ${TEST_DIR}/NotSimpleTest.cpp
+    ${TEST_DIR}/audio.cpp
 )
 
 add_executable(Sample
     ${SRC_FILES}
+    ${SRC_DIR}/main.cpp
 )
 target_link_libraries(Sample
     ${DEPENDENCY_LINK_LIBRARIES}
@@ -68,7 +69,7 @@ target_include_directories(Sample SYSTEM PRIVATE
     ${DEPENDENCY_INCLUDE_DIRS}
 )
 target_include_directories(Sample PRIVATE
-    ${CMAKE_SOURCE_DIR}/include
+    ${INCLUDE_DIR}
 )
 if (MSVC)
     target_compile_options(Sample PRIVATE
@@ -84,9 +85,17 @@ enable_testing()
 
 add_executable(Tests
     ${TEST_FILES}
+    ${SRC_FILES}
 )
 target_link_libraries(Tests
     GTest::gtest_main
+    ${DEPENDENCY_LINK_LIBRARIES}
+)
+target_include_directories(Tests SYSTEM PRIVATE
+    ${DEPENDENCY_INCLUDE_DIRS}
+)
+target_include_directories(Tests PRIVATE
+    ${INCLUDE_DIR}
 )
 if (MSVC)
     target_compile_options(Tests PRIVATE
