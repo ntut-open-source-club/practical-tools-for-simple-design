@@ -1,6 +1,6 @@
 #ifndef UTIL_SFX_HPP
 #define UTIL_SFX_HPP
-#include <SDL_mixer.h>
+#include "pch.hpp" // IWYU pragma: export
 #include <memory>
 #include <string>
 namespace Util {
