@@ -14,12 +14,10 @@ BGM::BGM(const std::string &path) {
 }
 
 int BGM::GetVolume() const {
-    assert(m_BGM != nullptr);
     return Mix_VolumeMusic(-1);
 }
 
 void BGM::SetVolume(const int &volume) {
-    assert(m_BGM != nullptr);
     Mix_VolumeMusic(volume);
 }
 
@@ -28,34 +26,28 @@ void BGM::LoadMedia(const std::string &path) {
 }
 
 void BGM::VolumeUp() {
-    assert(m_BGM != nullptr);
     int volume = GetVolume();
     SetVolume(volume + 1);
 }
 
 void BGM::VolumeDown() {
-    assert(m_BGM != nullptr);
     int volume = GetVolume();
     SetVolume(volume - 1);
 }
 
 void BGM::Play(const int &loop) {
-    assert(m_BGM != nullptr);
     Mix_PlayMusic(m_BGM.get(), loop);
 }
 
 void BGM::FadeIn(const int &tick, const int &loop) {
-    assert(m_BGM != nullptr);
     Mix_FadeInMusic(m_BGM.get(), loop, tick);
 }
 
 void BGM::Pause() {
-    assert(m_BGM != nullptr);
     Mix_PauseMusic();
 }
 
 void BGM::Resume() {
-    assert(m_BGM != nullptr);
     Mix_ResumeMusic();
 }
 

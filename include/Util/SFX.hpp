@@ -11,12 +11,7 @@ namespace Util {
  */
 class SFX {
 public:
-    /**
-     * @brief Default constructor for creating an empty SFX object.
-     * @note This constructor does not load any media.
-     *            The LoadMedia() method <b>MUST</b> be called afterward.
-     */
-    SFX() = default;
+    SFX() = delete;
 
     /**
      * @brief Constructor that initializes the SFX object and loads the sound
@@ -24,6 +19,17 @@ public:
      * @param path The file path of the sound effect to be loaded.
      */
     SFX(const std::string &path);
+
+    /**
+     * @brief Deleted copy assignment operator to prevent copying of SFX
+     *            objects.
+     */
+    SFX &operator=(const SFX &) = delete;
+
+    /**
+     * @brief Deleted copy constructor to prevent copying of SFX objects.
+     */
+    SFX(const SFX &) = delete;
 
     /**
      * @brief Retrieves the current volume of the sound effect.

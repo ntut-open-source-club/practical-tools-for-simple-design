@@ -13,12 +13,7 @@ namespace Util {
  */
 class BGM {
 public:
-    /**
-     * @brief Default constructor for creating a BGM object.
-     * @note This constructor does not load any media.
-     *           The LoadMedia() function <b>MUST</b> be called afterward.
-     */
-    BGM() = default;
+    BGM() = delete;
 
     /**
      * @brief Constructor that initializes the BGM object and loads the music
