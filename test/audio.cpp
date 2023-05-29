@@ -1,7 +1,8 @@
-#include <gtest/gtest.h>
-#include "Util/BGM.hpp"
 #include "Core/Context.hpp"
+#include "Util/BGM.hpp"
+#include "Util/SFX.hpp"
 #include <SDL_mixer.h>
+#include <gtest/gtest.h>
 
 bool user_check(const std::string text) {
 	std::cout << text << "[Y/n]";
@@ -42,28 +43,50 @@ void AUDIO_UNINIT() {
 //	EXCEPT_USER_SAY_YES("do you not no?");
 //}
 
-TEST(Audio, PlaySomething) {
-	AUDIO_INIT();
-	auto bgm = Util::BGM("../assets/audio/testbgm.mp3");
-	bgm.SetVolume(100);
 
-	bgm.Play();
-	EXCEPT_USER_SAY_YES("Do you hear the bgm?");
 
-	bgm.SetVolume(30);
-	EXCEPT_USER_SAY_YES("Is the volume down?");
+TEST(Audio, BGM_TEST) {
+    AUDIO_INIT();
+    auto bgm = Util::BGM("../assets/audio/testbgm.mp3");
+    bgm.SetVolume(100);
 
-	bgm.SetVolume(100);
-	EXCEPT_USER_SAY_YES("Is the volume up?");
+    bgm.Play();
+    EXCEPT_USER_SAY_YES("Do you hear the bgm?");
 
-	bgm.Pause();
-	EXCEPT_USER_SAY_YES("Is it pause?");
+    bgm.SetVolume(30);
+    EXCEPT_USER_SAY_YES("Is the volume down?");
 
-	bgm.Resume();
-	EXCEPT_USER_SAY_YES("Is it resume?");
+    bgm.SetVolume(100);
+    EXCEPT_USER_SAY_YES("Is the volume up?");
 
-	bgm.Play();
-	EXCEPT_USER_SAY_YES("Is it replay?");
+    bgm.Pause();
+    EXCEPT_USER_SAY_YES("Is it pause?");
 
-	AUDIO_UNINIT();
+    bgm.Resume();
+    EXCEPT_USER_SAY_YES("Is it resume?");
+
+    bgm.FadeIn(1000);
+    EXCEPT_USER_SAY_YES("Is it fading in?");
+
+    AUDIO_UNINIT();
+
+}
+
+TEST(Audio, SFX_TEST){
+    AUDIO_INIT();
+    auto sfx = Util::SFX("../assets/audio/Click.wav");
+
+    sfx.Play();
+    EXCEPT_USER_SAY_YES("Do you hear the sfx?");
+
+    sfx.SetVolume(30);
+    sfx.Play();
+    EXCEPT_USER_SAY_YES("Is the volume lower than last time?");
+
+    sfx.SetVolume(100);
+    sfx.Play();
+    EXCEPT_USER_SAY_YES("Is the volume louder than last time?");
+
+
+    AUDIO_UNINIT();
 }
