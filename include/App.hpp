@@ -1,7 +1,7 @@
 #ifndef APP_HPP
 #define APP_HPP
 
-#include <SDL.h>
+#include "pch.hpp" // IWYU pragma: export
 
 #include "Triangle.hpp"
 

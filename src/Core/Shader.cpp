@@ -1,7 +1,5 @@
 #include "Core/Shader.hpp"
 
-#include <vector>
-
 #include "Util/LoadTextFile.hpp"
 #include "Util/Logger.hpp"
 

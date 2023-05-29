@@ -1,9 +1,7 @@
 #ifndef TRIANGLE_HPP
 #define TRIANGLE_HPP
 
-#include <memory>
-
-#include <glm/glm.hpp>
+#include "pch.hpp" // IWYU pragma: export
 
 #include "Core/Program.hpp"
 #include "Core/UniformBuffer.hpp"

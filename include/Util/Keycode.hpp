@@ -1,9 +1,16 @@
-#ifndef UTIL_EVENT_STUFF_HPP
-#define UTIL_EVENT_STUFF_HPP
+#ifndef UTIL_KEYCODE_HPP
+#define UTIL_KEYCODE_HPP
+
+#include "pch.hpp" // IWYU pragma: export
 
 // stolen enum from SDL_Scancode
-#include "SDL_scancode.h"
-enum class PTSDScancode {
+#include <SDL_scancode.h>
+
+namespace Util {
+// Prevents from auto format checking fail
+// TODO: Decide whether to reformat this in the future
+// clang-format off
+enum class Keycode {
     UNKNOWN = 0,
 
     /**
@@ -395,5 +402,7 @@ enum class PTSDScancode {
     PTSD_NUM_SCANCODES = SDL_NUM_SCANCODES /**< not a key, just marks the number of scancodes
                                  for array bounds */
 };
+// clang-format on
+} // namespace Util
 
 #endif // UTIL_EVENT_STUFF_HPP

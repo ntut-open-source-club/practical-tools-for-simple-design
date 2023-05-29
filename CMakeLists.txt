@@ -71,6 +71,9 @@ target_include_directories(Sample SYSTEM PRIVATE
 target_include_directories(Sample PRIVATE
     ${INCLUDE_DIR}
 )
+target_precompile_headers(Sample PRIVATE
+    include/pch.hpp
+)
 if (MSVC)
     target_compile_options(Sample PRIVATE
         /W4
@@ -96,6 +99,10 @@ target_include_directories(Tests SYSTEM PRIVATE
 )
 target_include_directories(Tests PRIVATE
     ${INCLUDE_DIR}
+)
+target_include_directories(Tests SYSTEM PRIVATE
+    lib/googletest/googletest/include
+    lib/googletest/googlemock/include
 )
 if (MSVC)
     target_compile_options(Tests PRIVATE

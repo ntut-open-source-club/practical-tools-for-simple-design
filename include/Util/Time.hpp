@@ -1,6 +1,8 @@
 #ifndef UTIL_TIME_H
 #define UTIL_TIME_H
 
+#include "pch.hpp" // IWYU pragma: export
+
 namespace Util {
 /**
  * A singleton object that lives through the entire life cycle of the program
