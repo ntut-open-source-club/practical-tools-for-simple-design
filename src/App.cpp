@@ -31,11 +31,11 @@ void App::Update() {
         LOG_DEBUG("Mouse moving! x:{}, y{}", x, y);
     }
 
-    if (input->IsKeyPressed(Keycode::ESCAPE)) {
+    if (input->IsKeyPressed(Util::Keycode::ESCAPE)) {
         m_CurrentState = State::END;
     }
     m_Triangle.Update();
-    if (input->IsKeyPressed(Keycode::A)) {
+    if (input->IsKeyPressed(Util::Keycode::A)) {
         LOG_DEBUG("A");
     }
 }

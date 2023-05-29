@@ -1,7 +1,4 @@
 #include "Core/Context.hpp"
-#include <SDL_mixer.h>
-#include <SDL_opengl.h>
-#include <SDL_video.h>
 
 #include "Core/DebugMessageCallback.hpp"
 
