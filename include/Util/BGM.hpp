@@ -93,6 +93,12 @@ public:
     void Pause();
 
     /**
+     * @brief Fades out the background music gradually.
+     * @param tick The duration of the fade-out effect, in milliseconds.
+     */
+    void FadeOut(const int &tick);
+
+    /**
      * @brief Resumes the paused background music.
      * @note This function has no effect if there is no paused background music.
      */

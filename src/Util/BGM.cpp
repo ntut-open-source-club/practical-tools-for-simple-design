@@ -43,10 +43,13 @@ void BGM::FadeIn(const int &tick, const int &loop) {
     Mix_FadeInMusic(m_BGM.get(), loop, tick);
 }
 
+void BGM::FadeOut(const int &tick) {
+    Mix_FadeOutMusic(tick);
+}
+
 void BGM::Pause() {
     Mix_PauseMusic();
 }
-
 void BGM::Resume() {
     Mix_ResumeMusic();
 }
