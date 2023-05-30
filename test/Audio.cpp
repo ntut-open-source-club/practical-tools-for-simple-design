@@ -14,7 +14,7 @@ bool UserCheck(const std::string &text) {
     return temp != 'n';
 }
 
-void ASSERT_INPUT_YES(const std::string &text) {
+void EXCEPT_INPUT_YES(const std::string &text) {
     if (!UserCheck(text)) {
         ADD_FAILURE() << "user test: [" + text + "] is false";
     }
@@ -44,25 +44,25 @@ TEST(Audio, BGM_TEST) {
     auto bgm = Util::BGM("../assets/audio/testbgm.mp3");
 
     bgm.Play();
-    ASSERT_INPUT_YES("Do you hear the bgm?");
+    EXCEPT_INPUT_YES("Do you hear the bgm?");
 
     bgm.SetVolume(30);
-    ASSERT_INPUT_YES("Is the volume down?");
+    EXCEPT_INPUT_YES("Is the volume down?");
 
     bgm.SetVolume(100);
-    ASSERT_INPUT_YES("Is the volume up?");
+    EXCEPT_INPUT_YES("Is the volume up?");
 
     bgm.Pause();
-    ASSERT_INPUT_YES("Is it paused?");
+    EXCEPT_INPUT_YES("Is it paused?");
 
     bgm.Resume();
-    ASSERT_INPUT_YES("Is it resumed?");
+    EXCEPT_INPUT_YES("Is it resumed?");
 
     bgm.FadeIn(1000);
-    ASSERT_INPUT_YES("Is it fading in?");
+    EXCEPT_INPUT_YES("Is it fading in?");
 
     bgm.FadeOut(1000);
-    ASSERT_INPUT_YES("Is it fading out?");
+    EXCEPT_INPUT_YES("Is it fading out?");
 
     AudioQuit();
 }
@@ -72,15 +72,15 @@ TEST(Audio, SFX_TEST) {
     auto sfx = Util::SFX("../assets/audio/Click.wav");
 
     sfx.Play();
-    ASSERT_INPUT_YES("Do you hear the sfx?");
+    EXCEPT_INPUT_YES("Do you hear the sfx?");
 
     sfx.SetVolume(30);
     sfx.Play();
-    ASSERT_INPUT_YES("Is the volume lower than last time?");
+    EXCEPT_INPUT_YES("Is the volume lower than last time?");
 
     sfx.SetVolume(100);
     sfx.Play();
-    ASSERT_INPUT_YES("Is the volume louder than last time?");
+    EXCEPT_INPUT_YES("Is the volume louder than last time?");
 
     AudioQuit();
 }
@@ -94,34 +94,34 @@ TEST(Audio, BGM_SFX_TEST) {
     sfx.SetVolume(100);
 
     bgm.Play();
-    ASSERT_INPUT_YES("Do you hear the bgm?");
+    EXCEPT_INPUT_YES("Do you hear the bgm?");
 
     sfx.Play();
-    ASSERT_INPUT_YES("Do you hear the sfx?");
+    EXCEPT_INPUT_YES("Do you hear the sfx?");
 
     bgm.Pause();
-    ASSERT_INPUT_YES("Is the bgm paused?");
+    EXCEPT_INPUT_YES("Is the bgm paused?");
 
     sfx.Play();
-    ASSERT_INPUT_YES("Do you hear the sfx?");
+    EXCEPT_INPUT_YES("Do you hear the sfx?");
 
     bgm.Resume();
-    ASSERT_INPUT_YES("Is the bgm resumed?");
+    EXCEPT_INPUT_YES("Is the bgm resumed?");
 
     sfx.Play();
-    ASSERT_INPUT_YES("Do you hear the sfx?");
+    EXCEPT_INPUT_YES("Do you hear the sfx?");
 
     bgm.FadeIn(1000);
-    ASSERT_INPUT_YES("Is the bgm fading in?");
+    EXCEPT_INPUT_YES("Is the bgm fading in?");
 
     sfx.Play();
-    ASSERT_INPUT_YES("Do you hear the sfx?");
+    EXCEPT_INPUT_YES("Do you hear the sfx?");
 
     bgm.FadeOut(1000);
-    ASSERT_INPUT_YES("Is the bgm fading out?");
+    EXCEPT_INPUT_YES("Is the bgm fading out?");
 
     sfx.Play();
-    ASSERT_INPUT_YES("Do you hear the sfx?");
+    EXCEPT_INPUT_YES("Do you hear the sfx?");
 
     AudioQuit();
 }
