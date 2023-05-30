@@ -25,14 +25,14 @@ void BGM::LoadMedia(const std::string &path) {
     m_BGM.reset(Mix_LoadMUS(path.c_str()));
 }
 
-void BGM::VolumeUp() {
+void BGM::VolumeUp(const int &step) {
     int volume = GetVolume();
-    SetVolume(volume + 1);
+    SetVolume(volume + step);
 }
 
-void BGM::VolumeDown() {
+void BGM::VolumeDown(const int &step) {
     int volume = GetVolume();
-    SetVolume(volume - 1);
+    SetVolume(volume - step);
 }
 
 void BGM::Play(const int &loop) {

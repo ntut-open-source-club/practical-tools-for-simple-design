@@ -56,13 +56,15 @@ public:
 
     /**
      * @brief Increases the volume of the background music by one.
+     * @param step The amount to increase the volume by.
      */
-    void VolumeUp();
+    void VolumeUp(const int &step = 1);
 
     /**
      * @brief Decreases the volume of the background music by one.
+     * @param step The amount to decrease the volume by.
      */
-    void VolumeDown();
+    void VolumeDown(const int &step = 1);
 
     /**
      * @brief Plays the background music.
@@ -78,13 +80,15 @@ public:
      * @brief Fades in the background music gradually.
      * @param tick The duration of the fade-in effect, in milliseconds.
      * @param loop The number of times the music will loop after the fade-in is
-     *                      complete.<br> A value of -1 means it will loop indefinitely.
+     *                      complete.<br> A value of -1 means it will loop
+     * indefinitely.
      */
     void FadeIn(const int &tick, const int &loop = -1);
 
     /**
      * @brief Pauses the currently playing background music.
-     * @note This function has no effect if there is no background music currently playing.
+     * @note This function has no effect if there is no background music
+     * currently playing.
      */
     void Pause();
 
@@ -93,7 +97,6 @@ public:
      * @note This function has no effect if there is no paused background music.
      */
     void Resume();
-
 
 private:
     std::unique_ptr<Mix_Music, void (*)(Mix_Music *)> m_BGM =

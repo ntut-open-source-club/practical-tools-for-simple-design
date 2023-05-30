@@ -54,20 +54,23 @@ public:
 
     /**
      * @brief Increases the volume of the sound effect by one.
+     * @param step The amount to increase the volume by.
      */
-    void VolumeUp();
+    void VolumeUp(const int &step = 1);
 
     /**
      * @brief Decreases the volume of the sound effect by one.
+     * @param step The amount to decrease the volume by.
      */
-    void VolumeDown();
+    void VolumeDown(const int &step = 1);
 
     /**
      * @brief Plays the sound effect.
      * @param loop The number of times the sound effect will loop.<br>
      *                     A value of 0 means it will play once (no looping).
      * @param duration The duration of the sound effect in milliseconds. <br>
-     *                            A value of -1 means it will play the entire sound effect.
+     *                            A value of -1 means it will play the entire
+     * sound effect.
      */
     void Play(const int &loop = 0, const int &duration = -1);
 
@@ -78,7 +81,8 @@ public:
      *                     fade-in is complete. <br>
      *                     A value of -1 means it will loop indefinitely.
      * @param duration The duration of the sound effect in milliseconds.<br>
-     *                            A value of -1 means it will play the entire sound effect.
+     *                            A value of -1 means it will play the entire
+     * sound effect.
      */
     void FadeIn(const unsigned int &tick, const int &loop = -1,
                 const unsigned int &duration = -1);
