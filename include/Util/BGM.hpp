@@ -46,7 +46,7 @@ public:
      *              A value of 0 mutes the music, and a value of 128
      *              sets the maximum volume.
      */
-    void SetVolume(const int &volume);
+    void SetVolume(const int volume);
 
     /**
      * @brief Loads the background music from the specified file path.
@@ -58,13 +58,13 @@ public:
      * @brief Increases the volume of the background music by one.
      * @param step The amount to increase the volume by.
      */
-    void VolumeUp(const int &step = 1);
+    void VolumeUp(const int step = 1);
 
     /**
      * @brief Decreases the volume of the background music by one.
      * @param step The amount to decrease the volume by.
      */
-    void VolumeDown(const int &step = 1);
+    void VolumeDown(const int step = 1);
 
     /**
      * @brief Plays the background music.
@@ -74,7 +74,7 @@ public:
      *             Default value: -1
      * @note Calling this function stops any currently playing music and plays.
      */
-    void Play(const int &loop = -1);
+    void Play(const int loop = -1);
 
     /**
      * @brief Fades in the background music gradually.
@@ -83,7 +83,7 @@ public:
      *                      complete.<br> A value of -1 means it will loop
      * indefinitely.
      */
-    void FadeIn(const int &tick, const int &loop = -1);
+    void FadeIn(const int tick, const int loop = -1);
 
     /**
      * @brief Pauses the currently playing background music.
@@ -96,7 +96,7 @@ public:
      * @brief Fades out the background music gradually.
      * @param tick The duration of the fade-out effect, in milliseconds.
      */
-    void FadeOut(const int &tick);
+    void FadeOut(const int tick);
 
     /**
      * @brief Resumes the paused background music.

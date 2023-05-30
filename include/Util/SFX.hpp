@@ -44,7 +44,7 @@ public:
      *                          A value of 0 mutes the music, and a value of 128
      *                          sets the maximum volume.
      */
-    void SetVolume(const int &volume);
+    void SetVolume(const int volume);
 
     /**
      * @brief Loads the sound effect from the specified file path.
@@ -56,13 +56,13 @@ public:
      * @brief Increases the volume of the sound effect by one.
      * @param step The amount to increase the volume by.
      */
-    void VolumeUp(const int &step = 1);
+    void VolumeUp(const int step = 1);
 
     /**
      * @brief Decreases the volume of the sound effect by one.
      * @param step The amount to decrease the volume by.
      */
-    void VolumeDown(const int &step = 1);
+    void VolumeDown(const int step = 1);
 
     /**
      * @brief Plays the sound effect.
@@ -72,7 +72,7 @@ public:
      *                            A value of -1 means it will play the entire
      * sound effect.
      */
-    void Play(const int &loop = 0, const int &duration = -1);
+    void Play(const int loop = 0, const int duration = -1);
 
     /**
      * @brief Fades in the sound effect gradually.
@@ -84,7 +84,7 @@ public:
      *                            A value of -1 means it will play the entire
      * sound effect.
      */
-    void FadeIn(const unsigned int &tick, const int &loop = -1,
+    void FadeIn(const unsigned int &tick, const int oop = -1,
                 const unsigned int &duration = -1);
 
 private:

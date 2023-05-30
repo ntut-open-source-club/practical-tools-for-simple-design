@@ -15,7 +15,7 @@ int SFX::GetVolume() const {
     return Mix_VolumeChunk(m_Chunk.get(), -1);
 }
 
-void SFX::SetVolume(const int &volume) {
+void SFX::SetVolume(const int volume) {
     Mix_VolumeChunk(m_Chunk.get(), volume);
 }
 
@@ -26,19 +26,19 @@ void SFX::LoadMedia(const std::string &path) {
     m_Chunk.reset(Mix_LoadWAV(path.c_str()));
 }
 
-void SFX::VolumeUp(const int &step) {
+void SFX::VolumeUp(const int step) {
     int volume = GetVolume();
     SetVolume(volume + step);
 }
 
-void SFX::VolumeDown(const int &step) {
+void SFX::VolumeDown(const int step) {
     int volume = GetVolume();
     SetVolume(volume - step);
 }
-void SFX::Play(const int &loop, const int &duration) {
+void SFX::Play(const int loop, const int duration) {
     Mix_PlayChannelTimed(-1, m_Chunk.get(), loop, duration);
 }
-void SFX::FadeIn(const unsigned int &tick, const int &loop,
+void SFX::FadeIn(const unsigned int &tick, const int loop,
                  const unsigned int &duration) {
     Mix_FadeInChannelTimed(-1, m_Chunk.get(), loop, tick, duration);
 }
