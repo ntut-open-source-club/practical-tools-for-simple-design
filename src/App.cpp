@@ -6,6 +6,8 @@
 #include "Util/Keycode.hpp"
 #include "Util/Logger.hpp"
 
+using Util::Keycode;
+
 void App::Start() {
     LOG_TRACE("Start");
     m_CurrentState = State::UPDATE;
