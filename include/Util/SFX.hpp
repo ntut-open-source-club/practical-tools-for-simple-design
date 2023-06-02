@@ -87,9 +87,7 @@ public:
                 const unsigned int duration = -1);
 
 private:
-    std::unique_ptr<Mix_Chunk, void (*)(Mix_Chunk *)> m_Chunk =
-        std::unique_ptr<Mix_Chunk, void (*)(Mix_Chunk *)>(nullptr,
-                                                          Mix_FreeChunk);
+    std::unique_ptr<Mix_Chunk, void (*)(Mix_Chunk *)> m_Chunk;
 };
 
 } // namespace Util

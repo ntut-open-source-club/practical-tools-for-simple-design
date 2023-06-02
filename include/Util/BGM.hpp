@@ -104,9 +104,7 @@ public:
     void Resume();
 
 private:
-    std::unique_ptr<Mix_Music, void (*)(Mix_Music *)> m_BGM =
-        std::unique_ptr<Mix_Music, void (*)(Mix_Music *)>(nullptr,
-                                                          Mix_FreeMusic);
+    std::unique_ptr<Mix_Music, void (*)(Mix_Music *)> m_BGM;
 };
 
 } // namespace Util

@@ -3,11 +3,11 @@
 
 namespace Util {
 
-SFX::SFX(const std::string &path) {
-    m_Chunk = std::unique_ptr<Mix_Chunk, void (*)(Mix_Chunk *)>(
-        Mix_LoadWAV(path.c_str()), Mix_FreeChunk);
+SFX::SFX(const std::string &path)
+    : m_Chunk(Mix_LoadWAV(path.c_str()), Mix_FreeChunk) {
     if (m_Chunk == nullptr) {
-        LOG_DEBUG("Failed to load SFX: {}{}", path, std::string(Mix_GetError()));
+        LOG_DEBUG("Failed to load SFX: {}{}", path,
+                  std::string(Mix_GetError()));
     }
 }
 

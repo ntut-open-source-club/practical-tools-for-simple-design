@@ -3,11 +3,11 @@
 
 namespace Util {
 
-BGM::BGM(const std::string &path) {
-    m_BGM = std::unique_ptr<Mix_Music, void (*)(Mix_Music *)>(
-        Mix_LoadMUS(path.c_str()), Mix_FreeMusic);
+BGM::BGM(const std::string &path)
+    : m_BGM(Mix_LoadMUS(path.c_str()), Mix_FreeMusic) {
     if (m_BGM == nullptr) {
-        LOG_DEBUG("Failed to load BGM: {} {}" , path , std::string(Mix_GetError()));
+        LOG_DEBUG("Failed to load BGM: {} {}", path,
+                  std::string(Mix_GetError()));
     }
 }
 
