@@ -8,10 +8,21 @@
 #include "Util/SFX.hpp"
 
 bool UserCheck(const std::string &text) {
-    std::cout << text << "[Y/n]";
-    auto temp = std::cin.get();
-    std::cin.clear();
-    return temp != 'n';
+    while (true) {
+        std::cout << text << "[Y/n] ";
+        std::string line;
+        std::getline(std::cin, line);
+
+        if (line[0] == 'Y' || line[0] == 'y' || line.empty()) {
+            return true;
+        }
+
+        if (line[0] == 'N' || line[0] == 'n') {
+            return false;
+        }
+
+        std::cout << "Invalid input\n";
+    }
 }
 
 void EXCEPT_INPUT_YES(const std::string &text) {
