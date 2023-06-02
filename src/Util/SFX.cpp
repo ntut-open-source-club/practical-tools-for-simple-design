@@ -38,8 +38,8 @@ void SFX::VolumeDown(const int step) {
 void SFX::Play(const int loop, const int duration) {
     Mix_PlayChannelTimed(-1, m_Chunk.get(), loop, duration);
 }
-void SFX::FadeIn(const unsigned int &tick, const int loop,
-                 const unsigned int &duration) {
+void SFX::FadeIn(const unsigned int tick, const int loop,
+                 const unsigned int duration) {
     Mix_FadeInChannelTimed(-1, m_Chunk.get(), loop, tick, duration);
 }
 

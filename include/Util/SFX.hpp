@@ -84,8 +84,8 @@ public:
      *                            A value of -1 means it will play the entire
      * sound effect.
      */
-    void FadeIn(const unsigned int &tick, const int oop = -1,
-                const unsigned int &duration = -1);
+    void FadeIn(const unsigned int tick, const int oop = -1,
+                const unsigned int duration = -1);
 
 private:
     std::unique_ptr<Mix_Chunk, void (*)(Mix_Chunk *)> m_Chunk =
