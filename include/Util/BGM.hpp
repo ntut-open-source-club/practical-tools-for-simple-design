@@ -1,8 +1,7 @@
 #ifndef UTIL_BGM_HPP
 #define UTIL_BGM_HPP
 #include "pch.hpp" // IWYU pragma: export
-#include <memory>
-#include <string>
+
 namespace Util {
 /**
  * @class BGM

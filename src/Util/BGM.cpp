@@ -1,7 +1,5 @@
 #include "Util/BGM.hpp"
 #include "Util/Logger.hpp"
-#include <cassert>
-#include <iostream>
 
 namespace Util {
 
