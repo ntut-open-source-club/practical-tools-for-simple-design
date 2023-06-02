@@ -1,4 +1,4 @@
-pushd %~dp/../build
-./Tests --gtest_filter='Audio.*'
+pushd %~dp0..\..\build
+echo %cd%
+Tests.exe --gtest_filter='Audio.*'
 popd
-
