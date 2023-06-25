@@ -1,0 +1,51 @@
+name: build
+
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        compiler: [{ cc: gcc, cxx: g++ }, { cc: clang, cxx: clang++ }]
+        build_type: [Release]
+        binary: [linux-binary]
+        output: [build/Indigo]
+        include:
+          - os: windows-latest
+            build_type: Release
+            binary: windows-binary
+            output: build/Indigo.exe
+
+    steps:
+      - if: matrix.os == 'ubuntu-latest'
+        name: Installing Dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get -y install ${{ matrix.compiler.cc }} cmake ninja-build libglu1-mesa-dev mesa-common-dev xorg-dev
+
+      - name: Checkout Repository
+        uses: actions/checkout@v3
+        with:
+          submodules: recursive
+
+      - name: Building Project
+        if: matrix.os == 'ubuntu-latest'
+        env:
+          CC: ${{ matrix.compiler.cc }}
+          CXX: ${{ matrix.compiler.cxx }}
+        run: |
+          cmake -B build -G "Ninja" -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+          cmake --build build
+
+      - name: Building Project
+        if: matrix.os == 'windows-latest'
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+          cmake --build build --config ${{ matrix.build_type }}

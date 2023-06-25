@@ -21,7 +21,6 @@ public:
 
 private:
     State m_CurrentState = State::START;
-
     Triangle m_Triangle;
 };
 

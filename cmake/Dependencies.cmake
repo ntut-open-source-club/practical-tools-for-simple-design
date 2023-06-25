@@ -36,6 +36,13 @@ FetchContent_Declare(
     URL_HASH    MD5=7258258fdb2a4adb0072d337f94305f9
     SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/sdl2_ttf
 )
+FetchContent_Declare(
+        sdl2_mixer
+
+        URL         https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.6.3/SDL2_mixer-2.6.3.zip
+        URL_HASH    MD5=fb3e71ef072ff8dd793cec3ed384f9a0
+        SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/sdl2_mixer
+)
 
 FetchContent_Declare( # At this time 1.11.0 has some issues formatting `const unsigned char *`
     spdlog
@@ -69,10 +76,20 @@ set(SDL2IMAGE_VENDORED ON)
 set(SDL2TTF_INSTALL OFF)
 set(SDL2TTF_VENDORED ON)
 
+set(SDL2MIXER_INSTALL OFF)
+set(SDL2MIXER_VENDORED ON)
+set(SDL2MIXER_FLAC OFF)
+set(SDL2MIXER_MIDI OFF)
+set(SDL2MIXER_MOD OFF)
+set(SDL2MIXER_OPUS OFF)
+set(SDL2MIXER_OGG OFF)
+set(SDL2MIXER_VORBIS OFF)
+set(SDL2MIXER_VOC OFF)
+
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
-FetchContent_MakeAvailable(sdl2 sdl2_image sdl2_ttf spdlog glm googletest)
+FetchContent_MakeAvailable(sdl2 sdl2_image sdl2_ttf sdl2_mixer spdlog glm googletest)
 
 FetchContent_GetProperties(glew)
 if (NOT ${glew_POPULATED})
@@ -88,6 +105,7 @@ set(DEPENDENCY_LINK_LIBRARIES
     SDL2::SDL2main
     SDL2_image::SDL2_image-static
     SDL2_ttf::SDL2_ttf-static
+    SDL2_mixer::SDL2_mixer-static
 
     spdlog::spdlog
 )

@@ -14,7 +14,6 @@ void App::Start() {
 void App::Update() {
     auto input = Util::Input::GetInstance();
     auto [x, y] = input->GetCursorPosition();
-
     if (input->IsLButtonPressed()) {
         LOG_DEBUG("Left button pressed");
     }
@@ -25,18 +24,18 @@ void App::Update() {
         LOG_DEBUG("Middle button pressed");
     }
     if (input->IfScroll()) {
-        auto [x, y] = input->GetScrollDistance();
-        LOG_DEBUG("Scrolling: x: {}, y: {}", x, y);
+        auto [dx, dy] = input->GetScrollDistance();
+        LOG_DEBUG("Scrolling: x: {}, y: {}", dx, dy);
     }
     if (input->IsMouseMoving()) {
         LOG_DEBUG("Mouse moving! x:{}, y{}", x, y);
     }
 
-    if (input->IsKeyPressed(Keycode::ESCAPE)) {
+    if (input->IsKeyPressed(Util::Keycode::ESCAPE)) {
         m_CurrentState = State::END;
     }
     m_Triangle.Update();
-    if (input->IsKeyPressed(Keycode::A)) {
+    if (input->IsKeyPressed(Util::Keycode::A)) {
         LOG_DEBUG("A");
     }
 }
