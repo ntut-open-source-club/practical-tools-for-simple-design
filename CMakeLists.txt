@@ -23,6 +23,7 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Input.cpp
     ${SRC_DIR}/Util/SFX.cpp
     ${SRC_DIR}/Util/BGM.cpp
+    ${SRC_DIR}/Util/Image.cpp
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/Triangle.cpp
@@ -46,6 +47,8 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/Keycode.hpp
     ${INCLUDE_DIR}/Util/SFX.hpp
     ${INCLUDE_DIR}/Util/BGM.hpp
+    ${INCLUDE_DIR}/Util/Drawable.hpp
+    ${INCLUDE_DIR}/Util/Image.hpp
 
     ${INCLUDE_DIR}/App.hpp
     ${INCLUDE_DIR}/Triangle.hpp
