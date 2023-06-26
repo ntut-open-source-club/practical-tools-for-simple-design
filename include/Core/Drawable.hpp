@@ -17,6 +17,8 @@ class Drawable {
 public:
     Drawable(glm::mat3 transform);
 
+    virtual ~Drawable() = default;
+
     virtual void Draw() = 0;
 
 private:

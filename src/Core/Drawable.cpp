@@ -1,5 +1,7 @@
 #include "Core/Drawable.hpp"
 
+#include "config.hpp"
+
 namespace Core {
 Drawable::Drawable(glm::mat3 transform)
     : m_Transform(transform) {
@@ -24,6 +26,9 @@ void Drawable::InitProgram() {
 void Drawable::InitVertexArray() {
     s_VertexArray = std::make_unique<VertexArray>();
 
+    // hard coded value
+    constexpr float scale = 100.0F;
+
     // NOLINTBEGIN
     // These are vertex data for the rectangle but clang-tidy has magic
     // number warnings
@@ -31,10 +36,10 @@ void Drawable::InitVertexArray() {
     // Vertex
     s_VertexArray->AddVertexBuffer(std::make_unique<VertexBuffer>(
         std::vector<float>{
-            -1.0F, 1.0F,  //
-            -1.0F, -1.0F, //
-            1.0F, -1.0F,  //
-            1.0F, 1.0F,   //
+            -1.0F * scale, 1.0F * scale,  //
+            -1.0F * scale, -1.0F * scale, //
+            1.0F * scale, -1.0F * scale,  //
+            1.0F * scale, 1.0F * scale,   //
         },
         2));
 
@@ -58,8 +63,24 @@ void Drawable::InitVertexArray() {
 }
 
 void Drawable::InitUniformBuffer() {
-    // TODO: Maybe change UniformBuffer constructor to use pointer
     s_UniformBuffer =
         std::make_unique<UniformBuffer<Matrices>>(*s_Program, "Matrices", 0);
+
+    constexpr Matrices data = {
+        {
+            1.0F, 0.0F, //
+            0.0F, 1.0F, //
+        },
+        {
+            1.0F / WINDOW_WIDTH, 0.0F,  //
+            0.0F, 1.0F / WINDOW_HEIGHT, //
+        },
+    };
+
+    s_UniformBuffer->SetData(0, data);
 }
+
+std::unique_ptr<Program> Drawable::s_Program = nullptr;
+std::unique_ptr<VertexArray> Drawable::s_VertexArray = nullptr;
+std::unique_ptr<UniformBuffer<Matrices>> Drawable::s_UniformBuffer = nullptr;
 } // namespace Core

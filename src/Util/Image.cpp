@@ -14,5 +14,8 @@ Image::Image(const std::string &filepath, const glm::mat3 &transform)
 
 void Image::Draw() {
     s_Program->Bind();
+    s_Program->Validate();
+
+    s_VertexArray->DrawTriangles();
 }
 } // namespace Util

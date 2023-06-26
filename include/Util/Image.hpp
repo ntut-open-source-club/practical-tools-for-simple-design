@@ -12,7 +12,7 @@
 namespace Util {
 class Image final : public Core::Drawable {
 public:
-    Image(const std::string &filepath, const glm::mat3 &transform);
+    Image(const std::string &filepath, const glm::mat3 &transform = {});
 
     void Draw() override;
 

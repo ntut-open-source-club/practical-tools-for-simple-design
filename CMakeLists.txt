@@ -16,6 +16,7 @@ set(SRC_FILES
     ${SRC_DIR}/Core/IndexBuffer.cpp
     ${SRC_DIR}/Core/Shader.cpp
     ${SRC_DIR}/Core/Program.cpp
+    ${SRC_DIR}/Core/Drawable.cpp
 
     ${SRC_DIR}/Util/LoadTextFile.cpp
     ${SRC_DIR}/Util/Logger.cpp
@@ -27,6 +28,7 @@ set(SRC_FILES
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/Triangle.cpp
+    ${SRC_DIR}/Giraffe.cpp
 )
 set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
 set(INCLUDE_FILES
@@ -39,6 +41,7 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Core/IndexBuffer.hpp
     ${INCLUDE_DIR}/Core/Shader.hpp
     ${INCLUDE_DIR}/Core/Program.hpp
+    ${INCLUDE_DIR}/Core/Drawable.hpp
 
     ${INCLUDE_DIR}/Util/LoadTextFile.hpp
     ${INCLUDE_DIR}/Util/Logger.hpp
@@ -47,11 +50,11 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/Keycode.hpp
     ${INCLUDE_DIR}/Util/SFX.hpp
     ${INCLUDE_DIR}/Util/BGM.hpp
-    ${INCLUDE_DIR}/Util/Drawable.hpp
     ${INCLUDE_DIR}/Util/Image.hpp
 
     ${INCLUDE_DIR}/App.hpp
     ${INCLUDE_DIR}/Triangle.hpp
+    ${INCLUDE_DIR}/Giraffe.hpp
     ${INCLUDE_DIR}/config.hpp
 )
 set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
