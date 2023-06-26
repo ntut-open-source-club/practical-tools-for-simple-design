@@ -16,6 +16,7 @@ void Image::Draw() {
     s_Program->Bind();
     s_Program->Validate();
 
+    s_VertexArray->Bind();
     s_VertexArray->DrawTriangles();
 }
 } // namespace Util

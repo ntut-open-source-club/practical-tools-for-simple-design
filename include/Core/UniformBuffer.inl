@@ -1,3 +1,5 @@
+#include "UniformBuffer.hpp"
+
 namespace Core {
 template <typename T>
 UniformBuffer<T>::UniformBuffer(const Program &program, const std::string &name,

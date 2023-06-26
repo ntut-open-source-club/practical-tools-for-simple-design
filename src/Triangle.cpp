@@ -11,7 +11,7 @@ Triangle::Triangle()
                 "../assets/shaders/Triangle.frag"),
       m_VertexArray(std::make_unique<Core::VertexArray>()),
       m_Matrices(std::make_unique<Core::UniformBuffer<Matrices>>(
-          m_Program, "Matrices", 0)) {
+          m_Program, "Triangle", 1)) {
     std::vector<float> vertex({
         -300.0F, -300.0F, // NOLINT
         300.0F, -300.0F,  // NOLINT
@@ -40,7 +40,7 @@ void Triangle::Update() {
     m_Program.Validate();
 
     static float counter = 0.0F;
-    counter += static_cast<float>(50.0F * Util::Time::GetDeltaTime());
+    counter += static_cast<float>(50.0F * Util::Time::GetDeltaTime()); // NOLINT
     const float angle = glm::radians(counter);
 
     const float width = 1280.0F / 2.0F;
@@ -59,5 +59,6 @@ void Triangle::Update() {
 
     m_Matrices->SetData(0, data);
 
+    m_VertexArray->Bind();
     m_VertexArray->DrawTriangles();
 }

@@ -18,7 +18,7 @@ layout(location = 0) out vec3 vertexColor;
  * | a | b |   |   |
  * | c | d |   |   |
  */
-layout(std140) uniform Matrices {
+layout(std140) uniform Triangle {
     vec4 _model;
     vec4 _projection;
 };
