@@ -3,6 +3,8 @@
 
 #include "pch.hpp" // IWYU pragma: export
 
+#include <GL/gl.h>
+
 namespace Core {
 /**
  * @brief Callback function for OpenGL handling
@@ -12,9 +14,10 @@ namespace Core {
  *
  * @see https://www.khronos.org/opengl/wiki/Debug_Output
  */
-void OpenGLDebugMessageCallback(GLenum source, GLenum type, GLuint id, // NOLINT
-                                GLenum severity, GLsizei length,
-                                const GLchar *message, const void *data);
+void GLAPIENTRY
+OpenGLDebugMessageCallback(GLenum source, GLenum type, GLuint id, // NOLINT
+                           GLenum severity, GLsizei length,
+                           const GLchar *message, const void *data);
 } // namespace Core
 
 #endif
