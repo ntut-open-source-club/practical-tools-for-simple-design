@@ -16,6 +16,7 @@ set(SRC_FILES
     ${SRC_DIR}/Core/IndexBuffer.cpp
     ${SRC_DIR}/Core/Shader.cpp
     ${SRC_DIR}/Core/Program.cpp
+    ${SRC_DIR}/Core/Texture.cpp
     ${SRC_DIR}/Core/Drawable.cpp
 
     ${SRC_DIR}/Util/LoadTextFile.cpp
@@ -41,6 +42,7 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Core/IndexBuffer.hpp
     ${INCLUDE_DIR}/Core/Shader.hpp
     ${INCLUDE_DIR}/Core/Program.hpp
+    ${INCLUDE_DIR}/Core/Texture.hpp
     ${INCLUDE_DIR}/Core/Drawable.hpp
 
     ${INCLUDE_DIR}/Util/LoadTextFile.hpp

@@ -6,6 +6,7 @@
 #include <functional>
 
 #include "Core/Drawable.hpp"
+#include "Core/Texture.hpp"
 
 #include "Util/Logger.hpp"
 
@@ -18,9 +19,9 @@ public:
 
 private:
     std::unique_ptr<Core::Drawable> m_Drawable;
-    std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> m_Surface;
 
-    unsigned int m_Mode;
+    std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> m_Surface;
+    std::unique_ptr<Core::Texture> m_Texture;
 };
 } // namespace Util
 

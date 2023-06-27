@@ -13,11 +13,19 @@ struct Matrices {
     glm::mat2 m_Projection;
 };
 
+/**
+ * Currently the shader only has one texture but this reserves space for
+ * multi-texture support in the future
+ */
+constexpr int UNIFORM_SURFACE_LOCATION = 0;
+
 class Drawable {
 public:
     Drawable(glm::mat3 transform);
 
     void Draw();
+
+    int GetUniformSurfaceLocation() const { return UNIFORM_SURFACE_LOCATION; }
 
 private:
     void InitProgram();

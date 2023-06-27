@@ -27,8 +27,13 @@ void Drawable::Draw() {
 }
 
 void Drawable::InitProgram() {
+    // TODO: Create `BaseProgram` from `Program` and pass it into `Drawable`
     s_Program = std::make_unique<Program>("../assets/shaders/Base.vert",
                                           "../assets/shaders/Base.frag");
+    s_Program->Bind();
+
+    GLint location = glGetUniformLocation(s_Program->GetId(), "surface");
+    glUniform1i(location, UNIFORM_SURFACE_LOCATION);
 }
 
 void Drawable::InitVertexArray() {
@@ -54,10 +59,10 @@ void Drawable::InitVertexArray() {
     // UV
     s_VertexArray->AddVertexBuffer(std::make_unique<VertexBuffer>(
         std::vector<float>{
-            0.0F, 1.0F, //
             0.0F, 0.0F, //
-            1.0F, 0.0F, //
+            0.0F, 1.0F, //
             1.0F, 1.0F, //
+            1.0F, 0.0F, //
         },
         2));
 
