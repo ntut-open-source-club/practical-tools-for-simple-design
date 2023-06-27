@@ -10,13 +10,14 @@
 #include "Util/Logger.hpp"
 
 namespace Util {
-class Image final : public Core::Drawable {
+class Image {
 public:
     Image(const std::string &filepath, const glm::mat3 &transform = {});
 
-    void Draw() override;
+    void Draw();
 
 private:
+    std::unique_ptr<Core::Drawable> m_Drawable;
     std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> m_Surface;
 
     unsigned int m_Mode;

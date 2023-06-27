@@ -18,6 +18,14 @@ Drawable::Drawable(glm::mat3 transform)
     }
 }
 
+void Drawable::Draw() {
+    s_Program->Bind();
+    s_Program->Validate();
+
+    s_VertexArray->Bind();
+    s_VertexArray->DrawTriangles();
+}
+
 void Drawable::InitProgram() {
     s_Program = std::make_unique<Program>("../assets/shaders/Base.vert",
                                           "../assets/shaders/Base.frag");

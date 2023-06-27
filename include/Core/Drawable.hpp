@@ -17,16 +17,13 @@ class Drawable {
 public:
     Drawable(glm::mat3 transform);
 
-    virtual ~Drawable() = default;
-
-    virtual void Draw() = 0;
+    void Draw();
 
 private:
     void InitProgram();
     void InitVertexArray();
     void InitUniformBuffer();
 
-protected:
     static std::unique_ptr<Program> s_Program;
     static std::unique_ptr<VertexArray> s_VertexArray;
     static std::unique_ptr<UniformBuffer<Matrices>> s_UniformBuffer;
