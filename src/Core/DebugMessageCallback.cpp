@@ -1,7 +1,5 @@
 #include "Core/DebugMessageCallback.hpp"
 
-#include <GL/gl.h>
-
 #include "Util/Logger.hpp"
 
 namespace Core {

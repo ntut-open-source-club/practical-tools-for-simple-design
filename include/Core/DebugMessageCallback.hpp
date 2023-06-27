@@ -3,8 +3,6 @@
 
 #include "pch.hpp" // IWYU pragma: export
 
-#include <GL/gl.h>
-
 namespace Core {
 /**
  * @brief Callback function for OpenGL handling
