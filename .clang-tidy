@@ -1,6 +1,6 @@
 Checks: '-*,
         bugprone-*,-bugprone-easily-swappable-parameters,
-        readability-*,-readability-convert-member-functions-to-static,-readability-redundant-access-specifiers,
+        readability-*,-readability-convert-member-functions-to-static,-readability-redundant-access-specifiers,-readability-magic-numbers,
         modernize-*,-modernize-use-trailing-return-type,-modernize-use-nodiscard'
 CheckOptions:
   - { key: readability-identifier-naming.NamespaceCase,          value: CamelCase  }
