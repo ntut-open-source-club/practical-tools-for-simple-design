@@ -10,8 +10,24 @@ IndexBuffer::IndexBuffer(const std::vector<unsigned int> &indices)
                  indices.data(), GL_STATIC_DRAW);
 }
 
+IndexBuffer::IndexBuffer(IndexBuffer &&other) {
+    m_BufferId = other.m_BufferId;
+    other.m_BufferId = 0;
+
+    m_Count = std::move(other.m_Count);
+}
+
 IndexBuffer::~IndexBuffer() {
     glDeleteBuffers(1, &m_BufferId);
+}
+
+IndexBuffer &IndexBuffer::operator=(IndexBuffer &&other) {
+    m_BufferId = other.m_BufferId;
+    other.m_BufferId = 0;
+
+    m_Count = std::move(other.m_Count);
+
+    return *this;
 }
 
 void IndexBuffer::Bind() const {

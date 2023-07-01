@@ -15,10 +15,12 @@ public:
     Program(const std::string &vertexShaderFilepath,
             const std::string &fragmentShaderFilepath);
     Program(const Program &) = delete;
+    Program(Program &&other);
 
     ~Program();
 
     Program &operator=(const Program &) = delete;
+    Program &operator=(Program &&other);
 
     void Bind() const;
     void Unbind() const;

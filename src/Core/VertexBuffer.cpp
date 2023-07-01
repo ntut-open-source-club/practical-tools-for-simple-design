@@ -12,8 +12,26 @@ VertexBuffer::VertexBuffer(const std::vector<float> &vertices,
                  vertices.data(), GL_STATIC_DRAW);
 }
 
+VertexBuffer::VertexBuffer(VertexBuffer &&other) {
+    m_BufferId = other.m_BufferId;
+    other.m_BufferId = 0;
+
+    m_ComponentCount = std::move(other.m_ComponentCount);
+    m_Type = std::move(other.m_Type);
+}
+
 VertexBuffer::~VertexBuffer() {
     glDeleteBuffers(1, &m_BufferId);
+}
+
+VertexBuffer &VertexBuffer::operator=(VertexBuffer &&other) {
+    m_BufferId = other.m_BufferId;
+    other.m_BufferId = 0;
+
+    m_ComponentCount = std::move(other.m_ComponentCount);
+    m_Type = std::move(other.m_Type);
+
+    return *this;
 }
 
 void VertexBuffer::Bind() const {

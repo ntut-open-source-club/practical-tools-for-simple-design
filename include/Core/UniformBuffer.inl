@@ -18,8 +18,22 @@ UniformBuffer<T>::UniformBuffer(const Program &program, const std::string &name,
 }
 
 template <typename T>
+UniformBuffer<T>::UniformBuffer(UniformBuffer &&other) {
+    m_BufferId = other.m_BufferId;
+    other.m_BufferId = 0;
+}
+
+template <typename T>
 UniformBuffer<T>::~UniformBuffer() {
     glDeleteBuffers(1, &m_BufferId);
+}
+
+template <typename T>
+UniformBuffer<T> &UniformBuffer<T>::operator=(UniformBuffer &&other) {
+    m_BufferId = other.m_BufferId;
+    other.m_BufferId = 0;
+
+    return *this;
 }
 
 template <typename T>

@@ -12,10 +12,12 @@ public:
     VertexBuffer(const std::vector<float> &vertices,
                  unsigned int componentCount);
     VertexBuffer(const VertexBuffer &) = delete;
+    VertexBuffer(VertexBuffer &&other);
 
     ~VertexBuffer();
 
     VertexBuffer &operator=(const VertexBuffer &) = delete;
+    VertexBuffer &operator=(VertexBuffer &&other);
 
     unsigned int GetComponentCount() const { return m_ComponentCount; }
     GLenum GetType() const { return m_Type; }

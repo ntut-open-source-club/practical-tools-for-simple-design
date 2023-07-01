@@ -11,8 +11,20 @@ Shader::Shader(const std::string &filepath, Type shaderType) {
     CheckStatus(filepath);
 }
 
+Shader::Shader(Shader &&other) {
+    m_ShaderId = other.m_ShaderId;
+    other.m_ShaderId = 0;
+}
+
 Shader::~Shader() {
     glDeleteShader(m_ShaderId);
+}
+
+Shader &Shader::operator=(Shader &&other) {
+    m_ShaderId = other.m_ShaderId;
+    other.m_ShaderId = 0;
+
+    return *this;
 }
 
 void Shader::Compile(const std::string &src) const {
