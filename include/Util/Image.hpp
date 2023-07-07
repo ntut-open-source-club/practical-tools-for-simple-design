@@ -13,14 +13,14 @@
 namespace Util {
 class Image : public Core::Drawable {
 public:
-    Image(const std::string &filepath, const glm::mat3 &transform = {});
+    Image(const std::string &filepath, glm::mat3 transform = {});
 
     void Draw() override;
 
 private:
-    void InitProgram() ;
+    void InitProgram();
     void InitVertexArray();
-    void InitUniformBuffer() ;
+    void InitUniformBuffer();
 
     static std::unique_ptr<Core::Program> s_Program;
     static std::unique_ptr<Core::VertexArray> s_VertexArray;

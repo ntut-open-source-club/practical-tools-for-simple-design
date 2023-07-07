@@ -22,17 +22,18 @@ constexpr int UNIFORM_SURFACE_LOCATION = 0;
 
 class Drawable {
 public:
-    Drawable(glm::mat3 transform);
 
     virtual void Draw() = 0;
 
     int GetUniformSurfaceLocation() const { return UNIFORM_SURFACE_LOCATION; }
 
 protected:
-    std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> m_Surface = nullptr;
+    std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> m_Surface =
+        nullptr;
     std::unique_ptr<Texture> m_Texture = nullptr;
-private:
     glm::mat3 m_Transform;
+
+private:
 };
 } // namespace Core
 

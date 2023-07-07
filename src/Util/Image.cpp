@@ -4,8 +4,7 @@
 #include "config.hpp"
 
 namespace Util {
-Image::Image(const std::string &filepath, const glm::mat3 &transform)
-    : Drawable(transform) {
+Image::Image(const std::string &filepath, glm::mat3 transform) {
     if (s_Program == nullptr) {
         InitProgram();
     }
@@ -16,6 +15,7 @@ Image::Image(const std::string &filepath, const glm::mat3 &transform)
         InitUniformBuffer();
     }
 
+    m_Transform = transform;
     m_Surface = {IMG_Load(filepath.c_str()), SDL_FreeSurface};
 
     if (m_Surface == nullptr) {

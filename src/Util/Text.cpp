@@ -5,9 +5,7 @@
 
 namespace Util {
 Text::Text(const std::string &font, int size, const std::string &text,
-           const glm::mat3 &transform)
-    : Core::Drawable(transform) {
-
+           const glm::mat3 &transform) {
     if (s_Program == nullptr) {
         InitProgram();
     }
@@ -18,6 +16,7 @@ Text::Text(const std::string &font, int size, const std::string &text,
         InitUniformBuffer();
     }
 
+    m_Transform = transform;
     m_Font = {TTF_OpenFont(font.c_str(), size), TTF_CloseFont};
 
     if (m_Font == nullptr) {
