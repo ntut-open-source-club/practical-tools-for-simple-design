@@ -15,12 +15,21 @@ class Image : public Core::Drawable {
 public:
     Image(const std::string &filepath, glm::mat3 transform = {});
 
+    int GetUniformSurfaceLocation() const { return UNIFORM_SURFACE_LOCATION; }
+
     void Draw() override;
 
 private:
     void InitProgram();
     void InitVertexArray();
     void InitUniformBuffer();
+
+    glm::mat3 m_Transform;
+    std::unique_ptr<Core::Texture> m_Texture = nullptr;
+    std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> m_Surface =
+        nullptr;
+
+    static constexpr int UNIFORM_SURFACE_LOCATION = 0;
 
     static std::unique_ptr<Core::Program> s_Program;
     static std::unique_ptr<Core::VertexArray> s_VertexArray;

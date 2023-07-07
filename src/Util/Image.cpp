@@ -44,7 +44,7 @@ void Image::InitProgram() {
     s_Program->Bind();
 
     GLint location = glGetUniformLocation(s_Program->GetId(), "surface");
-    glUniform1i(location, Core::UNIFORM_SURFACE_LOCATION);
+    glUniform1i(location, UNIFORM_SURFACE_LOCATION);
 }
 
 void Image::InitVertexArray() {
