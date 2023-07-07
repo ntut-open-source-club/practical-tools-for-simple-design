@@ -22,9 +22,10 @@ private:
     void InitProgram();
     void InitVertexArray();
     void InitUniformBuffer();
-    static std::unique_ptr<Core::Program> s_Program;
 
     std::unique_ptr<TTF_Font, std::function<void(TTF_Font *)>> m_Font;
+
+    static std::unique_ptr<Core::Program> s_Program;
     static std::unique_ptr<Core::VertexArray> s_VertexArray;
     static std::unique_ptr<Core::UniformBuffer<Core::Matrices>> s_UniformBuffer;
 };

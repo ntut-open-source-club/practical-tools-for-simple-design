@@ -28,10 +28,11 @@ public:
     int GetUniformSurfaceLocation() const { return UNIFORM_SURFACE_LOCATION; }
 
 protected:
+    glm::mat3 m_Transform;
+
     std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> m_Surface =
         nullptr;
     std::unique_ptr<Texture> m_Texture = nullptr;
-    glm::mat3 m_Transform;
 
 private:
 };
