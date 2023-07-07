@@ -3,6 +3,8 @@
 
 #include "pch.hpp" // IWYU pragma: export
 
+#include <functional>
+
 #include "Core/Program.hpp"
 #include "Core/UniformBuffer.hpp"
 #include "Core/VertexArray.hpp"
