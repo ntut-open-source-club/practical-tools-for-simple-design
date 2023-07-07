@@ -6,6 +6,7 @@
 #include "Core/Program.hpp"
 #include "Core/UniformBuffer.hpp"
 #include "Core/VertexArray.hpp"
+#include "Texture.hpp"
 
 namespace Core {
 struct Matrices {
@@ -23,19 +24,14 @@ class Drawable {
 public:
     Drawable(glm::mat3 transform);
 
-    void Draw();
+    virtual void Draw() = 0;
 
     int GetUniformSurfaceLocation() const { return UNIFORM_SURFACE_LOCATION; }
 
+protected:
+    std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> m_Surface = nullptr;
+    std::unique_ptr<Texture> m_Texture = nullptr;
 private:
-    void InitProgram();
-    void InitVertexArray();
-    void InitUniformBuffer();
-
-    static std::unique_ptr<Program> s_Program;
-    static std::unique_ptr<VertexArray> s_VertexArray;
-    static std::unique_ptr<UniformBuffer<Matrices>> s_UniformBuffer;
-
     glm::mat3 m_Transform;
 };
 } // namespace Core
