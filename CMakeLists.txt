@@ -73,7 +73,7 @@ add_executable(Sample
     ${SRC_DIR}/main.cpp
 )
 target_link_libraries(Sample
-    ${DEPENDENCY_LINK_LIBRARIES}
+    ${DEPENDENCY_LINK_LIBRARIES} SDL2::SDL2main
 )
 target_include_directories(Sample SYSTEM PRIVATE
     ${DEPENDENCY_INCLUDE_DIRS}
