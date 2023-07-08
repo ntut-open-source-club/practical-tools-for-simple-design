@@ -78,8 +78,8 @@ if (MSVC)
     target_compile_options(Sample PRIVATE
         /W4
     )
-    set_target_properties(Sample PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR})
-    set_target_properties(Sample PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR})
+    set_target_properties(Sample PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_SOURCE_DIR}/build)
+    set_target_properties(Sample PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_SOURCE_DIR}/build)
 else()
     target_compile_options(Sample PRIVATE
         -Wall -Wextra -pedantic
@@ -110,8 +110,8 @@ if (MSVC)
     target_compile_options(Tests PRIVATE
         /W4
     )
-    set_target_properties(Tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_BINARY_DIR})
-    set_target_properties(Tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_BINARY_DIR})
+    set_target_properties(Tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_SOURCE_DIR}/build)
+    set_target_properties(Tests PROPERTIES RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_SOURCE_DIR}/build)
 else()
     target_compile_options(Tests PRIVATE
         -Wall -Wextra -pedantic
