@@ -29,7 +29,7 @@ Image::Image(const std::string &filepath, glm::mat3 transform) {
 }
 
 void Image::Draw() {
-    m_Texture->Bind(GetUniformSurfaceLocation());
+    m_Texture->Bind(UNIFORM_SURFACE_LOCATION);
     s_Program->Bind();
     s_Program->Validate();
 

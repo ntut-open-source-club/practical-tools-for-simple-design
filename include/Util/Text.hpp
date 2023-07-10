@@ -16,8 +16,6 @@ public:
     Text(const std::string &font, int size, const std::string &text,
          const glm::mat3 &transform = {});
 
-    int GetUniformSurfaceLocation() const { return UNIFORM_SURFACE_LOCATION; }
-
     void Draw() override;
 
 private:

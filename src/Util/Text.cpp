@@ -40,7 +40,7 @@ Text::Text(const std::string &font, int size, const std::string &text,
 }
 
 void Text::Draw() {
-    m_Texture->Bind(GetUniformSurfaceLocation());
+    m_Texture->Bind(UNIFORM_SURFACE_LOCATION);
     s_Program->Bind();
     s_Program->Validate();
 

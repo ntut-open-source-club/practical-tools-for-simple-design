@@ -15,8 +15,6 @@ class Image : public Core::Drawable {
 public:
     Image(const std::string &filepath, glm::mat3 transform = {});
 
-    int GetUniformSurfaceLocation() const { return UNIFORM_SURFACE_LOCATION; }
-
     void Draw() override;
 
 private:
