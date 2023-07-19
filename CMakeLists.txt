@@ -25,6 +25,7 @@ set(SRC_FILES
     ${SRC_DIR}/Core/IndexBuffer.cpp
     ${SRC_DIR}/Core/Shader.cpp
     ${SRC_DIR}/Core/Program.cpp
+    ${SRC_DIR}/Core/Transform.cpp
 
     ${SRC_DIR}/Util/LoadTextFile.cpp
     ${SRC_DIR}/Util/Logger.cpp
@@ -47,6 +48,7 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Core/IndexBuffer.hpp
     ${INCLUDE_DIR}/Core/Shader.hpp
     ${INCLUDE_DIR}/Core/Program.hpp
+    ${INCLUDE_DIR}/Core/Transform.hpp
 
     ${INCLUDE_DIR}/Util/LoadTextFile.hpp
     ${INCLUDE_DIR}/Util/Logger.hpp
@@ -64,6 +66,7 @@ set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
 set(TEST_FILES
     ${TEST_DIR}/SimpleTest.cpp
     ${TEST_DIR}/NotSimpleTest.cpp
+    ${TEST_DIR}/TransformTest.cpp
 )
 
 add_executable(Sample
