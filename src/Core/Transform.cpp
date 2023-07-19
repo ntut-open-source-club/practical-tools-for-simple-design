@@ -1,7 +1,7 @@
 #include "Core/Transform.hpp"
 
 namespace Core {
-Transform Transform::RotateByRadians(float radians) const {
+Transform Transform::RotatedByRadians(float radians) const {
     glm::mat3 rotationMatrix = {
         std::cos(radians) , std::sin(radians), 0.0f,
         -std::sin(radians), std::cos(radians), 0.0f,
@@ -10,7 +10,7 @@ Transform Transform::RotateByRadians(float radians) const {
     return Transform(rotationMatrix * m_mat3);
 }
 
-Transform Transform::Translate(const glm::vec2& t) const {   
+Transform Transform::Translated(const glm::vec2& t) const {
     glm::mat3 translationMatrix = {
         1.0f, 0.0f, 0.0f,
         0.0f, 1.0f, 0.0f,
@@ -19,7 +19,7 @@ Transform Transform::Translate(const glm::vec2& t) const {
     return Transform(translationMatrix * m_mat3);
 }
 
-Transform Transform::Scale(const glm::vec2& s) const {
+Transform Transform::Scaled(const glm::vec2& s) const {
     glm::mat3 scaleMatrix = {
         s.x , 0.0f, 0.0f,
         0.0f, s.y , 0.0f,
