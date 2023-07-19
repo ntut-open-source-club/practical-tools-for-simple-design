@@ -21,7 +21,7 @@ TEST(TransformTest, Translation) {
     ASSERT_EQ(t1.Mat3() * origin, p69);
 }
 
-TEST(TransformTest, RotateArouond) {
+TEST(TransformTest, Rotate360) {
     Transform t1 = Transform().Rotate(0.0f);
     auto v = glm::vec3(1.0f,0.0f,1.0f);
     auto v2 = glm::vec3(1.0f,0.0f,1.0f);
@@ -32,7 +32,7 @@ TEST(TransformTest, RotateArouond) {
     EXPECT_FLOAT_EQ(result[2], v2[2]);
 }
 
-TEST(TransformTest, Rotation) { // FIXME: cant work IDKW
+TEST(TransformTest, Rotate90) { // TODO: cant pass, maybe Floating-point error
     Transform t1 = Transform().Rotate(90.0f);
     auto v = glm::vec3(1.0f,0.0f,1.0f);
     auto v2 = glm::vec3(0.0f,1.0f,1.0f);
