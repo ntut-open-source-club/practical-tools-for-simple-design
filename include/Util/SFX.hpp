@@ -7,6 +7,8 @@ namespace Util {
 /**
  * @class SFX
  * @brief Class for handling sound effects.
+ * @see One should use Util::BGM for long audio files since it loads audio from disk instead of memory.
+ *            (https://wiki.libsdl.org/SDL2_mixer/Mix_LoadMUS#remarks)
  */
 class SFX {
 public:

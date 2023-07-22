@@ -9,6 +9,7 @@ namespace Util {
  * @note There can be only one BGM object playing at a time.
  *            If a BGM object is playing and another BGM object is played,
  *            the previous one will stop playing.
+ * @see Util::SFX
  */
 class BGM {
 public:
@@ -57,7 +58,7 @@ public:
      * @brief Increases the volume of the background music by one.
      * @param step The amount to increase the volume by.
      */
-    void VolumeUp(const int step = 1);
+    void VolumeUp(int step = 1);
 
     /**
      * @brief Decreases the volume of the background music by one.
