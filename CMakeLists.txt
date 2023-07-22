@@ -25,7 +25,6 @@ set(SRC_FILES
     ${SRC_DIR}/Core/IndexBuffer.cpp
     ${SRC_DIR}/Core/Shader.cpp
     ${SRC_DIR}/Core/Program.cpp
-    ${SRC_DIR}/Core/Transform.cpp
 
     ${SRC_DIR}/Util/LoadTextFile.cpp
     ${SRC_DIR}/Util/Logger.cpp
@@ -33,6 +32,7 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Input.cpp
     ${SRC_DIR}/Util/SFX.cpp
     ${SRC_DIR}/Util/BGM.cpp
+    ${SRC_DIR}/Util/Transform.cpp
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/Triangle.cpp
@@ -48,7 +48,6 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Core/IndexBuffer.hpp
     ${INCLUDE_DIR}/Core/Shader.hpp
     ${INCLUDE_DIR}/Core/Program.hpp
-    ${INCLUDE_DIR}/Core/Transform.hpp
 
     ${INCLUDE_DIR}/Util/LoadTextFile.hpp
     ${INCLUDE_DIR}/Util/Logger.hpp
@@ -57,6 +56,7 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/Keycode.hpp
     ${INCLUDE_DIR}/Util/SFX.hpp
     ${INCLUDE_DIR}/Util/BGM.hpp
+    ${INCLUDE_DIR}/Util/Transform.hpp
 
     ${INCLUDE_DIR}/App.hpp
     ${INCLUDE_DIR}/Triangle.hpp

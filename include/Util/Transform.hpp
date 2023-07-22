@@ -1,10 +1,10 @@
-#ifndef CORE_TRANSFORM_HPP
-#define CORE_TRANSFORM_HPP
+#ifndef UTIL_TRANSFORM_HPP
+#define UTIL_TRANSFORM_HPP
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-namespace Core {
+namespace Util {
 class Transform {
 public:
     Transform() : m_mat3(glm::mat3(1.0f)) {};
@@ -33,6 +33,6 @@ public:
 protected:
     glm::mat3 m_mat3;
 };
-} // namespace Core
+} // namespace Util
 
-#endif /* CORE_TRANSFORM_HPP */
+#endif /* UTIL_TRANSFORM_HPP */

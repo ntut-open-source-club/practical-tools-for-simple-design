@@ -1,8 +1,8 @@
 #include <gtest/gtest.h>
 
-#include "Core/Transform.hpp"
+#include "Util/Transform.hpp"
 
-using Core::Transform;
+using Util::Transform;
 
 TEST(TransformTest, DefaultConstructor) {
     Transform t1 = Transform();

@@ -1,6 +1,6 @@
-#include "Core/Transform.hpp"
+#include "Util/Transform.hpp"
 
-namespace Core {
+namespace Util {
 Transform Transform::RotatedByRadians(float radians) const {
     glm::mat3 rotationMatrix = {
         std::cos(radians) , std::sin(radians), 0.0f,
@@ -27,4 +27,4 @@ Transform Transform::Scaled(const glm::vec2& s) const {
     };
     return Transform(scaleMatrix * m_mat3);
 }
-} // namespace Core
+} // namespace Util
