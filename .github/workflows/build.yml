@@ -16,12 +16,10 @@ jobs:
         compiler: [{ cc: gcc, cxx: g++ }, { cc: clang, cxx: clang++ }]
         build_type: [Release]
         binary: [linux-binary]
-        output: [build/Indigo]
         include:
           - os: windows-latest
             build_type: Release
             binary: windows-binary
-            output: build/Indigo.exe
 
     steps:
       - if: matrix.os == 'ubuntu-latest'
