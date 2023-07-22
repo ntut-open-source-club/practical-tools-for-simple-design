@@ -4,6 +4,15 @@ project(PracticalToolsForSimpleDesign)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
+if (MSVC)
+    set(TARGET_COMPILE_OPTIONS
+        /W4
+    )
+else()
+    set(TARGET_COMPILE_OPTIONS
+        -Wall -Wextra -pedantic
+    )
+endif()
 
 include(cmake/Dependencies.cmake)
 
@@ -55,7 +64,6 @@ set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
 set(TEST_FILES
     ${TEST_DIR}/SimpleTest.cpp
     ${TEST_DIR}/NotSimpleTest.cpp
-    ${TEST_DIR}/Audio.cpp
 )
 
 add_executable(Sample
@@ -75,15 +83,9 @@ target_include_directories(Sample PRIVATE
 target_precompile_headers(Sample PRIVATE
     include/pch.hpp
 )
-if (MSVC)
-    target_compile_options(Sample PRIVATE
-        /W4
-    )
-else()
-    target_compile_options(Sample PRIVATE
-        -Wall -Wextra -pedantic
-    )
-endif()
+target_compile_options(Sample PRIVATE
+    ${TARGET_COMPILE_OPTIONS}
+)
 
 enable_testing()
 
@@ -97,23 +99,35 @@ target_link_libraries(Tests
 )
 target_include_directories(Tests SYSTEM PRIVATE
     ${DEPENDENCY_INCLUDE_DIRS}
+    lib/googletest/googletest/include
+    lib/googletest/googlemock/include
 )
 target_include_directories(Tests PRIVATE
     ${INCLUDE_DIR}
 )
-target_include_directories(Tests SYSTEM PRIVATE
+target_compile_options(Tests PRIVATE
+    ${TARGET_COMPILE_OPTIONS}
+)
+
+add_executable(AudioTest
+    ${TEST_DIR}/Interactive/Audio.cpp
+    ${SRC_FILES}
+)
+target_link_libraries(AudioTest
+    GTest::gtest_main
+    ${DEPENDENCY_LINK_LIBRARIES}
+)
+target_include_directories(AudioTest SYSTEM PRIVATE
+    ${DEPENDENCY_INCLUDE_DIRS}
     lib/googletest/googletest/include
     lib/googletest/googlemock/include
 )
-if (MSVC)
-    target_compile_options(Tests PRIVATE
-        /W4
-    )
-else()
-    target_compile_options(Tests PRIVATE
-        -Wall -Wextra -pedantic
-    )
-endif()
+target_include_directories(AudioTest PRIVATE
+    ${INCLUDE_DIR}
+)
+target_compile_options(AudioTest PRIVATE
+    ${TARGET_COMPILE_OPTIONS}
+)
 
 include(GoogleTest)
 gtest_discover_tests(Tests)
