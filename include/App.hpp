@@ -15,7 +15,7 @@ public:
 
     void Start();
     void Update();
-    void End();
+    void End() const;
 
     State GetCurrentState() const { return m_CurrentState; }
 

@@ -40,7 +40,7 @@ void App::Update() {
     }
 }
 
-void App::End() {
+void App::End() const {
     Core::Context::GetInstance()->SetExit(true);
     LOG_TRACE("End");
 }

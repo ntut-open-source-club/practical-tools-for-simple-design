@@ -9,10 +9,7 @@
 #include "config.hpp"
 
 namespace Core {
-Context::Context()
-    : m_Exit(false),
-      m_WindowWidth(WINDOW_WIDTH),
-      m_WindowHeight(WINDOW_HEIGHT) {
+Context::Context() {
     Util::Logger::Init();
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
@@ -36,9 +33,9 @@ Context::Context()
     }
 
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0) {
-                LOG_ERROR("Failed to initialize SDL_mixer");
-                LOG_ERROR(SDL_GetError());
-        }
+        LOG_ERROR("Failed to initialize SDL_mixer");
+        LOG_ERROR(SDL_GetError());
+    }
 
     m_Window =
         SDL_CreateWindow(TITLE, WINDOW_POS_X, WINDOW_POS_Y, WINDOW_WIDTH,
@@ -88,8 +85,6 @@ Context::~Context() {
     SDL_VideoQuit();
     Mix_HaltGroup(-1);
     Mix_CloseAudio();
-
-
 
     TTF_Quit();
     IMG_Quit();

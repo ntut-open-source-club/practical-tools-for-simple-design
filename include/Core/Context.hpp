@@ -1,6 +1,7 @@
 #ifndef CORE_CONTEXT_HPP
 #define CORE_CONTEXT_HPP
 
+#include "config.hpp"
 #include "pch.hpp" // IWYU pragma: export
 
 namespace Core {
@@ -35,10 +36,10 @@ private:
     SDL_GLContext m_GlContext;
 
     static std::shared_ptr<Context> s_Instance;
-    bool m_Exit;
+    bool m_Exit = false;
 
-    unsigned int m_WindowWidth;
-    unsigned int m_WindowHeight;
+    unsigned int m_WindowWidth = WINDOW_WIDTH;
+    unsigned int m_WindowHeight = WINDOW_HEIGHT;
 };
 
 } // namespace Core
