@@ -7,25 +7,22 @@
 namespace Util {
 class Transform {
 public:
-    Transform() : m_mat3(glm::mat3(1.0f)) {};
-    Transform(glm::mat3 mat3) : m_mat3(mat3) {};
+    Transform() : m_Mat3(glm::mat3(1.0F)) {};
+    Transform(glm::mat3 mat3) : m_Mat3(mat3) {};
 
-    Transform Rotate(float degrees) const { return RotateByRadians(glm::radians(degrees)); }
-    Transform RotateByRadians(float radians) const;
+    Transform Rotate(float radians) const;
 
     Transform Translate(const glm::vec2& translation) const;
-    Transform Translate(float x, float y) const { return Translate(glm::vec2(x,y)); }
 
     Transform Scale(const glm::vec2& scale) const;
-    Transform Scale(float x, float y) const { return Scale(glm::vec2(x,y)); }
 
     /* wrapped operator */
-    Transform operator*(Transform const& other) { return Transform(m_mat3 * other.m_mat3); }
+    Transform operator*(Transform const& other) { return {m_Mat3 * other.m_Mat3}; }
     
     /* unwrap (getter) */
-    glm::mat3 Mat3() const { return m_mat3; }
+    glm::mat3 Mat3() const { return m_Mat3; }
 protected:
-    glm::mat3 m_mat3;
+    glm::mat3 m_Mat3;
 };
 } // namespace Util
 
