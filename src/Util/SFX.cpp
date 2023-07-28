@@ -26,7 +26,7 @@ void SFX::LoadMedia(const std::string &path) {
     m_Chunk.reset(Mix_LoadWAV(path.c_str()));
 }
 
-void SFX::VolumeUp(const int step) const{
+void SFX::VolumeUp(const int step) const {
     int volume = GetVolume();
     SetVolume(volume + step);
 }
@@ -40,7 +40,8 @@ void SFX::Play(const int loop, const int duration) const {
 }
 void SFX::FadeIn(const unsigned int tick, const int loop,
                  const unsigned int duration) const {
-    Mix_FadeInChannelTimed(-1, m_Chunk.get(), loop, tick, duration);
+    Mix_FadeInChannelTimed(-1, m_Chunk.get(), loop, static_cast<int>(tick),
+                           static_cast<int>(duration));
 }
 
 } // namespace Util

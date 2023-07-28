@@ -1,3 +1,5 @@
+#include <memory>
+
 #include "Core/Context.hpp"
 
 #include "Core/DebugMessageCallback.hpp"
@@ -100,7 +102,7 @@ void Context::Update() {
 }
 std::shared_ptr<Context> Context::GetInstance() {
     if (s_Instance == nullptr) {
-        s_Instance.reset(new Context());
+        s_Instance = std::make_shared<Context>();
     }
     return s_Instance;
 }
