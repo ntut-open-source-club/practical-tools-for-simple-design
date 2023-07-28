@@ -74,6 +74,8 @@ void GLAPIENTRY OpenGLDebugMessageCallback(GLenum source, GLenum type,
         LOG_DEBUG(" Type: {}", typeString);
         LOG_DEBUG(" Message: {}", message);
         break;
+    default:
+        break;
     }
 
     // unused variable, this is for silencing warnings

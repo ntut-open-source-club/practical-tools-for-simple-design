@@ -30,7 +30,6 @@ public:
 private:
     void CheckStatus() const;
 
-private:
     GLuint m_ProgramId;
 };
 } // namespace Core

@@ -27,7 +27,6 @@ private:
     void Compile(const std::string &src) const;
     void CheckStatus(const std::string &filepath) const;
 
-private:
     GLuint m_ShaderId;
 };
 } // namespace Core

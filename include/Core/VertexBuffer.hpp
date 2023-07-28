@@ -27,7 +27,7 @@ private:
     GLuint m_BufferId;
 
     unsigned int m_ComponentCount;
-    GLenum m_Type;
+    GLenum m_Type = GL_FLOAT;
 };
 } // namespace Core
 #endif
