@@ -1,5 +1,6 @@
 #ifndef UTIL_BGM_HPP
 #define UTIL_BGM_HPP
+
 #include "pch.hpp" // IWYU pragma: export
 
 namespace Util {

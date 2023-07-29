@@ -1,8 +1,9 @@
 #ifndef CORE_CONTEXT_HPP
 #define CORE_CONTEXT_HPP
 
-#include "config.hpp"
 #include "pch.hpp" // IWYU pragma: export
+
+#include "config.hpp"
 
 namespace Core {
 class Context {

@@ -1,6 +1,6 @@
-#include <memory>
-
 #include "Core/Context.hpp"
+
+#include <memory>
 
 #include "Core/DebugMessageCallback.hpp"
 

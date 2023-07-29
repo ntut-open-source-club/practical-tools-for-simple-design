@@ -1,5 +1,6 @@
 #ifndef UTIL_SFX_HPP
 #define UTIL_SFX_HPP
+
 #include "pch.hpp" // IWYU pragma: export
 
 namespace Util {

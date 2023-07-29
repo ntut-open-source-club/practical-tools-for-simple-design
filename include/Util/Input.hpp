@@ -1,9 +1,9 @@
 #ifndef UTIL_EVENT_HPP
 #define UTIL_EVENT_HPP
 
-#include "pch.hpp" // IWYU pragma: export
-
 #include <utility> // for std::pair
+
+#include "pch.hpp" // IWYU pragma: export
 
 #include <SDL_events.h> // for SDL_Event
 #include <SDL_stdinc.h> // for Uint8
