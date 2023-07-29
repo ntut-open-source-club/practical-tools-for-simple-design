@@ -24,15 +24,15 @@ public:
     explicit BGM(const std::string &path);
 
     /**
+     * @brief Deleted copy constructor to prevent copying of BGM objects.
+     */
+    BGM(const BGM &) = delete;
+
+    /**
      * @brief Deleted copy assignment operator to prevent copying of BGM
      *            objects.
      */
     BGM &operator=(const BGM &) = delete;
-
-    /**
-     * @brief Deleted copy constructor to prevent copying of BGM objects.
-     */
-    BGM(const BGM &) = delete;
 
     /**
      * @brief Retrieves the current volume of the background music.

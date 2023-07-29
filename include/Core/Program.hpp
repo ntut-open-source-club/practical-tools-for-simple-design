@@ -20,12 +20,12 @@ public:
 
     Program &operator=(const Program &) = delete;
 
+    GLuint GetId() const { return m_ProgramId; }
+
     void Bind() const;
     void Unbind() const;
 
     void Validate() const;
-
-    GLuint GetId() const { return m_ProgramId; }
 
 private:
     void CheckStatus() const;

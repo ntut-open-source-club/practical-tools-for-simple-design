@@ -20,8 +20,6 @@ public:
     Context &operator=(const Context &) = delete;
     Context &operator=(Context &&) = delete;
 
-    void Update();
-
     static std::shared_ptr<Context> GetInstance();
 
     bool GetExit() const { return m_Exit; }
@@ -31,6 +29,8 @@ public:
     void SetExit(bool exit) { m_Exit = exit; }
     void SetWindowWidth(unsigned int width) { m_WindowWidth = width; }
     void SetWindowHeight(unsigned int height) { m_WindowHeight = height; }
+
+    void Update();
 
 private:
     SDL_Window *m_Window;
