@@ -31,8 +31,8 @@ glm::vec2 Input::GetScrollDistance() const {
 void Input::Update() {
     std::array<int, 2> temp;
     SDL_GetMouseState(temp.data(), &temp[1]);
-    m_CursorPosition.x = static_cast<float >(temp[0]);
-    m_CursorPosition.y = static_cast<float >(temp[1]);
+    m_CursorPosition.x = static_cast<float>(temp[0]);
+    m_CursorPosition.y = static_cast<float>(temp[1]);
 
     m_LBPressed = m_RBPressed = m_MBPressed = m_Scroll = m_MouseMoving = false;
 
@@ -48,8 +48,8 @@ void Input::Update() {
                       m_MBPressed;
         m_Scroll = m_Event.type == SDL_MOUSEWHEEL || m_Scroll;
         if (m_Scroll) {
-            m_ScrollDistance.x = static_cast<float >(m_Event.wheel.x);
-            m_ScrollDistance.y = static_cast<float >(m_Event.wheel.y)
+            m_ScrollDistance.x = static_cast<float>(m_Event.wheel.x);
+            m_ScrollDistance.y = static_cast<float>(m_Event.wheel.y)
         }
         m_MouseMoving = m_Event.type == SDL_MOUSEMOTION || m_MouseMoving;
     }
