@@ -2,7 +2,7 @@
 
 namespace Core {
 IndexBuffer::IndexBuffer(const std::vector<unsigned int> &indices)
-    : m_Count(static_cast<unsigned int>(indices.size())) {
+    : m_Count((indices.size())) {
     glGenBuffers(1, &m_BufferId);
     glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, m_BufferId);
     glBufferData(GL_ELEMENT_ARRAY_BUFFER,
