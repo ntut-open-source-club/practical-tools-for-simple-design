@@ -6,6 +6,7 @@
 
 #include "Util/BGM.hpp"
 #include "Util/SFX.hpp"
+#include "Util/Logger.hpp"
 
 bool UserCheck(const std::string &text) {
     while (true) {
@@ -50,8 +51,18 @@ void AudioQuit() {
     Mix_Quit();
 }
 
-TEST(Audio, BGM_TEST) {
-    AudioInit();
+class AudioTest : public ::testing::Test {
+protected:
+	void SetUp() override {
+		Util::Logger::Init();
+		AudioInit();
+	}
+	void TearDown() override {
+		AudioQuit();
+	}
+};
+
+TEST_F(AudioTest, BGM_TEST) {
     auto bgm = Util::BGM("../assets/audio/testbgm.mp3");
 
     bgm.Play();
@@ -74,12 +85,9 @@ TEST(Audio, BGM_TEST) {
 
     bgm.FadeOut(1000);
     EXCEPT_INPUT_YES("Is it fading out?");
-
-    AudioQuit();
 }
 
-TEST(Audio, SFX_TEST) {
-    AudioInit();
+TEST_F(AudioTest, SFX_TEST) {
     auto sfx = Util::SFX("../assets/audio/Click.wav");
 
     sfx.Play();
@@ -92,12 +100,9 @@ TEST(Audio, SFX_TEST) {
     sfx.SetVolume(100);
     sfx.Play();
     EXCEPT_INPUT_YES("Is the volume louder than last time?");
-
-    AudioQuit();
 }
 
-TEST(Audio, BGM_SFX_TEST) {
-    AudioInit();
+TEST_F(AudioTest, BGM_SFX_TEST) {
     auto bgm = Util::BGM("../assets/audio/testbgm.mp3");
     auto sfx = Util::SFX("../assets/audio/Click.wav");
 
@@ -133,6 +138,5 @@ TEST(Audio, BGM_SFX_TEST) {
 
     sfx.Play();
     EXCEPT_INPUT_YES("Do you hear the sfx?");
-
-    AudioQuit();
 }
+
