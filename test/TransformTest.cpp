@@ -4,6 +4,9 @@
 
 using Util::Transform;
 
+// Tolerance for trigonometric function results because of π approximation.
+#define M_PI_TOLERANCE 1e-5F
+
 TEST(TransformTest, DefaultConstructor) {
     Transform t1 = Transform();
     ASSERT_EQ(t1.Mat3(), glm::mat3(1.0F));
@@ -27,9 +30,9 @@ TEST(TransformTest, Rotate360) {
     auto v2 = glm::vec3(1.0F,0.0F,1.0F);
 
     auto result = t1.Mat3() * v;
-    EXPECT_FLOAT_EQ(result[0], v2[0]);
-    EXPECT_FLOAT_EQ(result[1], v2[1]);
-    EXPECT_FLOAT_EQ(result[2], v2[2]);
+    EXPECT_NEAR(result[0], v2[0], M_PI_TOLERANCE);
+    EXPECT_NEAR(result[1], v2[1], M_PI_TOLERANCE);
+    EXPECT_NEAR(result[2], v2[2], M_PI_TOLERANCE);
 }
 
 TEST(TransformTest, Rotate90) { // TODO: cant pass, maybe Floating-point error
@@ -38,9 +41,9 @@ TEST(TransformTest, Rotate90) { // TODO: cant pass, maybe Floating-point error
     auto v2 = glm::vec3(0.0F,1.0F,1.0F);
 
     auto result = t1.Mat3() * v;
-    EXPECT_FLOAT_EQ(result[0], v2[0]);
-    EXPECT_FLOAT_EQ(result[1], v2[1]);
-    EXPECT_FLOAT_EQ(result[2], v2[2]);
+    EXPECT_NEAR(result[0], v2[0], M_PI_TOLERANCE);
+    EXPECT_NEAR(result[1], v2[1], M_PI_TOLERANCE);
+    EXPECT_NEAR(result[2], v2[2], M_PI_TOLERANCE);
 }
 
 TEST(TransformTest, Scaling) {
