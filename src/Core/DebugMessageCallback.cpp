@@ -74,7 +74,13 @@ void GLAPIENTRY OpenGLDebugMessageCallback(GLenum source, GLenum type,
         LOG_DEBUG(" Type: {}", typeString);
         LOG_DEBUG(" Message: {}", message);
         break;
+        
     default:
+        LOG_DEBUG("OpenGL Severity Unknown");
+        LOG_DEBUG(" ID: {}", id);
+        LOG_DEBUG(" Source: {}", sourceString);
+        LOG_DEBUG(" Type: {}", typeString);
+        LOG_DEBUG(" Message: {}", message);
         break;
     }
 
