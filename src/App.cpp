@@ -13,7 +13,7 @@ void App::Start() {
 
 void App::Update() {
     auto input = Util::Input::GetInstance();
-    auto [x, y] = input->GetCursorPosition();
+    auto cursorPos = input->GetCursorPosition();
     if (input->IsLButtonPressed()) {
         LOG_DEBUG("Left button pressed");
     }
@@ -24,11 +24,11 @@ void App::Update() {
         LOG_DEBUG("Middle button pressed");
     }
     if (input->IfScroll()) {
-        auto [dx, dy] = input->GetScrollDistance();
-        LOG_DEBUG("Scrolling: x: {}, y: {}", dx, dy);
+        auto delta = input->GetScrollDistance();
+        LOG_DEBUG("Scrolling: x: {}, y: {}", delta.x, delta.y);
     }
     if (input->IsMouseMoving()) {
-        LOG_DEBUG("Mouse moving! x:{}, y{}", x, y);
+        LOG_DEBUG("Mouse moving! x:{}, y{}", cursorPos.x, cursorPos.y);
     }
 
     if (input->IsKeyPressed(Util::Keycode::ESCAPE)) {

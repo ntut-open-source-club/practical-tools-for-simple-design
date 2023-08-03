@@ -25,12 +25,17 @@ bool Input::IsMouseMoving() const {
 bool Input::IfScroll() const {
     return m_Scroll;
 }
-std::pair<int, int> Input::GetScrollDistance() const {
+glm::vec2 Input::GetScrollDistance() const {
     return m_ScrollDistance;
 }
 void Input::Update() {
-    SDL_GetMouseState(&m_CursorPosition.first, &m_CursorPosition.second);
+    std::array<int, 2> temp;
+    SDL_GetMouseState(temp.data(), &temp[1]);
+    m_CursorPosition.x = static_cast<float >(temp[0]);
+    m_CursorPosition.y = static_cast<float >(temp[1]);
+
     m_LBPressed = m_RBPressed = m_MBPressed = m_Scroll = m_MouseMoving = false;
+
     while (SDL_PollEvent(&m_Event) != 0) {
         m_LBPressed = (m_Event.type == SDL_MOUSEBUTTONDOWN &&
                        m_Event.button.button == SDL_BUTTON_LEFT) ||
@@ -43,8 +48,8 @@ void Input::Update() {
                       m_MBPressed;
         m_Scroll = m_Event.type == SDL_MOUSEWHEEL || m_Scroll;
         if (m_Scroll) {
-            m_ScrollDistance.first = m_Event.wheel.x;
-            m_ScrollDistance.second = m_Event.wheel.y;
+            m_ScrollDistance.x = static_cast<float >(m_Event.wheel.x);
+            m_ScrollDistance.y = static_cast<float >(m_Event.wheel.y)
         }
         m_MouseMoving = m_Event.type == SDL_MOUSEMOTION || m_MouseMoving;
     }
@@ -57,7 +62,7 @@ std::shared_ptr<Input> Input::GetInstance() {
     }
     return s_Instance;
 }
-std::pair<int, int> Input::GetCursorPosition() const {
+glm::vec2 Input::GetCursorPosition() const {
     return m_CursorPosition;
 }
 } // namespace Util
