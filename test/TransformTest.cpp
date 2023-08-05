@@ -7,57 +7,57 @@ using Util::Transform;
 // Tolerance for trigonometric function results because of π approximation.
 #define M_PI_TOLERANCE 1e-5F
 
+// Useful 2D vectors represented in 3D homogeneous coordinates (HC)
+#define ZERO glm::vec3(0, 0, 1)
+#define ONE glm::vec3(1, 1, 1)
+#define UNIT_X glm::vec3(1, 0, 1)
+
 TEST(TransformTest, DefaultConstructor) {
-    Transform t1 = Transform();
-    ASSERT_EQ(t1.Mat3(), glm::mat3(1.0F));
+    Transform transform = Transform(); // NOLINT
+    ASSERT_EQ(transform.Mat3(), glm::mat3(1.0F));
 }
 TEST(TransformTest, Constructor) {
-    auto m1 = glm::mat3(4.0F); // NOLINT
-    Transform t1 = Transform(m1);
-    ASSERT_EQ(t1.Mat3(), m1);
+    auto init_matrix = glm::mat3(4.0F); // NOLINT
+    auto transform = Transform(init_matrix);
+    ASSERT_EQ(transform.Mat3(), init_matrix);
 }
 
 TEST(TransformTest, Translation) {
-    Transform t1 = Transform().Translate(glm::vec2(6, 9));
-    auto origin = glm::vec3(0,0,1);
-    auto p69 = glm::vec3(6,9,1);
-    ASSERT_EQ(t1.Mat3() * origin, p69);
+    Transform transform = Transform().Translate(glm::vec2(6, 9)); // NOLINT
+    auto expected = glm::vec3(6.0F, 9.0F, 1.0F);                  // NOLINT
+    ASSERT_EQ(transform.Mat3() * ZERO, expected);
 }
 
 TEST(TransformTest, Rotate360) {
-    Transform t1 = Transform().Rotate(glm::radians(0.0F));
-    auto v = glm::vec3(1.0F,0.0F,1.0F);
-    auto v2 = glm::vec3(1.0F,0.0F,1.0F);
+    Transform transform = Transform().Rotate(glm::radians(360.0F)); // NOLINT
+    auto expected = glm::vec3(1.0F, 0.0F, 1.0F);                    // NOLINT
 
-    auto result = t1.Mat3() * v;
-    EXPECT_NEAR(result[0], v2[0], M_PI_TOLERANCE);
-    EXPECT_NEAR(result[1], v2[1], M_PI_TOLERANCE);
-    EXPECT_NEAR(result[2], v2[2], M_PI_TOLERANCE);
+    auto result = transform.Mat3() * UNIT_X;
+    EXPECT_NEAR(result[0], expected[0], M_PI_TOLERANCE);
+    EXPECT_NEAR(result[1], expected[1], M_PI_TOLERANCE);
+    EXPECT_NEAR(result[2], expected[2], M_PI_TOLERANCE);
 }
 
-TEST(TransformTest, Rotate90) { // TODO: cant pass, maybe Floating-point error
-    Transform t1 = Transform().Rotate(glm::radians(90.0F));
-    auto v = glm::vec3(1.0F,0.0F,1.0F);
-    auto v2 = glm::vec3(0.0F,1.0F,1.0F);
+TEST(TransformTest, Rotate90) {
+    Transform transform = Transform().Rotate(glm::radians(90.0F)); // NOLINT
+    auto expected = glm::vec3(0.0F, 1.0F, 1.0F);                   // NOLINT
 
-    auto result = t1.Mat3() * v;
-    EXPECT_NEAR(result[0], v2[0], M_PI_TOLERANCE);
-    EXPECT_NEAR(result[1], v2[1], M_PI_TOLERANCE);
-    EXPECT_NEAR(result[2], v2[2], M_PI_TOLERANCE);
+    auto result = transform.Mat3() * UNIT_X;
+    EXPECT_NEAR(result[0], expected[0], M_PI_TOLERANCE);
+    EXPECT_NEAR(result[1], expected[1], M_PI_TOLERANCE);
+    EXPECT_NEAR(result[2], expected[2], M_PI_TOLERANCE);
 }
 
 TEST(TransformTest, Scaling) {
-    Transform t1 = Transform().Scale(glm::vec2(4,2));
-    auto v = glm::vec3(1.0F,1.0F,1.0F);
-    auto v2 = glm::vec3(4.0F,2.0F,1.0F);
-    ASSERT_EQ(t1.Mat3() * v, v2);
+    Transform transform = Transform().Scale(glm::vec2(4, 2)); // NOLINT
+    auto expected = glm::vec3(4.0F, 2.0F, 1.0F);              // NOLINT
+    ASSERT_EQ(transform.Mat3() * ONE, expected);
 }
 
 TEST(TransformTest, ScalingAndTranslation) {
-    Transform t1 = Transform()
-        .Translate(glm::vec2(-6,1))
-        .Scale(glm::vec2(-1,9));
-    auto v = glm::vec3(0.0F,0.0F,1.0F);
-    auto v2 = glm::vec3(6.0F,9.0F,1.0F);
-    ASSERT_EQ(t1.Mat3() * v, v2);
+    Transform transform = Transform()                      // NOLINT
+                              .Translate(glm::vec2(-6, 1)) // NOLINT
+                              .Scale(glm::vec2(-1, 9));    // NOLINT
+    auto expected = glm::vec3(6.0F, 9.0F, 1.0F);           // NOLINT
+    ASSERT_EQ(transform.Mat3() * ZERO, expected);
 }
