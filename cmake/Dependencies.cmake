@@ -104,7 +104,6 @@ set(DEPENDENCY_LINK_LIBRARIES
     glew_s
 
     SDL2::SDL2-static
-    SDL2::SDL2main
     SDL2_image::SDL2_image-static
     SDL2_ttf::SDL2_ttf-static
     SDL2_mixer::SDL2_mixer-static
