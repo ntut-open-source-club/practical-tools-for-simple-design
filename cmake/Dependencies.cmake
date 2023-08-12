@@ -91,6 +91,8 @@ set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
 FetchContent_MakeAvailable(sdl2 sdl2_image sdl2_ttf sdl2_mixer spdlog glm googletest)
 
+add_compile_definitions(GLEW_NO_GLU)
+
 FetchContent_GetProperties(glew)
 if (NOT ${glew_POPULATED})
     FetchContent_Populate(glew)
