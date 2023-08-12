@@ -1,7 +1,5 @@
 #include "App.hpp"
 
-#include "Core/Context.hpp"
-
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
 #include "Util/Logger.hpp"
@@ -41,6 +39,5 @@ void App::Update() {
 }
 
 void App::End() const {
-    Core::Context::GetInstance()->SetExit(true);
     LOG_TRACE("End");
 }
