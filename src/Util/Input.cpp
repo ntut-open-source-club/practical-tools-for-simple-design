@@ -49,7 +49,7 @@ void Input::Update() {
         m_Scroll = m_Event.type == SDL_MOUSEWHEEL || m_Scroll;
         if (m_Scroll) {
             m_ScrollDistance.x = static_cast<float>(m_Event.wheel.x);
-            m_ScrollDistance.y = static_cast<float>(m_Event.wheel.y)
+            m_ScrollDistance.y = static_cast<float>(m_Event.wheel.y);
         }
         m_MouseMoving = m_Event.type == SDL_MOUSEMOTION || m_MouseMoving;
     }
