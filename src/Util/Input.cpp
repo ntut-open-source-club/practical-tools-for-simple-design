@@ -30,7 +30,7 @@ glm::vec2 Input::GetScrollDistance() const {
 }
 void Input::Update() {
     std::array<int, 2> temp;
-    SDL_GetMouseState(temp.data(), &temp[1]);
+    SDL_GetMouseState(&temp[0], &temp[1]);
     m_CursorPosition.x = static_cast<float>(temp[0]);
     m_CursorPosition.y = static_cast<float>(temp[1]);
 
