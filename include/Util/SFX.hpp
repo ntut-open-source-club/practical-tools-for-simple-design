@@ -47,7 +47,7 @@ public:
      *                          A value of 0 mutes the music, and a value of 128
      *                          sets the maximum volume.
      */
-    void SetVolume(int volume) const;
+    void SetVolume(int volume);
 
     /**
      * @brief Loads the sound effect from the specified file path.
@@ -59,13 +59,13 @@ public:
      * @brief Increases the volume of the sound effect by one.
      * @param step The amount to increase the volume by.
      */
-    void VolumeUp(int step = 1) const;
+    void VolumeUp(int step = 1);
 
     /**
      * @brief Decreases the volume of the sound effect by one.
      * @param step The amount to decrease the volume by.
      */
-    void VolumeDown(int step = 1) const;
+    void VolumeDown(int step = 1);
 
     /**
      * @brief Plays the sound effect.
@@ -75,7 +75,7 @@ public:
      *                            A value of -1 means it will play the entire
      * sound effect.
      */
-    void Play(int loop = 0, int duration = -1) const;
+    void Play(int loop = 0, int duration = -1);
 
     /**
      * @brief Fades in the sound effect gradually.
@@ -87,13 +87,13 @@ public:
      *                            A value of -1 means it will play the entire
      * sound effect.
      */
-    void FadeIn(unsigned int tick, int oop = -1,
-                unsigned int duration = -1) const;
+    void FadeIn(unsigned int tick, int oop = -1, unsigned int duration = -1);
 
 private:
-    // Use functor instead of something like void (*)(Mix_Chunk *) as deleter to make it  less confusing.
+    // Use functor instead of something like void (*)(Mix_Chunk *) as deleter to
+    // make it  less confusing.
     struct ChunkDeleter {
-        void operator()(Mix_Chunk *chunk) const { Mix_FreeChunk(chunk); }
+        void operator()(Mix_Chunk *chunk) { Mix_FreeChunk(chunk); }
     };
 
     std::unique_ptr<Mix_Chunk, ChunkDeleter> m_Chunk;

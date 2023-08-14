@@ -47,7 +47,7 @@ public:
      *              A value of 0 mutes the music, and a value of 128
      *              sets the maximum volume.
      */
-    void SetVolume(int volume) const;
+    void SetVolume(int volume);
 
     /**
      * @brief Loads the background music from the specified file path.
@@ -59,13 +59,13 @@ public:
      * @brief Increases the volume of the background music by one.
      * @param step The amount to increase the volume by.
      */
-    void VolumeUp(int step = 1) const;
+    void VolumeUp(int step = 1);
 
     /**
      * @brief Decreases the volume of the background music by one.
      * @param step The amount to decrease the volume by.
      */
-    void VolumeDown(int step = 1) const;
+    void VolumeDown(int step = 1);
 
     /**
      * @brief Plays the background music.
@@ -75,7 +75,7 @@ public:
      *             Default value: -1
      * @note Calling this function stops any currently playing music and plays.
      */
-    void Play(int loop = -1) const;
+    void Play(int loop = -1);
 
     /**
      * @brief Fades in the background music gradually.
@@ -84,31 +84,32 @@ public:
      *                      complete.<br> A value of -1 means it will loop
      * indefinitely.
      */
-    void FadeIn(int tick, int loop = -1) const;
+    void FadeIn(int tick, int loop = -1);
 
     /**
      * @brief Fades out the background music gradually.
      * @param tick The duration of the fade-out effect, in milliseconds.
      */
-    void FadeOut(int tick) const;
+    void FadeOut(int tick);
 
     /**
      * @brief Pauses the currently playing background music.
      * @note This function has no effect if there is no background music
      * currently playing.
      */
-    void Pause() const;
+    void Pause();
 
     /**
      * @brief Resumes the paused background music.
      * @note This function has no effect if there is no paused background music.
      */
-    void Resume() const;
+    void Resume();
 
 private:
-    // Use functor instead of something like void (*)(Mix_Music *) as deleter to make it less confusing.
+    // Use functor instead of something like void (*)(Mix_Music *) as deleter to
+    // make it less confusing.
     struct MusicDeleter {
-        void operator()(Mix_Music *music) const { Mix_FreeMusic(music); }
+        void operator()(Mix_Music *music) { Mix_FreeMusic(music); }
     };
 
     std::unique_ptr<Mix_Music, MusicDeleter> m_BGM;

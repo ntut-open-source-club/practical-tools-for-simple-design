@@ -15,7 +15,7 @@ int BGM::GetVolume() const {
     return Mix_VolumeMusic(-1);
 }
 
-void BGM::SetVolume(const int volume) const {
+void BGM::SetVolume(const int volume) {
     Mix_VolumeMusic(volume);
 }
 
@@ -23,32 +23,32 @@ void BGM::LoadMedia(const std::string &path) {
     m_BGM.reset(Mix_LoadMUS(path.c_str()));
 }
 
-void BGM::VolumeUp(const int step) const {
+void BGM::VolumeUp(const int step) {
     int volume = GetVolume();
     SetVolume(volume + step);
 }
 
-void BGM::VolumeDown(const int step) const {
+void BGM::VolumeDown(const int step) {
     int volume = GetVolume();
     SetVolume(volume - step);
 }
 
-void BGM::Play(const int loop) const {
+void BGM::Play(const int loop) {
     Mix_PlayMusic(m_BGM.get(), loop);
 }
 
-void BGM::FadeIn(const int tick, const int loop) const  {
+void BGM::FadeIn(const int tick, const int loop) {
     Mix_FadeInMusic(m_BGM.get(), loop, tick);
 }
 
-void BGM::FadeOut(const int tick) const {
+void BGM::FadeOut(const int tick) {
     Mix_FadeOutMusic(tick);
 }
 
-void BGM::Pause() const {
+void BGM::Pause() {
     Mix_PauseMusic();
 }
-void BGM::Resume() const {
+void BGM::Resume() {
     Mix_ResumeMusic();
 }
 
