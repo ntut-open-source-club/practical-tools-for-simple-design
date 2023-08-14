@@ -91,6 +91,7 @@ public:
                 unsigned int duration = -1) const;
 
 private:
+    // Use functor instead of something like void (*)(Mix_Chunk *) as deleter to make it  less confusing.
     struct ChunkDeleter {
         void operator()(Mix_Chunk *chunk) const { Mix_FreeChunk(chunk); }
     };

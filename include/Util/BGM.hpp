@@ -106,6 +106,7 @@ public:
     void Resume() const;
 
 private:
+    // Use functor instead of something like void (*)(Mix_Music *) as deleter to make it less confusing.
     struct MusicDeleter {
         void operator()(Mix_Music *music) const { Mix_FreeMusic(music); }
     };
