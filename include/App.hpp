@@ -17,7 +17,7 @@ public:
 
     void Start();
     void Update();
-    void End() const;
+    void End(); // NOLINT(readability-convert-member-functions-to-static)
 
 private:
     State m_CurrentState = State::START;
