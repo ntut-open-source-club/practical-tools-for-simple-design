@@ -29,10 +29,10 @@ glm::vec2 Input::GetScrollDistance() const {
     return m_ScrollDistance;
 }
 void Input::Update() {
-    std::array<int, 2> temp;
-    SDL_GetMouseState(&temp[0], &temp[1]);
-    m_CursorPosition.x = static_cast<float>(temp[0]);
-    m_CursorPosition.y = static_cast<float>(temp[1]);
+    int x, y;
+    SDL_GetMouseState(&x, &y);
+    m_CursorPosition.x = static_cast<float>(x);
+    m_CursorPosition.y = static_cast<float>(y);
 
     m_LBPressed = m_RBPressed = m_MBPressed = m_Scroll = m_MouseMoving = false;
 
