@@ -24,6 +24,7 @@ public:
     Transform operator*(const Transform& other) { return {m_Mat3 * other.m_Mat3}; }
     
 protected:
+    Transform(glm::mat3 mat3) : m_Mat3(mat3) {};
     glm::mat3 m_Mat3;
 };
 } // namespace Util
