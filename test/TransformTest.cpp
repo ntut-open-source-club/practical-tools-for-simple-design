@@ -61,3 +61,30 @@ TEST(TransformTest, ScalingAndTranslation) {
     auto expected = glm::vec3(6.0F, 9.0F, 1.0F);           // NOLINT
     ASSERT_EQ(transform.Mat3() * ZERO, expected);
 }
+
+TEST(TransformTest, SetGetScale) {
+    auto expected = glm::vec2(20, 30); // NOLINT
+    Transform transform = Transform();
+    transform.SetScale(expected);
+    transform.SetRotation(14); // NOLINT
+    auto result = transform.GetScale();
+    EXPECT_NEAR(result[0], expected[0], M_PI_TOLERANCE);
+    EXPECT_NEAR(result[1], expected[1], M_PI_TOLERANCE);
+}
+
+TEST(TransformTest, SetGetRotation) {
+    auto expected = glm::radians(269.69F); // NOLINT
+    Transform transform = Transform();
+    transform.SetRotation(expected);
+    transform.SetScale(glm::vec2(6, 9)); // NOLINT
+    auto result = transform.GetRotation();
+    EXPECT_NEAR(result, expected, M_PI_TOLERANCE);
+}
+
+TEST(TransformTest, SetGetTranslate) {
+    auto expected = glm::vec2(6, 9); // NOLINT
+    Transform transform = Transform();
+    transform.SetTranslation(expected);
+    auto result = transform.GetTranslation();
+    EXPECT_EQ(result, expected);
+}
