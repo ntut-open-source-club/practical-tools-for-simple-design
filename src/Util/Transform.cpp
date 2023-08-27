@@ -31,8 +31,8 @@ Transform Transform::Scale(const glm::vec2 &s) const { // NOLINT
 void Transform::SetRotation(float r) {
     glm::vec2 es = GetScale(); // existing Scale
     m_Mat3 = {
-        cos(r) * es.x,  sin(r) * es.y, 0,   //
-        -sin(r) * es.x, cos(r) * es.y, 0,   //
+        std::cos(r) * es.x,  std::sin(r) * es.y, 0,   //
+        -std::sin(r) * es.x, std::cos(r) * es.y, 0,   //
         m_Mat3[2][0],   m_Mat3[2][1],  1.0f //
     };                                      // dont forget transpose your view
 }
@@ -45,15 +45,15 @@ void Transform::SetTranslation(const glm::vec2 &t) {
 void Transform::SetScale(const glm::vec2 &s) {
     float er = GetRotation(); // existing Rotation
     m_Mat3 = {
-        cos(er) * s.x,  sin(er) * s.y, 0,   //
-        -sin(er) * s.x, cos(er) * s.y, 0,   //
+        std::cos(er) * s.x,  std::sin(er) * s.y, 0,   //
+        -std::sin(er) * s.x, std::cos(er) * s.y, 0,   //
         m_Mat3[2][0],   m_Mat3[2][1],  1.0f //
     };                                      // dont forget transpose your view
 }
 
 float Transform::GetRotation() const {
-    auto radians = atan2(m_Mat3[0][1], m_Mat3[0][0]);
-    return radians >= 0 ? radians : radians + 4 * acos(0.0);
+    auto radians = std::atan2(m_Mat3[0][1], m_Mat3[0][0]);
+    return radians >= 0 ? radians : radians + 4 * std::acos(0.0);
 }
 
 glm::vec2 Transform::GetTranslation() const {
