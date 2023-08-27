@@ -53,7 +53,7 @@ void Transform::SetScale(const glm::vec2 &s) {
 
 float Transform::GetRotation() const {
     auto radians = std::atan2(m_Mat3[0][1], m_Mat3[0][0]);
-    return radians >= 0 ? radians : radians + 4 * std::acos(0.0);
+    return static_cast<float>(radians >= 0 ? radians : radians + 4 * std::acos(0.0));
 }
 
 glm::vec2 Transform::GetTranslation() const {
