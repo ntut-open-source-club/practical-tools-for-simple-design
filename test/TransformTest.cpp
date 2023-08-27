@@ -31,7 +31,7 @@ TEST(TransformTest, Rotate360) {
     Transform transform = Transform().Rotate(expected);
     auto result = transform.GetRotation();
     // IDK the better way to fix v, is caused by PI approximation `\_(:/)_/`
-    EXPECT_NEAR(result + 4 * acos(0.0), expected, M_PI_TOLERANCE);
+    EXPECT_NEAR(result + 4 * std::acos(0.0), expected, M_PI_TOLERANCE);
 }
 
 TEST(TransformTest, Rotate90) {
