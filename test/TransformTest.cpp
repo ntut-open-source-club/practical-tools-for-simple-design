@@ -4,7 +4,7 @@
 
 using Util::Transform;
 
-// Tolerance for trigonometric function results because of π approximation.
+// Tolerance for trigonometric function results because of PI approximation.
 constexpr float M_PI_TOLERANCE = 1e-5F;
 
 // Useful 2D vectors represented in 3D homogeneous coordinates (HC)
@@ -28,7 +28,7 @@ TEST(TransformTest, Rotate360) {
     auto expected = glm::radians(360.0F); // NOLINT
     Transform transform = Transform().Rotate(expected);
     auto result = transform.GetRotation();
-    // IDK the better way to fix v, is caused by π approximation 🤷‍♂️
+    // IDK the better way to fix v, is caused by PI approximation `\_(:/)_/`
     EXPECT_NEAR(result + 4 * acos(0.0), expected, M_PI_TOLERANCE);
 }
 
