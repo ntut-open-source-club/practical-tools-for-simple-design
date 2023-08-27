@@ -5,12 +5,12 @@
 using Util::Transform;
 
 // Tolerance for trigonometric function results because of π approximation.
-#define M_PI_TOLERANCE 1e-5F
+constexpr float M_PI_TOLERANCE = 1e-5F;
 
 // Useful 2D vectors represented in 3D homogeneous coordinates (HC)
-#define ZERO glm::vec3(0, 0, 1)
-#define ONE glm::vec3(1, 1, 1)
-#define UNIT_X glm::vec3(1, 0, 1)
+constexpr glm::vec3 ZERO = {0, 0, 1};
+constexpr glm::vec3 ONE = {1, 1, 1};
+constexpr glm::vec3 UNIT_X = {1, 0, 1};
 
 TEST(TransformTest, DefaultConstructor) {
     Transform transform = Transform(); // NOLINT
