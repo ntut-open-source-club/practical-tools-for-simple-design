@@ -19,7 +19,10 @@ namespace Util {
 class Input {
 public:
     Input() = delete;
+    Input(const Input &) = delete;
+    Input(Input &&) = delete;
     ~Input() = delete;
+    Input &operator=(const Input &) = delete;
 
     /**
      * \brief Retrieves the scroll distance of an element.
@@ -42,6 +45,7 @@ public:
     *
     * @return The cursor position as vec2(x, y).
     *
+    * @see Util::Input::SetCursorPosition()
     */
     static glm::vec2 GetCursorPosition();
 
@@ -89,6 +93,15 @@ public:
      * @return  true if the mouse is currently moving, false otherwise.
     */
     static bool IsMouseMoving();
+
+    /**
+     * @brief Sets the position of the cursor.
+     * @param pos The position to set the cursor to.
+     * @note The cursor position is relative to the upper-left corner of the client area of the window.
+     * @note It also generates a mouse motion event, which leads Util::Input::IsMouseMoving() to return true in this update-cycle.
+     * @see Util::Input::GetCursorPosition()
+     */
+    static void SetCursorPosition(const glm::vec2 &pos);
 
     /**
      *  @brief Updates the state of the input.

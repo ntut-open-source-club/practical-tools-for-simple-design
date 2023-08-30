@@ -35,6 +35,10 @@ void App::Update() {
     if (Util::Input::IsKeyPressed(Util::Keycode::A)) {
         LOG_DEBUG("A");
     }
+    if (Util::Input::IsKeyPressed(Util::Keycode::B)) {
+        LOG_DEBUG("B");
+        Util::Input::SetCursorPosition({0.0F, 0.0F});
+    }
 }
 
 void App::End() { // NOLINT(this method will mutate members in the future)

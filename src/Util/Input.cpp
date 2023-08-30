@@ -5,7 +5,7 @@
 namespace Util {
 
 // init all static members
- SDL_Event Input::s_Event = SDL_Event();
+SDL_Event Input::s_Event = SDL_Event();
 const Uint8 *Input::s_KeyState = SDL_GetKeyboardState(nullptr);
 glm::vec2 Input::s_CursorPosition = glm::vec2(0.0F);
 glm::vec2 Input::s_ScrollDistance = glm::vec2(-1.0F, -1.0F);
@@ -68,5 +68,9 @@ void Input::Update() {
 
 glm::vec2 Input::GetCursorPosition() {
     return s_CursorPosition;
+}
+void Input::SetCursorPosition(const glm::vec2 &pos) {
+    SDL_WarpMouseInWindow(nullptr, static_cast<int>(pos.x),
+                          static_cast<int>(pos.y));
 }
 } // namespace Util
