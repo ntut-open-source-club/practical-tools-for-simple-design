@@ -32,9 +32,10 @@ private:
     static SDL_Event s_Event;
 
     static const Uint8 *s_KeyState;
-    static glm::vec2 s_CursorPosition;
 
+    static glm::vec2 s_CursorPosition;
     static glm::vec2 s_ScrollDistance;
+
     static bool s_LBPressed;
     static bool s_RBPressed;
     static bool s_MBPressed;

@@ -7,8 +7,8 @@ namespace Util {
 // init all static members
  SDL_Event Input::s_Event = SDL_Event();
 const Uint8 *Input::s_KeyState = SDL_GetKeyboardState(nullptr);
-glm::vec2 Input::s_CursorPosition = glm::vec2(0.0f);
-glm::vec2 Input::s_ScrollDistance = glm::vec2(-1.0f, -1.0f);
+glm::vec2 Input::s_CursorPosition = glm::vec2(0.0F);
+glm::vec2 Input::s_ScrollDistance = glm::vec2(-1.0F, -1.0F);
 bool Input::s_LBPressed = false;
 bool Input::s_RBPressed = false;
 bool Input::s_MBPressed = false;
