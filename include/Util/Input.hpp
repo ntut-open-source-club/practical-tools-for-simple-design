@@ -12,38 +12,34 @@ namespace Util {
 
 class Input {
 public:
-    static std::shared_ptr<Input> GetInstance();
+    Input() = delete;
+    ~Input() = delete;
 
-    glm::vec2 GetScrollDistance() const;
+    static glm::vec2 GetScrollDistance();
+    static glm::vec2 GetCursorPosition();
 
-    glm::vec2 GetCursorPosition() const;
-    bool IsKeyPressed(const Keycode &key) const;
-    bool IsLButtonPressed() const;
-    bool IsRButtonPressed() const;
-    bool IsMButtonPressed() const;
-    bool IfScroll() const;
+    static bool IsKeyPressed(const Keycode &key);
+    static bool IsLButtonPressed();
+    static bool IsRButtonPressed();
+    static bool IsMButtonPressed();
+    static bool IfScroll();
 
-    bool IsMouseMoving() const;
+    static bool IsMouseMoving();
 
-    void Update();
+    static void Update();
 
 private:
-    Input() = default;
+    static SDL_Event s_Event;
 
-    static std::shared_ptr<Input> s_Instance;
+    static const Uint8 *s_KeyState;
+    static glm::vec2 s_CursorPosition;
 
-    SDL_Event m_Event;
-
-    const Uint8 *m_KeyState = SDL_GetKeyboardState(nullptr);
-    glm::vec2 m_CursorPosition = {-1, -1};
-
-    glm::vec2 m_ScrollDistance = {0, 0};
-    bool m_LBPressed = false;
-    bool m_RBPressed = false;
-    bool m_MBPressed = false;
-    bool m_Scroll = false;
-
-    bool m_MouseMoving = false;
+    static glm::vec2 s_ScrollDistance;
+    static bool s_LBPressed;
+    static bool s_RBPressed;
+    static bool s_MBPressed;
+    static bool s_Scroll;
+    static bool s_MouseMoving;
 };
 
 } // namespace Util

@@ -96,7 +96,7 @@ Context::~Context() {
 
 void Context::Update() {
     Util::Time::Update();
-    Util::Input::GetInstance()->Update();
+    Util::Input::Update();
     SDL_GL_SwapWindow(m_Window);
     glClear(GL_COLOR_BUFFER_BIT);
 }

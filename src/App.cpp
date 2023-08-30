@@ -10,30 +10,29 @@ void App::Start() {
 }
 
 void App::Update() {
-    auto input = Util::Input::GetInstance();
-    auto cursorPos = input->GetCursorPosition();
-    if (input->IsLButtonPressed()) {
+    auto cursorPos = Util::Input::GetCursorPosition();
+    if (Util::Input::IsLButtonPressed()) {
         LOG_DEBUG("Left button pressed");
     }
-    if (input->IsRButtonPressed()) {
+    if (Util::Input::IsRButtonPressed()) {
         LOG_DEBUG("Right button pressed");
     }
-    if (input->IsMButtonPressed()) {
+    if (Util::Input::IsMButtonPressed()) {
         LOG_DEBUG("Middle button pressed");
     }
-    if (input->IfScroll()) {
-        auto delta = input->GetScrollDistance();
+    if (Util::Input::IfScroll()) {
+        auto delta = Util::Input::GetScrollDistance();
         LOG_DEBUG("Scrolling: x: {}, y: {}", delta.x, delta.y);
     }
-    if (input->IsMouseMoving()) {
+    if (Util::Input::IsMouseMoving()) {
         LOG_DEBUG("Mouse moving! x:{}, y{}", cursorPos.x, cursorPos.y);
     }
 
-    if (input->IsKeyPressed(Util::Keycode::ESCAPE)) {
+    if (Util::Input::IsKeyPressed(Util::Keycode::ESCAPE)) {
         m_CurrentState = State::END;
     }
     m_Triangle.Update();
-    if (input->IsKeyPressed(Util::Keycode::A)) {
+    if (Util::Input::IsKeyPressed(Util::Keycode::A)) {
         LOG_DEBUG("A");
     }
 }
