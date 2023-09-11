@@ -1,7 +1,10 @@
 #include "Util/Transform.hpp"
 
 namespace Util {
-Transform Transform::Rotate(float r) const { // NOLINT
+
+// NOLINTBEGIN(readability-identifier-length)
+
+Transform Transform::Rotate(float r) const {
     glm::mat3 rotationMatrix = {
         std::cos(r),  std::sin(r), 0.0F, //
         -std::sin(r), std::cos(r), 0.0F, //
@@ -10,7 +13,7 @@ Transform Transform::Rotate(float r) const { // NOLINT
     return {rotationMatrix * m_Mat3};
 }
 
-Transform Transform::Translate(const glm::vec2 &t) const { // NOLINT
+Transform Transform::Translate(const glm::vec2 &t) const {
     glm::mat3 translationMatrix = {
         1.0F, 0.0F, 0.0F, //
         0.0F, 1.0F, 0.0F, //
@@ -19,7 +22,7 @@ Transform Transform::Translate(const glm::vec2 &t) const { // NOLINT
     return {translationMatrix * m_Mat3};
 }
 
-Transform Transform::Scale(const glm::vec2 &s) const { // NOLINT
+Transform Transform::Scale(const glm::vec2 &s) const {
     glm::mat3 scaleMatrix = {
         s.x,  0.0F, 0.0F, //
         0.0F, s.y,  0.0F, //
@@ -64,5 +67,7 @@ glm::vec2 Transform::GetScale() const {
     return {glm::length(glm::vec2(m_Mat3[0][0], m_Mat3[1][0])),
             glm::length(glm::vec2(m_Mat3[0][1], m_Mat3[1][1]))};
 }
+
+// NOLINTEND(readability-identifier-length)
 
 } // namespace Util
