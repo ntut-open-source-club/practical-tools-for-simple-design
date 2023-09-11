@@ -42,7 +42,7 @@ TEST(TransformTest, Rotate90) {
 }
 
 TEST(TransformTest, Scaling) {
-    auto expected = glm::vec2(4, 2);                  
+    auto expected = glm::vec2(4, 2);
     Transform transform = Transform().Scale(expected);
     auto result = transform.GetScale();
     EXPECT_NEAR(result[0], expected[0], M_PI_TOLERANCE);
