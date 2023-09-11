@@ -2,8 +2,7 @@
 
 namespace Util {
 
-// NOLINTBEGIN(readability-identifier-length)
-// NOLINTBEGIN(readability-magic-numbers)
+// NOLINTBEGIN(readability-identifier-length,readability-magic-numbers)
 
 Transform Transform::Rotate(float r) const {
     glm::mat3 rotationMatrix = {
@@ -69,7 +68,6 @@ glm::vec2 Transform::GetScale() const {
             glm::length(glm::vec2(m_Mat3[0][1], m_Mat3[1][1]))};
 }
 
-// NOLINTEND(readability-identifier-length)
-// NOLINTEND(readability-magic-numbers)
+// NOLINTEND(readability-identifier-length,readability-magic-numbers)
 
 } // namespace Util
