@@ -3,6 +3,7 @@
 namespace Util {
 
 // NOLINTBEGIN(readability-identifier-length)
+// NOLINTBEGIN(readability-magic-numbers)
 
 Transform Transform::Rotate(float r) const {
     glm::mat3 rotationMatrix = {
@@ -69,5 +70,6 @@ glm::vec2 Transform::GetScale() const {
 }
 
 // NOLINTEND(readability-identifier-length)
+// NOLINTEND(readability-magic-numbers)
 
 } // namespace Util
