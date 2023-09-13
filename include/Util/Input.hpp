@@ -14,7 +14,7 @@ namespace Util {
 * @class Input
 * @brief The Input class provides access to keyboard and mouse input.
 * @note This class is a singleton and constructable. Use is as follows: \n
-           Util::Input::.IsKeyPressed(Keycode::A,) Util::Input::.IsLButtonPressed(), etc.
+           `Util::Input::IsKeyPressed(Keycode::A)`, `Util::Input::IsLButtonPressed()`, etc.
 */
 class Input {
 public:
