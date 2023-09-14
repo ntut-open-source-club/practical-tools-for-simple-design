@@ -10,40 +10,118 @@
 
 namespace Util {
 
+/**
+* @class Input
+* @brief The Input class provides access to keyboard and mouse input.
+* @note This class is a singleton and constructable. Use is as follows: \n
+           `Util::Input::IsKeyPressed(Keycode::A)`, `Util::Input::IsLButtonPressed()`, etc.
+*/
 class Input {
 public:
-    static std::shared_ptr<Input> GetInstance();
+    Input() = delete;
+    Input(const Input &) = delete;
+    Input(Input &&) = delete;
+    ~Input() = delete;
+    Input &operator=(const Input &) = delete;
 
-    glm::vec2 GetScrollDistance() const;
+    /**
+     * \brief Retrieves the scroll distance of an element.
+     *
+     *  The scroll distance is the distance that the mouse wheel has been scrolled.
+     *  The distance is expressed in multiples or fractions of lines; for example,
+     *  if the mouse wheel is rotated three lines
+     *  downward, the scroll distance is {-1.0F, 0.0F}.
+     *  If the mouse wheel is rotated three lines upward, the scroll distance is {1.0F, 0.0F}.
+     *  If the mouse wheel is rotated three lines right, the scroll distance is {0.0F, 1.0F}.
+     *  If the mouse wheel is rotated three lines left, the scroll distance is {0.0F, -1.0F}.
+     *
+     * \return The scroll distance as vec2(x,y).
+     */
+    static glm::vec2 GetScrollDistance();
 
-    glm::vec2 GetCursorPosition() const;
-    bool IsKeyPressed(const Keycode &key) const;
-    bool IsLButtonPressed() const;
-    bool IsRButtonPressed() const;
-    bool IsMButtonPressed() const;
-    bool IfScroll() const;
+    /**
+    * @brief Retrieves the current position of the cursor.
+    * @note The cursor position is relative to the upper-left corner of the client area of the window.
+    *
+    * @return The cursor position as vec2(x, y).
+    *
+    * @see Util::Input::SetCursorPosition()
+    */
+    static glm::vec2 GetCursorPosition();
 
-    bool IsMouseMoving() const;
+    /**
+    * \brief Check if a specific key is currently pressed.
+    *
+    * This function checks whether the given key is currently being pressed on the keyboard.
+    *
+    * \param key The keycode of the key to check.
+    *
+    * \return true if the key is currently pressed, false otherwise.
+    *
+    * \see Util::Keycode
+    */
+    static bool IsKeyPressed(const Keycode &key);
 
-    void Update();
+    /**
+    * \brief Checks if the left mouse button is currently pressed.
+    *
+    * \return true if the left mouse button is currently pressed, false otherwise.r
+    *
+    */
+    static bool IsLButtonPressed();
+
+    /**
+     *  @brief Checks if the right mouse button is currently pressed.
+     * @return  true if the right mouse button is currently pressed, false otherwise.
+     */
+    static bool IsRButtonPressed();
+
+    /**
+     *  @brief Checks if the middle mouse button is currently pressed.
+     * @return  true if the middle mouse button is currently pressed, false otherwise.
+     */
+    static bool IsMButtonPressed();
+
+    /**
+     *  @brief Checks if the mouse wheel is currently being scrolled.
+     * @return  A bool value representing the current state of the mouse wheel.
+     */
+    static bool IfScroll();
+
+    /**
+     *  @brief Checks if the mouse is currently moving.
+     * @return  true if the mouse is currently moving, false otherwise.
+    */
+    static bool IsMouseMoving();
+
+    /**
+     * @brief Sets the position of the cursor.
+     * @param pos The position to set the cursor to.
+     * @note The cursor position is relative to the upper-left corner of the client area of the window.
+     * @note It also generates a mouse motion event, which leads Util::Input::IsMouseMoving() to return true in this update-cycle.
+     * @see Util::Input::GetCursorPosition()
+     */
+    static void SetCursorPosition(const glm::vec2 &pos);
+
+    /**
+     *  @brief Updates the state of the input.
+     * @warning DO NOT CALL THIS METHOD. It is called by context::Update() already.
+     */
+    static void Update();
 
 private:
-    Input() = default;
+    static SDL_Event s_Event;
 
-    static std::shared_ptr<Input> s_Instance;
+    static const Uint8 *s_KeyState;
 
-    SDL_Event m_Event;
+    static glm::vec2 s_CursorPosition;
+    static glm::vec2 s_ScrollDistance;
 
-    const Uint8 *m_KeyState = SDL_GetKeyboardState(nullptr);
-    glm::vec2 m_CursorPosition = {-1, -1};
-
-    glm::vec2 m_ScrollDistance = {0, 0};
-    bool m_LBPressed = false;
-    bool m_RBPressed = false;
-    bool m_MBPressed = false;
-    bool m_Scroll = false;
-
-    bool m_MouseMoving = false;
+    static bool s_LBPressed;
+    static bool s_RBPressed;
+    static bool s_MBPressed;
+    static bool s_Scroll;
+    static bool s_MouseMoving;
 };
 
 } // namespace Util
