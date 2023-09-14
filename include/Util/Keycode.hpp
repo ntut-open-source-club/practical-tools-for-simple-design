@@ -3,7 +3,6 @@
 
 #include "pch.hpp" // IWYU pragma: export
 
-// stolen enum from SDL_Scancode
 #include <SDL_scancode.h>
 
 namespace Util {

@@ -4,7 +4,7 @@
 namespace Util {
 
 BGM::BGM(const std::string &path)
-    : m_BGM(Mix_LoadMUS(path.c_str()), Mix_FreeMusic) {
+    : m_BGM(Mix_LoadMUS(path.c_str()), BGM::MusicDeleter()) {
     if (m_BGM == nullptr) {
         LOG_DEBUG("Failed to load BGM: {} {}", path,
                   std::string(Mix_GetError()));

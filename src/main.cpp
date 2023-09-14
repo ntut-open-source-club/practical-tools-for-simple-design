@@ -2,7 +2,7 @@
 
 #include "Core/Context.hpp"
 
-int main(int, char **) {
+int main(int argc, char **argv) {
     auto context = Core::Context::GetInstance();
     App app;
 

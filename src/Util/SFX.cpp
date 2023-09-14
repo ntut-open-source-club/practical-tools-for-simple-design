@@ -4,7 +4,7 @@
 namespace Util {
 
 SFX::SFX(const std::string &path)
-    : m_Chunk(Mix_LoadWAV(path.c_str()), Mix_FreeChunk) {
+    : m_Chunk(Mix_LoadWAV(path.c_str()), SFX::ChunkDeleter()) {
     if (m_Chunk == nullptr) {
         LOG_DEBUG("Failed to load SFX: {}{}", path,
                   std::string(Mix_GetError()));
@@ -40,7 +40,8 @@ void SFX::Play(const int loop, const int duration) {
 }
 void SFX::FadeIn(const unsigned int tick, const int loop,
                  const unsigned int duration) {
-    Mix_FadeInChannelTimed(-1, m_Chunk.get(), loop, tick, duration);
+    Mix_FadeInChannelTimed(-1, m_Chunk.get(), loop, static_cast<int>(tick),
+                           static_cast<int>(duration));
 }
 
 } // namespace Util

@@ -17,7 +17,7 @@ public:
 
     IndexBuffer &operator=(const IndexBuffer &) = delete;
 
-    unsigned int GetCount() const { return m_Count; }
+    size_t GetCount() const { return m_Count; }
 
     void Bind() const;
     void Unbind() const;
@@ -25,7 +25,7 @@ public:
 private:
     GLuint m_BufferId;
 
-    unsigned int m_Count;
+    size_t m_Count;
 };
 } // namespace Core
 
