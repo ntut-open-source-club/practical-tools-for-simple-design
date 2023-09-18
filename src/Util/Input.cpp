@@ -4,60 +4,73 @@
 
 namespace Util {
 
-bool Input::IsKeyPressed(const Keycode &key) const {
+// init all static members
+SDL_Event Input::s_Event = SDL_Event();
+const Uint8 *Input::s_KeyState = SDL_GetKeyboardState(nullptr);
+glm::vec2 Input::s_CursorPosition = glm::vec2(0.0F);
+glm::vec2 Input::s_ScrollDistance = glm::vec2(-1.0F, -1.0F);
+bool Input::s_LBPressed = false;
+bool Input::s_RBPressed = false;
+bool Input::s_MBPressed = false;
+bool Input::s_Scroll = false;
+bool Input::s_MouseMoving = false;
+
+bool Input::IsKeyPressed(const Keycode &key) {
     const auto temp = static_cast<const int>(key);
-    return m_KeyState[temp] != 0;
+    return s_KeyState[temp] != 0;
 }
 
-bool Input::IsLButtonPressed() const {
-    return m_LBPressed;
+bool Input::IsLButtonPressed() {
+    return s_LBPressed;
 }
-bool Input::IsRButtonPressed() const {
-    return m_RBPressed;
+bool Input::IsRButtonPressed() {
+    return s_RBPressed;
 }
-bool Input::IsMButtonPressed() const {
-    return m_MBPressed;
+bool Input::IsMButtonPressed() {
+    return s_MBPressed;
 }
-bool Input::IsMouseMoving() const {
-    return m_MouseMoving;
+bool Input::IsMouseMoving() {
+    return s_MouseMoving;
 }
 
-bool Input::IfScroll() const {
-    return m_Scroll;
+bool Input::IfScroll() {
+    return s_Scroll;
 }
-std::pair<int, int> Input::GetScrollDistance() const {
-    return m_ScrollDistance;
+glm::vec2 Input::GetScrollDistance() {
+    return s_ScrollDistance;
 }
 void Input::Update() {
-    SDL_GetMouseState(&m_CursorPosition.first, &m_CursorPosition.second);
-    m_LBPressed = m_RBPressed = m_MBPressed = m_Scroll = m_MouseMoving = false;
-    while (SDL_PollEvent(&m_Event) != 0) {
-        m_LBPressed = (m_Event.type == SDL_MOUSEBUTTONDOWN &&
-                       m_Event.button.button == SDL_BUTTON_LEFT) ||
-                      m_LBPressed;
-        m_RBPressed = (m_Event.type == SDL_MOUSEBUTTONDOWN &&
-                       m_Event.button.button == SDL_BUTTON_RIGHT) ||
-                      m_RBPressed;
-        m_MBPressed = (m_Event.type == SDL_MOUSEBUTTONDOWN &&
-                       m_Event.button.button == SDL_BUTTON_MIDDLE) ||
-                      m_MBPressed;
-        m_Scroll = m_Event.type == SDL_MOUSEWHEEL || m_Scroll;
-        if (m_Scroll) {
-            m_ScrollDistance.first = m_Event.wheel.x;
-            m_ScrollDistance.second = m_Event.wheel.y;
+    int x, y;
+    SDL_GetMouseState(&x, &y);
+    s_CursorPosition.x = static_cast<float>(x);
+    s_CursorPosition.y = static_cast<float>(y);
+
+    s_LBPressed = s_RBPressed = s_MBPressed = s_Scroll = s_MouseMoving = false;
+
+    while (SDL_PollEvent(&s_Event) != 0) {
+        s_LBPressed = (s_Event.type == SDL_MOUSEBUTTONDOWN &&
+                       s_Event.button.button == SDL_BUTTON_LEFT) ||
+                      s_LBPressed;
+        s_RBPressed = (s_Event.type == SDL_MOUSEBUTTONDOWN &&
+                       s_Event.button.button == SDL_BUTTON_RIGHT) ||
+                      s_RBPressed;
+        s_MBPressed = (s_Event.type == SDL_MOUSEBUTTONDOWN &&
+                       s_Event.button.button == SDL_BUTTON_MIDDLE) ||
+                      s_MBPressed;
+        s_Scroll = s_Event.type == SDL_MOUSEWHEEL || s_Scroll;
+        if (s_Scroll) {
+            s_ScrollDistance.x = static_cast<float>(s_Event.wheel.x);
+            s_ScrollDistance.y = static_cast<float>(s_Event.wheel.y);
         }
-        m_MouseMoving = m_Event.type == SDL_MOUSEMOTION || m_MouseMoving;
+        s_MouseMoving = s_Event.type == SDL_MOUSEMOTION || s_MouseMoving;
     }
 }
 
-std::shared_ptr<Input> Input::s_Instance = nullptr;
-std::shared_ptr<Input> Input::GetInstance() {
-    if (s_Instance == nullptr) {
-        s_Instance.reset(new Input());
-    }
-    return s_Instance;
+glm::vec2 Input::GetCursorPosition() {
+    return s_CursorPosition;
 }
-std::pair<int, int> Input::GetCursorPosition() const {
-    return m_CursorPosition;
+void Input::SetCursorPosition(const glm::vec2 &pos) {
+    SDL_WarpMouseInWindow(nullptr, static_cast<int>(pos.x),
+                          static_cast<int>(pos.y));
 }
 } // namespace Util

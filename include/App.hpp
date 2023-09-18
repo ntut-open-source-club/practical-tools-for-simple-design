@@ -14,11 +14,11 @@ public:
         END,
     };
 
+    State GetCurrentState() const { return m_CurrentState; }
+
     void Start();
     void Update();
-    void End();
-
-    State GetCurrentState() const { return m_CurrentState; }
+    void End(); // NOLINT(readability-convert-member-functions-to-static)
 
 private:
     State m_CurrentState = State::START;

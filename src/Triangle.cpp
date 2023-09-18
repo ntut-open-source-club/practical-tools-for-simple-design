@@ -1,17 +1,11 @@
 #include "Triangle.hpp"
 
 #include "Core/IndexBuffer.hpp"
-#include "Core/VertexArray.hpp"
 #include "Core/VertexBuffer.hpp"
 
 #include "Util/Time.hpp"
 
-Triangle::Triangle()
-    : m_Program("../assets/shaders/Triangle.vert",
-                "../assets/shaders/Triangle.frag"),
-      m_VertexArray(std::make_unique<Core::VertexArray>()),
-      m_Matrices(std::make_unique<Core::UniformBuffer<Matrices>>(
-          m_Program, "Triangle", 1)) {
+Triangle::Triangle() {
     std::vector<float> vertex({
         -300.0F, -300.0F, // NOLINT
         300.0F, -300.0F,  // NOLINT

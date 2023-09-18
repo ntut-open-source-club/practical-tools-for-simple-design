@@ -1,7 +1,5 @@
 #include "App.hpp"
 
-#include "Core/Context.hpp"
-
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
 #include "Util/Logger.hpp"
@@ -12,17 +10,39 @@ void App::Start() {
 }
 
 void App::Update() {
-    auto input = Util::Input::GetInstance();
+    auto cursorPos = Util::Input::GetCursorPosition();
+    if (Util::Input::IsLButtonPressed()) {
+        LOG_DEBUG("Left button pressed");
+    }
+    if (Util::Input::IsRButtonPressed()) {
+        LOG_DEBUG("Right button pressed");
+    }
+    if (Util::Input::IsMButtonPressed()) {
+        LOG_DEBUG("Middle button pressed");
+    }
+    if (Util::Input::IfScroll()) {
+        auto delta = Util::Input::GetScrollDistance();
+        LOG_DEBUG("Scrolling: x: {}, y: {}", delta.x, delta.y);
+    }
+    if (Util::Input::IsMouseMoving()) {
+        LOG_DEBUG("Mouse moving! x:{}, y{}", cursorPos.x, cursorPos.y);
+    }
 
-    if (input->IsKeyPressed(Util::Keycode::ESCAPE)) {
+    if (Util::Input::IsKeyPressed(Util::Keycode::ESCAPE)) {
         m_CurrentState = State::END;
     }
 
     m_Triangle.Update();
     m_Giraffe.Update();
+    if (Util::Input::IsKeyPressed(Util::Keycode::A)) {
+        LOG_DEBUG("A");
+    }
+    if (Util::Input::IsKeyPressed(Util::Keycode::B)) {
+        LOG_DEBUG("B");
+        Util::Input::SetCursorPosition({0.0F, 0.0F});
+    }
 }
 
-void App::End() {
-    Core::Context::GetInstance()->SetExit(true);
+void App::End() { // NOLINT(this method will mutate members in the future)
     LOG_TRACE("End");
 }

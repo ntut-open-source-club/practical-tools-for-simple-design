@@ -1,5 +1,6 @@
 #ifndef UTIL_SFX_HPP
 #define UTIL_SFX_HPP
+
 #include "pch.hpp" // IWYU pragma: export
 
 namespace Util {
@@ -7,6 +8,9 @@ namespace Util {
 /**
  * @class SFX
  * @brief Class for handling sound effects.
+ * @see One should use Util::BGM for long audio files since it loads audio from
+ * disk instead of memory.
+ *            (https://wiki.libsdl.org/SDL2_mixer/Mix_LoadMUS#remarks)
  */
 class SFX {
 public:
@@ -17,18 +21,18 @@ public:
      *            effect from the specified file path.
      * @param path The file path of the sound effect to be loaded.
      */
-    SFX(const std::string &path);
+    explicit SFX(const std::string &path);
+
+    /**
+     * @brief Deleted copy constructor to prevent copying of SFX objects.
+     */
+    SFX(const SFX &) = delete;
 
     /**
      * @brief Deleted copy assignment operator to prevent copying of SFX
      *            objects.
      */
     SFX &operator=(const SFX &) = delete;
-
-    /**
-     * @brief Deleted copy constructor to prevent copying of SFX objects.
-     */
-    SFX(const SFX &) = delete;
 
     /**
      * @brief Retrieves the current volume of the sound effect.
@@ -43,7 +47,7 @@ public:
      *                          A value of 0 mutes the music, and a value of 128
      *                          sets the maximum volume.
      */
-    void SetVolume(const int volume);
+    void SetVolume(int volume);
 
     /**
      * @brief Loads the sound effect from the specified file path.
@@ -55,13 +59,13 @@ public:
      * @brief Increases the volume of the sound effect by one.
      * @param step The amount to increase the volume by.
      */
-    void VolumeUp(const int step = 1);
+    void VolumeUp(int step = 1);
 
     /**
      * @brief Decreases the volume of the sound effect by one.
      * @param step The amount to decrease the volume by.
      */
-    void VolumeDown(const int step = 1);
+    void VolumeDown(int step = 1);
 
     /**
      * @brief Plays the sound effect.
@@ -71,7 +75,7 @@ public:
      *                            A value of -1 means it will play the entire
      * sound effect.
      */
-    void Play(const int loop = 0, const int duration = -1);
+    void Play(int loop = 0, int duration = -1);
 
     /**
      * @brief Fades in the sound effect gradually.
@@ -83,11 +87,16 @@ public:
      *                            A value of -1 means it will play the entire
      * sound effect.
      */
-    void FadeIn(const unsigned int tick, const int oop = -1,
-                const unsigned int duration = -1);
+    void FadeIn(unsigned int tick, int oop = -1, unsigned int duration = -1);
 
 private:
-    std::unique_ptr<Mix_Chunk, void (*)(Mix_Chunk *)> m_Chunk;
+    // Use functor instead of something like void (*)(Mix_Chunk *) as deleter to
+    // make it  less confusing.
+    struct ChunkDeleter {
+        void operator()(Mix_Chunk *chunk) { Mix_FreeChunk(chunk); }
+    };
+
+    std::unique_ptr<Mix_Chunk, ChunkDeleter> m_Chunk;
 };
 
 } // namespace Util

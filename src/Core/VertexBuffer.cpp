@@ -3,8 +3,7 @@
 namespace Core {
 VertexBuffer::VertexBuffer(const std::vector<float> &vertices,
                            unsigned int componentCount)
-    : m_ComponentCount(componentCount),
-      m_Type(GL_FLOAT) {
+    : m_ComponentCount(componentCount) {
     glGenBuffers(1, &m_BufferId);
     glBindBuffer(GL_ARRAY_BUFFER, m_BufferId);
     glBufferData(GL_ARRAY_BUFFER,

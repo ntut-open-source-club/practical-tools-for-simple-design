@@ -1,5 +1,6 @@
 #ifndef UTIL_BGM_HPP
 #define UTIL_BGM_HPP
+
 #include "pch.hpp" // IWYU pragma: export
 
 namespace Util {
@@ -9,6 +10,7 @@ namespace Util {
  * @note There can be only one BGM object playing at a time.
  *            If a BGM object is playing and another BGM object is played,
  *            the previous one will stop playing.
+ * @see Util::SFX
  */
 class BGM {
 public:
@@ -19,18 +21,18 @@ public:
      *            from the specified file path.
      * @param path The file path of the background music to be loaded.
      */
-    BGM(const std::string &path);
+    explicit BGM(const std::string &path);
+
+    /**
+     * @brief Deleted copy constructor to prevent copying of BGM objects.
+     */
+    BGM(const BGM &) = delete;
 
     /**
      * @brief Deleted copy assignment operator to prevent copying of BGM
      *            objects.
      */
     BGM &operator=(const BGM &) = delete;
-
-    /**
-     * @brief Deleted copy constructor to prevent copying of BGM objects.
-     */
-    BGM(const BGM &) = delete;
 
     /**
      * @brief Retrieves the current volume of the background music.
@@ -45,7 +47,7 @@ public:
      *              A value of 0 mutes the music, and a value of 128
      *              sets the maximum volume.
      */
-    void SetVolume(const int volume);
+    void SetVolume(int volume);
 
     /**
      * @brief Loads the background music from the specified file path.
@@ -57,13 +59,13 @@ public:
      * @brief Increases the volume of the background music by one.
      * @param step The amount to increase the volume by.
      */
-    void VolumeUp(const int step = 1);
+    void VolumeUp(int step = 1);
 
     /**
      * @brief Decreases the volume of the background music by one.
      * @param step The amount to decrease the volume by.
      */
-    void VolumeDown(const int step = 1);
+    void VolumeDown(int step = 1);
 
     /**
      * @brief Plays the background music.
@@ -73,7 +75,7 @@ public:
      *             Default value: -1
      * @note Calling this function stops any currently playing music and plays.
      */
-    void Play(const int loop = -1);
+    void Play(int loop = -1);
 
     /**
      * @brief Fades in the background music gradually.
@@ -82,7 +84,13 @@ public:
      *                      complete.<br> A value of -1 means it will loop
      * indefinitely.
      */
-    void FadeIn(const int tick, const int loop = -1);
+    void FadeIn(int tick, int loop = -1);
+
+    /**
+     * @brief Fades out the background music gradually.
+     * @param tick The duration of the fade-out effect, in milliseconds.
+     */
+    void FadeOut(int tick);
 
     /**
      * @brief Pauses the currently playing background music.
@@ -92,19 +100,19 @@ public:
     void Pause();
 
     /**
-     * @brief Fades out the background music gradually.
-     * @param tick The duration of the fade-out effect, in milliseconds.
-     */
-    void FadeOut(const int tick);
-
-    /**
      * @brief Resumes the paused background music.
      * @note This function has no effect if there is no paused background music.
      */
     void Resume();
 
 private:
-    std::unique_ptr<Mix_Music, void (*)(Mix_Music *)> m_BGM;
+    // Use functor instead of something like void (*)(Mix_Music *) as deleter to
+    // make it less confusing.
+    struct MusicDeleter {
+        void operator()(Mix_Music *music) { Mix_FreeMusic(music); }
+    };
+
+    std::unique_ptr<Mix_Music, MusicDeleter> m_BGM;
 };
 
 } // namespace Util

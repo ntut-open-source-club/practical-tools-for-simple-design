@@ -4,6 +4,7 @@
 #include <memory>
 #include <string>
 #include <vector>
+#include <array>
 
 #include <SDL.h>
 #include <SDL_events.h>
