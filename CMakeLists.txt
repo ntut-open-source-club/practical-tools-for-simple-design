@@ -35,6 +35,7 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Input.cpp
     ${SRC_DIR}/Util/SFX.cpp
     ${SRC_DIR}/Util/BGM.cpp
+    ${SRC_DIR}/Util/Transform.cpp
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/Triangle.cpp
@@ -58,6 +59,7 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/Keycode.hpp
     ${INCLUDE_DIR}/Util/SFX.hpp
     ${INCLUDE_DIR}/Util/BGM.hpp
+    ${INCLUDE_DIR}/Util/Transform.hpp
 
     ${INCLUDE_DIR}/App.hpp
     ${INCLUDE_DIR}/Triangle.hpp
@@ -67,6 +69,7 @@ set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
 set(TEST_FILES
     ${TEST_DIR}/SimpleTest.cpp
     ${TEST_DIR}/NotSimpleTest.cpp
+    ${TEST_DIR}/TransformTest.cpp
 )
 
 add_executable(Sample
