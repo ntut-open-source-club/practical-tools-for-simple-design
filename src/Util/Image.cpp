@@ -4,7 +4,7 @@
 #include "config.hpp"
 
 namespace Util {
-Image::Image(const std::string &filepath, glm::mat3 transform) {
+Image::Image(const std::string &filepath, const Transform &transform) {
     if (s_Program == nullptr) {
         InitProgram();
     }
@@ -29,6 +29,9 @@ Image::Image(const std::string &filepath, glm::mat3 transform) {
 }
 
 void Image::Draw() {
+    // FIXME: temporary fix
+    InitUniformBuffer();
+
     m_Texture->Bind(UNIFORM_SURFACE_LOCATION);
     s_Program->Bind();
     s_Program->Validate();
@@ -90,15 +93,11 @@ void Image::InitUniformBuffer() {
     s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
 
-    constexpr Core::Matrices data = {
-        {
-            1.0F, 0.0F, //
-            0.0F, 1.0F, //
-        },
-        {
-            1.0F / WINDOW_WIDTH, 0.0F,  //
-            0.0F, 1.0F / WINDOW_HEIGHT, //
-        },
+    constexpr glm::mat4 eye(1.F);
+
+    Core::Matrices data = {
+        m_Transform.GetMat4(),
+        glm::scale(eye,{1.F / WINDOW_WIDTH,1.F / WINDOW_HEIGHT, 1.F}),
     };
 
     s_UniformBuffer->SetData(0, data);

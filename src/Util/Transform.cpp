@@ -5,68 +5,42 @@ namespace Util {
 // NOLINTBEGIN(readability-identifier-length,readability-magic-numbers)
 
 Transform Transform::Rotate(float r) const {
-    glm::mat3 rotationMatrix = {
-        std::cos(r),  std::sin(r), 0.0F, //
-        -std::sin(r), std::cos(r), 0.0F, //
-        0.0F,         0.0F,        1.0F, //
-    };                                   // dont forget transpose your view
-    return {rotationMatrix * m_Mat3};
+    //FIXME: fix Transform
+    throw "DONT USE THIS";
 }
 
 Transform Transform::Translate(const glm::vec2 &t) const {
-    glm::mat3 translationMatrix = {
-        1.0F, 0.0F, 0.0F, //
-        0.0F, 1.0F, 0.0F, //
-        t.x,  t.y,  1.0F, //
-    };                    // dont forget transpose your view
-    return {translationMatrix * m_Mat3};
+    //FIXME: fix Transform
+    throw "DONT USE THIS";
 }
 
 Transform Transform::Scale(const glm::vec2 &s) const {
-    glm::mat3 scaleMatrix = {
-        s.x,  0.0F, 0.0F, //
-        0.0F, s.y,  0.0F, //
-        0.0F, 0.0F, 1.0F, //
-    };                    // dont forget transpose your view
-    return {scaleMatrix * m_Mat3};
+    //FIXME: fix Transform
+    throw "DONT USE THIS";
 }
 
 void Transform::SetRotation(float r) {
-    glm::vec2 es = GetScale(); // existing Scale
-    m_Mat3 = {
-        std::cos(r) * es.x,  std::sin(r) * es.y, 0,   //
-        -std::sin(r) * es.x, std::cos(r) * es.y, 0,   //
-        m_Mat3[2][0],        m_Mat3[2][1],       1.0F //
-    }; // dont forget transpose your view
+    m_Rotation = r;
 }
 
 void Transform::SetTranslation(const glm::vec2 &t) {
-    m_Mat3[2][0] = t.x;
-    m_Mat3[2][1] = t.y;
+    m_Translation = t;
 }
 
 void Transform::SetScale(const glm::vec2 &s) {
-    float er = GetRotation(); // existing Rotation
-    m_Mat3 = {
-        std::cos(er) * s.x,  std::sin(er) * s.y, 0,   //
-        -std::sin(er) * s.x, std::cos(er) * s.y, 0,   //
-        m_Mat3[2][0],        m_Mat3[2][1],       1.0F //
-    }; // dont forget transpose your view
+    m_Scale = s;
 }
 
 float Transform::GetRotation() const {
-    auto radians = std::atan2(m_Mat3[0][1], m_Mat3[0][0]);
-    return static_cast<float>(radians >= 0 ? radians
-                                           : radians + 4 * std::acos(0.0));
+    return m_Rotation;
 }
 
 glm::vec2 Transform::GetTranslation() const {
-    return {m_Mat3[2][0], m_Mat3[2][1]};
+    return m_Translation;
 }
 
 glm::vec2 Transform::GetScale() const {
-    return {glm::length(glm::vec2(m_Mat3[0][0], m_Mat3[1][0])),
-            glm::length(glm::vec2(m_Mat3[0][1], m_Mat3[1][1]))};
+    return m_Scale;
 }
 
 // NOLINTEND(readability-identifier-length,readability-magic-numbers)

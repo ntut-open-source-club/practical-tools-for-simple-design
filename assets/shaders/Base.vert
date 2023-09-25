@@ -19,15 +19,12 @@ layout(location = 0) out vec2 uv;
  * | c | d |   |   |
  */
 layout(std140) uniform Matrices {
-    vec4 _model;
-    vec4 _projection;
+    mat4 model;
+    mat4 projection;
 };
 
 void main() {
-    mat2 model = mat2(_model);
-    mat2 projection = mat2(_projection);
-
-    vec2 pos = vertPosition * model * projection;
+    vec4 pos = projection * model * vec4(vertPosition, 0, 1);
 
     gl_Position = vec4(pos.x, pos.y, 0, 1);
 

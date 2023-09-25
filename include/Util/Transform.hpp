@@ -5,10 +5,10 @@
 #include <glm/gtc/matrix_transform.hpp>
 
 namespace Util {
+
 class Transform {
 public:
-    Transform()
-        : m_Mat3(glm::mat3(1.0F)){};
+    Transform() = default;
 
     Transform Translate(const glm::vec2 &translation) const;
     Transform Rotate(float radians) const;
@@ -22,14 +22,23 @@ public:
     float GetRotation() const;
     glm::vec2 GetScale() const;
 
-    Transform operator*(const Transform &other) {
-        return {m_Mat3 * other.m_Mat3};
+//    Transform operator*(const Transform &other) {
+//        return {m_Mat4 * other.m_Mat4};
+//    }
+
+public:
+    glm::mat4 GetMat4() {
+        constexpr glm::mat4 eye(1.F);
+
+        return glm::translate(eye, {m_Translation,0}) *
+            glm::rotate(eye, m_Rotation, glm::vec3(0,0,1)) *
+            glm::scale(eye, {m_Scale,1});
     }
 
-protected:
-    Transform(glm::mat3 mat3)
-        : m_Mat3(mat3){};
-    glm::mat3 m_Mat3;
+private:
+    glm::vec2 m_Translation = {0, 0};
+    float m_Rotation = 0;
+    glm::vec2 m_Scale = {1, 1};
 };
 } // namespace Util
 

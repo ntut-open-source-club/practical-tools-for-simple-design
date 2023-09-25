@@ -12,8 +12,8 @@
 
 namespace Core {
 struct Matrices {
-    glm::mat2 m_Model;
-    glm::mat2 m_Projection;
+    glm::mat4 m_Model;
+    glm::mat4 m_Projection;
 };
 
 class Drawable {
