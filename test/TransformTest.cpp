@@ -21,12 +21,11 @@ TEST(TransformTest, Translation) {
     EXPECT_EQ(transform.GetTranslation(), glm::vec2(6, 9));
 }
 
-// FIXME: Except result not limit in 0~2PI
-TEST(TransformTest, Rotate720) {
-    auto expected = glm::radians(720.0F);
+TEST(TransformTest, Rotate365) {
+    auto expected = glm::radians(365.0F);
     Transform transform = Transform().Rotate(expected);
     auto result = transform.GetRotation();
-    EXPECT_NEAR(result, expected, M_PI_TOLERANCE);
+    EXPECT_NEAR(result, expected - (glm::pi<float>() * 2), M_PI_TOLERANCE);
 }
 
 TEST(TransformTest, Rotate360) {

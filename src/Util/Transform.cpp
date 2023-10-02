@@ -25,10 +25,10 @@ Transform Transform::Scale(const glm::vec2 &s) const {
 Transform &Transform::SetRotation(float r) {
     // FIXME: Really? I can't do float modulo `\_(:/)_/`
     while (r < 0) {
-        r += glm::pi<float>();
+        r += glm::pi<float>() * 2;
     }
     while (r > glm::pi<float>() * 2) {
-        r -= glm::pi<float>();
+        r -= glm::pi<float>() * 2;
     }
     m_Rotation = r;
     return *this;
