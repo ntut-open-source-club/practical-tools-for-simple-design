@@ -95,6 +95,12 @@ public:
     static bool IsMouseMoving();
 
     /**
+     *  @brief Checks if the window is closed
+     * @return  true if the window is closed, false otherwise.
+     */
+    static bool IfExit();
+
+    /**
      * @brief Sets the position of the cursor.
      * @param pos The position to set the cursor to.
      * @note The cursor position is relative to the upper-left corner of the client area of the window.
@@ -122,6 +128,7 @@ private:
     static bool s_MBPressed;
     static bool s_Scroll;
     static bool s_MouseMoving;
+    static bool s_Exit;
 };
 
 } // namespace Util
