@@ -14,7 +14,8 @@ namespace Util {
 * @class Input
 * @brief The Input class provides access to keyboard and mouse input.
 * @note This class is a singleton and constructable. Use is as follows: \n
-           `Util::Input::IsKeyPressed(Keycode::A)`, `Util::Input::IsLButtonPressed()`, etc.
+           `Util::Input::IsKeyPressed(Keycode::A)`,
+            `Util::Input::IsLButtonPressed()`, etc.
 */
 class Input {
 public:
@@ -27,58 +28,64 @@ public:
     /**
      * \brief Retrieves the scroll distance of an element.
      *
-     *  The scroll distance is the distance that the mouse wheel has been scrolled.
-     *  The distance is expressed in multiples or fractions of lines; for example,
-     *  if the mouse wheel is rotated three lines
-     *  downward, the scroll distance is {-1.0F, 0.0F}.
-     *  If the mouse wheel is rotated three lines upward, the scroll distance is {1.0F, 0.0F}.
-     *  If the mouse wheel is rotated three lines right, the scroll distance is {0.0F, 1.0F}.
-     *  If the mouse wheel is rotated three lines left, the scroll distance is {0.0F, -1.0F}.
+     *  The scroll distance is the distance that the mouse wheel has been
+     * scrolled. The distance is expressed in multiples or fractions of lines;
+     * for example, if the mouse wheel is rotated three lines downward, the
+     * scroll distance is {-1.0F, 0.0F}. If the mouse wheel is rotated three
+     * lines upward, the scroll distance is {1.0F, 0.0F}. If the mouse wheel is
+     * rotated three lines right, the scroll distance is {0.0F, 1.0F}. If the
+     * mouse wheel is rotated three lines left, the scroll distance is {0.0F,
+     * -1.0F}.
      *
      * \return The scroll distance as vec2(x,y).
      */
     static glm::vec2 GetScrollDistance();
 
     /**
-    * @brief Retrieves the current position of the cursor.
-    * @note The cursor position is relative to the upper-left corner of the client area of the window.
-    *
-    * @return The cursor position as vec2(x, y).
-    *
-    * @see Util::Input::SetCursorPosition()
-    */
+     * @brief Retrieves the current position of the cursor.
+     * @note The cursor position is relative to the upper-left corner of the
+     * client area of the window.
+     *
+     * @return The cursor position as vec2(x, y).
+     *
+     * @see Util::Input::SetCursorPosition()
+     */
     static glm::vec2 GetCursorPosition();
 
     /**
-    * \brief Check if a specific key is currently pressed.
-    *
-    * This function checks whether the given key is currently being pressed on the keyboard.
-    *
-    * \param key The keycode of the key to check.
-    *
-    * \return true if the key is currently pressed, false otherwise.
-    *
-    * \see Util::Keycode
-    */
+     * \brief Check if a specific key is currently pressed.
+     *
+     * This function checks whether the given key is currently being pressed on
+     * the keyboard.
+     *
+     * \param key The keycode of the key to check.
+     *
+     * \return true if the key is currently pressed, false otherwise.
+     *
+     * \see Util::Keycode
+     */
     static bool IsKeyPressed(const Keycode &key);
 
     /**
-    * \brief Checks if the left mouse button is currently pressed.
-    *
-    * \return true if the left mouse button is currently pressed, false otherwise.r
-    *
-    */
+     * \brief Checks if the left mouse button is currently pressed.
+     *
+     * \return true if the left mouse button is currently pressed, false
+     * otherwise.r
+     *
+     */
     static bool IsLButtonPressed();
 
     /**
      *  @brief Checks if the right mouse button is currently pressed.
-     * @return  true if the right mouse button is currently pressed, false otherwise.
+     * @return  true if the right mouse button is currently pressed, false
+     * otherwise.
      */
     static bool IsRButtonPressed();
 
     /**
      *  @brief Checks if the middle mouse button is currently pressed.
-     * @return  true if the middle mouse button is currently pressed, false otherwise.
+     * @return  true if the middle mouse button is currently pressed, false
+     * otherwise.
      */
     static bool IsMButtonPressed();
 
@@ -91,7 +98,7 @@ public:
     /**
      *  @brief Checks if the mouse is currently moving.
      * @return  true if the mouse is currently moving, false otherwise.
-    */
+     */
     static bool IsMouseMoving();
 
     /**
@@ -103,15 +110,18 @@ public:
     /**
      * @brief Sets the position of the cursor.
      * @param pos The position to set the cursor to.
-     * @note The cursor position is relative to the upper-left corner of the client area of the window.
-     * @note It also generates a mouse motion event, which leads Util::Input::IsMouseMoving() to return true in this update-cycle.
+     * @note The cursor position is relative to the upper-left corner of the
+     * client area of the window.
+     * @note It also generates a mouse motion event, which leads
+     * Util::Input::IsMouseMoving() to return true in this update-cycle.
      * @see Util::Input::GetCursorPosition()
      */
     static void SetCursorPosition(const glm::vec2 &pos);
 
     /**
      *  @brief Updates the state of the input.
-     * @warning DO NOT CALL THIS METHOD. It is called by context::Update() already.
+     * @warning DO NOT CALL THIS METHOD. It is called by context::Update()
+     * already.
      */
     static void Update();
 
