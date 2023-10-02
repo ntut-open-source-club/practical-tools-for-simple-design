@@ -1,6 +1,7 @@
 #include "Giraffe.hpp"
 
 #include "Util/Input.hpp"
+#include "Util/Time.hpp"
 
 #include "config.hpp"
 
@@ -18,13 +19,16 @@ void Giraffe::Update() {
 
     m_Image.m_Transform.SetTranslation(pos + dir);
 
-    auto r = m_Image.m_Transform.GetRotation();
-    m_Image.m_Transform.SetRotation(r + 0.01);
+    // auto r = m_Image.m_Transform.GetRotation();
+    // m_Image.m_Transform.SetRotation(r + 0.01);
+//    m_Image.m_Transform = m_Image.m_Transform.Rotate(2 * Util::Time::GetDeltaTime());
 
-    m_Image.m_Transform.SetScale(glm::vec2(std::sin(r) * 5));
+//    static float r = 0;
+//    r += Util::Time::GetDeltaTime();
+//    m_Image.m_Transform.SetScale(glm::vec2(std::sin(r) * 5));
 
     LOG_DEBUG("GIRA: x: {}, y: {}", pos.x, pos.y);
     m_Image.Draw();
     m_Text.m_Transform.SetTranslation(pos + dir);
-    m_Text.Draw();
+//    m_Text.Draw();
 }
