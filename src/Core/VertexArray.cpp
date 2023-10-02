@@ -5,8 +5,26 @@ VertexArray::VertexArray() {
     glGenVertexArrays(1, &m_ArrayId);
 }
 
+VertexArray::VertexArray(VertexArray &&other) {
+    m_ArrayId = other.m_ArrayId;
+    other.m_ArrayId = 0;
+
+    m_VertexBuffers = std::move(other.m_VertexBuffers);
+    m_IndexBuffer = std::move(other.m_IndexBuffer);
+}
+
 VertexArray::~VertexArray() {
     glDeleteVertexArrays(1, &m_ArrayId);
+}
+
+VertexArray &VertexArray::operator=(VertexArray &&other) {
+    m_ArrayId = other.m_ArrayId;
+    other.m_ArrayId = 0;
+
+    m_VertexBuffers = std::move(other.m_VertexBuffers);
+    m_IndexBuffer = std::move(other.m_IndexBuffer);
+
+    return *this;
 }
 
 void VertexArray::Bind() const {

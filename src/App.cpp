@@ -31,7 +31,9 @@ void App::Update() {
     if (Util::Input::IsKeyPressed(Util::Keycode::ESCAPE)) {
         m_CurrentState = State::END;
     }
+
     m_Triangle.Update();
+    m_Giraffe.Update();
     if (Util::Input::IsKeyPressed(Util::Keycode::A)) {
         LOG_DEBUG("A");
     }

@@ -1,9 +1,9 @@
 #version 410 core
 
-layout(location = 0) in vec2 vertexPos;
-layout(location = 1) in vec3 color;
+layout(location = 0) in vec2 vertPosition;
+layout(location = 1) in vec2 vertUv;
 
-layout(location = 0) out vec3 vertexColor;
+layout(location = 0) out vec2 uv;
 
 /**
  * C++ and GLSL maps `mat2` differently because weird padding issues
@@ -18,7 +18,7 @@ layout(location = 0) out vec3 vertexColor;
  * | a | b |   |   |
  * | c | d |   |   |
  */
-layout(std140) uniform Triangle {
+layout(std140) uniform Matrices {
     vec4 _model;
     vec4 _projection;
 };
@@ -27,8 +27,9 @@ void main() {
     mat2 model = mat2(_model);
     mat2 projection = mat2(_projection);
 
-    vec2 pos = vertexPos * model * projection;
+    vec2 pos = vertPosition * model * projection;
 
     gl_Position = vec4(pos.x, pos.y, 0, 1);
-    vertexColor = color;
+
+    uv = vertUv;
 }

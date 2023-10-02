@@ -23,8 +23,20 @@ Program::Program(const std::string &vertexShaderFilepath,
     glDetachShader(m_ProgramId, fragment.GetShaderId());
 }
 
+Program::Program(Program &&other) {
+    m_ProgramId = other.m_ProgramId;
+    other.m_ProgramId = 0;
+}
+
 Program::~Program() {
     glDeleteProgram(m_ProgramId);
+}
+
+Program &Program::operator=(Program &&other) {
+    m_ProgramId = other.m_ProgramId;
+    other.m_ProgramId = 0;
+
+    return *this;
 }
 
 void Program::Bind() const {

@@ -27,8 +27,8 @@ private:
         std::make_unique<Core::VertexArray>();
 
     std::unique_ptr<Core::UniformBuffer<Matrices>> m_Matrices =
-        std::make_unique<Core::UniformBuffer<Matrices>>(m_Program, "Matrices",
-                                                        0);
+        std::make_unique<Core::UniformBuffer<Matrices>>(m_Program, "Triangle",
+                                                        1);
 };
 
 #endif

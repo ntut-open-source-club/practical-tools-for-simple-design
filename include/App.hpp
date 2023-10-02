@@ -3,6 +3,7 @@
 
 #include "pch.hpp" // IWYU pragma: export
 
+#include "Giraffe.hpp"
 #include "Triangle.hpp"
 
 class App {
@@ -22,6 +23,7 @@ public:
 private:
     State m_CurrentState = State::START;
     Triangle m_Triangle;
+    Giraffe m_Giraffe;
 };
 
 #endif
