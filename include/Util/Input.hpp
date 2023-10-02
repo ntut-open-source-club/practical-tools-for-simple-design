@@ -119,7 +119,7 @@ public:
     static void SetCursorPosition(const glm::vec2 &pos);
 
     /**
-     *  @brief Updates the state of the input.
+     * @brief Updates the state of the input.
      * @warning DO NOT CALL THIS METHOD. It is called by context::Update()
      * already.
      */
