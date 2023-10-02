@@ -10,8 +10,8 @@ public:
     void Update();
 
 private:
-    Util::Image m_Image = Util::Image("../assets/sprites/giraffe.png", Util::Transform());
-    Util::Text m_Text = Util::Text("../assets/fonts/Inter.ttf", 500, "Giraffe", Util::Transform());
+    Util::Image m_Image = Util::Image("../assets/sprites/giraffe.png");
+    Util::Text m_Text = Util::Text("../assets/fonts/Inter.ttf", 500, "Giraffe");
 };
 
 #endif

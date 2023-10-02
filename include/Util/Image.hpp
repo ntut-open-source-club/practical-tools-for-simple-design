@@ -14,7 +14,7 @@
 namespace Util {
 class Image : public Core::Drawable {
 public:
-    Image(const std::string &filepath, const Transform &transform);
+    Image(const std::string &filepath, const Transform &transform = {});
 
     void Draw() override;
 

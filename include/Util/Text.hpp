@@ -15,7 +15,7 @@ namespace Util {
 class Text : public Core::Drawable {
 public:
     Text(const std::string &font, int size, const std::string &text,
-         const Transform &transform);
+         const Transform &transform = {});
 
     void Draw() override;
 
