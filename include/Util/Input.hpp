@@ -26,9 +26,9 @@ public:
     Input &operator=(const Input &) = delete;
 
     /**
-     * \brief Retrieves the scroll distance of an element.
+     * \brief Retrieves the scroll distance of an element.\n
      *
-     *  The scroll distance is the distance that the mouse wheel has been
+     * \details The scroll distance is the distance that the mouse wheel has been
      * scrolled. The distance is expressed in multiples or fractions of lines;
      * for example, if the mouse wheel is rotated three lines downward, the
      * scroll distance is {-1.0F, 0.0F}. If the mouse wheel is rotated three
@@ -76,33 +76,33 @@ public:
     static bool IsLButtonPressed();
 
     /**
-     *  @brief Checks if the right mouse button is currently pressed.
+     * @brief Checks if the right mouse button is currently pressed.
      * @return  true if the right mouse button is currently pressed, false
      * otherwise.
      */
     static bool IsRButtonPressed();
 
     /**
-     *  @brief Checks if the middle mouse button is currently pressed.
+     * @brief Checks if the middle mouse button is currently pressed.
      * @return  true if the middle mouse button is currently pressed, false
      * otherwise.
      */
     static bool IsMButtonPressed();
 
     /**
-     *  @brief Checks if the mouse wheel is currently being scrolled.
+     * @brief Checks if the mouse wheel is currently being scrolled.
      * @return  A bool value representing the current state of the mouse wheel.
      */
     static bool IfScroll();
 
     /**
-     *  @brief Checks if the mouse is currently moving.
+     * @brief Checks if the mouse is currently moving.
      * @return  true if the mouse is currently moving, false otherwise.
      */
     static bool IsMouseMoving();
 
     /**
-     *  @brief Checks if the window is closed
+     * @brief Checks if the window is closed
      * @return  true if the window is closed, false otherwise.
      */
     static bool IfExit();
