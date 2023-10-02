@@ -97,7 +97,7 @@ void Image::InitUniformBuffer() {
 
     Core::Matrices data = {
         m_Transform.GetMat4(),
-        glm::scale(eye,{1.F / WINDOW_WIDTH,1.F / WINDOW_HEIGHT, 1.F}),
+        glm::scale(eye, {1.F / WINDOW_WIDTH, 1.F / WINDOW_HEIGHT, 1.F}),
     };
 
     s_UniformBuffer->SetData(0, data);

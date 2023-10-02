@@ -22,24 +22,24 @@ Transform Transform::Scale(const glm::vec2 &s) const {
     return newone;
 }
 
-Transform& Transform::SetRotation(float r) {
-    //FIXME: Really? I can't do float modulo `\_(:/)_/`
-    while ( r < 0 ) {
+Transform &Transform::SetRotation(float r) {
+    // FIXME: Really? I can't do float modulo `\_(:/)_/`
+    while (r < 0) {
         r += glm::pi<float>();
     }
-    while ( r > glm::pi<float>()*2 ) {
+    while (r > glm::pi<float>() * 2) {
         r -= glm::pi<float>();
     }
     m_Rotation = r;
     return *this;
 }
 
-Transform& Transform::SetTranslation(const glm::vec2 &t) {
+Transform &Transform::SetTranslation(const glm::vec2 &t) {
     m_Translation = t;
     return *this;
 }
 
-Transform& Transform::SetScale(const glm::vec2 &s) {
+Transform &Transform::SetScale(const glm::vec2 &s) {
     m_Scale = s;
     return *this;
 }
@@ -60,9 +60,9 @@ glm::mat4 Transform::GetMat4() const {
     constexpr glm::mat4 eye(1.F);
 
     // TODO: TRS comment
-    return glm::translate(eye, {m_Translation,0}) *
-        glm::rotate(eye, m_Rotation, glm::vec3(0,0,1)) *
-        glm::scale(eye, {m_Scale,1});
+    return glm::translate(eye, {m_Translation, 0}) *
+           glm::rotate(eye, m_Rotation, glm::vec3(0, 0, 1)) *
+           glm::scale(eye, {m_Scale, 1});
 }
 
 // NOLINTEND(readability-identifier-length,readability-magic-numbers)

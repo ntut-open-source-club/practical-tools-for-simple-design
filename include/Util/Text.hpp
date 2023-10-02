@@ -31,8 +31,9 @@ private:
     static std::unique_ptr<Core::UniformBuffer<Core::Matrices>> s_UniformBuffer;
 
 public:
-    //FIXME: public m_Transform
+    // FIXME: public m_Transform
     Transform m_Transform;
+
 private:
     std::unique_ptr<Core::Texture> m_Texture = nullptr;
     std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> m_Surface =
