@@ -7,11 +7,6 @@ using Util::Transform;
 // Tolerance for trigonometric function results because of PI approximation.
 constexpr float M_PI_TOLERANCE = 1e-5F;
 
-// Useful 2D vectors represented in 3D homogeneous coordinates (HC)
-constexpr glm::vec3 ZERO = {0, 0, 1};
-constexpr glm::vec3 ONE = {1, 1, 1};
-constexpr glm::vec3 UNIT_X = {1, 0, 1};
-
 // NOLINTBEGIN(readability-magic-numbers)
 
 TEST(TransformTest, DefaultConstructor) {
