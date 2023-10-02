@@ -66,9 +66,11 @@ Context::Context() {
         LOG_ERROR(reinterpret_cast<const char *>(glewGetErrorString(err)));
     }
 
+#ifndef __APPLE__
     glEnable(GL_DEBUG_OUTPUT);
     glEnable(GL_DEBUG_OUTPUT_SYNCHRONOUS);
     glDebugMessageCallback(Core::OpenGLDebugMessageCallback, nullptr);
+#endif
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
