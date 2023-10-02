@@ -15,13 +15,13 @@ public:
     Texture &operator=(const Texture &) = delete;
     Texture &operator=(Texture &&other);
 
+    GLuint GetTextureId() const { return m_TextureId; }
+
     void Bind(int slot) const;
     void Unbind() const;
 
     void UpdateData(unsigned int channels, int width, int height,
                     const void *data);
-
-    GLuint GetTextureId() const { return m_TextureId; }
 
 private:
     GLuint m_TextureId;
