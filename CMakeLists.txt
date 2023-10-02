@@ -17,6 +17,8 @@ else()
     )
 endif()
 
+option(PTSD_ENABLE_PCH "Turn on PCH to increase compilation speed" OFF)
+
 include(cmake/Dependencies.cmake)
 
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
@@ -95,9 +97,11 @@ target_include_directories(Sample SYSTEM PRIVATE
 target_include_directories(Sample PRIVATE
     ${INCLUDE_DIR}
 )
-target_precompile_headers(Sample PRIVATE
-    include/pch.hpp
-)
+if (${PTSD_ENABLE_PCH})
+    target_precompile_headers(Sample PRIVATE
+        include/pch.hpp
+    )
+endif()
 target_compile_options(Sample PRIVATE
     ${TARGET_COMPILE_OPTIONS}
 )
