@@ -18,11 +18,10 @@ void Giraffe::Update() {
         dir.x *= -1;
     }
 
-
-    auto delta =  static_cast<float>(Util::Time::GetDeltaTime());
+    auto delta = static_cast<float>(Util::Time::GetDeltaTime());
     pos += dir * delta * 1000.0F;
     rotation += 2 * delta;
-    scale = glm::vec2(1,1) * (std::sin(rotation/2) + 1.0F  ) * 100.0F;
+    scale = glm::vec2(1, 1) * (std::sin(rotation / 2) + 1.0F) * 100.0F;
 
     LOG_DEBUG("GIRA: x: {}, y: {}", pos.x, pos.y);
     m_Image.Draw();

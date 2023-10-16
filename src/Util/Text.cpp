@@ -104,7 +104,7 @@ void Text::InitVertexArray() {
     // NOLINTEND
 }
 
-void Text::InitUniformBuffer() {
+void Text::InitUniformBuffer() { // NOLINT
     s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
 
@@ -112,7 +112,7 @@ void Text::InitUniformBuffer() {
 
     Core::Matrices data = {
         Util::TransformToMat4(m_Transform),
-        glm::scale(eye,{1.F / WINDOW_WIDTH,1.F / WINDOW_HEIGHT, 1.F}),
+        glm::scale(eye, {1.F / WINDOW_WIDTH, 1.F / WINDOW_HEIGHT, 1.F}),
     };
 
     s_UniformBuffer->SetData(0, data);

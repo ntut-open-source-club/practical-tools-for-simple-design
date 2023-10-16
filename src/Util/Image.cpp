@@ -91,7 +91,7 @@ void Image::InitVertexArray() {
     // NOLINTEND
 }
 
-void Image::InitUniformBuffer() {
+void Image::InitUniformBuffer() { // NOLINT
     s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
 

@@ -11,4 +11,4 @@ glm::mat4 TransformToMat4(const Transform &transform) {
            glm::scale(eye, {transform.scale, 1});
 }
 
-}
+} // namespace Util
