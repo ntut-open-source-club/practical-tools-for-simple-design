@@ -14,6 +14,7 @@ bool Input::s_RBPressed = false;
 bool Input::s_MBPressed = false;
 bool Input::s_Scroll = false;
 bool Input::s_MouseMoving = false;
+bool Input::s_Exit = false;
 
 bool Input::IsKeyPressed(const Keycode &key) {
     const auto temp = static_cast<const int>(key);
@@ -36,9 +37,15 @@ bool Input::IsMouseMoving() {
 bool Input::IfScroll() {
     return s_Scroll;
 }
+
+bool Input::IfExit() {
+    return s_Exit;
+}
+
 glm::vec2 Input::GetScrollDistance() {
     return s_ScrollDistance;
 }
+
 void Input::Update() {
     int x, y;
     SDL_GetMouseState(&x, &y);
@@ -63,12 +70,14 @@ void Input::Update() {
             s_ScrollDistance.y = static_cast<float>(s_Event.wheel.y);
         }
         s_MouseMoving = s_Event.type == SDL_MOUSEMOTION || s_MouseMoving;
+        s_Exit = s_Event.type == SDL_QUIT;
     }
 }
 
 glm::vec2 Input::GetCursorPosition() {
     return s_CursorPosition;
 }
+
 void Input::SetCursorPosition(const glm::vec2 &pos) {
     SDL_WarpMouseInWindow(nullptr, static_cast<int>(pos.x),
                           static_cast<int>(pos.y));
