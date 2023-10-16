@@ -28,7 +28,8 @@ void App::Update() {
         LOG_DEBUG("Mouse moving! x:{}, y{}", cursorPos.x, cursorPos.y);
     }
 
-    if (Util::Input::IsKeyPressed(Util::Keycode::ESCAPE)) {
+    if (Util::Input::IsKeyPressed(Util::Keycode::ESCAPE) ||
+        Util::Input::IfExit()) {
         m_CurrentState = State::END;
     }
 
