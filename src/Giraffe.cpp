@@ -6,9 +6,11 @@
 #include "config.hpp"
 
 void Giraffe::Update() {
-    //    auto cursorPos = Util::Input::GetCursorPosition();
+    auto cursorPos = Util::Input::GetCursorPosition();
     static glm::vec2 dir = {1, 0.5};
-    auto pos = m_Image.m_Transform.GetTranslation();
+    auto &pos = m_Image.m_Transform.translation;
+    auto &scale = m_Image.m_Transform.scale;
+    auto &rotation = m_Image.m_Transform.rotation;
 
     if (pos.y > WINDOW_HEIGHT || pos.y + WINDOW_HEIGHT < 0) {
         dir.y *= -1;
@@ -17,18 +19,13 @@ void Giraffe::Update() {
         dir.x *= -1;
     }
 
-    m_Image.m_Transform.SetTranslation(pos + dir);
 
-    // auto r = m_Image.m_Transform.GetRotation();
-    // m_Image.m_Transform.SetRotation(r + 0.01);
-//    m_Image.m_Transform = m_Image.m_Transform.Rotate(2 * Util::Time::GetDeltaTime());
-
-//    static float r = 0;
-//    r += Util::Time::GetDeltaTime();
-//    m_Image.m_Transform.SetScale(glm::vec2(std::sin(r) * 5));
+    auto delta =  static_cast<float>(Util::Time::GetDeltaTime());
+    pos += dir * delta * 1000.0F;
+    rotation += 2 * delta;
+    scale = glm::vec2(1,1) * (std::sin(rotation/2) + 1.0F  ) * 100.0F;
 
     LOG_DEBUG("GIRA: x: {}, y: {}", pos.x, pos.y);
     m_Image.Draw();
-    m_Text.m_Transform.SetTranslation(pos + dir);
-//    m_Text.Draw();
+    m_Text.Draw();
 }

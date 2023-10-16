@@ -31,7 +31,7 @@ private:
     static std::unique_ptr<Core::UniformBuffer<Core::Matrices>> s_UniformBuffer;
 
 public:
-    // FIXME: public m_Transform
+    // TODO: better name public m_Transform
     Transform m_Transform;
 
 private:

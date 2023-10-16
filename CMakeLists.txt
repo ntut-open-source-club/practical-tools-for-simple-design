@@ -40,7 +40,7 @@ set(SRC_FILES
     ${SRC_DIR}/Util/BGM.cpp
     ${SRC_DIR}/Util/Image.cpp
     ${SRC_DIR}/Util/Text.cpp
-    ${SRC_DIR}/Util/Transform.cpp
+    ${SRC_DIR}/Util/TransformUtils.cpp
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/Triangle.cpp
@@ -70,6 +70,7 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/Image.hpp
     ${INCLUDE_DIR}/Util/Text.hpp
     ${INCLUDE_DIR}/Util/Transform.hpp
+    ${INCLUDE_DIR}/Util/TransformUtils.hpp
 
     ${INCLUDE_DIR}/App.hpp
     ${INCLUDE_DIR}/Triangle.hpp

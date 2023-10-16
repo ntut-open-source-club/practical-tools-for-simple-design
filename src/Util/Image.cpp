@@ -1,6 +1,8 @@
-#include "Util/Image.hpp"
-
 #include "Core/Texture.hpp"
+
+#include "Util/Image.hpp"
+#include "Util/TransformUtils.hpp"
+
 #include "config.hpp"
 
 namespace Util {
@@ -96,7 +98,7 @@ void Image::InitUniformBuffer() {
     constexpr glm::mat4 eye(1.F);
 
     Core::Matrices data = {
-        m_Transform.GetMat4(),
+        Util::TransformToMat4(m_Transform),
         glm::scale(eye, {1.F / WINDOW_WIDTH, 1.F / WINDOW_HEIGHT, 1.F}),
     };
 
