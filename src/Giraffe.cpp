@@ -6,7 +6,6 @@
 #include "config.hpp"
 
 void Giraffe::Update() {
-    auto cursorPos = Util::Input::GetCursorPosition();
     static glm::vec2 dir = {1, 0.5};
     auto &pos = m_Image.m_Transform.translation;
     auto &scale = m_Image.m_Transform.scale;
