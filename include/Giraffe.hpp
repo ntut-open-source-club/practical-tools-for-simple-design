@@ -3,6 +3,7 @@
 
 #include "Util/Image.hpp"
 #include "Util/Text.hpp"
+#include "Util/Transform.hpp"
 
 class Giraffe {
 public:

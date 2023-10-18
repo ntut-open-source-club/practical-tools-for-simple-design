@@ -1,11 +1,15 @@
-#include "Util/Text.hpp"
+// FIXME: this file should be refactor, API change reference from Image.cpp
 
 #include "Core/Texture.hpp"
+
+#include "Util/Text.hpp"
+#include "Util/TransformUtils.hpp"
+
 #include "config.hpp"
 
 namespace Util {
 Text::Text(const std::string &font, int size, const std::string &text,
-           const glm::mat3 &transform) {
+           const Transform &transform) {
     if (s_Program == nullptr) {
         InitProgram();
     }
@@ -40,6 +44,9 @@ Text::Text(const std::string &font, int size, const std::string &text,
 }
 
 void Text::Draw() {
+    // FIXME: temporary fix
+    InitUniformBuffer();
+
     m_Texture->Bind(UNIFORM_SURFACE_LOCATION);
     s_Program->Bind();
     s_Program->Validate();
@@ -97,19 +104,15 @@ void Text::InitVertexArray() {
     // NOLINTEND
 }
 
-void Text::InitUniformBuffer() {
+void Text::InitUniformBuffer() { // NOLINT
     s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
 
-    constexpr Core::Matrices data = {
-        {
-            1.0F, 0.0F, //
-            0.0F, 1.0F, //
-        },
-        {
-            1.0F / WINDOW_WIDTH, 0.0F,  //
-            0.0F, 1.0F / WINDOW_HEIGHT, //
-        },
+    constexpr glm::mat4 eye(1.F);
+
+    Core::Matrices data = {
+        Util::TransformToMat4(m_Transform),
+        glm::scale(eye, {1.F / WINDOW_WIDTH, 1.F / WINDOW_HEIGHT, 1.F}),
     };
 
     s_UniformBuffer->SetData(0, data);
