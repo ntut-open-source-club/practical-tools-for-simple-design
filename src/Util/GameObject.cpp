@@ -1,7 +1,7 @@
 #include "Util/GameObject.hpp"
 
-namespace Util{
+namespace Util {
 void GameObject::EnQueue() {
 
 }
-}
+} // namespace Util
