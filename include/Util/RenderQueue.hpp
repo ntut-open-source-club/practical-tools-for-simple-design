@@ -15,7 +15,7 @@ namespace Util {
 
     private:
         std::multiset<std::shared_ptr<Util::GameObject>,
-                Util::GameObject::Comparior> m_Queue;
+                Util::GameObject::Comparator> m_Queue;
     };
 
 } // namespace Util

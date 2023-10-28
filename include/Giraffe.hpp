@@ -14,7 +14,8 @@ public:
 
     void Start() override;
 
-    void Update() override;
+    void Update(const Util::Transform &transform = Util::Transform()) override;
+
 private:
     std::string m_Text;
     std::string m_Font;
@@ -24,7 +25,8 @@ private:
 class Giraffe : public Util::GameObject {
 
 public:
-    void Update() override;
+    void Update(const Util::Transform &transform = Util::Transform()) override;
+
     void Start() override;
 };
 

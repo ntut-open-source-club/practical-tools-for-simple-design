@@ -8,8 +8,14 @@
 #include "config.hpp"
 
 
-void GiraffeText::Update() {
+void GiraffeText::Update(const Util::Transform &transform) {
+    auto &pos = m_Drawable->m_Transform.translation;
+    auto &scale = m_Drawable->m_Transform.scale;
+    auto &rotation = m_Drawable->m_Transform.rotation;
 
+    pos += transform.translation;
+    rotation += transform.rotation;
+    scale = transform.scale;
 }
 
 void GiraffeText::Start() {
@@ -17,16 +23,13 @@ void GiraffeText::Start() {
 }
 
 void Giraffe::Start() {
-    SetDrawable(std::make_unique<Util::Image>("../assets/sprites/giraffe.png"));
-    auto gf = std::make_shared<GiraffeText>("../assets/fonts/Inter.ttf", 500, "Giraffe");
-    gf->Start();
-    AppendChild(gf);
+
 }
 
-void Giraffe::Update() {
+void Giraffe::Update(const Util::Transform &transform) {
     static glm::vec2 dir = {1, 0.5};
 
-    auto &pos =m_Drawable->m_Transform.translation;
+    auto &pos = m_Drawable->m_Transform.translation;
     auto &scale = m_Drawable->m_Transform.scale;
     auto &rotation = m_Drawable->m_Transform.rotation;
 
@@ -38,9 +41,18 @@ void Giraffe::Update() {
     }
 
     auto delta = static_cast<float>(Util::Time::GetDeltaTime());
-    pos += dir * delta * 1000.0F;
-    rotation += 2 * delta;
-    scale = glm::vec2(1, 1) * (std::sin(rotation / 2) + 1.0F) * 100.0F;
+    Util::Transform deltaTransform{
+            dir * delta * 1000.0F,
+            2 * delta,
+            glm::vec2(1, 1) * (std::sin(rotation / 2) + 1.0F) * 100.0F
+    };
+
+    pos += deltaTransform.translation;
+    rotation += deltaTransform.rotation;
+    scale = deltaTransform.scale;
+    for (auto &child : m_Children) {
+        child->Update(deltaTransform);
+    }
 
     LOG_DEBUG("GIRA: x: {}, y: {}", pos.x, pos.y);
 

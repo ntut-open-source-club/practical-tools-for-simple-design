@@ -8,27 +8,25 @@
 #include "Util/Transform.hpp"
 
 namespace Util {
-    class GameObject { // TODO: Refactor this hard-coded class
+    class GameObject {
     public:
 
         GameObject() = default;
 
-        GameObject(std::unique_ptr<Core::Drawable> drawable,
-                   std::vector<std::shared_ptr<GameObject>> &children, const int zIndex)
+        GameObject(std::unique_ptr<Core::Drawable> drawable, const int zIndex,
+                   const std::vector<std::shared_ptr<GameObject>> &children =
+                   std::vector<std::shared_ptr<GameObject>>())
                 : m_Drawable(std::move(drawable)),
                   m_Children(children),
                   m_ZIndex(zIndex) {}
 
+        GameObject(const GameObject &other) = delete;
 
-        GameObject(std::unique_ptr<Core::Drawable> drawable, const int zIndex)
-                : m_Drawable(std::move(drawable)),
-                  m_ZIndex(zIndex) {}
+        GameObject(GameObject &&other) = delete;
+
+        GameObject &operator=(const GameObject &other) = delete;
 
         virtual ~GameObject() = default;
-
-        virtual void Start() = 0;
-
-        virtual void Update() = 0;
 
         unsigned int Get_ZIndex() const { return m_ZIndex; }
 
@@ -44,19 +42,21 @@ namespace Util {
             m_Children.push_back(std::move(child));
         }
 
+        virtual void Start() = 0;
+
+        virtual void Update(const Util::Transform &transform = Util::Transform()) = 0;
+
         void Draw();
 
-        class Comparior {
+        class Comparator {
         public:
-            bool
-            operator()(const std::shared_ptr<GameObject> &lhs, const std::shared_ptr<GameObject> &rhs) const;
+            bool operator()(const std::shared_ptr<GameObject> &lhs,
+                            const std::shared_ptr<GameObject> &rhs) const;
         };
 
-    private:
-        void EnQueue();
 
     protected:
-        Util::Transform m_Transform;
+        Util::Transform m_Transform; // idk if this should be here.
 
         std::unique_ptr<Core::Drawable> m_Drawable = nullptr;
         std::vector<std::shared_ptr<GameObject>> m_Children;
