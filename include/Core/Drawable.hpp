@@ -8,19 +8,25 @@
 #include "Core/Program.hpp"
 #include "Core/UniformBuffer.hpp"
 #include "Core/VertexArray.hpp"
+
+#include "Util/Transform.hpp"
 #include "Texture.hpp"
 
 namespace Core {
-struct Matrices {
-    glm::mat4 m_Model;
-    glm::mat4 m_Projection;
-};
+    struct Matrices {
+        glm::mat4 m_Model;
+        glm::mat4 m_Projection;
+    };
 
-class Drawable {
-public:
-    virtual ~Drawable() = default;
-    virtual void Draw() = 0;
-};
+    class Drawable {
+    public:
+        Util::Transform m_Transform;
+
+    public:
+        virtual ~Drawable() = default;
+
+        virtual void Draw() = 0;
+    };
 } // namespace Core
 
 #endif

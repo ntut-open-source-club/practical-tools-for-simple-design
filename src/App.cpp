@@ -6,6 +6,9 @@
 
 void App::Start() {
     LOG_TRACE("Start");
+    m_Giraffe->Start();
+
+    m_RenderQueue.EnQueue(m_Giraffe);
     m_CurrentState = State::UPDATE;
 }
 
@@ -33,8 +36,6 @@ void App::Update() {
         m_CurrentState = State::END;
     }
 
-    m_Triangle.Update();
-    m_Giraffe.Update();
     if (Util::Input::IsKeyPressed(Util::Keycode::A)) {
         LOG_DEBUG("A");
     }
@@ -42,6 +43,9 @@ void App::Update() {
         LOG_DEBUG("B");
         Util::Input::SetCursorPosition({0.0F, 0.0F});
     }
+
+    m_Giraffe->Update();
+    m_RenderQueue.Render();
 }
 
 void App::End() { // NOLINT(this method will mutate members in the future)

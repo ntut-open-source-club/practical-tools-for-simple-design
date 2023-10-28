@@ -1,11 +1,22 @@
 #ifndef UTIL_RENDER_QUEUE_HPP
 #define UTIL_RENDER_QUEUE_HPP
 
+#include <queue>
+
+#include "Util/GameObject.hpp"
+
 namespace Util {
 
-class RenderQueue {
+    class RenderQueue {
+    public:
+        void EnQueue(std::shared_ptr<GameObject> gameObject);
 
-};
+        void Render();
+
+    private:
+        std::multiset<std::shared_ptr<Util::GameObject>,
+                Util::GameObject::Comparior> m_Queue;
+    };
 
 } // namespace Util
 

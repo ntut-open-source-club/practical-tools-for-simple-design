@@ -32,7 +32,6 @@ private:
 
 public:
     // TODO: better name public m_Transform
-    Transform m_Transform;
 
 private:
     std::unique_ptr<Core::Texture> m_Texture = nullptr;
