@@ -1,18 +1,20 @@
 #include "App.hpp"
 
+#include "Util/Image.hpp"
 #include "Util/Input.hpp"
 #include "Util/Keycode.hpp"
 #include "Util/Logger.hpp"
-#include "Util/Image.hpp"
 
 void App::Start() {
     LOG_TRACE("Start");
 
-    m_Giraffe->SetDrawable(std::make_unique<Util::Image>("../assets/sprites/giraffe.png"));
+    m_Giraffe->SetDrawable(
+        std::make_unique<Util::Image>("../assets/sprites/giraffe.png"));
     m_Giraffe->SetZIndex(10);
     m_Giraffe->Start();
 
-    auto gf = std::make_shared<GiraffeText>("../assets/fonts/Inter.ttf", 500, "Giraffe");
+    auto gf = std::make_shared<GiraffeText>("../assets/fonts/Inter.ttf", 500,
+                                            "Giraffe");
     gf->SetZIndex(m_Giraffe->Get_ZIndex() + 1);
     gf->Start();
     m_Giraffe->AppendChild(gf);

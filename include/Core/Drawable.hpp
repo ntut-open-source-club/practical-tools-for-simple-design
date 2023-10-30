@@ -9,20 +9,20 @@
 #include "Core/UniformBuffer.hpp"
 #include "Core/VertexArray.hpp"
 
-#include "Util/Transform.hpp"
 #include "Texture.hpp"
+#include "Util/Transform.hpp"
 
 namespace Core {
-    struct Matrices {
-        glm::mat4 m_Model;
-        glm::mat4 m_Projection;
-    };
+struct Matrices {
+    glm::mat4 m_Model;
+    glm::mat4 m_Projection;
+};
 
-    class Drawable {
-    public:
-        virtual ~Drawable() = default;
-        virtual void Draw(const Util::Transform& transform) = 0;
-    };
+class Drawable {
+public:
+    virtual ~Drawable() = default;
+    virtual void Draw(const Util::Transform &transform) = 0;
+};
 } // namespace Core
 
 #endif
