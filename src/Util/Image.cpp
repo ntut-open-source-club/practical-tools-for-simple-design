@@ -6,7 +6,7 @@
 #include "config.hpp"
 
 namespace Util {
-Image::Image(const std::string &filepath, const Transform &transform) {
+Image::Image(const std::string &filepath) {
     if (s_Program == nullptr) {
         InitProgram();
     }
@@ -17,7 +17,6 @@ Image::Image(const std::string &filepath, const Transform &transform) {
         InitUniformBuffer();
     }
 
-    m_Transform = transform;
     m_Surface = {IMG_Load(filepath.c_str()), SDL_FreeSurface};
 
     if (m_Surface == nullptr) {
@@ -30,9 +29,9 @@ Image::Image(const std::string &filepath, const Transform &transform) {
         m_Surface->pixels);
 }
 
-void Image::Draw() {
+void Image::Draw(const Util::Transform &transform) {
     // FIXME: temporary fix
-    InitUniformBuffer();
+    InitUniformBuffer(transform);
 
     m_Texture->Bind(UNIFORM_SURFACE_LOCATION);
     s_Program->Bind();
@@ -91,19 +90,20 @@ void Image::InitVertexArray() {
     // NOLINTEND
 }
 
-void Image::InitUniformBuffer() { // NOLINT
+void Image::InitUniformBuffer(const Util::Transform &transform) { // YESLINT
     s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
 
     constexpr glm::mat4 eye(1.F);
 
     Core::Matrices data = {
-        Util::TransformToMat4(m_Transform),
+        Util::TransformToMat4(transform),
         glm::scale(eye, {1.F / WINDOW_WIDTH, 1.F / WINDOW_HEIGHT, 1.F}),
     };
 
     s_UniformBuffer->SetData(0, data);
 }
+
 std::unique_ptr<Core::Program> Image::s_Program = nullptr;
 std::unique_ptr<Core::VertexArray> Image::s_VertexArray = nullptr;
 std::unique_ptr<Core::UniformBuffer<Core::Matrices>> Image::s_UniformBuffer =

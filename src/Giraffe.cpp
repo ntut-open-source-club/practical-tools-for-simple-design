@@ -9,9 +9,9 @@
 
 
 void GiraffeText::Update(const Util::Transform &transform) {
-    auto &pos = m_Drawable->m_Transform.translation;
-    auto &scale = m_Drawable->m_Transform.scale;
-    auto &rotation = m_Drawable->m_Transform.rotation;
+    auto &pos = m_Transform.translation;
+    auto &scale = m_Transform.scale;
+    auto &rotation = m_Transform.rotation;
 
     pos += transform.translation;
     rotation += transform.rotation;
@@ -29,9 +29,9 @@ void Giraffe::Start() {
 void Giraffe::Update(const Util::Transform &transform) {
     static glm::vec2 dir = {1, 0.5};
 
-    auto &pos = m_Drawable->m_Transform.translation;
-    auto &scale = m_Drawable->m_Transform.scale;
-    auto &rotation = m_Drawable->m_Transform.rotation;
+    auto &pos = m_Transform.translation;
+    auto &scale = m_Transform.scale;
+    auto &rotation = m_Transform.rotation;
 
     if (pos.y > WINDOW_HEIGHT || pos.y + WINDOW_HEIGHT < 0) {
         dir.y *= -1;
@@ -50,6 +50,7 @@ void Giraffe::Update(const Util::Transform &transform) {
     pos += deltaTransform.translation;
     rotation += deltaTransform.rotation;
     scale = deltaTransform.scale;
+
     for (auto &child : m_Children) {
         child->Update(deltaTransform);
     }

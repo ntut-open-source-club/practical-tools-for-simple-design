@@ -20,12 +20,8 @@ namespace Core {
 
     class Drawable {
     public:
-        Util::Transform m_Transform;
-
-    public:
         virtual ~Drawable() = default;
-
-        virtual void Draw() = 0;
+        virtual void Draw(const Util::Transform& transform) = 0;
     };
 } // namespace Core
 

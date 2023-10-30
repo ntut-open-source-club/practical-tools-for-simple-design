@@ -7,15 +7,18 @@
 
 void App::Start() {
     LOG_TRACE("Start");
+
     m_Giraffe->SetDrawable(std::make_unique<Util::Image>("../assets/sprites/giraffe.png"));
     m_Giraffe->SetZIndex(10);
     m_Giraffe->Start();
+
     auto gf = std::make_shared<GiraffeText>("../assets/fonts/Inter.ttf", 500, "Giraffe");
-    gf->SetZIndex(m_Giraffe->Get_ZIndex() - 1);
+    gf->SetZIndex(m_Giraffe->Get_ZIndex() + 1);
     gf->Start();
     m_Giraffe->AppendChild(gf);
 
     m_RenderQueue.EnQueue(m_Giraffe);
+
     m_CurrentState = State::UPDATE;
 }
 

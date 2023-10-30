@@ -3,7 +3,7 @@
 namespace Util {
 
     void GameObject::Draw() {
-        m_Drawable->Draw();
+        m_Drawable->Draw(m_Transform);
     }
 
     bool GameObject::Comparator::operator()(const std::shared_ptr<GameObject> &lhs,
