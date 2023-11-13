@@ -19,7 +19,6 @@ void App::Start() {
     gf->Start();
     m_Giraffe->AppendChild(gf);
 
-    m_RenderQueue.EnQueue(m_Giraffe);
 
     m_CurrentState = State::UPDATE;
 }
@@ -57,7 +56,6 @@ void App::Update() {
     }
 
     m_Giraffe->Update();
-    m_RenderQueue.Render();
 }
 
 void App::End() { // NOLINT(this method will mutate members in the future)

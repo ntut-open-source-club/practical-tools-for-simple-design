@@ -5,7 +5,6 @@
 
 #include "Giraffe.hpp"
 #include "Triangle.hpp"
-#include "Util/RenderQueue.hpp"
 
 class App {
 public:
@@ -24,7 +23,6 @@ public:
 private:
     State m_CurrentState = State::START;
 
-    Util::RenderQueue m_RenderQueue;
     Triangle m_Triangle;
     std::shared_ptr<Giraffe> m_Giraffe= std::make_shared<Giraffe>();
 };
