@@ -53,5 +53,5 @@ void Giraffe::Update(const Util::Transform &transform) {
         child->Update(deltaTransform);
     }
 
-    LOG_DEBUG("GIRA: x: {}, y: {}", pos.x, pos.y);
+    // LOG_DEBUG("GIRA: x: {}, y: {}", pos.x, pos.y);
 }

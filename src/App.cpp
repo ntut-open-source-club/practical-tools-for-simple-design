@@ -10,15 +10,14 @@ void App::Start() {
 
     m_Giraffe->SetDrawable(
         std::make_unique<Util::Image>("../assets/sprites/giraffe.png"));
-    m_Giraffe->SetZIndex(0.5);
+    m_Giraffe->SetZIndex(5);
     m_Giraffe->Start();
 
     auto gf = std::make_shared<GiraffeText>("../assets/fonts/Inter.ttf", 500,
                                             "Giraffe");
-    gf->SetZIndex(m_Giraffe->Get_ZIndex() +0.1);
+    gf->SetZIndex(m_Giraffe->GetZIndex() + 1);
     gf->Start();
     m_Giraffe->AppendChild(gf);
-
 
     m_CurrentState = State::UPDATE;
 }
@@ -39,7 +38,7 @@ void App::Update() {
         LOG_DEBUG("Scrolling: x: {}, y: {}", delta.x, delta.y);
     }
     if (Util::Input::IsMouseMoving()) {
-        LOG_DEBUG("Mouse moving! x:{}, y{}", cursorPos.x, cursorPos.y);
+        // LOG_DEBUG("Mouse moving! x:{}, y{}", cursorPos.x, cursorPos.y);
     }
 
     if (Util::Input::IsKeyPressed(Util::Keycode::ESCAPE) ||

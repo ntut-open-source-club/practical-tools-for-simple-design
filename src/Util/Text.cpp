@@ -102,15 +102,23 @@ void Text::InitVertexArray() {
     // NOLINTEND
 }
 
-void Text::InitUniformBuffer(const Util::Transform &transform, const float zIndex) {
+void Text::InitUniformBuffer(const Util::Transform &transform,
+                             const float zIndex) {
     s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
 
     constexpr glm::mat4 eye(1.F);
 
+    constexpr float nearClip = -100;
+    constexpr float farClip = 100;
+
+    auto projection =
+        glm::ortho<float>(0.0F, 1.0F, 1.0F, 0.0F, nearClip, farClip);
+    auto view = glm::scale(eye, {1.F / WINDOW_WIDTH, 1.F / WINDOW_HEIGHT, 1.F});
+
     Core::Matrices data = {
         Util::TransformToMat4(transform, zIndex),
-        glm::scale(eye, {1.F / WINDOW_WIDTH, 1.F / WINDOW_HEIGHT, 1.F}),
+        projection * view,
     };
 
     s_UniformBuffer->SetData(0, data);
