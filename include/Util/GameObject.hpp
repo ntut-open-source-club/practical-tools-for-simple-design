@@ -13,7 +13,7 @@ namespace Util {
 
         GameObject() = default;
 
-        GameObject(std::unique_ptr<Core::Drawable> drawable, const int zIndex,
+        GameObject(std::unique_ptr<Core::Drawable> drawable, const float zIndex,
                    const std::vector<std::shared_ptr<GameObject>> &children =
                    std::vector<std::shared_ptr<GameObject>>())
                 : m_Drawable(std::move(drawable)),

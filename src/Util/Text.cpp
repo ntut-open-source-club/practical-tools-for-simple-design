@@ -41,7 +41,7 @@ Text::Text(const std::string &font, int size, const std::string &text) {
         m_Surface->pixels);
 }
 
-void Text::Draw(const Util::Transform &transform) {
+void Text::Draw(const Util::Transform &transform, const float zIndex) {
     // FIXME: temporary fix
     InitUniformBuffer(transform);
 
@@ -102,14 +102,14 @@ void Text::InitVertexArray() {
     // NOLINTEND
 }
 
-void Text::InitUniformBuffer(const Util::Transform &transform) {
+void Text::InitUniformBuffer(const Util::Transform &transform, const float zIndex) {
     s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
 
     constexpr glm::mat4 eye(1.F);
 
     Core::Matrices data = {
-        Util::TransformToMat4(transform),
+        Util::TransformToMat4(transform, zIndex),
         glm::scale(eye, {1.F / WINDOW_WIDTH, 1.F / WINDOW_HEIGHT, 1.F}),
     };
 

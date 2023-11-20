@@ -29,9 +29,9 @@ Image::Image(const std::string &filepath) {
         m_Surface->pixels);
 }
 
-void Image::Draw(const Util::Transform &transform) {
+void Image::Draw(const Util::Transform &transform, const float zIndex) {
     // FIXME: temporary fix
-    InitUniformBuffer(transform);
+    InitUniformBuffer(transform, zIndex);
 
     m_Texture->Bind(UNIFORM_SURFACE_LOCATION);
     s_Program->Bind();
@@ -90,11 +90,14 @@ void Image::InitVertexArray() {
     // NOLINTEND
 }
 
-void Image::InitUniformBuffer(const Util::Transform &transform) { // YESLINT
+void Image::InitUniformBuffer(const Util::Transform &transform, const float zIndex) { // YESLINT
     s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
 
     constexpr glm::mat4 eye(1.F);
+
+    constexpr float nearClip = 0.1F;
+    constexpr float farClip = 100.0F;
 
     Core::Matrices data = {
         Util::TransformToMat4(transform),

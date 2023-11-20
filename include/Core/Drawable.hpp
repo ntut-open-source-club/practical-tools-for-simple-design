@@ -21,7 +21,7 @@ struct Matrices {
 class Drawable {
 public:
     virtual ~Drawable() = default;
-    virtual void Draw(const Util::Transform &transform) = 0;
+    virtual void Draw(const Util::Transform &transform, const float zIndex) = 0;
 };
 } // namespace Core
 

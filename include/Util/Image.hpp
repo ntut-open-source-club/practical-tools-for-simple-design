@@ -16,13 +16,13 @@ class Image : public Core::Drawable {
 public:
     Image(const std::string &filepath);
 
-    void Draw(const Util::Transform &transform) override;
+    void Draw(const Util::Transform &transform, const float zIndex) override;
 
 private:
     void InitProgram();
     void InitVertexArray();
     void
-    InitUniformBuffer(const Util::Transform &transform = Util::Transform());
+    InitUniformBuffer(const Util::Transform &transform = Util::Transform(), const float zIndex = -1);
 
     static constexpr int UNIFORM_SURFACE_LOCATION = 0;
 

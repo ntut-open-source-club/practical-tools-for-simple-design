@@ -14,6 +14,8 @@ void GiraffeText::Update(const Util::Transform &transform) {
     pos += transform.translation;
     rotation += transform.rotation;
     scale = transform.scale;
+
+    m_Drawable->Draw(m_Transform, m_ZIndex);
 }
 
 void GiraffeText::Start() {
@@ -44,6 +46,8 @@ void Giraffe::Update(const Util::Transform &transform) {
     pos += deltaTransform.translation;
     rotation += deltaTransform.rotation;
     scale = deltaTransform.scale;
+
+    m_Drawable->Draw(m_Transform, m_ZIndex);
 
     for (auto &child : m_Children) {
         child->Update(deltaTransform);

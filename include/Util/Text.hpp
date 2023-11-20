@@ -16,12 +16,12 @@ class Text : public Core::Drawable {
 public:
     Text(const std::string &font, int size, const std::string &text);
 
-    void Draw(const Transform &transform) override;
+    void Draw(const Transform &transform, const float zIndex) override;
 
 private:
     void InitProgram();
     void InitVertexArray();
-    void InitUniformBuffer(const Util::Transform & transform = Util::Transform());
+    void InitUniformBuffer(const Util::Transform & transform = Util::Transform(), const float zIndex = -1);
 
     static constexpr int UNIFORM_SURFACE_LOCATION = 0;
 
