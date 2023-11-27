@@ -9,13 +9,13 @@ void App::Start() {
     LOG_TRACE("Start");
 
     m_Giraffe->SetDrawable(
-        std::make_unique<Util::Image>("../assets/sprites/giraffe.png"));
+        std::make_unique<Util::Image>("../grid-0003.png"));
     m_Giraffe->SetZIndex(5);
     m_Giraffe->Start();
 
     auto gf = std::make_shared<GiraffeText>("../assets/fonts/Inter.ttf", 500,
                                             "Giraffe");
-    gf->SetZIndex(m_Giraffe->GetZIndex() + 1);
+    gf->SetZIndex(m_Giraffe->GetZIndex() - 1);
     gf->Start();
     m_Giraffe->AppendChild(gf);
 

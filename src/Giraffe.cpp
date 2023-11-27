@@ -47,8 +47,8 @@ void Giraffe::Update(const Util::Transform &transform) {
     rotation += deltaTransform.rotation;
     scale = deltaTransform.scale;
 
-    m_Drawable->Draw(m_Transform, m_ZIndex);
 
+    m_Drawable->Draw(m_Transform, m_ZIndex);
     for (auto &child : m_Children) {
         child->Update(deltaTransform);
     }

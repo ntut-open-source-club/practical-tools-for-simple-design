@@ -43,7 +43,7 @@ Text::Text(const std::string &font, int size, const std::string &text) {
 
 void Text::Draw(const Util::Transform &transform, const float zIndex) {
     // FIXME: temporary fix
-    InitUniformBuffer(transform);
+    InitUniformBuffer(transform, zIndex);
 
     m_Texture->Bind(UNIFORM_SURFACE_LOCATION);
     s_Program->Bind();
@@ -113,8 +113,9 @@ void Text::InitUniformBuffer(const Util::Transform &transform,
     constexpr float farClip = 100;
 
     auto projection =
-        glm::ortho<float>(0.0F, 1.0F, 1.0F, 0.0F, nearClip, farClip);
-    auto view = glm::scale(eye, {1.F / WINDOW_WIDTH, 1.F / WINDOW_HEIGHT, 1.F});
+        glm::ortho<float>(0.0F, 1.0F, 0.0F, 1.0F, nearClip, farClip);
+    auto view = glm::scale(eye, {1.F / WINDOW_WIDTH, 1.F / WINDOW_HEIGHT, 1.F}) *
+        glm::translate(eye, {WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 0});
 
     Core::Matrices data = {
         Util::TransformToMat4(transform, zIndex),
