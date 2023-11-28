@@ -6,7 +6,7 @@
 
 namespace Util {
 
-glm::mat4 TransformToMat4(const Transform &transform);
+glm::mat4 TransformToMat4(const Transform &transform, const float zIndex);
 
 }
 
