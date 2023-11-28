@@ -1,17 +1,37 @@
 #ifndef GIRAFFE_HPP
 #define GIRAFFE_HPP
 
-#include "Util/Image.hpp"
-#include "Util/Text.hpp"
-#include "Util/Transform.hpp"
+#include <utility>
 
-class Giraffe {
+#include "Util/GameObject.hpp"
+
+class GiraffeText : public Util::GameObject {
 public:
-    void Update();
+    GiraffeText() = default;
+
+    GiraffeText(std::string font, const int size, std::string text)
+        : m_Font(std::move(font)),
+          m_Size(size),
+          m_Text(std::move(text)) {}
+
+    ~GiraffeText() override = default;
+
+    void Start() override;
+
+    void Update(const Util::Transform &transform = Util::Transform()) override;
 
 private:
-    Util::Image m_Image = Util::Image("../assets/sprites/giraffe.png");
-    Util::Text m_Text = Util::Text("../assets/fonts/Inter.ttf", 500, "Giraffe");
+    std::string m_Font;
+    int m_Size;
+    std::string m_Text;
+};
+
+class Giraffe : public Util::GameObject {
+
+public:
+    void Update(const Util::Transform &transform = Util::Transform()) override;
+
+    void Start() override;
 };
 
 #endif

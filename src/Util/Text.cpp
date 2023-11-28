@@ -8,8 +8,7 @@
 #include "config.hpp"
 
 namespace Util {
-Text::Text(const std::string &font, int size, const std::string &text,
-           const Transform &transform) {
+Text::Text(const std::string &font, int size, const std::string &text) {
     if (s_Program == nullptr) {
         InitProgram();
     }
@@ -20,7 +19,6 @@ Text::Text(const std::string &font, int size, const std::string &text,
         InitUniformBuffer();
     }
 
-    m_Transform = transform;
     m_Font = {TTF_OpenFont(font.c_str(), size), TTF_CloseFont};
 
     if (m_Font == nullptr) {
@@ -43,9 +41,9 @@ Text::Text(const std::string &font, int size, const std::string &text,
         m_Surface->pixels);
 }
 
-void Text::Draw() {
+void Text::Draw(const Util::Transform &transform, const float zIndex) {
     // FIXME: temporary fix
-    InitUniformBuffer();
+    InitUniformBuffer(transform, zIndex);
 
     m_Texture->Bind(UNIFORM_SURFACE_LOCATION);
     s_Program->Bind();
@@ -104,21 +102,32 @@ void Text::InitVertexArray() {
     // NOLINTEND
 }
 
-void Text::InitUniformBuffer() { // NOLINT
+void Text::InitUniformBuffer(const Util::Transform &transform,
+                             const float zIndex) {
     s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
 
     constexpr glm::mat4 eye(1.F);
 
+    constexpr float nearClip = -100;
+    constexpr float farClip = 100;
+
+    auto projection =
+        glm::ortho<float>(0.0F, 1.0F, 0.0F, 1.0F, nearClip, farClip);
+    auto view = glm::scale(eye, {1.F / WINDOW_WIDTH, 1.F / WINDOW_HEIGHT, 1.F}) *
+        glm::translate(eye, {WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 0});
+
     Core::Matrices data = {
-        Util::TransformToMat4(m_Transform),
-        glm::scale(eye, {1.F / WINDOW_WIDTH, 1.F / WINDOW_HEIGHT, 1.F}),
+        Util::TransformToMat4(transform, zIndex),
+        projection * view,
     };
 
     s_UniformBuffer->SetData(0, data);
 }
+
 std::unique_ptr<Core::Program> Text::s_Program = nullptr;
 std::unique_ptr<Core::VertexArray> Text::s_VertexArray = nullptr;
 std::unique_ptr<Core::UniformBuffer<Core::Matrices>> Text::s_UniformBuffer =
     nullptr;
+
 } // namespace Util

@@ -22,8 +22,9 @@ public:
 
 private:
     State m_CurrentState = State::START;
+
     Triangle m_Triangle;
-    Giraffe m_Giraffe;
+    std::shared_ptr<Giraffe> m_Giraffe= std::make_shared<Giraffe>();
 };
 
 #endif

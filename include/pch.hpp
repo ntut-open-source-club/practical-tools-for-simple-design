@@ -5,6 +5,7 @@
 #include <string>
 #include <vector>
 #include <array>
+#include <set>
 
 #include <SDL.h>
 #include <SDL_events.h>

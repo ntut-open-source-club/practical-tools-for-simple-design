@@ -14,25 +14,20 @@
 namespace Util {
 class Text : public Core::Drawable {
 public:
-    Text(const std::string &font, int size, const std::string &text,
-         const Transform &transform = {});
+    Text(const std::string &font, int size, const std::string &text);
 
-    void Draw() override;
+    void Draw(const Transform &transform, const float zIndex) override;
 
 private:
     void InitProgram();
     void InitVertexArray();
-    void InitUniformBuffer();
+    void InitUniformBuffer(const Util::Transform & transform = Util::Transform(), const float zIndex = -1);
 
     static constexpr int UNIFORM_SURFACE_LOCATION = 0;
 
     static std::unique_ptr<Core::Program> s_Program;
     static std::unique_ptr<Core::VertexArray> s_VertexArray;
     static std::unique_ptr<Core::UniformBuffer<Core::Matrices>> s_UniformBuffer;
-
-public:
-    // TODO: better name public m_Transform
-    Transform m_Transform;
 
 private:
     std::unique_ptr<Core::Texture> m_Texture = nullptr;
