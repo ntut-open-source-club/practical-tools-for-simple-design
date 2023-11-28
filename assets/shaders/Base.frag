@@ -7,5 +7,10 @@ layout(location = 0) out vec4 fragColor;
 uniform sampler2D surface;
 
 void main() {
-    fragColor = texture(surface, uv);
+    vec4 texColor = texture(surface, uv);
+
+    if (texColor.a < 0.01)
+        discard;
+
+    fragColor = texColor;
 }
