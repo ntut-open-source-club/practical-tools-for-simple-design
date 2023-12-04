@@ -34,7 +34,7 @@ void Triangle::Update() {
     m_Program.Validate();
 
     static float counter = 0.0F;
-    counter += static_cast<float>(50.0F * Util::Time::GetDeltaTime());
+    counter += static_cast<float>(50.0F * Util::Time::GetDeltaTime()); // NOLINT
     const float angle = glm::radians(counter);
 
     const float width = 1280.0F / 2.0F;
@@ -53,5 +53,6 @@ void Triangle::Update() {
 
     m_Matrices->SetData(0, data);
 
+    m_VertexArray->Bind();
     m_VertexArray->DrawTriangles();
 }

@@ -20,10 +20,12 @@ class VertexArray {
 public:
     VertexArray();
     VertexArray(const VertexArray &) = delete;
+    VertexArray(VertexArray &&other);
 
     ~VertexArray();
 
     VertexArray &operator=(const VertexArray &) = delete;
+    VertexArray &operator=(VertexArray &&other);
 
     void Bind() const;
     void Unbind() const;
