@@ -15,11 +15,21 @@ GLint ChannelsToInternalFormat(unsigned int channels) {
 };
 
 GLint ChannelsToFormat(unsigned int channels) {
+    // Since the color channel in MacOS is invert, we need to return the channel by the condition.
+    // Solved #57
     switch (channels) {
     case 3:
+#ifdef __APPLE__
+        return GL_BGR;
+#else
         return GL_RGB;
+#endif
     case 4:
+#ifdef __APPLE__
+        return GL_BGRA;
+#else
         return GL_RGBA;
+#endif
     default:
         LOG_ERROR("Format currently unsupported");
         return -1;
