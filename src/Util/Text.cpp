@@ -27,7 +27,7 @@ Text::Text(const std::string &font, int size, const std::string &text) {
     }
 
     m_Surface = {TTF_RenderUTF8_Blended_Wrapped(m_Font.get(), text.c_str(),
-                                                SDL_Color{0, 0, 255, 0}, 0),
+                                                SDL_Color{255, 0, 255, 0}, 0),
                  SDL_FreeSurface};
 
     if (m_Surface == nullptr) {
