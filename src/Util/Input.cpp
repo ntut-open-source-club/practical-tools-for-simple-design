@@ -1,7 +1,7 @@
 #include "Util/Input.hpp"
 
 #include <SDL_events.h> // for SDL_Event
-#include <config.hpp>
+#include "config.hpp"
 
 namespace Util {
 
