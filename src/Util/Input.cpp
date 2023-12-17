@@ -1,7 +1,6 @@
 #include "Util/Input.hpp"
 
 #include <SDL_events.h> // for SDL_Event
-#include <Util/Logger.hpp>
 #include <config.hpp>
 
 namespace Util {
