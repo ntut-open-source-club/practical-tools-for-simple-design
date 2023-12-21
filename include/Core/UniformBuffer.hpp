@@ -27,8 +27,6 @@ public:
     UniformBuffer &operator=(const UniformBuffer &) = delete;
     UniformBuffer &operator=(UniformBuffer &&other);
 
-    GLuint GetBufferId() const { return m_BufferId; }
-
     void SetData(int offset, const T &data);
 
 private:
