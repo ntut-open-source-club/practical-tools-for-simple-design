@@ -5,6 +5,9 @@
 
 #include "Giraffe.hpp"
 #include "Triangle.hpp"
+#include <list>
+#include <memory>
+#include <vector>
 
 class App {
 public:
@@ -24,7 +27,9 @@ private:
     State m_CurrentState = State::START;
 
     Triangle m_Triangle;
-    std::shared_ptr<Giraffe> m_Giraffe= std::make_shared<Giraffe>();
+    std::shared_ptr<Giraffe> m_Giraffe = std::make_shared<Giraffe>();
+    std::vector<std::shared_ptr<Giraffe>> m_giraffes =
+        std::vector<std::shared_ptr<Giraffe>>();
 };
 
 #endif

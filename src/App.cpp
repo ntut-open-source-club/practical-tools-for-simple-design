@@ -20,12 +20,18 @@ void App::Start() {
     m_Giraffe->AppendChild(gf);
 
     m_CurrentState = State::UPDATE;
+    auto small_Giraffe = m_Giraffe->BornGiraffe();
+    small_Giraffe->Duaiyaou(m_giraffes.size());
+    m_giraffes.push_back(small_Giraffe);
 }
 
 void App::Update() {
     auto cursorPos = Util::Input::GetCursorPosition();
     if (Util::Input::IsLButtonPressed()) {
         LOG_DEBUG("Left button pressed");
+        auto small_Giraffe = m_Giraffe->BornGiraffe();
+        small_Giraffe->Duaiyaou(m_giraffes.size());
+        m_giraffes.push_back(small_Giraffe);
     }
     if (Util::Input::IsRButtonPressed()) {
         LOG_DEBUG("Right button pressed");
@@ -55,6 +61,9 @@ void App::Update() {
     }
 
     m_Giraffe->Update();
+    for (auto g : m_giraffes) {
+        g->Update();
+    }
 }
 
 void App::End() { // NOLINT(this method will mutate members in the future)
