@@ -11,7 +11,7 @@ SDL_Surface* GetTransparentImageSDLSurface(){
     SDL_RWops* rwop = SDL_RWFromConstMem(&img_vec[0], img_vec.size());
     SDL_Surface* aSurface = IMG_LoadTyped_RW(rwop, 1, "PNG");
 
-    if (aSurface == NULL) {
+    if (aSurface == nullptr) {
         LOG_ERROR("base64ToSurface");
     }
 
