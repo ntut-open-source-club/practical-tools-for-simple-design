@@ -1,3 +1,8 @@
+/* The code to decode the base64 in compilation time is powered by https://stackoverflow.com/a/59604914
+ * It's used to decode the base64 string in compilation time and improve the efficiency.
+ * Actually it's dirty, but we just treat as a utility and won't maintain it, so just make sure it can work.
+ */
+
 constexpr size_t DecodeBase64Length(const char *s)
 {
     size_t len = std::char_traits<char>::length(s);
