@@ -42,7 +42,6 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Text.cpp
     ${SRC_DIR}/Util/TransformUtils.cpp
     ${SRC_DIR}/Util/GameObject.cpp
-    ${SRC_DIR}/Util/Base64.cpp
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/Triangle.cpp

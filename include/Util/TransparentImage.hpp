@@ -6,9 +6,10 @@
 #include "Core/TransparentImageBase64.hpp"
 #include "Base64.hpp"
 
+constexpr auto transparentImageBase64Decode = DecodeBase64<DecodeBase64Length(TRANSPARENT_IMAGE)>(TRANSPARENT_IMAGE);
+
 SDL_Surface* GetTransparentImageSDLSurface(){
-    std::vector<unsigned char> img_vec = base64_decode(transparentImage);
-    SDL_RWops* rwop = SDL_RWFromConstMem(&img_vec[0], img_vec.size());
+    SDL_RWops* rwop = SDL_RWFromConstMem(transparentImageBase64Decode.data(), transparentImageBase64Decode.size());
     SDL_Surface* aSurface = IMG_LoadTyped_RW(rwop, 1, "PNG");
 
     if (aSurface == nullptr) {

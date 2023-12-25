@@ -38,19 +38,19 @@ void Giraffe::Update(const Util::Transform &transform) {
         dir.x *= -1;
     }
 
-    auto delta = static_cast<float>(Util::Time::GetDeltaTime());
-    Util::Transform deltaTransform{
-        dir * delta * 1000.0F, 2 * delta,
-        glm::vec2(1, 1) * (std::sin(rotation / 2) + 1.0F) * 100.0F};
+//    auto delta = static_cast<float>(Util::Time::GetDeltaTime());
+//    Util::Transform deltaTransform{
+//        dir * delta * 1000.0F, 2 * delta,
+//        glm::vec2(1, 1) * (std::sin(rotation / 2) + 1.0F) * 100.0F};
 
-    pos += deltaTransform.translation;
-    rotation += deltaTransform.rotation;
-    scale = deltaTransform.scale;
+//    pos += deltaTransform.translation;
+//    rotation += deltaTransform.rotation;
+//    scale = deltaTransform.scale;
 
 
     m_Drawable->Draw(m_Transform, m_ZIndex);
     for (auto &child : m_Children) {
-        child->Update(deltaTransform);
+        child->Update();
     }
 
     // LOG_DEBUG("GIRA: x: {}, y: {}", pos.x, pos.y);
