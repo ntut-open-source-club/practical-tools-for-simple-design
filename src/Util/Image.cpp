@@ -4,6 +4,7 @@
 
 #include "Util/Image.hpp"
 #include "Util/TransformUtils.hpp"
+#include "Util/TransparentImage.hpp"
 
 #include "config.hpp"
 
@@ -22,6 +23,7 @@ Image::Image(const std::string &filepath) {
     m_Surface = {IMG_Load(filepath.c_str()), SDL_FreeSurface};
 
     if (m_Surface == nullptr) {
+        m_Surface = { GetTransparentImageSDLSurface(), SDL_FreeSurface };
         LOG_ERROR("Failed to load image: '{}'", filepath);
         LOG_ERROR("{}", IMG_GetError());
     }
