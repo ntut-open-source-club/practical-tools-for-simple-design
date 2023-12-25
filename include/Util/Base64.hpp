@@ -3,7 +3,7 @@
  * Actually it's dirty, but we just treat as a utility and won't maintain it, so just make sure it can work.
  */
 
-constexpr size_t DecodeBase64Length(const char *s)
+static constexpr size_t DecodeBase64Length(const char *s)
 {
     size_t len = std::char_traits<char>::length(s);
     if (s[len - 2] == '=')
@@ -14,7 +14,7 @@ constexpr size_t DecodeBase64Length(const char *s)
         return (len / 4) * 3 ;
 }
 
-constexpr std::array<int, 256> PrepareBase64DecodeTable() {
+static constexpr std::array<int, 256> PrepareBase64DecodeTable() {
     std::array<int, 256> T{ 0 }; // breaks constexpr: T.fill(-1) or missing initialization
     for (int i = 0; i < 256; i++)
         T[i] = -1;
@@ -24,7 +24,7 @@ constexpr std::array<int, 256> PrepareBase64DecodeTable() {
 }
 
 template<int N>
-constexpr std::array<std::byte, N> DecodeBase64(const char *b64Str)
+static constexpr std::array<std::byte, N> DecodeBase64(const char *b64Str)
 {
     constexpr auto T = PrepareBase64DecodeTable();
     std::array<std::byte, N> out = { std::byte(0) };
