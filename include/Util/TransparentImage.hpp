@@ -6,10 +6,11 @@
 #include "Core/TransparentImageBase64.hpp"
 #include "Base64.hpp"
 
-constexpr auto transparentImageBase64Decode = DecodeBase64<DecodeBase64Length(TRANSPARENT_IMAGE)>(TRANSPARENT_IMAGE);
+constexpr auto TRANSPARENT_IMAGE_BASE64_DECODE_LENGTH = DecodeBase64Length(TRANSPARENT_IMAGE);
+constexpr auto TRANSPARENT_IMAGE_BASE64_DECODE = DecodeBase64<TRANSPARENT_IMAGE_BASE64_DECODE_LENGTH>(TRANSPARENT_IMAGE);
 
 SDL_Surface* GetTransparentImageSDLSurface(){
-    SDL_RWops* rwop = SDL_RWFromConstMem(transparentImageBase64Decode.data(), transparentImageBase64Decode.size());
+    SDL_RWops* rwop = SDL_RWFromConstMem(TRANSPARENT_IMAGE_BASE64_DECODE.data(), TRANSPARENT_IMAGE_BASE64_DECODE.size());
     SDL_Surface* aSurface = IMG_LoadTyped_RW(rwop, 1, "PNG");
 
     if (aSurface == nullptr) {
