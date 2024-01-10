@@ -2,6 +2,7 @@
  * It's used to decode the base64 string in compilation time and improve the efficiency.
  * Actually it's dirty, but we just treat as a utility and won't maintain it, so just make sure it can work.
  */
+#include <string_view>
 
 static constexpr size_t DecodeBase64Length(const char *s)
 {
@@ -24,12 +25,12 @@ static constexpr std::array<int, 256> PrepareBase64DecodeTable() {
 }
 
 template<int N>
-static constexpr std::array<std::byte, N> DecodeBase64(const char *b64Str)
+static constexpr std::array<std::byte, N> DecodeBase64(std::string_view b64Str)
 {
     constexpr auto T = PrepareBase64DecodeTable();
     std::array<std::byte, N> out = { std::byte(0) };
     int valb = -8;
-    for (size_t i = 0, val = 0, posOut = 0; i < std::char_traits<char>::length(b64Str) && T[b64Str[i]] != -1; i++) {
+    for (size_t i = 0, val = 0, posOut = 0; i < b64Str.length() && T[b64Str[i]] != -1; i++) {
         val = (val << 6) + T[b64Str[i]];
         valb += 6;
         if (valb >= 0) {
