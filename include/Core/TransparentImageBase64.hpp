@@ -1,8 +1,6 @@
 #ifndef CORE_TRANSPARENT_IMAGE_BASE64_HPP
 #define CORE_TRANSPARENT_IMAGE_BASE64_HPP
 
-#include <string>
-
 // A transparent image base64 string.
 // Since we want to hardcode the image, we have such a long string here.
 // The original image should find in here: https://i.imgur.com/zS4sPCN.png
