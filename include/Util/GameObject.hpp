@@ -13,11 +13,13 @@ public:
     GameObject() = default;
 
     GameObject(std::unique_ptr<Core::Drawable> drawable, const float zIndex,
+               const bool visible = true,
                const std::vector<std::shared_ptr<GameObject>> &children =
                    std::vector<std::shared_ptr<GameObject>>())
         : m_Drawable(std::move(drawable)),
           m_Children(children),
-          m_ZIndex(zIndex) {}
+          m_ZIndex(zIndex),
+          m_Visible(visible) {}
 
     GameObject(const GameObject &other) = delete;
 
@@ -28,16 +30,17 @@ public:
     virtual ~GameObject() = default;
 
     float GetZIndex() const { return m_ZIndex; }
-
-    std::vector<std::shared_ptr<GameObject>> &GetChildren() {
+    Transform GetTransform() const { return m_Transform; }
+    const std::vector<std::shared_ptr<GameObject>> &GetChildren() const {
         return m_Children;
     }
 
     void SetZIndex(float index) { m_ZIndex = index; }
-
     void SetDrawable(std::unique_ptr<Core::Drawable> drawable) {
         m_Drawable = std::move(drawable);
     }
+
+    void SetVisible(bool visible) { m_Visible = visible; }
 
     void AppendChild(std::shared_ptr<GameObject> child) {
         m_Children.push_back(std::move(child));
@@ -57,6 +60,7 @@ protected:
     std::vector<std::shared_ptr<GameObject>> m_Children;
 
     float m_ZIndex;
+    bool m_Visible = true;
 };
 } // namespace Util
 #endif
