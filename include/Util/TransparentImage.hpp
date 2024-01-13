@@ -1,3 +1,6 @@
+#ifndef UTIL_TRANSPARENT_IMAGE_HPP
+#define UTIL_TRANSPARENT_IMAGE_HPP
+
 #include <string>
 #include <SDL.h>
 #include <SDL_image.h>
@@ -19,3 +22,5 @@ SDL_Surface* GetTransparentImageSDLSurface(){
 
     return aSurface;
 }
+
+#endif
