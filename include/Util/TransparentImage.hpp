@@ -5,6 +5,7 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <iostream>
+#include <Util/Logger.hpp>
 
 #include "Core/TransparentImageBase64.hpp"
 #include "Base64.hpp"
