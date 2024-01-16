@@ -17,6 +17,8 @@ else()
     )
 endif()
 
+option(PTSD_ENABLE_PCH "Turn on PCH to increase compilation speed" OFF)
+
 include(cmake/Dependencies.cmake)
 
 set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
@@ -28,6 +30,7 @@ set(SRC_FILES
     ${SRC_DIR}/Core/IndexBuffer.cpp
     ${SRC_DIR}/Core/Shader.cpp
     ${SRC_DIR}/Core/Program.cpp
+    ${SRC_DIR}/Core/Texture.cpp
 
     ${SRC_DIR}/Util/LoadTextFile.cpp
     ${SRC_DIR}/Util/Logger.cpp
@@ -35,10 +38,14 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Input.cpp
     ${SRC_DIR}/Util/SFX.cpp
     ${SRC_DIR}/Util/BGM.cpp
-    ${SRC_DIR}/Util/Transform.cpp
+    ${SRC_DIR}/Util/Image.cpp
+    ${SRC_DIR}/Util/Text.cpp
+    ${SRC_DIR}/Util/TransformUtils.cpp
+    ${SRC_DIR}/Util/GameObject.cpp
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/Triangle.cpp
+    ${SRC_DIR}/Giraffe.cpp
 )
 set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
 set(INCLUDE_FILES
@@ -51,6 +58,8 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Core/IndexBuffer.hpp
     ${INCLUDE_DIR}/Core/Shader.hpp
     ${INCLUDE_DIR}/Core/Program.hpp
+    ${INCLUDE_DIR}/Core/Texture.hpp
+    ${INCLUDE_DIR}/Core/Drawable.hpp
 
     ${INCLUDE_DIR}/Util/LoadTextFile.hpp
     ${INCLUDE_DIR}/Util/Logger.hpp
@@ -59,10 +68,15 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/Keycode.hpp
     ${INCLUDE_DIR}/Util/SFX.hpp
     ${INCLUDE_DIR}/Util/BGM.hpp
+    ${INCLUDE_DIR}/Util/Image.hpp
+    ${INCLUDE_DIR}/Util/Text.hpp
     ${INCLUDE_DIR}/Util/Transform.hpp
+    ${INCLUDE_DIR}/Util/TransformUtils.hpp
+    ${INCLUDE_DIR}Util/GameObject.hpp
 
     ${INCLUDE_DIR}/App.hpp
     ${INCLUDE_DIR}/Triangle.hpp
+    ${INCLUDE_DIR}/Giraffe.hpp
     ${INCLUDE_DIR}/config.hpp
 )
 set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
@@ -86,9 +100,11 @@ target_include_directories(Sample SYSTEM PRIVATE
 target_include_directories(Sample PRIVATE
     ${INCLUDE_DIR}
 )
-target_precompile_headers(Sample PRIVATE
-    include/pch.hpp
-)
+if (${PTSD_ENABLE_PCH})
+    target_precompile_headers(Sample PRIVATE
+        include/pch.hpp
+    )
+endif()
 target_compile_options(Sample PRIVATE
     ${TARGET_COMPILE_OPTIONS}
 )

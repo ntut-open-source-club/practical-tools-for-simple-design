@@ -20,10 +20,12 @@ class UniformBuffer {
 public:
     UniformBuffer(const Program &program, const std::string &name, int binding);
     UniformBuffer(const UniformBuffer &) = delete;
+    UniformBuffer(UniformBuffer &&other);
 
     ~UniformBuffer();
 
     UniformBuffer &operator=(const UniformBuffer &) = delete;
+    UniformBuffer &operator=(UniformBuffer &&other);
 
     void SetData(int offset, const T &data);
 

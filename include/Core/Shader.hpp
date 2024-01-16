@@ -16,10 +16,12 @@ public:
 
     Shader(const std::string &filepath, Type shaderType);
     Shader(const Shader &) = delete;
+    Shader(Shader &&other);
 
     ~Shader();
 
     Shader &operator=(const Shader &) = delete;
+    Shader &operator=(Shader &&other);
 
     GLuint GetShaderId() const { return m_ShaderId; }
 
