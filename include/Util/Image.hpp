@@ -18,6 +18,7 @@ public:
     Image(const std::string &filepath);
 
     void Draw(const Util::Transform &transform, const float zIndex) override;
+    glm::vec2 GetOriginalSize() override;
 
 private:
     void InitProgram();

@@ -101,6 +101,9 @@ void Image::InitUniformBuffer(const Util::Transform &transform,
     auto data = Util::ConvertToUniformBufferData(transform, zIndex);
     s_UniformBuffer->SetData(0, data);
 }
+glm::vec2 Image::GetOriginalSize() {
+    return m_Size;
+}
 
 std::unique_ptr<Core::Program> Image::s_Program = nullptr;
 std::unique_ptr<Core::VertexArray> Image::s_VertexArray = nullptr;

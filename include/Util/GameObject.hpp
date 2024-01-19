@@ -38,6 +38,9 @@ public:
     void SetDrawable(std::unique_ptr<Core::Drawable> drawable) {
         m_Drawable = std::move(drawable);
     }
+    glm::vec2 GetScaledSize() {
+        return m_Drawable->GetOriginalSize() * m_Transform.scale;
+    };
 
     void AppendChild(std::shared_ptr<GameObject> child) {
         m_Children.push_back(std::move(child));
