@@ -4,6 +4,7 @@
 #include "pch.hpp" // IWYU pragma: export
 
 #include <functional>
+#include <glm/fwd.hpp>
 
 #include "Core/Drawable.hpp"
 #include "Core/Texture.hpp"
@@ -21,8 +22,8 @@ public:
 private:
     void InitProgram();
     void InitVertexArray();
-    void
-    InitUniformBuffer(const Util::Transform &transform = Util::Transform(), const float zIndex = -1);
+    void InitUniformBuffer(const Util::Transform &transform = Util::Transform(),
+                           const float zIndex = -1);
 
     static constexpr int UNIFORM_SURFACE_LOCATION = 0;
 
@@ -34,6 +35,7 @@ private:
     std::unique_ptr<Core::Texture> m_Texture = nullptr;
     std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> m_Surface =
         nullptr;
+    glm::vec2 m_Size = {0, 0};
 };
 } // namespace Util
 

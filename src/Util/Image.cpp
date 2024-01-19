@@ -29,6 +29,7 @@ Image::Image(const std::string &filepath) {
     m_Texture = std::make_unique<Core::Texture>(
         m_Surface->format->BytesPerPixel, m_Surface->w, m_Surface->h,
         m_Surface->pixels);
+    m_Size = {m_Surface->w, m_Surface->h};
 }
 
 void Image::Draw(const Util::Transform &transform, const float zIndex) {
