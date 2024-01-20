@@ -5,6 +5,7 @@
 #include <vector>
 
 #include "Core/Drawable.hpp"
+#include "Util/Image.hpp"
 #include "Util/Transform.hpp"
 
 namespace Util {
@@ -30,7 +31,8 @@ public:
     float GetZIndex() const { return m_ZIndex; }
 
     glm::vec2 GetScaledSize() {
-        return m_Drawable->GetOriginalSize() * m_Transform.scale;
+        return dynamic_cast<Image *>(m_Drawable.get())->GetOriginalSize() *
+               m_Transform.scale;
     };
 
     std::vector<std::shared_ptr<GameObject>> &GetChildren() {
