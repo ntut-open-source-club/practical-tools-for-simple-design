@@ -17,11 +17,13 @@ public:
     Text(const std::string &font, int size, const std::string &text);
 
     void Draw(const Transform &transform, const float zIndex) override;
+    glm::vec2 GetOriginalSize() override { return {0, 0}; }
 
 private:
     void InitProgram();
     void InitVertexArray();
-    void InitUniformBuffer(const Util::Transform & transform = Util::Transform(), const float zIndex = -1);
+    void InitUniformBuffer(const Util::Transform &transform = Util::Transform(),
+                           const float zIndex = -1);
 
     static constexpr int UNIFORM_SURFACE_LOCATION = 0;
 
