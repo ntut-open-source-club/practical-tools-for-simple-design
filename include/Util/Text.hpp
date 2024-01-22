@@ -17,7 +17,7 @@ public:
     Text(const std::string &font, int size, const std::string &text);
 
     void Draw(const Transform &transform, const float zIndex) override;
-    glm::vec2 GetOriginalSize() override { return {0, 0}; }
+    glm::vec2 GetSize() override;
 
 private:
     void InitProgram();
@@ -37,6 +37,7 @@ private:
         nullptr;
 
     std::unique_ptr<TTF_Font, std::function<void(TTF_Font *)>> m_Font;
+    glm::vec2 m_Size = {0, 0};
 };
 } // namespace Util
 

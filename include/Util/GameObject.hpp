@@ -30,7 +30,7 @@ public:
     float GetZIndex() const { return m_ZIndex; }
 
     glm::vec2 GetScaledSize() {
-        return m_Drawable->GetOriginalSize() * m_Transform.scale;
+        return m_Drawable->GetSize() * m_Transform.scale;
     };
 
     std::vector<std::shared_ptr<GameObject>> &GetChildren() {

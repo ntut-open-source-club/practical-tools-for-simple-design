@@ -101,7 +101,7 @@ void Image::InitUniformBuffer(const Util::Transform &transform,
     auto data = Util::ConvertToUniformBufferData(transform, zIndex);
     s_UniformBuffer->SetData(0, data);
 }
-glm::vec2 Image::GetOriginalSize() {
+glm::vec2 Image::GetSize() {
     return m_Size;
 }
 
