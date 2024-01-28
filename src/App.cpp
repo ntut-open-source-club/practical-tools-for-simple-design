@@ -17,7 +17,7 @@ void App::Start() {
                                             "Giraffe");
     gf->SetZIndex(m_Giraffe->GetZIndex() - 1);
     gf->Start();
-    m_Giraffe->AppendChild(gf);
+    m_Giraffe->AddChild(gf);
 
     m_CurrentState = State::UPDATE;
 }

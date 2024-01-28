@@ -42,7 +42,7 @@ public:
 
     void SetVisible(bool visible) { m_Visible = visible; }
 
-    void AppendChild(std::shared_ptr<GameObject> child) {
+    void AddChild(std::shared_ptr<GameObject> child) {
         m_Children.push_back(std::move(child));
     }
 
