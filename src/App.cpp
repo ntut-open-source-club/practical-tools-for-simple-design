@@ -23,7 +23,6 @@ void App::Start() {
 }
 
 void App::Update() {
-    auto cursorPos = Util::Input::GetCursorPosition();
     if (Util::Input::IsLButtonPressed()) {
         LOG_DEBUG("Left button pressed");
     }

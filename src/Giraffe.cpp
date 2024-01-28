@@ -31,7 +31,7 @@ void GiraffeText::Start() {
 
 void Giraffe::Start() {}
 
-void Giraffe::Update(const Util::Transform &transform) {
+void Giraffe::Update([[maybe_unused]] const Util::Transform &transform) {
     static glm::vec2 dir = {1, 0.5};
 
     auto &pos = m_Transform.translation;
@@ -53,8 +53,8 @@ void Giraffe::Update(const Util::Transform &transform) {
         glm::vec2(1, 1) * (std::sin(rotation / 2) + 1.0F) * 100.0F};
 
     pos += deltaTransform.translation;
-    rotation = std::fmod(rotation + deltaTransform.rotation, 360.0F);
-    // scale = deltaTransform.scale;
+    rotation += deltaTransform.rotation;
+    scale = deltaTransform.scale;
 
     m_Drawable->Draw(m_Transform, m_ZIndex);
     for (auto &child : m_Children) {
