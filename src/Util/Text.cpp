@@ -39,7 +39,8 @@ Text::Text(const std::string &font, int size, const std::string &text) {
         m_Surface->format->BytesPerPixel,
         m_Surface->pitch / m_Surface->format->BytesPerPixel, m_Surface->h,
         m_Surface->pixels);
-    m_Size = {m_Surface->w, m_Surface->h};
+    m_Size = {m_Surface->pitch / m_Surface->format->BytesPerPixel,
+              m_Surface->h};
 }
 
 void Text::Draw(const Util::Transform &transform, const float zIndex) {
@@ -111,10 +112,6 @@ void Text::InitUniformBuffer(const Util::Transform &transform,
 
     auto data = Util::ConvertToUniformBufferData(transform, zIndex);
     s_UniformBuffer->SetData(0, data);
-}
-
-glm::vec2 Text::GetSize() {
-    return m_Size;
 }
 
 std::unique_ptr<Core::Program> Text::s_Program = nullptr;

@@ -17,7 +17,7 @@ public:
     Text(const std::string &font, int size, const std::string &text);
 
     void Draw(const Transform &transform, const float zIndex) override;
-    glm::vec2 GetSize() override;
+    glm::vec2 GetSize() override { return m_Size; };
 
 private:
     void InitProgram();
