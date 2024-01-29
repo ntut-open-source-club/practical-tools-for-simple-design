@@ -1,9 +1,14 @@
 #include "Giraffe.hpp"
+
+#include <cmath>
+
 #include "Util/GameObject.hpp"
 #include "Util/Image.hpp"
+#include "Util/Logger.hpp"
 #include "Util/Text.hpp"
 #include "Util/Time.hpp"
 #include "Util/Transform.hpp"
+
 #include "config.hpp"
 
 void GiraffeText::Update(const Util::Transform &transform) {
@@ -11,9 +16,11 @@ void GiraffeText::Update(const Util::Transform &transform) {
     auto &scale = m_Transform.scale;
     auto &rotation = m_Transform.rotation;
 
-    pos += transform.translation;
-    rotation += transform.rotation;
+    pos = transform.translation;
+    // rotation = std::fmod(rotation + 50.0F, 360.0F);
     scale = transform.scale;
+
+    LOG_DEBUG("{} {}", scale.x, scale.y);
 
     m_Drawable->Draw(m_Transform, m_ZIndex);
 }
@@ -31,10 +38,12 @@ void Giraffe::Update([[maybe_unused]] const Util::Transform &transform) {
     auto &scale = m_Transform.scale;
     auto &rotation = m_Transform.rotation;
 
-    if (pos.y > WINDOW_HEIGHT || pos.y + WINDOW_HEIGHT < 0) {
+    if (pos.y >= static_cast<float>(WINDOW_HEIGHT) / 2 ||
+        pos.y + static_cast<float>(WINDOW_HEIGHT) / 2 <= 0) {
         dir.y *= -1;
     }
-    if (pos.x > WINDOW_WIDTH || pos.x + WINDOW_WIDTH < 0) {
+    if (pos.x >= static_cast<float>(WINDOW_WIDTH) / 2 ||
+        pos.x + static_cast<float>(WINDOW_WIDTH) / 2 <= 0) {
         dir.x *= -1;
     }
 
@@ -49,7 +58,7 @@ void Giraffe::Update([[maybe_unused]] const Util::Transform &transform) {
 
     m_Drawable->Draw(m_Transform, m_ZIndex);
     for (auto &child : m_Children) {
-        child->Update(deltaTransform);
+        child->Update(m_Transform);
     }
 
     // LOG_DEBUG("GIRA: x: {}, y: {}", pos.x, pos.y);
