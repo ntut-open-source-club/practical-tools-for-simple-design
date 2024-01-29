@@ -3,17 +3,8 @@
 #include "config.hpp"
 
 namespace Util {
-
-glm::mat4 TransformToMat4(const Transform &transform, const float zIndex) {
-    constexpr glm::mat4 eye(1.F);
-
-    // TODO: TRS comment
-    return glm::translate(eye, {transform.translation, zIndex}) *
-           glm::rotate(eye, transform.rotation, glm::vec3(0, 0, 1)) *
-           glm::scale(eye, {transform.scale, 1});
-}
-
 Core::Matrices ConvertToUniformBufferData(const Util::Transform &transform,
+                                          const glm::vec2 &size,
                                           const float zIndex) {
     constexpr glm::mat4 eye(1.F);
 
@@ -26,8 +17,13 @@ Core::Matrices ConvertToUniformBufferData(const Util::Transform &transform,
         glm::scale(eye, {1.F / WINDOW_WIDTH, 1.F / WINDOW_HEIGHT, 1.F}) *
         glm::translate(eye, {WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 0});
 
+    // TODO: TRS comment
+    auto model = glm::translate(eye, {transform.translation, zIndex}) *
+                 glm::rotate(eye, transform.rotation, glm::vec3(0, 0, 1)) *
+                 glm::scale(eye, {transform.scale * size, 1});
+
     Core::Matrices data = {
-        Util::TransformToMat4(transform, zIndex),
+        model,
         projection * view,
     };
 

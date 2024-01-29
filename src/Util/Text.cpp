@@ -44,8 +44,7 @@ Text::Text(const std::string &font, int size, const std::string &text) {
 }
 
 void Text::Draw(const Util::Transform &transform, const float zIndex) {
-    // FIXME: temporary fix
-    auto data = Util::ConvertToUniformBufferData(transform, zIndex);
+    auto data = Util::ConvertToUniformBufferData(transform, m_Size, zIndex);
     s_UniformBuffer->SetData(0, data);
 
     m_Texture->Bind(UNIFORM_SURFACE_LOCATION);
@@ -69,9 +68,6 @@ void Text::InitProgram() {
 void Text::InitVertexArray() {
     s_VertexArray = std::make_unique<Core::VertexArray>();
 
-    // hard coded value
-    constexpr float scale = 100.0F;
-
     // NOLINTBEGIN
     // These are vertex data for the rectangle but clang-tidy has magic
     // number warnings
@@ -79,10 +75,10 @@ void Text::InitVertexArray() {
     // Vertex
     s_VertexArray->AddVertexBuffer(std::make_unique<Core::VertexBuffer>(
         std::vector<float>{
-            -1.0F * scale, 1.0F * scale,  //
-            -1.0F * scale, -1.0F * scale, //
-            1.0F * scale, -1.0F * scale,  //
-            1.0F * scale, 1.0F * scale,   //
+            -0.5F, 0.5F,  //
+            -0.5F, -0.5F, //
+            0.5F, -0.5F,  //
+            0.5F, 0.5F,   //
         },
         2));
 
@@ -105,13 +101,9 @@ void Text::InitVertexArray() {
     // NOLINTEND
 }
 
-void Text::InitUniformBuffer(const Util::Transform &transform,
-                             const float zIndex) {
+void Text::InitUniformBuffer() {
     s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
-
-    auto data = Util::ConvertToUniformBufferData(transform, zIndex);
-    s_UniformBuffer->SetData(0, data);
 }
 
 std::unique_ptr<Core::Program> Text::s_Program = nullptr;
