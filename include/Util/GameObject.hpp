@@ -8,10 +8,30 @@
 #include "Util/Transform.hpp"
 
 namespace Util {
+
+/**
+ * @class GameObject
+ * @brief A class representing a game object.
+ *
+ * This class encapsulates the properties and behaviors of a game object.
+ * It includes properties such as transform, drawable, children, zIndex, and visibility.
+ * It also includes behaviors such as setting zIndex, drawable, visibility, adding children, starting, updating, and drawing.
+ */
 class GameObject {
 public:
+    /**
+     * @brief Default constructor.
+     */
     GameObject() = default;
 
+    /**
+     * @brief Parameterized constructor.
+     *
+     * @param drawable The drawable component of the game object.
+     * @param zIndex The z-index of the game object.
+     * @param visible The visibility of the game object.
+     * @param children The children of the game object.
+     */
     GameObject(std::unique_ptr<Core::Drawable> drawable, const float zIndex,
                const bool visible = true,
                const std::vector<std::shared_ptr<GameObject>> &children =
@@ -19,38 +39,98 @@ public:
         : m_Drawable(std::move(drawable)),
           m_Children(children),
           m_ZIndex(zIndex),
-          m_Visible(visible) {}
+          m_Visible(visible) {
+    }
 
+    // Deleted copy constructor.
     GameObject(const GameObject &other) = delete;
 
+    // Deleted move constructor.
     GameObject(GameObject &&other) = delete;
 
+    // Deleted assignment operator.
     GameObject &operator=(const GameObject &other) = delete;
 
+    /**
+     * @brief Default destructor.
+     */
     virtual ~GameObject() = default;
 
+    /**
+     * @brief Get the z-index of the game object.
+     *
+     * @return The z-index of the game object.
+     */
     float GetZIndex() const { return m_ZIndex; }
+
+    /**
+     * @brief Get the transform of the game object.
+     *
+     * @return The transform of the game object.
+     */
     Transform GetTransform() const { return m_Transform; }
+
+    /**
+     * @brief Get the children of the game object.
+     *
+     * @return The children of the game object.
+     */
     const std::vector<std::shared_ptr<GameObject>> &GetChildren() const {
         return m_Children;
     }
 
-    void SetZIndex(float index) { m_ZIndex = index; }
+    /**
+     * @brief Set the z-index of the game object.
+     *
+     * @param index The new z-index of the game object.
+     */
+    void SetZIndex(const float index) { m_ZIndex = index; }
+
+    /**
+     * @brief Set the drawable component of the game object.
+     *
+     * @param drawable The new drawable component of the game object.
+     */
     void SetDrawable(std::unique_ptr<Core::Drawable> drawable) {
         m_Drawable = std::move(drawable);
     }
 
-    void SetVisible(bool visible) { m_Visible = visible; }
+    /**
+     * @brief Set the visibility of the game object.
+     *
+     * @param visible The new visibility of the game object.
+     */
+    void SetVisible(const bool visible) { m_Visible = visible; }
 
+    /**
+     * @brief Add a child to the game object.
+     *
+     * @param child The new child of the game object.
+     */
     void AddChild(std::shared_ptr<GameObject> child) {
         m_Children.push_back(std::move(child));
     }
 
+    /**
+     * @brief Start the game object.
+     *
+     * This is a pure virtual function that needs to be implemented by derived classes.
+     */
     virtual void Start() = 0;
 
+    /**
+     * @brief Update the game object.
+     *
+     * This is a pure virtual function that needs to be implemented by derived classes.
+     *
+     * @param transform The new transform of the game object.
+     */
     virtual void
     Update(const Util::Transform &transform = Util::Transform()) = 0;
 
+    /**
+     * @brief Draw the game object.
+     */
     void Draw();
 
 protected:
