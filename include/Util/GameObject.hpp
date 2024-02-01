@@ -14,8 +14,12 @@ namespace Util {
  * @brief A class representing a game object.
  *
  * This class encapsulates the properties and behaviors of a game object.
- * It includes properties such as transform, drawable, children, zIndex, and visibility.
- * It also includes behaviors such as setting zIndex, drawable, visibility, adding children, starting, updating, and drawing.
+ * It includes properties such as transform, drawable, children, zIndex, and
+ * visibility. It also includes behaviors such as setting zIndex, drawable,
+ * visibility, adding children, starting, updating, and drawing.
+ * @note This is an abstract class. Inherit from this class to create your own
+ * game objects.
+ *
  */
 class GameObject {
 public:
@@ -27,7 +31,7 @@ public:
     /**
      * @brief Parameterized constructor.
      *
-     * @param drawable The drawable component of the game object.
+     * @param drawable The Util::Drawable component of the game object.
      * @param zIndex The z-index of the game object.
      * @param visible The visibility of the game object.
      * @param children The children of the game object.
@@ -39,8 +43,7 @@ public:
         : m_Drawable(std::move(drawable)),
           m_Children(children),
           m_ZIndex(zIndex),
-          m_Visible(visible) {
-    }
+          m_Visible(visible) {}
 
     // Deleted copy constructor.
     GameObject(const GameObject &other) = delete;
@@ -81,6 +84,8 @@ public:
 
     /**
      * @brief Set the z-index of the game object.
+     * z-index is used to determine the order in which game objects are drawn,
+     * the greater z-index, the topper the its Util::Drawable is
      *
      * @param index The new z-index of the game object.
      */
@@ -114,14 +119,16 @@ public:
     /**
      * @brief Start the game object.
      *
-     * This is a pure virtual function that needs to be implemented by derived classes.
+     * This is a pure virtual function that needs to be implemented by derived
+     * classes.
      */
     virtual void Start() = 0;
 
     /**
      * @brief Update the game object.
      *
-     * This is a pure virtual function that needs to be implemented by derived classes.
+     * This is a pure virtual function that needs to be implemented by derived
+     * classes.
      *
      * @param transform The new transform of the game object.
      */
@@ -134,7 +141,7 @@ public:
     void Draw();
 
 protected:
-    Util::Transform m_Transform; // idk if this should be here.
+    Util::Transform m_Transform;
 
     std::unique_ptr<Core::Drawable> m_Drawable = nullptr;
     std::vector<std::shared_ptr<GameObject>> m_Children;
