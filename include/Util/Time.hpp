@@ -10,7 +10,7 @@ namespace Util {
  * @brief A singleton class that provides time-related functionalities.
  *
  * This class provides functionalities such as getting the delta time between frames.
- * It is designed as a singleton, meaning only one instance of this class should exist.
+ * @note It is designed as a singleton, meaning only one instance of this class should exist.
  * Therefore, you should NOT create your own `Time` object.
  */
 class Time {
