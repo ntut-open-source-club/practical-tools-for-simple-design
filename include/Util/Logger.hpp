@@ -33,6 +33,9 @@ void Init();
  * @brief Sets the logging level.
  *
  * This function sets the logging level for the application.
+ * Logging levels are TRACE, DEBUG, INFO, WARN, ERROR, and CRITICAL.
+ * @note If the current log's level is lower than the set level, the log will
+ * be omitted.
  *
  * @param level The new logging level.
  */
