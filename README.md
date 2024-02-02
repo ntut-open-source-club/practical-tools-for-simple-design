@@ -1,12 +1,30 @@
 # Practical Tools for Simple Design
 
+###### Officially Supported Platforms and IDEs
+
+|               | Windows | macOS | Linux |
+|:-------------:|:-------:|:-----:|:-----:|
+| CLion         |    V    |   V   |   V   |
+| VSCode        |    V    |   V   |   V*  |
+| No IDE        |    V    |   V   |   V   |
+
+\?: [Microsoft Kills Visual Studio for Mac](https://visualstudiomagazine.com/articles/2023/08/30/vs-for-mac-retirement.aspx)
+
+\*: On Linux the support of Code - OSS and VSCodium aren't guaranteed.
+
 ## Getting Started
 
-Required: Git, CMake, C/C++ compiler
+Required: Git, CMake, C/C++ Compiler, OpenGL Implementation
 
-Optional: Ninja Build, clang
+Optional: Ninja Build, Clang
+
+> You might get some issue like https://github.com/ntut-open-source-club/practical-tools-for-simple-design/issues/78 check it if you need.
 
 ### Command Line
+
+[//]: # (TODO: No IDE Quick Start)
+> [!WARNING]  
+> This section is work on progress.
 
 ```
 git clone https://ntut-open-source-club/practical-tools-for-simple-design.git
@@ -30,15 +48,17 @@ cmake --build build
 
 ### VSCode
 
-TODO
+[//]: # (TODO: VSCode Quick Start)
+> [!WARNING]  
+> This section is work on progress.
 
 ### CLion
 
-TODO
+[//]: # (TODO: Clion Quick Start)
+> [!WARNING]  
+> This section is work on progress.
 
-### Visual Studio
-
-TODO
+###### NOTE: If you have time, read [OOP2023f Environment Setup](https://hackmd.io/@OOP2023f/rk2-8cVCh)
 
 ## Generate Doxygen Documents
 
