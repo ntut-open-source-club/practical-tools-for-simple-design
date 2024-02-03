@@ -27,7 +27,7 @@ struct Transform {
      *
      * This property represents the rotation of the transformation in 2D space.
      * It is represented as a float.
-     * @note The unit of rotataion is in radians not degrees.
+     * @note The unit of rotation is in radians not degrees.
      */
     float rotation = 0;
 
