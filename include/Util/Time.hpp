@@ -30,7 +30,7 @@ public:
      * @brief Update the time.
      *
      * This function updates the current time and the delta time.
-     * It is called by Cord::Context::Update(). The user is not recommanded to
+     * It is called by Cord::Context::Update(). The user is not recommended to
      * call this function.
      */
     static void Update();
