@@ -17,7 +17,7 @@ class Image : public Core::Drawable {
 public:
     Image(const std::string &filepath);
 
-    glm::vec2 GetSize() override;
+    glm::vec2 GetSize() const override { return m_Size; };
 
     void Draw(const Util::Transform &transform, const float zIndex) override;
 

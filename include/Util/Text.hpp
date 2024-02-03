@@ -16,7 +16,7 @@ class Text : public Core::Drawable {
 public:
     Text(const std::string &font, int size, const std::string &text);
 
-    glm::vec2 GetSize() override { return m_Size; };
+    glm::vec2 GetSize() const override { return m_Size; };
 
     void Draw(const Transform &transform, const float zIndex) override;
 

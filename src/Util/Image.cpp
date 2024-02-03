@@ -95,10 +95,6 @@ void Image::InitUniformBuffer() {
         *s_Program, "Matrices", 0);
 }
 
-glm::vec2 Image::GetSize() {
-    return m_Size;
-}
-
 std::unique_ptr<Core::Program> Image::s_Program = nullptr;
 std::unique_ptr<Core::VertexArray> Image::s_VertexArray = nullptr;
 std::unique_ptr<Core::UniformBuffer<Core::Matrices>> Image::s_UniformBuffer =
