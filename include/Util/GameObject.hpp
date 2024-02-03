@@ -8,8 +8,21 @@
 #include "Util/Transform.hpp"
 
 namespace Util {
+
+/**
+ * @class GameObject
+ * @brief A class representing a game object.
+ *
+ * This class encapsulates the properties and behaviors of a game object.
+   * @note This is an abstract class. Inherit from this class to create your own
+ * game objects.
+ *
+ */
 class GameObject {
 public:
+    /**
+     * @brief Default constructor.
+     */
     GameObject() = default;
 
     /**
@@ -57,6 +70,11 @@ public:
      */
     Transform GetTransform() const { return m_Transform; }
 
+    /**
+     * @brief Get the drawable component of the game object.
+     *
+     * @return The drawable component of the game object.
+     */
     glm::vec2 GetScaledSize() const {
         return m_Drawable->GetSize() * m_Transform.scale;
     };

@@ -42,6 +42,13 @@ public:
      */
     void Draw(const Util::Transform &transform, const float zIndex) override;
 
+    /**
+     * @brief Retrieves the size of the image.
+     *
+     * This function returns the size of the image.
+     *
+     * @return The size of the image as a vec2(x, y).
+     */
     glm::vec2 GetSize() const override { return m_Size; };
 
 private:
