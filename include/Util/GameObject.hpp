@@ -31,7 +31,7 @@ public:
 
     float GetZIndex() const { return m_ZIndex; }
 
-    glm::vec2 GetScaledSize() {
+    glm::vec2 GetScaledSize() const {
         return m_Drawable->GetSize() * m_Transform.scale;
     };
 
