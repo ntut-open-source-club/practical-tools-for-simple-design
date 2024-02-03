@@ -14,10 +14,7 @@ namespace Util {
  * @brief A class representing a game object.
  *
  * This class encapsulates the properties and behaviors of a game object.
- * It includes properties such as transform, drawable, children, zIndex, and
- * visibility. It also includes behaviors such as setting zIndex, drawable,
- * visibility, adding children, starting, updating, and drawing.
- * @note This is an abstract class. Inherit from this class to create your own
+   * @note This is an abstract class. Inherit from this class to create your own
  * game objects.
  *
  */
