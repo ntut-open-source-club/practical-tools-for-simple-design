@@ -16,12 +16,14 @@ class Text : public Core::Drawable {
 public:
     Text(const std::string &font, int size, const std::string &text);
 
+    glm::vec2 GetSize() const override { return m_Size; };
+
     void Draw(const Transform &transform, const float zIndex) override;
 
 private:
     void InitProgram();
     void InitVertexArray();
-    void InitUniformBuffer(const Util::Transform & transform = Util::Transform(), const float zIndex = -1);
+    void InitUniformBuffer();
 
     static constexpr int UNIFORM_SURFACE_LOCATION = 0;
 
@@ -35,6 +37,7 @@ private:
         nullptr;
 
     std::unique_ptr<TTF_Font, std::function<void(TTF_Font *)>> m_Font;
+    glm::vec2 m_Size = {0, 0};
 };
 } // namespace Util
 

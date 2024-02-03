@@ -30,6 +30,11 @@ public:
     virtual ~GameObject() = default;
 
     float GetZIndex() const { return m_ZIndex; }
+
+    glm::vec2 GetScaledSize() const {
+        return m_Drawable->GetSize() * m_Transform.scale;
+    };
+
     Transform GetTransform() const { return m_Transform; }
     const std::vector<std::shared_ptr<GameObject>> &GetChildren() const {
         return m_Children;

@@ -7,12 +7,8 @@
 #include "pch.hpp"
 
 namespace Util {
-
-glm::mat4 TransformToMat4(const Transform &transform, float zIndex);
-
 Core::Matrices ConvertToUniformBufferData(const Util::Transform &transform,
-                                          float zIndex);
-
+                                          const glm::vec2 &size, float zIndex);
 } // namespace Util
 
 #endif // UTIL_TRANSFORM_UTILS_HPP
