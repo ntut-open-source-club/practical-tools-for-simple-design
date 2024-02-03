@@ -11,7 +11,7 @@ namespace Util {
  * @brief A struct representing a transformation in 2D space.
  *
  * This struct encapsulates the properties of a transformation in 2D space.
- * It includes properties such as translation, rotation, and scale.
+ * @note The order of Util::Transform is translation, rotation, and scale.
  */
 struct Transform {
     /**
@@ -27,6 +27,7 @@ struct Transform {
      *
      * This property represents the rotation of the transformation in 2D space.
      * It is represented as a float.
+     * @note The unit of rotataion is in radians not degrees.
      */
     float rotation = 0;
 

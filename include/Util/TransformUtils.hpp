@@ -14,9 +14,15 @@ namespace Util {
  * This function takes a Transform object and a float representing the z-index
  * as input. It returns a 4x4 matrix representing the transformation.
  *
- * @param transform The Transform object to be converted.
  * @param zIndex The z-index of the transformation.
+ * @param transform The Transform object to be converted.
+ *
+ * @note As transform, the order of returned matrix is translate, rotate, and
+ * scale.
+ *
  * @return A 4x4 matrix representing the transformation.
+ *
+ * @see Util::Transform
  */
 glm::mat4 TransformToMat4(const Transform &transform, float zIndex);
 
