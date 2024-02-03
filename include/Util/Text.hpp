@@ -26,7 +26,7 @@ public:
     /**
      * @brief Constructor that takes a font, size, and text.
      *
-     * @param font The font of the text.
+     * @param font The full path to the font e.g. "C:/Windows/fonts/inkfree.ttf".
      * @param size The size of the text.
      * @param text The text to be displayed.
      */
