@@ -40,6 +40,8 @@ public:
      */
     void Draw(const Transform &transform, const float zIndex) override;
 
+    glm::vec2 GetSize() const override { return m_Size; };
+
 private:
     /**
      * @brief Initializes the shader program.
@@ -57,8 +59,7 @@ private:
      * @param transform The transform to apply to the text.
      * @param zIndex The z-index at which to draw the text.
      */
-    void InitUniformBuffer(const Util::Transform &transform = Util::Transform(),
-                           const float zIndex = -1);
+    void InitUniformBuffer();
 
     static constexpr int UNIFORM_SURFACE_LOCATION = 0;
 
@@ -82,6 +83,7 @@ private:
      * @brief The font of the text.
      */
     std::unique_ptr<TTF_Font, std::function<void(TTF_Font *)>> m_Font;
+    glm::vec2 m_Size = {0, 0};
 };
 } // namespace Util
 

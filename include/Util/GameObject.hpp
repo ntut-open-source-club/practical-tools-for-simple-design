@@ -8,21 +8,8 @@
 #include "Util/Transform.hpp"
 
 namespace Util {
-
-/**
- * @class GameObject
- * @brief A class representing a game object.
- *
- * This class encapsulates the properties and behaviors of a game object.
-   * @note This is an abstract class. Inherit from this class to create your own
- * game objects.
- *
- */
 class GameObject {
 public:
-    /**
-     * @brief Default constructor.
-     */
     GameObject() = default;
 
     /**
@@ -69,6 +56,11 @@ public:
      * @return The transform of the game object.
      */
     Transform GetTransform() const { return m_Transform; }
+
+    glm::vec2 GetScaledSize() const {
+        return m_Drawable->GetSize() * m_Transform.scale;
+    };
+
 
     /**
      * @brief Get the children of the game object.
@@ -138,7 +130,7 @@ public:
     void Draw();
 
 protected:
-    Util::Transform m_Transform;
+    Util::Transform m_Transform; // IDK if this should be here
 
     std::unique_ptr<Core::Drawable> m_Drawable = nullptr;
     std::vector<std::shared_ptr<GameObject>> m_Children;

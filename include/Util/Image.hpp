@@ -4,6 +4,7 @@
 #include "pch.hpp" // IWYU pragma: export
 
 #include <functional>
+#include <glm/fwd.hpp>
 
 #include "Core/Drawable.hpp"
 #include "Core/Texture.hpp"
@@ -41,6 +42,8 @@ public:
      */
     void Draw(const Util::Transform &transform, const float zIndex) override;
 
+    glm::vec2 GetSize() const override { return m_Size; };
+
 private:
     /**
      * @brief Initializes the shader program.
@@ -54,12 +57,8 @@ private:
 
     /**
      * @brief Initializes the uniform buffer.
-     *
-     * @param transform The transform to apply to the image.
-     * @param zIndex The z-index at which to draw the image.
      */
-    void InitUniformBuffer(const Util::Transform &transform = Util::Transform(),
-                           const float zIndex = -1);
+    void InitUniformBuffer();
 
     static constexpr int UNIFORM_SURFACE_LOCATION = 0;
 
@@ -71,6 +70,7 @@ private:
     std::unique_ptr<Core::Texture> m_Texture = nullptr;
     std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> m_Surface =
         nullptr;
+    glm::vec2 m_Size = {0, 0};
 };
 } // namespace Util
 

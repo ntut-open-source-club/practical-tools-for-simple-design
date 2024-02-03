@@ -24,7 +24,6 @@ namespace Util {
  *
  * @see Util::Transform
  */
-glm::mat4 TransformToMat4(const Transform &transform, float zIndex);
 
 /**
  * @brief Converts a Transform object into uniform buffer data.
@@ -37,8 +36,7 @@ glm::mat4 TransformToMat4(const Transform &transform, float zIndex);
  * @return A Matrices object representing the uniform buffer data.
  */
 Core::Matrices ConvertToUniformBufferData(const Util::Transform &transform,
-                                          float zIndex);
-
+                                          const glm::vec2 &size, float zIndex);
 } // namespace Util
 
 #endif // UTIL_TRANSFORM_UTILS_HPP

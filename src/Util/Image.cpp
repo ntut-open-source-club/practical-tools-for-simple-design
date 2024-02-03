@@ -29,10 +29,11 @@ Image::Image(const std::string &filepath) {
     m_Texture = std::make_unique<Core::Texture>(
         m_Surface->format->BytesPerPixel, m_Surface->w, m_Surface->h,
         m_Surface->pixels);
+    m_Size = {m_Surface->w, m_Surface->h};
 }
 
 void Image::Draw(const Util::Transform &transform, const float zIndex) {
-    auto data = Util::ConvertToUniformBufferData(transform, zIndex);
+    auto data = Util::ConvertToUniformBufferData(transform, m_Size, zIndex);
     s_UniformBuffer->SetData(0, data);
 
     m_Texture->Bind(UNIFORM_SURFACE_LOCATION);
@@ -56,9 +57,6 @@ void Image::InitProgram() {
 void Image::InitVertexArray() {
     s_VertexArray = std::make_unique<Core::VertexArray>();
 
-    // hard coded value
-    constexpr float scale = 100.0F;
-
     // NOLINTBEGIN
     // These are vertex data for the rectangle but clang-tidy has magic
     // number warnings
@@ -66,10 +64,10 @@ void Image::InitVertexArray() {
     // Vertex
     s_VertexArray->AddVertexBuffer(std::make_unique<Core::VertexBuffer>(
         std::vector<float>{
-            -1.0F * scale, 1.0F * scale,  //
-            -1.0F * scale, -1.0F * scale, //
-            1.0F * scale, -1.0F * scale,  //
-            1.0F * scale, 1.0F * scale,   //
+            -0.5F, 0.5F,  //
+            -0.5F, -0.5F, //
+            0.5F, -0.5F,  //
+            0.5F, 0.5F,   //
         },
         2));
 
@@ -92,13 +90,9 @@ void Image::InitVertexArray() {
     // NOLINTEND
 }
 
-void Image::InitUniformBuffer(const Util::Transform &transform,
-                              const float zIndex) { // YESLINT
+void Image::InitUniformBuffer() {
     s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
-
-    auto data = Util::ConvertToUniformBufferData(transform, zIndex);
-    s_UniformBuffer->SetData(0, data);
 }
 
 std::unique_ptr<Core::Program> Image::s_Program = nullptr;
