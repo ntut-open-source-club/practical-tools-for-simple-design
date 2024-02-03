@@ -57,7 +57,8 @@ private:
      * @param transform The transform to apply to the text.
      * @param zIndex The z-index at which to draw the text.
      */
-    void InitUniformBuffer(const Util::Transform & transform = Util::Transform(), const float zIndex = -1);
+    void InitUniformBuffer(const Util::Transform &transform = Util::Transform(),
+                           const float zIndex = -1);
 
     static constexpr int UNIFORM_SURFACE_LOCATION = 0;
 

@@ -9,17 +9,18 @@ namespace Util {
  * @class Time
  * @brief A singleton class that provides time-related functionalities.
  *
- * This class provides functionalities such as getting the delta time between frames.
- * @note It is designed as a singleton, meaning only one instance of this class should exist.
- * Therefore, you should NOT create your own `Time` object.
+ * This class provides functionalities such as getting the delta time between
+ * frames.
+ * @note It is designed as a singleton, meaning only one instance of this class
+ * should exist. Therefore, you should NOT create your own `Time` object.
  */
 class Time {
 public:
     /**
      * @brief Get the delta time between frames in seconds.
      *
-     * This function returns the time difference between the current frame and the last frame.
-     * The time difference is measured in seconds.
+     * This function returns the time difference between the current frame and
+     * the last frame. The time difference is measured in seconds.
      *
      * @return The delta time between frames in seconds.
      */
@@ -29,7 +30,8 @@ public:
      * @brief Update the time.
      *
      * This function updates the current time and the delta time.
-     * It is called by Cord::Context::Update(). The user is not recommanded to call this function.
+     * It is called by Cord::Context::Update(). The user is not recommanded to
+     * call this function.
      */
     static void Update();
 
@@ -51,7 +53,8 @@ private:
     /**
      * @brief The delta time between frames.
      *
-     * This variable stores the time difference between the current frame and the last frame.
+     * This variable stores the time difference between the current frame and
+     * the last frame.
      */
     static double s_DeltaTime;
 };

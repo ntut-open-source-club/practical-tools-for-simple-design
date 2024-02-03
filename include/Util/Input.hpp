@@ -28,10 +28,10 @@ public:
     /**
      * \brief Retrieves the scroll distance of an element.\n
      *
-     * \details The scroll distance is the distance that the mouse wheel has been
-     * scrolled. The distance is expressed in multiples or fractions of lines;
-     * for example, if the mouse wheel is rotated three lines downward, the
-     * scroll distance is {-1.0F, 0.0F}. If the mouse wheel is rotated three
+     * \details The scroll distance is the distance that the mouse wheel has
+     * been scrolled. The distance is expressed in multiples or fractions of
+     * lines; for example, if the mouse wheel is rotated three lines downward,
+     * the scroll distance is {-1.0F, 0.0F}. If the mouse wheel is rotated three
      * lines upward, the scroll distance is {1.0F, 0.0F}. If the mouse wheel is
      * rotated three lines right, the scroll distance is {0.0F, 1.0F}. If the
      * mouse wheel is rotated three lines left, the scroll distance is {0.0F,

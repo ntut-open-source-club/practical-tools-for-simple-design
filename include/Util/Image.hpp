@@ -33,7 +33,8 @@ public:
     /**
      * @brief Draws the image with a given transform and z-index.
      *
-     * This function draws the image at the specified z-index and applies the given transform.
+     * This function draws the image at the specified z-index and applies the
+     * given transform.
      *
      * @param transform The transform to apply to the image.
      * @param zIndex The z-index at which to draw the image.
@@ -57,7 +58,8 @@ private:
      * @param transform The transform to apply to the image.
      * @param zIndex The z-index at which to draw the image.
      */
-    void InitUniformBuffer(const Util::Transform &transform = Util::Transform(), const float zIndex = -1);
+    void InitUniformBuffer(const Util::Transform &transform = Util::Transform(),
+                           const float zIndex = -1);
 
     static constexpr int UNIFORM_SURFACE_LOCATION = 0;
 

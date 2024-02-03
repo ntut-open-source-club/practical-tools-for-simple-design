@@ -17,8 +17,8 @@ struct Transform {
     /**
      * @brief The translation of the transformation.
      *
-     * This property represents the translation of the transformation in 2D space.
-     * It is represented as a 2D vector.
+     * This property represents the translation of the transformation in 2D
+     * space. It is represented as a 2D vector.
      */
     glm::vec2 translation = {0, 0};
 
