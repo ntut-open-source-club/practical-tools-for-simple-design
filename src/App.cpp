@@ -5,16 +5,17 @@
 #include "Util/Keycode.hpp"
 #include "Util/Logger.hpp"
 
+#include "GiraffeText.hpp"
+
 void App::Start() {
     LOG_TRACE("Start");
 
     m_Giraffe->SetDrawable(
-        std::make_unique<Util::Image>("../assets/sprites/giraffe.png"));
+        std::make_shared<Util::Image>("../assets/sprites/giraffe.png"));
     m_Giraffe->SetZIndex(5);
     m_Giraffe->Start();
 
-    auto gf = std::make_shared<GiraffeText>("../assets/fonts/Inter.ttf", 500,
-                                            "Giraffe");
+    auto gf = std::make_shared<GiraffeText>("../assets/fonts/Inter.ttf", 50);
     gf->SetZIndex(m_Giraffe->GetZIndex() - 1);
     gf->Start();
     m_Giraffe->AddChild(gf);

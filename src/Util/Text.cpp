@@ -8,7 +8,10 @@
 #include "config.hpp"
 
 namespace Util {
-Text::Text(const std::string &font, int size, const std::string &text) {
+Text::Text(const std::string &font, int fontSize, const std::string &text,
+           const Util::Color &color)
+    : m_Text(text),
+      m_Color(color) {
     if (s_Program == nullptr) {
         InitProgram();
     }
@@ -19,28 +22,14 @@ Text::Text(const std::string &font, int size, const std::string &text) {
         InitUniformBuffer();
     }
 
-    m_Font = {TTF_OpenFont(font.c_str(), size), TTF_CloseFont};
+    m_Font = {TTF_OpenFont(font.c_str(), fontSize), TTF_CloseFont};
 
     if (m_Font == nullptr) {
         LOG_ERROR("Failed to load font: '{}'", text);
         LOG_ERROR("{}", TTF_GetError());
     }
 
-    m_Surface = {TTF_RenderUTF8_Blended_Wrapped(m_Font.get(), text.c_str(),
-                                                SDL_Color{255, 0, 255, 0}, 0),
-                 SDL_FreeSurface};
-
-    if (m_Surface == nullptr) {
-        LOG_ERROR("Failed to create text");
-        LOG_ERROR("{}", TTF_GetError());
-    }
-
-    m_Texture = std::make_unique<Core::Texture>(
-        m_Surface->format->BytesPerPixel,
-        m_Surface->pitch / m_Surface->format->BytesPerPixel, m_Surface->h,
-        m_Surface->pixels);
-    m_Size = {m_Surface->pitch / m_Surface->format->BytesPerPixel,
-              m_Surface->h};
+    ApplyTexture();
 }
 
 void Text::Draw(const Util::Transform &transform, const float zIndex) {
@@ -104,6 +93,27 @@ void Text::InitVertexArray() {
 void Text::InitUniformBuffer() {
     s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
+}
+
+void Text::ApplyTexture() {
+    std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> surface = {
+        TTF_RenderUTF8_Blended_Wrapped(m_Font.get(), m_Text.c_str(),
+                                       m_Color.ToSdlColor(), 0),
+        SDL_FreeSurface};
+
+    if (surface == nullptr) {
+        LOG_ERROR("Failed to create text");
+        LOG_ERROR("{}", TTF_GetError());
+    }
+
+    LOG_INFO("{}", glm::to_string((glm::vec4)m_Color));
+    LOG_INFO("{}", SDL_GetPixelFormatName(surface->format->format));
+
+    m_Texture = std::make_unique<Core::Texture>(
+        surface->format->BytesPerPixel,
+        surface->pitch / surface->format->BytesPerPixel, surface->h,
+        surface->pixels);
+    m_Size = {surface->pitch / surface->format->BytesPerPixel, surface->h};
 }
 
 std::unique_ptr<Core::Program> Text::s_Program = nullptr;
