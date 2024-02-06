@@ -1,6 +1,7 @@
 // FIXME: this file should be refactor, API change reference from Image.cpp
 
 #include "Core/Texture.hpp"
+#include "Core/TextureUtils.hpp"
 
 #include "Util/Text.hpp"
 #include "Util/TransformUtils.hpp"
@@ -29,7 +30,20 @@ Text::Text(const std::string &font, int fontSize, const std::string &text,
         LOG_ERROR("{}", TTF_GetError());
     }
 
-    ApplyTexture();
+    std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> surface = {
+        TTF_RenderUTF8_Blended_Wrapped(m_Font.get(), m_Text.c_str(),
+                                       m_Color.ToSdlColor(), 0),
+        SDL_FreeSurface};
+    if (surface == nullptr) {
+        LOG_ERROR("Failed to create text");
+        LOG_ERROR("{}", TTF_GetError());
+    }
+
+    m_Texture = std::make_unique<Core::Texture>(
+        Core::SdlFormatToGlFormat(surface->format->format),
+        surface->pitch / surface->format->BytesPerPixel, surface->h,
+        surface->pixels);
+    m_Size = {surface->pitch / surface->format->BytesPerPixel, surface->h};
 }
 
 void Text::Draw(const Util::Transform &transform, const float zIndex) {
@@ -100,19 +114,13 @@ void Text::ApplyTexture() {
         TTF_RenderUTF8_Blended_Wrapped(m_Font.get(), m_Text.c_str(),
                                        m_Color.ToSdlColor(), 0),
         SDL_FreeSurface};
-
     if (surface == nullptr) {
-        LOG_ERROR("Failed to create text");
-        LOG_ERROR("{}", TTF_GetError());
+        LOG_ERROR("Failed to create text: {}", TTF_GetError());
     }
 
-    LOG_INFO("{}", glm::to_string((glm::vec4)m_Color));
-    LOG_INFO("{}", SDL_GetPixelFormatName(surface->format->format));
-
-    m_Texture = std::make_unique<Core::Texture>(
-        surface->format->BytesPerPixel,
-        surface->pitch / surface->format->BytesPerPixel, surface->h,
-        surface->pixels);
+    m_Texture->UpdateData(Core::SdlFormatToGlFormat(surface->format->format),
+                          surface->pitch / surface->format->BytesPerPixel,
+                          surface->h, surface->pixels);
     m_Size = {surface->pitch / surface->format->BytesPerPixel, surface->h};
 }
 

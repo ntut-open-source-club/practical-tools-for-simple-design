@@ -1,8 +1,10 @@
-#include "Core/Texture.hpp"
+#include "Util/Image.hpp"
 
 #include "pch.hpp"
 
-#include "Util/Image.hpp"
+#include "Core/Texture.hpp"
+#include "Core/TextureUtils.hpp"
+
 #include "Util/TransformUtils.hpp"
 
 #include "config.hpp"
@@ -27,8 +29,8 @@ Image::Image(const std::string &filepath) {
     }
 
     m_Texture = std::make_unique<Core::Texture>(
-        m_Surface->format->BytesPerPixel, m_Surface->w, m_Surface->h,
-        m_Surface->pixels);
+        Core::SdlFormatToGlFormat(m_Surface->format->format), m_Surface->w,
+        m_Surface->h, m_Surface->pixels);
     m_Size = {m_Surface->w, m_Surface->h};
 }
 
