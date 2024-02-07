@@ -22,8 +22,11 @@ Image::Image(const std::string &filepath)
         InitUniformBuffer();
     }
 
-    std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> surface = {
-        IMG_Load(filepath.c_str()), SDL_FreeSurface};
+    auto surface =
+        std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
+            IMG_Load(filepath.c_str()),
+            SDL_FreeSurface,
+        };
     if (surface == nullptr) {
         LOG_ERROR("Failed to load image: '{}'", filepath);
         LOG_ERROR("{}", IMG_GetError());
@@ -36,8 +39,11 @@ Image::Image(const std::string &filepath)
 }
 
 void Image::SetImage(const std::string &filepath) {
-    std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> surface = {
-        IMG_Load(filepath.c_str()), SDL_FreeSurface};
+    auto surface =
+        std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
+            IMG_Load(filepath.c_str()),
+            SDL_FreeSurface,
+        };
     if (surface == nullptr) {
         LOG_ERROR("Failed to load image: '{}'", filepath);
         LOG_ERROR("{}", IMG_GetError());
