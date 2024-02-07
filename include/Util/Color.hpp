@@ -3,8 +3,6 @@
 
 #include "pch.hpp" // IWYU pragma: export
 
-#include <SDL_pixels.h>
-
 namespace Util {
 class Color : public glm::vec4 {
 public:
