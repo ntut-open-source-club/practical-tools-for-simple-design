@@ -7,6 +7,10 @@ GLint SdlFormatToGlFormat(Uint32 format) {
         return GL_RGB;
     case SDL_PIXELFORMAT_BGR24:
         return GL_BGR;
+    case SDL_PIXELFORMAT_XRGB8888:
+        return GL_BGRA;
+    case SDL_PIXELFORMAT_XBGR8888:
+        return GL_RGBA;
     case SDL_PIXELFORMAT_ARGB8888:
         return GL_BGRA;
     case SDL_PIXELFORMAT_ABGR8888:
