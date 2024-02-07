@@ -51,6 +51,8 @@ void Texture::UpdateData(GLint format, int width, int height,
                          const void *data) {
     glBindTexture(GL_TEXTURE_2D, m_TextureId);
 
+    // Reference:
+    // https://registry.khronos.org/OpenGL-Refpages/gl4/html/glTexImage2D.xhtml
     glTexImage2D(GL_TEXTURE_2D, 0, GlFormatToGlInternalFormat(format), width,
                  height, 0, format, GL_UNSIGNED_BYTE, data);
 
