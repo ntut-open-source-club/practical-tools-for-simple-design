@@ -3,16 +3,17 @@
 namespace Core {
 GLint SdlFormatToGlFormat(Uint32 format) {
     switch (format) {
-    case SDL_PIXELFORMAT_RGB888:
-        return GL_BGR;
-    case SDL_PIXELFORMAT_BGR888:
+    case SDL_PIXELFORMAT_RGB24:
         return GL_RGB;
+    case SDL_PIXELFORMAT_BGR24:
+        return GL_BGR;
     case SDL_PIXELFORMAT_ARGB8888:
         return GL_BGRA;
     case SDL_PIXELFORMAT_ABGR8888:
         return GL_RGBA;
     default:
-        LOG_ERROR("Format currently unsupported");
+        LOG_ERROR("Format currently unsupported: {}",
+                  SDL_GetPixelFormatName(format));
         return -1;
     }
 }
