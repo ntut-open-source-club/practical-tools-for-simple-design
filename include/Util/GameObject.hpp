@@ -121,25 +121,6 @@ public:
         m_Children.push_back(child);
     }
 
-    /**
-     * @brief Start the game object.
-     *
-     * This is a pure virtual function that needs to be implemented by derived
-     * classes.
-     */
-    virtual void Start() = 0;
-
-    /**
-     * @brief Update the game object.
-     *
-     * This is a pure virtual function that needs to be implemented by derived
-     * classes.
-     *
-     * @param transform The new transform of the game object.
-     */
-    virtual void
-    Update(const Util::Transform &transform = Util::Transform()) = 0;
-
     void Draw();
 
 protected:

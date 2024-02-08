@@ -14,9 +14,9 @@ public:
 
     ~GiraffeText() override = default;
 
-    void Start() override;
+    void Start();
 
-    void Update(const Util::Transform &transform = Util::Transform()) override;
+    void Update();
 
 private:
     std::string m_Font;

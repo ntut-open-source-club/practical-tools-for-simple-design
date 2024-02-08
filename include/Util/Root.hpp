@@ -13,7 +13,7 @@ class Root final {
 public:
     /**
      * @brief Parameterized constructor.
-     *` 
+     *`
      *
      * @param children The GameObject needing to be managed by the root.
      */

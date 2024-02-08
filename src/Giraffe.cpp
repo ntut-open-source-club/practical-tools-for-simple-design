@@ -2,18 +2,20 @@
 
 #include <cmath>
 
-#include "Util/GameObject.hpp"
-#include "Util/Image.hpp"
-#include "Util/Logger.hpp"
-#include "Util/Text.hpp"
 #include "Util/Time.hpp"
 #include "Util/Transform.hpp"
 
 #include "config.hpp"
 
-void Giraffe::Start() {}
+void Giraffe::Start() {
+    m_GiraffeText =
+        std::make_shared<GiraffeText>("../assets/fonts/Inter.ttf", 50);
+    m_GiraffeText->SetZIndex(this->GetZIndex() - 1);
+    m_GiraffeText->Start();
+    this->AddChild(m_GiraffeText);
+}
 
-void Giraffe::Update([[maybe_unused]] const Util::Transform &transform) {
+void Giraffe::Update() {
     static glm::vec2 dir = {1, 0.5};
 
     auto &pos = m_Transform.translation;
@@ -36,12 +38,6 @@ void Giraffe::Update([[maybe_unused]] const Util::Transform &transform) {
 
     pos += deltaTransform.translation;
     rotation += deltaTransform.rotation;
-    // scale = deltaTransform.scale;
 
-    m_Drawable->Draw(m_Transform, m_ZIndex);
-    for (auto &child : m_Children) {
-        child->Update(m_Transform);
-    }
-
-    // LOG_DEBUG("GIRA: x: {}, y: {}", pos.x, pos.y);
+    m_GiraffeText->Update();
 }

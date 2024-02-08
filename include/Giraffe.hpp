@@ -3,15 +3,19 @@
 
 #include <utility>
 
+#include "GiraffeText.hpp"
 #include "Util/GameObject.hpp"
 #include "Util/Text.hpp"
 
 class Giraffe : public Util::GameObject {
 
 public:
-    void Update(const Util::Transform &transform = Util::Transform()) override;
+    void Update();
 
-    void Start() override;
+    void Start();
+
+private:
+    std::shared_ptr<GiraffeText> m_GiraffeText;
 };
 
 #endif

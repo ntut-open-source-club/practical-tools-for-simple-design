@@ -33,7 +33,6 @@ void Root::Update() {
         auto curr = stack.back();
         stack.pop_back();
 
-        curr.m_GameObject->Update(curr.m_ParentTransform);
         curr.m_GameObject->Draw();
 
         for (const auto &child : curr.m_GameObject->GetChildren()) {
