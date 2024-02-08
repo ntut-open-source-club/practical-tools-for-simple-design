@@ -19,6 +19,8 @@ public:
 
     glm::vec2 GetSize() const override { return m_Size; };
 
+    void SetImage(const std::string &filepath);
+
     void Draw(const Util::Transform &transform, const float zIndex) override;
 
 private:
@@ -34,9 +36,9 @@ private:
 
 private:
     std::unique_ptr<Core::Texture> m_Texture = nullptr;
-    std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> m_Surface =
-        nullptr;
-    glm::vec2 m_Size = {0, 0};
+
+    std::string m_Path;
+    glm::vec2 m_Size;
 };
 } // namespace Util
 

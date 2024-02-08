@@ -41,14 +41,14 @@ public:
     }
 
     void SetZIndex(float index) { m_ZIndex = index; }
-    void SetDrawable(std::unique_ptr<Core::Drawable> drawable) {
-        m_Drawable = std::move(drawable);
+    void SetDrawable(const std::shared_ptr<Core::Drawable> &drawable) {
+        m_Drawable = drawable;
     }
 
     void SetVisible(bool visible) { m_Visible = visible; }
 
-    void AddChild(std::shared_ptr<GameObject> child) {
-        m_Children.push_back(std::move(child));
+    void AddChild(const std::shared_ptr<GameObject> &child) {
+        m_Children.push_back(child);
     }
 
     virtual void Start() = 0;
@@ -61,7 +61,7 @@ public:
 protected:
     Util::Transform m_Transform; // idk if this should be here.
 
-    std::unique_ptr<Core::Drawable> m_Drawable = nullptr;
+    std::shared_ptr<Core::Drawable> m_Drawable = nullptr;
     std::vector<std::shared_ptr<GameObject>> m_Children;
 
     float m_ZIndex;
