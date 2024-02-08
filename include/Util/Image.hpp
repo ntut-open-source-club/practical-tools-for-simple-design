@@ -39,6 +39,13 @@ public:
      */
     glm::vec2 GetSize() const override { return m_Size; };
 
+    /**
+     * @brief Sets the image to the specified file path.
+     *
+     * This function sets the image to the specified file path.
+     *
+     * @param filepath The file path to the image.
+     */
     void SetImage(const std::string &filepath);
 
     /**
@@ -53,9 +60,7 @@ public:
     void Draw(const Util::Transform &transform, const float zIndex) override;
 
 private:
-
     void InitProgram();
-
     void InitVertexArray();
     void InitUniformBuffer();
 

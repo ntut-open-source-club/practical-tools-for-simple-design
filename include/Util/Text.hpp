@@ -28,11 +28,21 @@ public:
 
     glm::vec2 GetSize() const override { return m_Size; };
 
+    /**
+     * @brief Sets the text to the specified string.
+     *
+     * @param text The string to set.
+     */
     void SetText(const std::string &text) {
         m_Text = text;
         ApplyTexture();
     }
 
+    /**
+     * @brief Sets the color of the text.
+     *
+     * @param color The color to set.
+     */
     void SetColor(const Util::Color &color) {
         m_Color = color;
         ApplyTexture();
@@ -46,26 +56,16 @@ public:
      */
     void Draw(const Transform &transform, const float zIndex) override;
 
-
 private:
-    /**
-     * @brief Initializes the shader program.
-     */
     void InitProgram();
-
-    /**
-     * @brief Initializes the vertex array.
-     */
     void InitVertexArray();
-
-    /**
-     * @brief Initializes the uniform buffer.
-     *
-     * @param transform The transform to apply to the text.
-     * @param zIndex The z-index at which to draw the text.
-     */
     void InitUniformBuffer();
 
+    /**
+     * @brief Applies the texture to the text.
+     * @note The user should call this function after updating the texture in
+     * case of custom methods/functions are used.
+     */
     void ApplyTexture();
 
     static constexpr int UNIFORM_SURFACE_LOCATION = 0;

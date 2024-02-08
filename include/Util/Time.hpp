@@ -11,8 +11,9 @@ namespace Util {
  *
  * This class provides functionalities such as getting the delta time between
  * frames.
+ *
  * @note It is designed as a singleton, meaning only one instance of this class
- * should exist. Therefore, you should NOT create your own `Time` object.
+ * should exist. Therefore, the user should NOT create their own `Time` object.
  */
 class Time {
 public:

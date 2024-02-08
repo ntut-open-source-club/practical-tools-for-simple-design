@@ -106,7 +106,7 @@ public:
     void Resume();
 
 private:
-    // Use functor instead of something like void (*)(Mix_Music *) as deleter to
+    // Use functor instead of function pointer as deleter to
     // make it less confusing.
     struct MusicDeleter {
         void operator()(Mix_Music *music) { Mix_FreeMusic(music); }
