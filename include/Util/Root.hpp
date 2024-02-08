@@ -11,11 +11,33 @@ class App;
 namespace Util {
 class Root final {
 public:
+    /**
+     * @brief Parameterized constructor.
+     *` 
+     *
+     * @param children The GameObject needing to be managed by the root.
+     */
     Root(const std::vector<std::shared_ptr<GameObject>> &children = {});
 
+    /**
+     * @brief Add a child to the root.
+     *
+     * @param child The GameObject needing to be managed by the root.
+     */
     void AddChild(std::shared_ptr<GameObject> child);
+
+    /**
+     * @brief Add children to the root.
+     *
+     * @param children The GameObjects needing to be managed by the root.
+     */
     void AddChildren(const std::vector<std::shared_ptr<GameObject>> &children);
 
+    /**
+     * @brief Draw children according to their z-index.
+     *
+     * @note The user is not recommended to modify this function.
+     */
     void Update();
 
 private:
