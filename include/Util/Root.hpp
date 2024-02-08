@@ -24,7 +24,7 @@ public:
      *
      * @param child The GameObject needing to be managed by the root.
      */
-    void AddChild(std::shared_ptr<GameObject> child);
+    void AddChild(const std::shared_ptr<GameObject> &child);
 
     /**
      * @brief Add children to the root.
@@ -32,6 +32,13 @@ public:
      * @param children The GameObjects needing to be managed by the root.
      */
     void AddChildren(const std::vector<std::shared_ptr<GameObject>> &children);
+
+    /**
+     * @brief Remove the child.
+     *
+     * @param child The GameObject being removed.
+     */
+    void RemoveChild(std::shared_ptr<GameObject> child);
 
     /**
      * @brief Draw children according to their z-index.

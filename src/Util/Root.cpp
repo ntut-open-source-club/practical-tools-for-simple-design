@@ -6,8 +6,13 @@ namespace Util {
 Root::Root(const std::vector<std::shared_ptr<GameObject>> &children)
     : m_Children(children) {}
 
-void Root::AddChild(std::shared_ptr<GameObject> child) {
+void Root::AddChild(const std::shared_ptr<GameObject>& child) {
     m_Children.push_back(child);
+}
+
+void Root::RemoveChild(std::shared_ptr<GameObject> child) {
+    m_Children.erase(std::remove(m_Children.begin(), m_Children.end(), child),
+                     m_Children.end());
 }
 
 void Root::AddChildren(

@@ -121,6 +121,16 @@ public:
         m_Children.push_back(child);
     }
 
+    /**
+     * @brief Remove a child from the game object.
+     *
+     * @param child The child to be removed.
+     */
+    void RemoveChild(const std::shared_ptr<GameObject> &child) {
+        m_Children.erase(std::remove(m_Children.begin(), m_Children.end(), child),
+                         m_Children.end());
+    }
+
     void Draw();
 
 protected:

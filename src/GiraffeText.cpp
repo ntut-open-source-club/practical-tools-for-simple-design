@@ -13,6 +13,4 @@ void GiraffeText::Update() {
     m_Text->SetText(fmt::format("{:.02f}", 1.0F / Util::Time::GetDeltaTime()));
 
     m_Text->SetColor({1, 0, 0, 1});
-
-    m_Drawable->Draw(m_Transform, m_ZIndex);
 }
