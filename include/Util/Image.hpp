@@ -13,7 +13,6 @@
 #include "Util/Transform.hpp"
 
 namespace Util {
-
 /**
  * @class Image
  * @brief A class representing an image.
@@ -54,19 +53,10 @@ public:
     void Draw(const Util::Transform &transform, const float zIndex) override;
 
 private:
-    /**
-     * @brief Initializes the shader program.
-     */
+
     void InitProgram();
 
-    /**
-     * @brief Initializes the vertex array.
-     */
     void InitVertexArray();
-
-    /**
-     * @brief Initializes the uniform buffer.
-     */
     void InitUniformBuffer();
 
     static constexpr int UNIFORM_SURFACE_LOCATION = 0;

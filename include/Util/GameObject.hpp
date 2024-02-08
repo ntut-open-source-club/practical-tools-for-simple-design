@@ -8,7 +8,6 @@
 #include "Util/Transform.hpp"
 
 namespace Util {
-
 /**
  * @class GameObject
  * @brief A class representing a game object.
@@ -42,16 +41,16 @@ public:
           m_ZIndex(zIndex),
           m_Visible(visible) {}
 
-    /**
-     * @brief Default destructor.
-     */
-    virtual ~GameObject() = default;
-
     // Deleted copy constructor.
     GameObject(const GameObject &other) = delete;
 
     // Deleted move constructor.
     GameObject(GameObject &&other) = delete;
+
+    /**
+     * @brief Default destructor.
+     */
+    virtual ~GameObject() = default;
 
     // Deleted assignment operator.
     GameObject &operator=(const GameObject &other) = delete;
@@ -141,13 +140,10 @@ public:
     virtual void
     Update(const Util::Transform &transform = Util::Transform()) = 0;
 
-    /**
-     * @brief Draw the game object.
-     */
     void Draw();
 
 protected:
-    Util::Transform m_Transform; // IDK if this should be here
+    Util::Transform m_Transform; // IDK if this should be here.
 
     std::shared_ptr<Core::Drawable> m_Drawable = nullptr;
     std::vector<std::shared_ptr<GameObject>> m_Children;

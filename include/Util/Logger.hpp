@@ -8,7 +8,6 @@
 #include "Util/Transform.hpp"
 
 namespace Util::Logger {
-
 /**
  * @enum Level
  * @brief Enum representing the logging levels.

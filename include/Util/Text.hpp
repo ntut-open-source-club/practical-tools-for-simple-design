@@ -13,7 +13,6 @@
 #include "Util/Transform.hpp"
 
 namespace Util {
-
 /**
  * @class Text
  * @brief A class representing a text.
@@ -47,7 +46,6 @@ public:
      */
     void Draw(const Transform &transform, const float zIndex) override;
 
-    glm::vec2 GetSize() const override { return m_Size; };
 
 private:
     /**
@@ -77,9 +75,6 @@ private:
     static std::unique_ptr<Core::UniformBuffer<Core::Matrices>> s_UniformBuffer;
 
 private:
-    /**
-     * @brief The texture of the text.
-     */
     std::unique_ptr<Core::Texture> m_Texture = nullptr;
     std::unique_ptr<TTF_Font, std::function<void(TTF_Font *)>> m_Font;
 
