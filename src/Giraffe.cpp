@@ -11,24 +11,6 @@
 
 #include "config.hpp"
 
-void GiraffeText::Update(const Util::Transform &transform) {
-    auto &pos = m_Transform.translation;
-    auto &scale = m_Transform.scale;
-    auto &rotation = m_Transform.rotation;
-
-    pos = transform.translation;
-    // rotation = std::fmod(rotation + 50.0F, 360.0F);
-    scale = transform.scale;
-
-    LOG_DEBUG("{} {}", scale.x, scale.y);
-
-    m_Drawable->Draw(m_Transform, m_ZIndex);
-}
-
-void GiraffeText::Start() {
-    this->SetDrawable(std::make_unique<Util::Text>(m_Font, m_Size, m_Text));
-}
-
 void Giraffe::Start() {}
 
 void Giraffe::Update([[maybe_unused]] const Util::Transform &transform) {
@@ -54,7 +36,7 @@ void Giraffe::Update([[maybe_unused]] const Util::Transform &transform) {
 
     pos += deltaTransform.translation;
     rotation += deltaTransform.rotation;
-    scale = deltaTransform.scale;
+    // scale = deltaTransform.scale;
 
     m_Drawable->Draw(m_Transform, m_ZIndex);
     for (auto &child : m_Children) {

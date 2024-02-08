@@ -8,6 +8,7 @@
 #include "Core/Drawable.hpp"
 #include "Core/Texture.hpp"
 
+#include "Util/Color.hpp"
 #include "Util/Logger.hpp"
 #include "Util/Transform.hpp"
 
@@ -23,14 +24,20 @@ namespace Util {
  */
 class Text : public Core::Drawable {
 public:
-    /**
-     * @brief Constructor that takes a font, size, and text.
-     *
-     * @param font The full path to the font e.g. "C:/Windows/fonts/inkfree.ttf".
-     * @param size The size of the text.
-     * @param text The text to be displayed.
-     */
-    Text(const std::string &font, int size, const std::string &text);
+    Text(const std::string &font, int size, const std::string &text,
+         const Util::Color &color = Color(0.5F, 0.5F, 0.5F, 1.0F));
+
+    glm::vec2 GetSize() const override { return m_Size; };
+
+    void SetText(const std::string &text) {
+        m_Text = text;
+        ApplyTexture();
+    }
+
+    void SetColor(const Util::Color &color) {
+        m_Color = color;
+        ApplyTexture();
+    };
 
     /**
      * @brief Draws the text with a given transform and z-index.
@@ -61,6 +68,8 @@ private:
      */
     void InitUniformBuffer();
 
+    void ApplyTexture();
+
     static constexpr int UNIFORM_SURFACE_LOCATION = 0;
 
     static std::unique_ptr<Core::Program> s_Program;
@@ -72,18 +81,11 @@ private:
      * @brief The texture of the text.
      */
     std::unique_ptr<Core::Texture> m_Texture = nullptr;
-
-    /**
-     * @brief The surface of the text.
-     */
-    std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> m_Surface =
-        nullptr;
-
-    /**
-     * @brief The font of the text.
-     */
     std::unique_ptr<TTF_Font, std::function<void(TTF_Font *)>> m_Font;
-    glm::vec2 m_Size = {0, 0};
+
+    std::string m_Text;
+    Util::Color m_Color;
+    glm::vec2 m_Size;
 };
 } // namespace Util
 

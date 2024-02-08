@@ -79,7 +79,6 @@ public:
         return m_Drawable->GetSize() * m_Transform.scale;
     };
 
-
     /**
      * @brief Get the children of the game object.
      *
@@ -96,15 +95,15 @@ public:
      *
      * @param index The new z-index of the game object.
      */
-    void SetZIndex(const float index) { m_ZIndex = index; }
+    void SetZIndex(float index) { m_ZIndex = index; }
 
     /**
      * @brief Set the drawable component of the game object.
      *
      * @param drawable The new drawable component of the game object.
      */
-    void SetDrawable(std::unique_ptr<Core::Drawable> drawable) {
-        m_Drawable = std::move(drawable);
+    void SetDrawable(const std::shared_ptr<Core::Drawable> &drawable) {
+        m_Drawable = drawable;
     }
 
     /**
@@ -119,8 +118,8 @@ public:
      *
      * @param child The new child of the game object.
      */
-    void AddChild(std::shared_ptr<GameObject> child) {
-        m_Children.push_back(std::move(child));
+    void AddChild(const std::shared_ptr<GameObject> &child) {
+        m_Children.push_back(child);
     }
 
     /**
@@ -150,7 +149,7 @@ public:
 protected:
     Util::Transform m_Transform; // IDK if this should be here
 
-    std::unique_ptr<Core::Drawable> m_Drawable = nullptr;
+    std::shared_ptr<Core::Drawable> m_Drawable = nullptr;
     std::vector<std::shared_ptr<GameObject>> m_Children;
 
     float m_ZIndex;
