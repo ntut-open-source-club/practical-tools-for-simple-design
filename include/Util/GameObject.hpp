@@ -14,7 +14,7 @@ namespace Util {
  * @brief A class representing a game object.
  *
  * This class encapsulates the properties and behaviors of a game object.
-   * @note This is an abstract class. Inherit from this class to create your own
+ * @note This is an abstract class. Inherit from this class to create your own
  * game objects.
  *
  */
@@ -42,6 +42,11 @@ public:
           m_ZIndex(zIndex),
           m_Visible(visible) {}
 
+    /**
+     * @brief Default destructor.
+     */
+    virtual ~GameObject() = default;
+
     // Deleted copy constructor.
     GameObject(const GameObject &other) = delete;
 
@@ -50,11 +55,6 @@ public:
 
     // Deleted assignment operator.
     GameObject &operator=(const GameObject &other) = delete;
-
-    /**
-     * @brief Default destructor.
-     */
-    virtual ~GameObject() = default;
 
     /**
      * @brief Get the z-index of the game object.
@@ -71,9 +71,9 @@ public:
     Transform GetTransform() const { return m_Transform; }
 
     /**
-     * @brief Get the drawable component of the game object.
+     * @brief Get the size of its drawable component.
      *
-     * @return The drawable component of the game object.
+     * @return vec2(x, y) representing the size of the drawable component.
      */
     glm::vec2 GetScaledSize() const {
         return m_Drawable->GetSize() * m_Transform.scale;
