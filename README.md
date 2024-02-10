@@ -24,7 +24,7 @@ Optional: Ninja Build, Clang
 
 [//]: # (TODO: No IDE Quick Start)
 > [!WARNING]  
-> This section is work on progress.
+> This section is work in progress.
 
 ```
 git clone https://ntut-open-source-club/practical-tools-for-simple-design.git
@@ -50,13 +50,13 @@ cmake --build build
 
 [//]: # (TODO: VSCode Quick Start)
 > [!WARNING]  
-> This section is work on progress.
+> This section is work in progress.
 
 ### CLion
 
 [//]: # (TODO: Clion Quick Start)
 > [!WARNING]  
-> This section is work on progress.
+> This section is work in progress.
 
 ###### NOTE: If you have time, read [OOP2023f Environment Setup](https://hackmd.io/@OOP2023f/rk2-8cVCh)
 
