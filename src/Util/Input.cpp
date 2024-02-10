@@ -65,8 +65,7 @@ void Input::Update() {
                           s_Event.button.button != SDL_BUTTON_LEFT;
         } else {
             s_LBPressed = (s_Event.type == SDL_MOUSEBUTTONDOWN &&
-                           s_Event.button.button == SDL_BUTTON_LEFT) ||
-                          s_LBPressed;
+                           s_Event.button.button == SDL_BUTTON_LEFT);
         }
 
         if (s_RBPressed) {
@@ -74,8 +73,7 @@ void Input::Update() {
                           s_Event.button.button != SDL_BUTTON_RIGHT;
         } else {
             s_RBPressed = (s_Event.type == SDL_MOUSEBUTTONDOWN &&
-                           s_Event.button.button == SDL_BUTTON_RIGHT) ||
-                          s_RBPressed;
+                           s_Event.button.button == SDL_BUTTON_RIGHT);
         }
 
         if (s_MBPressed) {
@@ -83,10 +81,10 @@ void Input::Update() {
                           s_Event.button.button != SDL_BUTTON_MIDDLE;
         } else {
             s_MBPressed = (s_Event.type == SDL_MOUSEBUTTONDOWN &&
-                           s_Event.button.button == SDL_BUTTON_MIDDLE) ||
-                          s_MBPressed;
-            s_Scroll = s_Event.type == SDL_MOUSEWHEEL || s_Scroll;
+                           s_Event.button.button == SDL_BUTTON_MIDDLE);
         }
+
+        s_Scroll = s_Event.type == SDL_MOUSEWHEEL || s_Scroll;
 
         if (s_Scroll) {
             s_ScrollDistance.x = static_cast<float>(s_Event.wheel.x);
