@@ -21,14 +21,14 @@ void App::Start() {
 }
 
 void App::Update() {
-    if (Util::Input::IsLButtonPressed()) {
-        LOG_DEBUG("Left button pressed");
+    if (Util::Input::IsLButtonDown()) {
+        LOG_DEBUG("Left button down");
     }
-    if (Util::Input::IsRButtonPressed()) {
-        LOG_DEBUG("Right button pressed");
+    if (Util::Input::IsRButtonDown()) {
+        LOG_DEBUG("Right button down");
     }
-    if (Util::Input::IsMButtonPressed()) {
-        LOG_DEBUG("Middle button pressed");
+    if (Util::Input::IsMButtonDown()) {
+        LOG_DEBUG("Middle button down");
     }
     if (Util::Input::IfScroll()) {
         auto delta = Util::Input::GetScrollDistance();

@@ -15,7 +15,7 @@ namespace Util {
 * @brief The Input class provides access to keyboard and mouse input.
 * @note This class is a singleton and constructable. Use is as follows: \n
             `Util::Input::IsKeyPressed(Keycode::A)`,
-            `Util::Input::IsLButtonPressed()`, etc.
+            `Util::Input::IsLButtonDown()`, etc.
 */
 class Input {
 public:
@@ -67,27 +67,27 @@ public:
     static bool IsKeyPressed(const Keycode &key);
 
     /**
-     * \brief Checks if the left mouse button is currently pressed.
+     * \brief Checks if the left mouse button is currently down.
      *
-     * \return true if the left mouse button is currently pressed, false
+     * \return true if the left mouse button is currently down, false
      * otherwise.r
      *
      */
-    static bool IsLButtonPressed();
+    static bool IsLButtonDown();
 
     /**
-     * @brief Checks if the right mouse button is currently pressed.
-     * @return  true if the right mouse button is currently pressed, false
+     * @brief Checks if the right mouse button is currently down.
+     * @return  true if the right mouse button is currently down, false
      * otherwise.
      */
-    static bool IsRButtonPressed();
+    static bool IsRButtonDown();
 
     /**
-     * @brief Checks if the middle mouse button is currently pressed.
-     * @return  true if the middle mouse button is currently pressed, false
+     * @brief Checks if the middle mouse button is currently down.
+     * @return  true if the middle mouse button is currently down, false
      * otherwise.
      */
-    static bool IsMButtonPressed();
+    static bool IsMButtonDown();
 
     /**
      * @brief Checks if the mouse wheel is currently being scrolled.
