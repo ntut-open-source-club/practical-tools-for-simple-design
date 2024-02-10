@@ -122,23 +122,14 @@ public:
     }
 
     /**
-     * @brief Start the game object.
+     * @brief Remove a child from the game object.
      *
-     * This is a pure virtual function that needs to be implemented by derived
-     * classes.
+     * @param child The child to be removed.
      */
-    virtual void Start() = 0;
-
-    /**
-     * @brief Update the game object.
-     *
-     * This is a pure virtual function that needs to be implemented by derived
-     * classes.
-     *
-     * @param transform The new transform of the game object.
-     */
-    virtual void
-    Update(const Util::Transform &transform = Util::Transform()) = 0;
+    void RemoveChild(const std::shared_ptr<GameObject> &child) {
+        m_Children.erase(std::remove(m_Children.begin(), m_Children.end(), child),
+                         m_Children.end());
+    }
 
     void Draw();
 

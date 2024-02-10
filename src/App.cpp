@@ -15,10 +15,7 @@ void App::Start() {
     m_Giraffe->SetZIndex(5);
     m_Giraffe->Start();
 
-    auto gf = std::make_shared<GiraffeText>("../assets/fonts/Inter.ttf", 50);
-    gf->SetZIndex(m_Giraffe->GetZIndex() - 1);
-    gf->Start();
-    m_Giraffe->AddChild(gf);
+    m_Root.AddChild(m_Giraffe);
 
     m_CurrentState = State::UPDATE;
 }
@@ -55,6 +52,8 @@ void App::Update() {
     }
 
     m_Giraffe->Update();
+
+    m_Root.Update();
 }
 
 void App::End() { // NOLINT(this method will mutate members in the future)

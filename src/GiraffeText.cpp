@@ -9,19 +9,8 @@ void GiraffeText::Start() {
     SetDrawable(m_Text);
 }
 
-void GiraffeText::Update(const Util::Transform &transform) {
-    // auto &pos = m_Transform.translation;
-    // auto &scale = m_Transform.scale;
-    // auto &rotation = m_Transform.rotation;
-
-    // pos = transform.translation;
-    // rotation = std::fmod(rotation + 50.0F, 360.0F);
-    // scale = transform.scale;
+void GiraffeText::Update() {
     m_Text->SetText(fmt::format("{:.02f}", 1.0F / Util::Time::GetDeltaTime()));
 
     m_Text->SetColor({1, 0, 0, 1});
-
-    // LOG_DEBUG("{} {}", scale.x, scale.y);
-
-    m_Drawable->Draw(m_Transform, m_ZIndex);
 }
