@@ -1,0 +1,73 @@
+name: Bug Report
+description: Report a problem in PTSD
+labels: [bug]
+body:
+
+  - type: markdown
+    attributes:
+      value: |
+        *Before reporting:*
+        - Confirm the problem is reproducible on **master** or **latest stable** release
+        - Search [existing issues](https://github.com/ntut-open-source-club/practical-tools-for-simple-design/issues?q=is%3Aissue+label%3Abug)
+        - When reporting a crash, include a stacktrace.
+        - Include `cmake --system-information` for build-related issues.
+  - type: textarea
+    attributes:
+      label: "Problem"
+      description: "Describe the current behavior. May include logs, images, or videos."
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "Steps to reproduce"
+      description: |
+        - For build failures: list the exact steps including CMake flags (if any).
+        - If the bug pertains to crashing (or segfault), please include a [stacktrace](https://neovim.io/doc/user/dev_tools.html#dev-tools-backtrace).
+        - For startup or shell-related problems: try `env -i TERM=ansi-256color "$(which nvim)"`.
+        - Use the provided [minimal reproduction template](https://github.com/neovim/neovim/blob/master/contrib/minimal.lua) to create a minimal configuration. After you fill it out with necessary information, run with `nvim --clean -u minimal.lua`.
+        - Please do **not** include a package manager in the reproduction steps.
+      placeholder: |
+        nvim --clean
+        :edit foo
+        yiwp
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "Expected behavior"
+      description: "Describe the behavior you expect."
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: "PTSD version"
+      placeholder: "013246df758a14ea083bfbe7726a589db19a560a"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: "Operating system/version"
+      placeholder: "macOS 11.5"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: "CMake version"
+      placeholder: "3.27.8"
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: "OpenGL Info"
+      description: If the issue happen related to graphic
+      placeholder: |
+        [info] OpenGL Info
+        [info]   Vendor: Apple
+        [info]   Renderer: Apple M2
+        [info]   Version: 4.1 Metal - 88
+        [info]   GLSL Version: 4.10
+      render: txt
+    validations:
+      required: false
