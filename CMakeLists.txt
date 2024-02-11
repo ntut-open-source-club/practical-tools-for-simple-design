@@ -92,7 +92,7 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
     )
 else()
     target_compile_definitions(${PROJECT_NAME} PRIVATE
-        PTSD_DIR="../"
+        PTSD_DIR=".."
     )
 endif()
 
