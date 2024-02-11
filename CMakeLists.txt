@@ -85,6 +85,17 @@ set(INCLUDE_FILES
 add_library(${PROJECT_NAME}
     ${SRC_FILES}
 )
+
+if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+    target_compile_definitions(${PROJECT_NAME} PRIVATE
+        PTSD_DIR="${CMAKE_CURRENT_SOURCE_DIR}"
+    )
+else()
+    target_compile_definitions(${PROJECT_NAME} PRIVATE
+        PTSD_DIR="../"
+    )
+endif()
+
 target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE
     ${DEPENDENCY_INCLUDE_DIRS}
 )
