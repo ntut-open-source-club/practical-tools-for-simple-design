@@ -17,6 +17,8 @@ namespace Util {
  */
 class Time {
 public:
+    static void StartCounter() { s_Start = SDL_GetPerformanceCounter(); }
+
     /**
      * @brief Get the delta time between frames in seconds.
      *
@@ -26,6 +28,8 @@ public:
      * @return The delta time between frames in seconds.
      */
     static double GetDeltaTime() { return s_DeltaTime; }
+
+    static float GetElapsedTimeMs();
 
     /**
      * @brief Update the time.
@@ -37,6 +41,8 @@ public:
     static void Update();
 
 private:
+    static unsigned long s_Start;
+
     /**
      * @brief The current time.
      *
