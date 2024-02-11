@@ -4,9 +4,9 @@
 
 Util::Time Time(); // static lifetime object
 
-float Util::Time::GetElapsedTimeMs() {
-    return 1000 * static_cast<float>(SDL_GetPerformanceCounter() - s_Start) /
-           static_cast<float>(SDL_GetPerformanceFrequency());
+unsigned long Util::Time::GetElapsedTimeMs() {
+    return 1000 * (SDL_GetPerformanceCounter() - s_Start) /
+           (SDL_GetPerformanceFrequency());
 }
 
 void Util::Time::Update() {

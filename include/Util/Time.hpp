@@ -29,7 +29,7 @@ public:
      */
     static double GetDeltaTime() { return s_DeltaTime; }
 
-    static float GetElapsedTimeMs();
+    static unsigned long GetElapsedTimeMs();
 
     /**
      * @brief Update the time.

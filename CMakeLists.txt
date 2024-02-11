@@ -44,10 +44,12 @@ set(SRC_FILES
     ${SRC_DIR}/Util/TransformUtils.cpp
     ${SRC_DIR}/Util/GameObject.cpp
     ${SRC_DIR}/Util/Root.cpp
+    ${SRC_DIR}/Util/Animation.cpp
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/Giraffe.cpp
     ${SRC_DIR}/GiraffeText.cpp
+    ${SRC_DIR}/Cat.cpp
 )
 set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
 set(INCLUDE_FILES
@@ -78,10 +80,12 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/GameObject.hpp
     ${INCLUDE_DIR}/Util/Root.hpp
     ${INCLUDE_DIR}/Util/Color.hpp
+    ${INCLUDE_DIR}/Util/Animation.hpp
 
     ${INCLUDE_DIR}/App.hpp
     ${INCLUDE_DIR}/Giraffe.hpp
     ${INCLUDE_DIR}/GiraffeText.hpp
+    ${INCLUDE_DIR}/Cat.hpp
     ${INCLUDE_DIR}/config.hpp
 )
 set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
