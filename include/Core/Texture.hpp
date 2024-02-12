@@ -6,7 +6,7 @@
 namespace Core {
 class Texture {
 public:
-    Texture(unsigned int channels, int width, int height, const void *data);
+    Texture(GLint format, int width, int height, const void *data);
     Texture(const Texture &) = delete;
     Texture(Texture &&texture);
 
@@ -20,8 +20,7 @@ public:
     void Bind(int slot) const;
     void Unbind() const;
 
-    void UpdateData(unsigned int channels, int width, int height,
-                    const void *data);
+    void UpdateData(GLint format, int width, int height, const void *data);
 
 private:
     GLuint m_TextureId;

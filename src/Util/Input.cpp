@@ -1,6 +1,7 @@
 #include "Util/Input.hpp"
 
 #include <SDL_events.h> // for SDL_Event
+#include "config.hpp"
 
 namespace Util {
 
@@ -51,6 +52,10 @@ void Input::Update() {
     SDL_GetMouseState(&x, &y);
     s_CursorPosition.x = static_cast<float>(x);
     s_CursorPosition.y = static_cast<float>(y);
+
+    s_CursorPosition.x -= static_cast<float>(WINDOW_WIDTH) / 2;
+    s_CursorPosition.y =
+        -(s_CursorPosition.y - static_cast<float>(WINDOW_HEIGHT) / 2);
 
     s_LBPressed = s_RBPressed = s_MBPressed = s_Scroll = s_MouseMoving = false;
 

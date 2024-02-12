@@ -1,36 +1,13 @@
 #include "Core/Texture.hpp"
 
+#include "Core/TextureUtils.hpp"
+
 #include "Util/Logger.hpp"
 
-GLint ChannelsToInternalFormat(unsigned int channels) {
-    switch (channels) {
-    case 3:
-        return GL_RGB16;
-    case 4:
-        return GL_RGBA16;
-    default:
-        LOG_ERROR("Format currently unsupported");
-        return -1;
-    }
-};
-
-GLint ChannelsToFormat(unsigned int channels) {
-    switch (channels) {
-    case 3:
-        return GL_RGB;
-    case 4:
-        return GL_RGBA;
-    default:
-        LOG_ERROR("Format currently unsupported");
-        return -1;
-    }
-};
-
 namespace Core {
-Texture::Texture(unsigned int channels, int width, int height,
-                 const void *data) {
+Texture::Texture(GLint format, int width, int height, const void *data) {
     glGenTextures(1, &m_TextureId);
-    UpdateData(channels, width, height, data);
+    UpdateData(format, width, height, data);
 }
 
 Texture::Texture(Texture &&texture) {
@@ -70,12 +47,14 @@ void Texture::Unbind() const {
  * OpenGL under the hood, so it doesn't make sense to mark it as `const`
  */
 // NOLINTNEXTLINE(readability-make-member-function-const)
-void Texture::UpdateData(unsigned int channels, int width, int height,
+void Texture::UpdateData(GLint format, int width, int height,
                          const void *data) {
     glBindTexture(GL_TEXTURE_2D, m_TextureId);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, ChannelsToInternalFormat(channels), width,
-                 height, 0, ChannelsToFormat(channels), GL_UNSIGNED_BYTE, data);
+    // Reference:
+    // https://registry.khronos.org/OpenGL-Refpages/gl4/html/glTexImage2D.xhtml
+    glTexImage2D(GL_TEXTURE_2D, 0, GlFormatToGlInternalFormat(format), width,
+                 height, 0, format, GL_UNSIGNED_BYTE, data);
 
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);

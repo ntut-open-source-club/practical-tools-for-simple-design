@@ -1,15 +1,18 @@
-#include "Core/Texture.hpp"
+#include "Util/Image.hpp"
 
 #include "pch.hpp"
 
-#include "Util/Image.hpp"
+#include "Core/Texture.hpp"
+#include "Core/TextureUtils.hpp"
+
 #include "Util/TransformUtils.hpp"
 #include "Util/TransparentImage.hpp"
 
 #include "config.hpp"
 
 namespace Util {
-Image::Image(const std::string &filepath) {
+Image::Image(const std::string &filepath)
+    : m_Path(filepath) {
     if (s_Program == nullptr) {
         InitProgram();
     }
@@ -20,22 +23,43 @@ Image::Image(const std::string &filepath) {
         InitUniformBuffer();
     }
 
-    m_Surface = {IMG_Load(filepath.c_str()), SDL_FreeSurface};
+    auto surface =
+        std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
+            IMG_Load(filepath.c_str()),
+            SDL_FreeSurface,
+        };
 
-    if (m_Surface == nullptr) {
-        m_Surface = { GetTransparentImageSDLSurface(), SDL_FreeSurface };
+    if (surface == nullptr) {
+        surface = { GetTransparentImageSDLSurface(), SDL_FreeSurface };
         LOG_ERROR("Failed to load image: '{}'", filepath);
         LOG_ERROR("{}", IMG_GetError());
     }
 
     m_Texture = std::make_unique<Core::Texture>(
-        m_Surface->format->BytesPerPixel, m_Surface->w, m_Surface->h,
-        m_Surface->pixels);
+        Core::SdlFormatToGlFormat(surface->format->format), surface->w,
+        surface->h, surface->pixels);
+    m_Size = {surface->w, surface->h};
+}
+
+void Image::SetImage(const std::string &filepath) {
+    auto surface =
+        std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
+            IMG_Load(filepath.c_str()),
+            SDL_FreeSurface,
+        };
+    if (surface == nullptr) {
+        LOG_ERROR("Failed to load image: '{}'", filepath);
+        LOG_ERROR("{}", IMG_GetError());
+    }
+
+    m_Texture->UpdateData(Core::SdlFormatToGlFormat(surface->format->format),
+                          surface->w, surface->h, surface->pixels);
+    m_Size = {surface->w, surface->h};
 }
 
 void Image::Draw(const Util::Transform &transform, const float zIndex) {
-    // FIXME: temporary fix
-    InitUniformBuffer(transform, zIndex);
+    auto data = Util::ConvertToUniformBufferData(transform, m_Size, zIndex);
+    s_UniformBuffer->SetData(0, data);
 
     m_Texture->Bind(UNIFORM_SURFACE_LOCATION);
     s_Program->Bind();
@@ -58,9 +82,6 @@ void Image::InitProgram() {
 void Image::InitVertexArray() {
     s_VertexArray = std::make_unique<Core::VertexArray>();
 
-    // hard coded value
-    constexpr float scale = 100.0F;
-
     // NOLINTBEGIN
     // These are vertex data for the rectangle but clang-tidy has magic
     // number warnings
@@ -68,10 +89,10 @@ void Image::InitVertexArray() {
     // Vertex
     s_VertexArray->AddVertexBuffer(std::make_unique<Core::VertexBuffer>(
         std::vector<float>{
-            -1.0F * scale, 1.0F * scale,  //
-            -1.0F * scale, -1.0F * scale, //
-            1.0F * scale, -1.0F * scale,  //
-            1.0F * scale, 1.0F * scale,   //
+            -0.5F, 0.5F,  //
+            -0.5F, -0.5F, //
+            0.5F, -0.5F,  //
+            0.5F, 0.5F,   //
         },
         2));
 
@@ -94,27 +115,9 @@ void Image::InitVertexArray() {
     // NOLINTEND
 }
 
-void Image::InitUniformBuffer(const Util::Transform &transform,
-                              const float zIndex) { // YESLINT
+void Image::InitUniformBuffer() {
     s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
-
-    constexpr glm::mat4 eye(1.F);
-
-    constexpr float nearClip = -100;
-    constexpr float farClip = 100;
-
-    auto projection =
-        glm::ortho<float>(0.0F, 1.0F, 0.0F, 1.0F, nearClip, farClip);
-    auto view = glm::scale(eye, {1.F / WINDOW_WIDTH, 1.F / WINDOW_HEIGHT, 1.F}) *
-                glm::translate(eye, {WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 0});
-
-    Core::Matrices data = {
-        Util::TransformToMat4(transform, zIndex),
-        projection * view,
-    };
-
-    s_UniformBuffer->SetData(0, data);
 }
 
 std::unique_ptr<Core::Program> Image::s_Program = nullptr;

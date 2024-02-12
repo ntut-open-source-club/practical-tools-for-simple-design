@@ -12,6 +12,7 @@ void Util::Time::Update() {
                   static_cast<double>(SDL_GetPerformanceFrequency());
 }
 
-unsigned long Util::Time::s_Now = static_cast<unsigned long>(SDL_GetPerformanceCounter());
+unsigned long Util::Time::s_Now =
+    static_cast<unsigned long>(SDL_GetPerformanceCounter());
 unsigned long Util::Time::s_Last = 0;
 double Util::Time::s_DeltaTime = 0;

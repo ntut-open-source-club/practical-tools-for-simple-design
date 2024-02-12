@@ -1,6 +1,7 @@
 // FIXME: this file should be refactor, API change reference from Image.cpp
 
 #include "Core/Texture.hpp"
+#include "Core/TextureUtils.hpp"
 
 #include "Util/Text.hpp"
 #include "Util/TransformUtils.hpp"
@@ -8,7 +9,10 @@
 #include "config.hpp"
 
 namespace Util {
-Text::Text(const std::string &font, int size, const std::string &text) {
+Text::Text(const std::string &font, int fontSize, const std::string &text,
+           const Util::Color &color)
+    : m_Text(text),
+      m_Color(color) {
     if (s_Program == nullptr) {
         InitProgram();
     }
@@ -19,31 +23,34 @@ Text::Text(const std::string &font, int size, const std::string &text) {
         InitUniformBuffer();
     }
 
-    m_Font = {TTF_OpenFont(font.c_str(), size), TTF_CloseFont};
+    m_Font = {TTF_OpenFont(font.c_str(), fontSize), TTF_CloseFont};
 
     if (m_Font == nullptr) {
         LOG_ERROR("Failed to load font: '{}'", text);
         LOG_ERROR("{}", TTF_GetError());
     }
 
-    m_Surface = {TTF_RenderUTF8_Blended_Wrapped(m_Font.get(), text.c_str(),
-                                                SDL_Color{255, 0, 255, 0}, 0),
-                 SDL_FreeSurface};
-
-    if (m_Surface == nullptr) {
+    auto surface =
+        std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
+            TTF_RenderUTF8_Blended_Wrapped(m_Font.get(), m_Text.c_str(),
+                                           m_Color.ToSdlColor(), 0),
+            SDL_FreeSurface,
+        };
+    if (surface == nullptr) {
         LOG_ERROR("Failed to create text");
         LOG_ERROR("{}", TTF_GetError());
     }
 
     m_Texture = std::make_unique<Core::Texture>(
-        m_Surface->format->BytesPerPixel,
-        m_Surface->pitch / m_Surface->format->BytesPerPixel, m_Surface->h,
-        m_Surface->pixels);
+        Core::SdlFormatToGlFormat(surface->format->format),
+        surface->pitch / surface->format->BytesPerPixel, surface->h,
+        surface->pixels);
+    m_Size = {surface->pitch / surface->format->BytesPerPixel, surface->h};
 }
 
 void Text::Draw(const Util::Transform &transform, const float zIndex) {
-    // FIXME: temporary fix
-    InitUniformBuffer(transform, zIndex);
+    auto data = Util::ConvertToUniformBufferData(transform, m_Size, zIndex);
+    s_UniformBuffer->SetData(0, data);
 
     m_Texture->Bind(UNIFORM_SURFACE_LOCATION);
     s_Program->Bind();
@@ -66,9 +73,6 @@ void Text::InitProgram() {
 void Text::InitVertexArray() {
     s_VertexArray = std::make_unique<Core::VertexArray>();
 
-    // hard coded value
-    constexpr float scale = 100.0F;
-
     // NOLINTBEGIN
     // These are vertex data for the rectangle but clang-tidy has magic
     // number warnings
@@ -76,10 +80,10 @@ void Text::InitVertexArray() {
     // Vertex
     s_VertexArray->AddVertexBuffer(std::make_unique<Core::VertexBuffer>(
         std::vector<float>{
-            -1.0F * scale, 1.0F * scale,  //
-            -1.0F * scale, -1.0F * scale, //
-            1.0F * scale, -1.0F * scale,  //
-            1.0F * scale, 1.0F * scale,   //
+            -0.5F, 0.5F,  //
+            -0.5F, -0.5F, //
+            0.5F, -0.5F,  //
+            0.5F, 0.5F,   //
         },
         2));
 
@@ -102,27 +106,26 @@ void Text::InitVertexArray() {
     // NOLINTEND
 }
 
-void Text::InitUniformBuffer(const Util::Transform &transform,
-                             const float zIndex) {
+void Text::InitUniformBuffer() {
     s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
+}
 
-    constexpr glm::mat4 eye(1.F);
+void Text::ApplyTexture() {
+    auto surface =
+        std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
+            TTF_RenderUTF8_Blended_Wrapped(m_Font.get(), m_Text.c_str(),
+                                           m_Color.ToSdlColor(), 0),
+            SDL_FreeSurface,
+        };
+    if (surface == nullptr) {
+        LOG_ERROR("Failed to create text: {}", TTF_GetError());
+    }
 
-    constexpr float nearClip = -100;
-    constexpr float farClip = 100;
-
-    auto projection =
-        glm::ortho<float>(0.0F, 1.0F, 0.0F, 1.0F, nearClip, farClip);
-    auto view = glm::scale(eye, {1.F / WINDOW_WIDTH, 1.F / WINDOW_HEIGHT, 1.F}) *
-        glm::translate(eye, {WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 0});
-
-    Core::Matrices data = {
-        Util::TransformToMat4(transform, zIndex),
-        projection * view,
-    };
-
-    s_UniformBuffer->SetData(0, data);
+    m_Texture->UpdateData(Core::SdlFormatToGlFormat(surface->format->format),
+                          surface->pitch / surface->format->BytesPerPixel,
+                          surface->h, surface->pixels);
+    m_Size = {surface->pitch / surface->format->BytesPerPixel, surface->h};
 }
 
 std::unique_ptr<Core::Program> Text::s_Program = nullptr;

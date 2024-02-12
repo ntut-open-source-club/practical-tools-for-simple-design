@@ -30,6 +30,7 @@ public:
     void SetData(int offset, const T &data);
 
 private:
+    GLuint m_Binding;
     GLuint m_BufferId;
 };
 } // namespace Core
