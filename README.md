@@ -2,15 +2,16 @@
 
 ###### Officially Supported Platforms and IDEs
 
-|               | Windows | macOS | Linux |
-|:-------------:|:-------:|:-----:|:-----:|
-| CLion         |    V    |   V   |   V   |
-| VSCode        |    V    |   V   |   V*  |
-| No IDE        |    V    |   V   |   V   |
+|                                | Windows | macOS | Linux |
+|:------------------------------:|:-------:|:-----:|:-----:|
+|             CLion              |    V    |   V   |   V   |
+|        VSCode[^codeoss]        |    V    |   V   |   V   |
+| Visual Studio[^novs][^vsmacos] |    ?    |   X   |   X   |
+|             No IDE             |    V    |   V   |   V   |
 
-\?: [Microsoft Kills Visual Studio for Mac](https://visualstudiomagazine.com/articles/2023/08/30/vs-for-mac-retirement.aspx)
-
-\*: On Linux the support of Code - OSS and VSCodium aren't guaranteed.
+[^vsmacos]: [Microsoft Kills Visual Studio for Mac](https://visualstudiomagazine.com/articles/2023/08/30/vs-for-mac-retirement.aspx)
+[^codeoss]: On Linux the support of Code - OSS and VSCodium aren't guaranteed.
+[^novs]: We can't provide technical support on Visual Studio. You still can use VS to develop.
 
 ## Getting Started
 
@@ -27,8 +28,8 @@ Optional: Ninja Build, Clang
 > This section is work in progress.
 
 ```
-git clone https://ntut-open-source-club/practical-tools-for-simple-design.git
-
+git clone https://github.com/ntut-open-source-club/practical-tools-for-simple-design.git
+cd practical-tools-for-simple-design
 cmake -B build
 cmake --build build
 ```
