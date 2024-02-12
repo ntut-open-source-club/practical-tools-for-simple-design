@@ -38,7 +38,8 @@ static constexpr std::array<std::byte, N> DecodeBase64(std::string_view b64Str)
         val = (val << 6) + T[b64Str[i]];
         valb += 6;
         if (valb >= 0) {
-            out[posOut++] = std::byte((val >> valb) & 0xFF);
+            out[posOut] = std::byte((val >> valb) & 0xFF);
+            posOut += 1;
             valb -= 8;
         }
     }
