@@ -11,7 +11,7 @@
 
 [^vsmacos]: [Microsoft Kills Visual Studio for Mac](https://visualstudiomagazine.com/articles/2023/08/30/vs-for-mac-retirement.aspx)
 [^codeoss]: On Linux the support of Code - OSS and VSCodium aren't guaranteed.
-[^novs]: We can't provide technical support on Visual Studio. You still can use VS to develop.
+[^novs]: We don't provide support for Visual Studio, but building PTSD on VS is available.
 
 ## Getting Started
 
