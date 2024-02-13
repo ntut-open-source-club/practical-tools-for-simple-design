@@ -1,7 +1,5 @@
 #include "Cat.hpp"
 
-// #define F
-
 Cat::Cat()
     : m_Animation(
           {

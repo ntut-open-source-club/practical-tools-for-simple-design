@@ -127,8 +127,9 @@ public:
      * @param child The child to be removed.
      */
     void RemoveChild(const std::shared_ptr<GameObject> &child) {
-        m_Children.erase(std::remove(m_Children.begin(), m_Children.end(), child),
-                         m_Children.end());
+        m_Children.erase(
+            std::remove(m_Children.begin(), m_Children.end(), child),
+            m_Children.end());
     }
 
     void Draw();
@@ -139,7 +140,7 @@ protected:
     std::shared_ptr<Core::Drawable> m_Drawable = nullptr;
     std::vector<std::shared_ptr<GameObject>> m_Children;
 
-    float m_ZIndex;
+    float m_ZIndex = 0;
     bool m_Visible = true;
 };
 } // namespace Util
