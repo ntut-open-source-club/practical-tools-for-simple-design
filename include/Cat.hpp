@@ -13,7 +13,7 @@ public:
     void Update();
 
 private:
-    Util::Animation m_Animation;
+    std::shared_ptr<Util::Animation> m_Animation;
 };
 
 #endif

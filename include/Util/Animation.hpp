@@ -3,6 +3,8 @@
 
 #include "pch.hpp"
 
+#include "Core/Drawable.hpp"
+
 #include "Util/Image.hpp"
 
 namespace Util {
@@ -10,7 +12,7 @@ namespace Util {
  * @class Animation
  * @brief Class representing an animation with frames.
  */
-class Animation {
+class Animation : public Core::Drawable {
 public:
     /**
      * @brief Constructor for Animation class.
@@ -42,12 +44,6 @@ public:
     int GetCooldown() const { return m_Cooldown; }
 
     /**
-     * @brief Get the current frame of the animation.
-     * @return Pointer to the current frame image.
-     */
-    std::shared_ptr<Util::Image> GetCurrentFrame();
-
-    /**
      * @brief Set the interval between frames.
      * @param interval Interval between frames in milliseconds.
      */
@@ -71,10 +67,20 @@ public:
      */
     void SetCurrentFrame(std::size_t index) { m_Index = index; };
 
+    void Draw(const Util::Transform &transform, const float zIndex) override;
+
+    glm::vec2 GetSize() const override { return m_Frames[m_Index]->GetSize(); }
+
     /**
      * @brief Reset the animation to its initial frame.
      */
     void Reset() { SetCurrentFrame(0); }
+
+private:
+    /**
+     * @brief Update the animation frames.
+     */
+    void Update();
 
 private:
     unsigned long m_StartTime;

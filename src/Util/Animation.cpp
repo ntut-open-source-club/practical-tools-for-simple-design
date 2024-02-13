@@ -14,9 +14,16 @@ Animation::Animation(const std::vector<std::string> &paths, int interval,
     for (const auto &path : paths) {
         m_Frames.push_back(std::make_shared<Util::Image>(path));
     }
+
+    Update();
 }
 
-std::shared_ptr<Util::Image> Animation::GetCurrentFrame() {
+void Animation::Draw(const Util::Transform &transform, const float zIndex) {
+    m_Frames[m_Index]->Draw(transform, zIndex);
+    Update();
+}
+
+void Animation::Update() {
     std::size_t delta = Util::Time::GetElapsedTimeMs() - m_StartTime;
 
     if (m_Looping) {
@@ -31,8 +38,5 @@ std::shared_ptr<Util::Image> Animation::GetCurrentFrame() {
     } else {
         m_Index = (delta / m_Interval) % m_Frames.size();
     }
-
-    return m_Frames[m_Index];
 };
-
 } // namespace Util
