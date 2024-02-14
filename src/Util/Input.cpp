@@ -60,28 +60,31 @@ void Input::Update() {
     s_Scroll = s_MouseMoving = false;
 
     while (SDL_PollEvent(&s_Event) != 0) {
-        if (s_LBPressed) {
-            s_LBPressed = s_Event.type != SDL_MOUSEBUTTONUP ||
-                          s_Event.button.button != SDL_BUTTON_LEFT;
-        } else {
-            s_LBPressed = (s_Event.type == SDL_MOUSEBUTTONDOWN &&
-                           s_Event.button.button == SDL_BUTTON_LEFT);
+        if (s_Event.type == SDL_MOUSEBUTTONUP &&
+            s_Event.button.button == SDL_BUTTON_LEFT) {
+            s_LBPressed = false;
+        }
+        if (s_Event.type == SDL_MOUSEBUTTONDOWN &&
+            s_Event.button.button == SDL_BUTTON_LEFT) {
+            s_LBPressed = true;
         }
 
-        if (s_RBPressed) {
-            s_RBPressed = s_Event.type != SDL_MOUSEBUTTONUP ||
-                          s_Event.button.button != SDL_BUTTON_RIGHT;
-        } else {
-            s_RBPressed = (s_Event.type == SDL_MOUSEBUTTONDOWN &&
-                           s_Event.button.button == SDL_BUTTON_RIGHT);
+        if (s_Event.type == SDL_MOUSEBUTTONUP &&
+            s_Event.button.button == SDL_BUTTON_RIGHT) {
+            s_RBPressed = false;
+        }
+        if (s_Event.type == SDL_MOUSEBUTTONDOWN &&
+            s_Event.button.button == SDL_BUTTON_RIGHT) {
+            s_RBPressed = true;
         }
 
-        if (s_MBPressed) {
-            s_MBPressed = s_Event.type != SDL_MOUSEBUTTONUP ||
-                          s_Event.button.button != SDL_BUTTON_MIDDLE;
-        } else {
-            s_MBPressed = (s_Event.type == SDL_MOUSEBUTTONDOWN &&
-                           s_Event.button.button == SDL_BUTTON_MIDDLE);
+        if (s_Event.type == SDL_MOUSEBUTTONUP &&
+            s_Event.button.button == SDL_BUTTON_MIDDLE) {
+            s_MBPressed = false;
+        }
+        if (s_Event.type == SDL_MOUSEBUTTONDOWN &&
+            s_Event.button.button == SDL_BUTTON_MIDDLE) {
+            s_MBPressed = true;
         }
 
         s_Scroll = s_Event.type == SDL_MOUSEWHEEL || s_Scroll;
