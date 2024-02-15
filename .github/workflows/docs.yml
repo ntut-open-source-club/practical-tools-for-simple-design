@@ -1,0 +1,23 @@
+name: docs
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      
+      - uses: mattnotmitt/doxygen-action@v1.9.5
+        with:
+          doxyfile-path: docs/Doxyfile
+
+      - uses: peaceiris/actions-gh-pages@v3.9.3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./docs/html
