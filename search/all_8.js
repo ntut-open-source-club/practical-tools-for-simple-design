@@ -9,8 +9,8 @@ var searchData=
   ['international1_6',['INTERNATIONAL1',['../namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5af04b16e01e2458b2442f49b30b5d1938',1,'Util']]],
   ['international3_7',['INTERNATIONAL3',['../namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a70055bce1789c7b29d51821ee8d38a72',1,'Util']]],
   ['iskeypressed_8',['IsKeyPressed',['../classUtil_1_1Input.html#a41d0028f3e27ab1dc4e48eb097a320fa',1,'Util::Input']]],
-  ['islbuttonpressed_9',['IsLButtonPressed',['../classUtil_1_1Input.html#a55f72792d81e2c322bdd7afec228fcd4',1,'Util::Input']]],
-  ['ismbuttonpressed_10',['IsMButtonPressed',['../classUtil_1_1Input.html#a484597f0c86efe93701ccf08944da8c4',1,'Util::Input']]],
+  ['islbuttondown_9',['IsLButtonDown',['../classUtil_1_1Input.html#af7adbbd6c12609c522634545ca4f395f',1,'Util::Input']]],
+  ['ismbuttondown_10',['IsMButtonDown',['../classUtil_1_1Input.html#aa99bde7416d6f15e141f2be6364f5fdf',1,'Util::Input']]],
   ['ismousemoving_11',['IsMouseMoving',['../classUtil_1_1Input.html#a0a540562f9179e8b232326e51bffc09b',1,'Util::Input']]],
-  ['isrbuttonpressed_12',['IsRButtonPressed',['../classUtil_1_1Input.html#aea4ab7417279d078222a876b68f8e214',1,'Util::Input']]]
+  ['isrbuttondown_12',['IsRButtonDown',['../classUtil_1_1Input.html#aa2505cc7356f3153e5371e7cac6eef6e',1,'Util::Input']]]
 ];
