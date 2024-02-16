@@ -3,6 +3,8 @@
 
 #include "pch.hpp"
 
+#include <exception>
+
 #include "Core/Drawable.hpp"
 
 #include "Util/Image.hpp"
@@ -46,26 +48,42 @@ public:
     /**
      * @brief Set the interval between frames.
      * @param interval Interval between frames in milliseconds.
+     * @todo This method is not yet implemented
      */
-    void SetInterval(int interval) { m_Interval = interval; }
+    void SetInterval(int interval) {
+        (void)interval;
+        throw std::logic_error("Not implemented");
+    }
 
     /**
      * @brief Set whether the animation loops.
      * @param looping True to enable looping, false to disable.
+     * @todo This method is not yet implemented
      */
-    void SetLooping(bool looping) { m_Looping = looping; }
+    void SetLooping(bool looping) {
+        (void)looping;
+        throw std::logic_error("Not implemented");
+    }
 
     /**
      * @brief Set the cooldown time.
      * @param cooldown Cooldown time in milliseconds.
+     * @todo This method is not yet implemented
      */
-    void SetCooldown(int cooldown) { m_Cooldown = cooldown; }
+    void SetCooldown(int cooldown) {
+        (void)cooldown;
+        throw std::logic_error("Not implemented");
+    }
 
     /**
      * @brief Set the current frame of the animation.
      * @param index Index of the frame to set as current.
+     * @todo This method is not yet implemented
      */
-    void SetCurrentFrame(std::size_t index) { m_Index = index; };
+    void SetCurrentFrame(std::size_t index) {
+        (void)index;
+        throw std::logic_error("Not implemented");
+    };
 
     void Draw(const Util::Transform &transform, const float zIndex) override;
 
@@ -74,7 +92,10 @@ public:
     /**
      * @brief Reset the animation to its initial frame.
      */
-    void Reset() { SetCurrentFrame(0); }
+    void Reset() {
+        // TODO: use `SetCurrentFrame(0)` when it's implemented
+        m_Index = 0;
+    }
 
 private:
     /**
