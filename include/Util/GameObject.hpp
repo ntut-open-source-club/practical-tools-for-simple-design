@@ -1,6 +1,7 @@
 #ifndef UTIL_GAME_OBJECT_HPP
 #define UTIL_GAME_OBJECT_HPP
 
+#include <glm/fwd.hpp>
 #include <memory>
 #include <vector>
 
@@ -32,14 +33,15 @@ public:
      * @param visible The visibility of the game object.
      * @param children The children of the game object.
      */
-    GameObject(std::unique_ptr<Core::Drawable> drawable, const float zIndex,
+    GameObject(std::unique_ptr<Core::Drawable> drawable, const float zIndex, const glm::vec2& pivot = {0, 0},
                const bool visible = true,
                const std::vector<std::shared_ptr<GameObject>> &children =
                    std::vector<std::shared_ptr<GameObject>>())
         : m_Drawable(std::move(drawable)),
           m_Children(children),
           m_ZIndex(zIndex),
-          m_Visible(visible) {}
+          m_Visible(visible),
+          m_Pivot(pivot) {}
 
     // Deleted copy constructor.
     GameObject(const GameObject &other) = delete;
@@ -86,6 +88,13 @@ public:
     const std::vector<std::shared_ptr<GameObject>> &GetChildren() const {
         return m_Children;
     }
+
+    /**
+     * @brief Set the pivot of the game object.
+     *
+     * @param pivot The pivot of the game object.
+     */
+    void SetPivot(glm::vec2 pivot) { m_Pivot = pivot; }
 
     /**
      * @brief Set the z-index of the game object.
@@ -141,6 +150,7 @@ protected:
 
     float m_ZIndex;
     bool m_Visible = true;
+    glm::vec2 m_Pivot;
 };
 } // namespace Util
 #endif

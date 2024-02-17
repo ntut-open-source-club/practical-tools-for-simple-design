@@ -1,4 +1,5 @@
 #include "Util/GameObject.hpp"
+#include "Util/Transform.hpp"
 
 namespace Util {
 
@@ -7,7 +8,13 @@ void GameObject::Draw() {
         return;
     }
 
-    m_Drawable->Draw(m_Transform, m_ZIndex);
+    Util::Transform offsetTransform {
+        m_Transform.translation - m_Pivot,
+        m_Transform.rotation,
+        m_Transform.scale,
+    };
+
+    m_Drawable->Draw(offsetTransform, m_ZIndex);
 }
 
 } // namespace Util
