@@ -17,14 +17,23 @@ namespace Util {
 class Animation : public Core::Drawable {
 public:
     /**
+     * @brief Enum representing the state of the animation.
+     */
+    enum class State {
+        PLAY,  /**< Animation is playing. */
+        PAUSE, /**< Animation is paused. */
+    };
+
+    /**
      * @brief Constructor for Animation class.
      * @param paths Vector of file paths for the frames.
+     * @param bool Whether the animation should play right away.
      * @param interval Interval between frames in milliseconds.
      * @param looping Whether the animation should loop.
      * @param cooldown Cooldown time in milliseconds before the animation can
      * restart.
      */
-    Animation(const std::vector<std::string> &paths, int interval,
+    Animation(const std::vector<std::string> &paths, bool play, int interval,
               bool looping = true, int cooldown = 100);
 
     /**
@@ -44,6 +53,12 @@ public:
      * @return Cooldown time in milliseconds.
      */
     int GetCooldown() const { return m_Cooldown; }
+
+    /**
+     * @brief Get the current state of the animation
+     * @return The current state of the animation
+     */
+    State GetState() const { return m_State; }
 
     /**
      * @brief Set the interval between frames.
@@ -97,6 +112,20 @@ public:
         m_Index = 0;
     }
 
+    /**
+     * @brief Start playing the animation.
+     * If the animation is already playing, this method won't do anything.
+     * If the animation has ended and `looping` is set to `false`, this would
+     * replay the animation once.
+     */
+    void Play();
+
+    /**
+     * @brief Pause the animation.
+     * If the animation has already been paused, this method won't do anything.
+     */
+    void Pause();
+
 private:
     /**
      * @brief Update the animation frames.
@@ -104,10 +133,17 @@ private:
     void Update();
 
 private:
+    State m_State = State::PLAY;
+
     unsigned long m_StartTime;
+
+    unsigned long m_PauseTime;
+    unsigned long m_PauseOffset = 0;
+
     int m_Interval;
     bool m_Looping;
     int m_Cooldown;
+    bool m_HasEnded;
 
     std::vector<std::shared_ptr<Util::Image>> m_Frames;
     std::size_t m_Index;
