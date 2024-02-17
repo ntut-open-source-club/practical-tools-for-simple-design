@@ -48,4 +48,10 @@ Required: Doxygen 1.9.6
 doxygen docs/Doxyfile
 ```
 
+## cmake color
+if output accept, release this line to CMakeLists.txt.
+```
+set(CMAKE_COLOR_DIAGNOSTICS ON)
+```
+
 Open the generated documents with your favorite browser at `docs/html/index.html`
