@@ -55,10 +55,28 @@ public:
     int GetCooldown() const { return m_Cooldown; }
 
     /**
+     * @brief Get the index of the current frame.
+     * @return Index of the current frame.
+     */
+    std::size_t GetCurrentFrameIndex() const { return m_Index; }
+
+    /**
+     * @brief Get the total number of frames in the animation.
+     * @return Total number of frames.
+     */
+    std::size_t GetFrameCount() const { return m_Frames.size(); }
+
+    /**
      * @brief Get the current state of the animation
      * @return The current state of the animation
      */
     State GetState() const { return m_State; }
+
+    /**
+     * @brief Get the size of the current frame.
+     * @return Size of the current frame.
+     */
+    glm::vec2 GetSize() const override { return m_Frames[m_Index]->GetSize(); }
 
     /**
      * @brief Set the interval between frames.
@@ -100,9 +118,12 @@ public:
         throw std::logic_error("Not implemented");
     };
 
+    /**
+     * @brief Draw the current frame.
+     * @param transform Transformation matrix for drawing.
+     * @param zIndex Z-index for drawing.
+     */
     void Draw(const Util::Transform &transform, const float zIndex) override;
-
-    glm::vec2 GetSize() const override { return m_Frames[m_Index]->GetSize(); }
 
     /**
      * @brief Reset the animation to its initial frame.
