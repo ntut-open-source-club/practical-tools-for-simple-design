@@ -5,13 +5,17 @@
 
 namespace Util {
 /**
+ * @enum Colors
+ * @brief A enum class that includes common colors.
+ */
+enum class Colors : Uint32;
+/**
  * @class Color
  * @brief A class representing a color.
  *
  * This class is an extend of glm::vec4. It provides functionalities to
  * convert from and to SDL_Color format.
  */
-enum class Colors;
 class Color : public glm::vec4 {
 public:
     using glm::vec4::vec;
@@ -113,14 +117,14 @@ public:
     static Color FromHex(const std::string &hex);
 
     /**
-     * @brief Get Color From name defined in Util::Colors
-     * @param name Color Name, check Util::Colors
+     * @brief Get Color From name within Util::Colors
+     * @param name Color Name in Util::Colors
      * @return Color
      */
-    static Color FromName(const Util::Colors& name);
+    static Color FromName(const Util::Colors &name);
 };
 
-enum class Colors {
+enum class Colors : Uint32 {
     ALICE_BLUE = 0xF0F8FF,
     ANTIQUE_WHITE = 0xFAEBD7,
     AQUA = 0x00FFFF,
