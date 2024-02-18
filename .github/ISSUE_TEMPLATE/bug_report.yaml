@@ -32,7 +32,7 @@ body:
   - type: input
     attributes:
       label: "PTSD version"
-      placeholder: "release 1.0.0 / commit 013246df758a14ea083bfbe7726a589db19a560a"
+      placeholder: "release 1.0.0 or commit 013246df758a14ea083bfbe7726a589db19a560a"
     validations:
       required: true
   - type: input
@@ -53,11 +53,11 @@ body:
       description: |
         Can found in the build dir:
         
-        - Clion (`cmake-build-debug/CMakeCache.txt`)
+        - CLion (`cmake-build-debug/CMakeCache.txt`)
         - Visual Studio (`out\build\x64-Debug\CMakeCache.txt`)
         - Others (`build/CMakeCache.txt`)
         
-        please use [Attach File](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/attaching-files), do not copy paste whole file.
+        Please use [Attach File](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/attaching-files), do not copy paste whole file.
     validations:
       required: true
 
