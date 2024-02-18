@@ -44,6 +44,7 @@ set(SRC_FILES
     ${SRC_DIR}/Util/TransformUtils.cpp
     ${SRC_DIR}/Util/GameObject.cpp
     ${SRC_DIR}/Util/Root.cpp
+    ${SRC_DIR}/Util/Color.cpp
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/Giraffe.cpp
@@ -119,7 +120,7 @@ enable_testing()
 add_executable(Tests
     ${TEST_FILES}
     ${SRC_FILES}
-)
+ )
 target_link_libraries(Tests
     GTest::gtest_main
     ${DEPENDENCY_LINK_LIBRARIES}
