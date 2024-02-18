@@ -11,6 +11,7 @@ namespace Util {
  * This class is an extend of glm::vec4. It provides functionalities to
  * convert from and to SDL_Color format.
  */
+enum class Colors;
 class Color : public glm::vec4 {
 public:
     using glm::vec4::vec;
