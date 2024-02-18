@@ -109,7 +109,7 @@ target_include_directories(Sample PRIVATE
 if (${PTSD_ENABLE_PCH})
     target_precompile_headers(Sample PRIVATE
         include/pch.hpp
-    )
+)
 endif()
 target_compile_options(Sample PRIVATE
     ${TARGET_COMPILE_OPTIONS}
