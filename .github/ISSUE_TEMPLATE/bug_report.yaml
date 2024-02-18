@@ -9,7 +9,6 @@ body:
         *Before reporting:*
         - Confirm the problem is reproducible on **master** or **latest stable** release
         - Search [existing issues](https://github.com/ntut-open-source-club/practical-tools-for-simple-design/issues?q=is%3Aissue+label%3Abug)
-        - Include `cmake --system-information` for build-related issues.
   - type: textarea
     attributes:
       label: "Problem"
@@ -33,7 +32,7 @@ body:
   - type: input
     attributes:
       label: "PTSD version"
-      placeholder: "013246df758a14ea083bfbe7726a589db19a560a"
+      placeholder: "release 1.0.0 / commit 013246df758a14ea083bfbe7726a589db19a560a"
     validations:
       required: true
   - type: input
