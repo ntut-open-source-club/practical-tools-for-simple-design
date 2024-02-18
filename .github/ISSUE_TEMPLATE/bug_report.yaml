@@ -52,9 +52,11 @@ body:
       label: "CMakeCache.txt"
       description: |
         Can found in the build dir:
+        
         - Clion (`cmake-build-debug/CMakeCache.txt`)
         - Visual Studio (`out\build\x64-Debug\CMakeCache.txt`)
         - Others (`build/CMakeCache.txt`)
+        
         please use [Attach File](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/attaching-files), do not copy paste whole file.
     validations:
       required: true
