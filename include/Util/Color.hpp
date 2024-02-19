@@ -2,7 +2,7 @@
 #define UTIL_COLOR_HPP
 
 #include "pch.hpp" // IWYU pragma: export
-
+#include <spdlog/fmt/bundled/format.h>
 namespace Util {
 /**
  * @enum Colors
@@ -71,6 +71,18 @@ public:
             static_cast<Uint8>(a),
         };
     }
+    /**
+     * @brief Converts the color to a string representation.
+     *
+     * This method returns a string representation of the color in the format
+     * "Color(r,g,b,a)". The values r, g, b, and a represent the red, green,
+     * blue, and alpha components of the color, respectively.
+     *
+     * @return A string representation of the color.
+     */
+    std::string ToString() const {
+        return fmt::v8::format("Color({},{},{},{})", r, g, b, a);
+    }
 
     /**
      * @brief Get Color From RGB Values
@@ -120,6 +132,7 @@ public:
      * @brief Get Color From name within Util::Colors
      * @param name Color Name in Util::Colors
      * @return Color
+     * @see Util::Colors
      */
     static Color FromName(const Util::Colors &name);
 };
