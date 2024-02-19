@@ -1,7 +1,7 @@
 #include "Util/Color.hpp"
 #include "Util/Logger.hpp"
-namespace Util {
 
+namespace Util {
 Color Color::FromRGB(Uint8 r, Uint8 g, Uint8 b, Uint8 a) {
     if (r > 255 || g > 255 || b > 255 || a > 255) {
         LOG_ERROR("Invalid color: ({}, {}, {}, {})", r, g, b, a);
@@ -60,7 +60,7 @@ Color Color::FromHSL(float h, float s, float l, float a) {
 
 Color Color::FromHSV(float h, float s, float v, float a) {
     // from https://stackoverflow.com/a/6930407
-    float hh, p, q, t, ff, r, g, b;
+    float p, q, t, ff, r, g, b;
     long i;
     v *= 255;
     if (s <= 0.0) {
@@ -113,7 +113,7 @@ Color Color::FromHSV(float h, float s, float v, float a) {
         b = q;
         break;
     }
-    return FromRGB(r, g, b, a);
+    return FromRGB(static_cast<Uint8>(r), static_cast<Uint8>(g),
+                   static_cast<Uint8>(b), static_cast<Uint8>(a));
 }
-
 } // namespace Util
