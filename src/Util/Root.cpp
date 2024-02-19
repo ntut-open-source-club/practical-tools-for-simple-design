@@ -1,6 +1,7 @@
 #include "Util/Root.hpp"
 
 #include "Util/Logger.hpp"
+#include <queue>
 
 namespace Util {
 Root::Root(const std::vector<std::shared_ptr<GameObject>> &children)
@@ -25,8 +26,14 @@ void Root::Update() {
     struct StackInfo {
         std::shared_ptr<GameObject> m_GameObject;
         Transform m_ParentTransform;
+        bool operator()(const StackInfo& lhs, const StackInfo& rhs) const {
+            return  lhs.m_GameObject->GetZIndex()> rhs.m_GameObject->GetZIndex();
+        }
     };
-
+    auto compareFunction = [](const StackInfo& a, const StackInfo& b) {
+        return a.m_GameObject->GetZIndex() > b.m_GameObject->GetZIndex();
+    };
+    
     std::vector<StackInfo> stack;
     stack.reserve(m_Children.size());
 
@@ -34,16 +41,24 @@ void Root::Update() {
         stack.push_back(StackInfo{child, Transform{}});
     }
 
+    std::priority_queue<StackInfo, std::vector<StackInfo>, decltype(compareFunction)> renderQueue(compareFunction);
+
     while (!stack.empty()) {
         auto curr = stack.back();
         stack.pop_back();
-
-        curr.m_GameObject->Draw();
+        renderQueue.push(curr);
 
         for (const auto &child : curr.m_GameObject->GetChildren()) {
             stack.push_back(
                 StackInfo{child, curr.m_GameObject->GetTransform()});
         }
+    }
+    //draw all in render queue by order
+    while (!renderQueue.empty()) {
+        auto curr = renderQueue.top();
+        renderQueue.pop();
+
+        curr.m_GameObject->Draw();
     }
 }
 } // namespace Util
