@@ -35,9 +35,11 @@ jobs:
 
       - name: Check Format
         if: matrix.os == 'ubuntu-latest' && matrix.compiler.cc == 'clang'
-        run: |
-          find src/ include/ test/ assets/shaders/ -name "*.*" -print0 | \
-            xargs -0 clang-format --dry-run --Werror --ferror-limit=15
+        uses: jidicula/clang-format-action@v4.11.0
+        with:
+          clang-format-version: '17'
+          check-path: src include test assets/shaders
+          include-regex: ^.*\.((((c|C)(c|pp|xx|\+\+)?$)|((h|H)h?(pp|xx|\+\+)?$))|(vert|frag))$
 
       - name: Building Project
         if: matrix.os == 'ubuntu-latest'
