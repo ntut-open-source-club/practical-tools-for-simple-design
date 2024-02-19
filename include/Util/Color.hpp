@@ -84,7 +84,7 @@ public:
 
     /**
      * @brief Get Color From HSL Values
-     * @param h Hue Value (0-360)
+     * @param h Hue Value (0-1)
      * @param s Saturation Value (0-1)
      * @param l Lightness Value (0-1)
      * @param a Alpha Value (0-1), default is 1.0
@@ -94,7 +94,7 @@ public:
 
     /**
      * @brief Get Color From HSV Values
-     * @param h Hue Value (0-360)
+     * @param h Hue Value (0-1)
      * @param s Saturation Value (0-1)
      * @param v Value (0-1)
      * @param a Alpha Value (0-1), default is 1.0
