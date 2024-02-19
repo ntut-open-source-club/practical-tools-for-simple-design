@@ -127,8 +127,9 @@ public:
      * @param child The child to be removed.
      */
     void RemoveChild(const std::shared_ptr<GameObject> &child) {
-        m_Children.erase(std::remove(m_Children.begin(), m_Children.end(), child),
-                         m_Children.end());
+        m_Children.erase(
+            std::remove(m_Children.begin(), m_Children.end(), child),
+            m_Children.end());
     }
 
     void Draw();

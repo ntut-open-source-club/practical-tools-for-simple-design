@@ -9,7 +9,7 @@ constexpr float M_PI_TOLERANCE = 1e-5F;
 
 // NOLINTBEGIN(readability-magic-numbers)
 
-TEST(TransformTest, DefaultConstructor) {   
+TEST(TransformTest, DefaultConstructor) {
     Transform transform = Transform();
     EXPECT_EQ(transform.scale, glm::vec2(1));
     EXPECT_EQ(transform.rotation, 0);
