@@ -100,6 +100,7 @@ $(document).ready(function(){initNavTree('classUtil_1_1Color.html',''); initResi
 <div class="header">
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
+<a href="#pub-static-methods">Static Public Member Functions</a> &#124;
 <a href="classUtil_1_1Color-members.html">List of all members</a>  </div>
   <div class="headertitle"><div class="title">Util::Color Class Reference</div></div>
 </div><!--header-->
@@ -121,6 +122,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ac5f697b30488488694cc706ff2bd7afa"><td class="memItemLeft" align="right" valign="top"><a id="ac5f697b30488488694cc706ff2bd7afa" name="ac5f697b30488488694cc706ff2bd7afa"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Color</b> (const glm::vec4 &amp;vec)</td></tr>
 <tr class="separator:ac5f697b30488488694cc706ff2bd7afa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4e45fb9167cf4884a5dd76c000a58964"><td class="memItemLeft" align="right" valign="top"><a id="a4e45fb9167cf4884a5dd76c000a58964" name="a4e45fb9167cf4884a5dd76c000a58964"></a>
+&#160;</td><td class="memItemRight" valign="bottom"><b>Color</b> (Uint8 r, Uint8 g, Uint8 b, Uint8 a=255)</td></tr>
+<tr class="separator:a4e45fb9167cf4884a5dd76c000a58964"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a000c2a4cc296b977095d00e6fc1681f1"><td class="memItemLeft" align="right" valign="top"><a id="a000c2a4cc296b977095d00e6fc1681f1" name="a000c2a4cc296b977095d00e6fc1681f1"></a>
 &#160;</td><td class="memItemRight" valign="bottom"><b>Color</b> (glm::vec4 &amp;&amp;vec)</td></tr>
 <tr class="separator:a000c2a4cc296b977095d00e6fc1681f1"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -130,11 +134,321 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a35c3c129a922e097c2c7c9796195b773"><td class="memItemLeft" align="right" valign="top">SDL_Color&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Color.html#a35c3c129a922e097c2c7c9796195b773">ToSdlColor</a> () const</td></tr>
 <tr class="memdesc:a35c3c129a922e097c2c7c9796195b773"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the color to SDL_Color format.  <a href="classUtil_1_1Color.html#a35c3c129a922e097c2c7c9796195b773">More...</a><br /></td></tr>
 <tr class="separator:a35c3c129a922e097c2c7c9796195b773"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a30108bf67f833902a3b89d2ad3e05f22"><td class="memItemLeft" align="right" valign="top">std::string&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Color.html#a30108bf67f833902a3b89d2ad3e05f22">ToString</a> () const</td></tr>
+<tr class="memdesc:a30108bf67f833902a3b89d2ad3e05f22"><td class="mdescLeft">&#160;</td><td class="mdescRight">Converts the color to a string representation.  <a href="classUtil_1_1Color.html#a30108bf67f833902a3b89d2ad3e05f22">More...</a><br /></td></tr>
+<tr class="separator:a30108bf67f833902a3b89d2ad3e05f22"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-static-methods" name="pub-static-methods"></a>
+Static Public Member Functions</h2></td></tr>
+<tr class="memitem:a8bf231c7aad508071834ad8b19780099"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classUtil_1_1Color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Color.html#a8bf231c7aad508071834ad8b19780099">FromRGB</a> (Uint8 r, Uint8 g, Uint8 b, Uint8 a=255)</td></tr>
+<tr class="memdesc:a8bf231c7aad508071834ad8b19780099"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> From RGB Values.  <a href="classUtil_1_1Color.html#a8bf231c7aad508071834ad8b19780099">More...</a><br /></td></tr>
+<tr class="separator:a8bf231c7aad508071834ad8b19780099"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aed0b262f1126e6c44732f128e8b0fffd"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classUtil_1_1Color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Color.html#aed0b262f1126e6c44732f128e8b0fffd">FromHSL</a> (float h, float s, float l, float a=1.0F)</td></tr>
+<tr class="memdesc:aed0b262f1126e6c44732f128e8b0fffd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> From HSL Values.  <a href="classUtil_1_1Color.html#aed0b262f1126e6c44732f128e8b0fffd">More...</a><br /></td></tr>
+<tr class="separator:aed0b262f1126e6c44732f128e8b0fffd"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a07b3ea5ac775810da9421bf017769dad"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classUtil_1_1Color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Color.html#a07b3ea5ac775810da9421bf017769dad">FromHSV</a> (float h, float s, float v, float a=1.0F)</td></tr>
+<tr class="memdesc:a07b3ea5ac775810da9421bf017769dad"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> From HSV Values.  <a href="classUtil_1_1Color.html#a07b3ea5ac775810da9421bf017769dad">More...</a><br /></td></tr>
+<tr class="separator:a07b3ea5ac775810da9421bf017769dad"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab3b04c141c31dfd8327a2128851382b5"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classUtil_1_1Color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Color.html#ab3b04c141c31dfd8327a2128851382b5">FromHex</a> (Uint32 hex)</td></tr>
+<tr class="memdesc:ab3b04c141c31dfd8327a2128851382b5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> From Hex RGB Value, alpha value is necessary.  <a href="classUtil_1_1Color.html#ab3b04c141c31dfd8327a2128851382b5">More...</a><br /></td></tr>
+<tr class="separator:ab3b04c141c31dfd8327a2128851382b5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8cb4b4220fc80e67b9593aa8edd76bca"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classUtil_1_1Color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Color.html#a8cb4b4220fc80e67b9593aa8edd76bca">FromHex</a> (const std::string &amp;hex)</td></tr>
+<tr class="memdesc:a8cb4b4220fc80e67b9593aa8edd76bca"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> From Hex RGB String, alpha value is necessary.  <a href="classUtil_1_1Color.html#a8cb4b4220fc80e67b9593aa8edd76bca">More...</a><br /></td></tr>
+<tr class="separator:a8cb4b4220fc80e67b9593aa8edd76bca"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c70e7dd237835e34ced4e1b86689e7c"><td class="memItemLeft" align="right" valign="top">static <a class="el" href="classUtil_1_1Color.html">Color</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Color.html#a2c70e7dd237835e34ced4e1b86689e7c">FromName</a> (const <a class="el" href="namespaceUtil.html#a80cdf50793a9101631584b20607a14e2">Util::Colors</a> &amp;name)</td></tr>
+<tr class="memdesc:a2c70e7dd237835e34ced4e1b86689e7c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get <a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> From name within <a class="el" href="namespaceUtil.html#a80cdf50793a9101631584b20607a14e2" title="A enum class that includes common colors.">Util::Colors</a>.  <a href="classUtil_1_1Color.html#a2c70e7dd237835e34ced4e1b86689e7c">More...</a><br /></td></tr>
+<tr class="separator:a2c70e7dd237835e34ced4e1b86689e7c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >A class representing a color. </p>
 <p >This class is an extend of glm::vec4. It provides functionalities to convert from and to SDL_Color format. </p>
 </div><h2 class="groupheader">Member Function Documentation</h2>
+<a id="a8cb4b4220fc80e67b9593aa8edd76bca" name="a8cb4b4220fc80e67b9593aa8edd76bca"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8cb4b4220fc80e67b9593aa8edd76bca">&#9670;&#160;</a></span>FromHex() <span class="overload">[1/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classUtil_1_1Color.html">Color</a> Util::Color::FromHex </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>hex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get <a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> From Hex RGB String, alpha value is necessary. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hex</td><td>Hex String ("00000000" - "FFFFFFFF") </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> </dd></dl>
+
+</div>
+</div>
+<a id="ab3b04c141c31dfd8327a2128851382b5" name="ab3b04c141c31dfd8327a2128851382b5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab3b04c141c31dfd8327a2128851382b5">&#9670;&#160;</a></span>FromHex() <span class="overload">[2/2]</span></h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classUtil_1_1Color.html">Color</a> Util::Color::FromHex </td>
+          <td>(</td>
+          <td class="paramtype">Uint32&#160;</td>
+          <td class="paramname"><em>hex</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get <a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> From Hex RGB Value, alpha value is necessary. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">hex</td><td>Hex Value (0x00000000 - 0xFFFFFFFF) </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> </dd></dl>
+
+</div>
+</div>
+<a id="aed0b262f1126e6c44732f128e8b0fffd" name="aed0b262f1126e6c44732f128e8b0fffd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aed0b262f1126e6c44732f128e8b0fffd">&#9670;&#160;</a></span>FromHSL()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classUtil_1_1Color.html">Color</a> Util::Color::FromHSL </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>h</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>l</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>a</em> = <code>1.0F</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get <a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> From HSL Values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">h</td><td>Hue Value (0-1) </td></tr>
+    <tr><td class="paramname">s</td><td>Saturation Value (0-1) </td></tr>
+    <tr><td class="paramname">l</td><td>Lightness Value (0-1) </td></tr>
+    <tr><td class="paramname">a</td><td>Alpha Value (0-1), default is 1.0 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> </dd></dl>
+
+</div>
+</div>
+<a id="a07b3ea5ac775810da9421bf017769dad" name="a07b3ea5ac775810da9421bf017769dad"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a07b3ea5ac775810da9421bf017769dad">&#9670;&#160;</a></span>FromHSV()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classUtil_1_1Color.html">Color</a> Util::Color::FromHSV </td>
+          <td>(</td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>h</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>s</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>v</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">float&#160;</td>
+          <td class="paramname"><em>a</em> = <code>1.0F</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get <a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> From HSV Values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">h</td><td>Hue Value (0-1) </td></tr>
+    <tr><td class="paramname">s</td><td>Saturation Value (0-1) </td></tr>
+    <tr><td class="paramname">v</td><td>Value (0-1) </td></tr>
+    <tr><td class="paramname">a</td><td>Alpha Value (0-1), default is 1.0 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> </dd></dl>
+
+</div>
+</div>
+<a id="a2c70e7dd237835e34ced4e1b86689e7c" name="a2c70e7dd237835e34ced4e1b86689e7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a2c70e7dd237835e34ced4e1b86689e7c">&#9670;&#160;</a></span>FromName()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classUtil_1_1Color.html">Color</a> Util::Color::FromName </td>
+          <td>(</td>
+          <td class="paramtype">const <a class="el" href="namespaceUtil.html#a80cdf50793a9101631584b20607a14e2">Util::Colors</a> &amp;&#160;</td>
+          <td class="paramname"><em>name</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get <a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> From name within <a class="el" href="namespaceUtil.html#a80cdf50793a9101631584b20607a14e2" title="A enum class that includes common colors.">Util::Colors</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">name</td><td><a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> Name in <a class="el" href="namespaceUtil.html#a80cdf50793a9101631584b20607a14e2" title="A enum class that includes common colors.">Util::Colors</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> </dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="namespaceUtil.html#a80cdf50793a9101631584b20607a14e2" title="A enum class that includes common colors.">Util::Colors</a> </dd></dl>
+
+</div>
+</div>
+<a id="a8bf231c7aad508071834ad8b19780099" name="a8bf231c7aad508071834ad8b19780099"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a8bf231c7aad508071834ad8b19780099">&#9670;&#160;</a></span>FromRGB()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static <a class="el" href="classUtil_1_1Color.html">Color</a> Util::Color::FromRGB </td>
+          <td>(</td>
+          <td class="paramtype">Uint8&#160;</td>
+          <td class="paramname"><em>r</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Uint8&#160;</td>
+          <td class="paramname"><em>g</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Uint8&#160;</td>
+          <td class="paramname"><em>b</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">Uint8&#160;</td>
+          <td class="paramname"><em>a</em> = <code>255</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get <a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> From RGB Values. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">r</td><td>Red Value (0-255) </td></tr>
+    <tr><td class="paramname">g</td><td>Green Value (0-255) </td></tr>
+    <tr><td class="paramname">b</td><td>Blue Value (0-255) </td></tr>
+    <tr><td class="paramname">a</td><td>Alpha Value (0-255), default is 255 </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><a class="el" href="classUtil_1_1Color.html" title="A class representing a color.">Color</a> </dd></dl>
+
+</div>
+</div>
 <a id="a35c3c129a922e097c2c7c9796195b773" name="a35c3c129a922e097c2c7c9796195b773"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a35c3c129a922e097c2c7c9796195b773">&#9670;&#160;</a></span>ToSdlColor()</h2>
 
@@ -160,6 +474,35 @@ Public Member Functions</h2></td></tr>
 
 <p>Converts the color to SDL_Color format. </p>
 <dl class="section return"><dt>Returns</dt><dd>The color in SDL_Color format. </dd></dl>
+
+</div>
+</div>
+<a id="a30108bf67f833902a3b89d2ad3e05f22" name="a30108bf67f833902a3b89d2ad3e05f22"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a30108bf67f833902a3b89d2ad3e05f22">&#9670;&#160;</a></span>ToString()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">std::string Util::Color::ToString </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td> const</td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Converts the color to a string representation. </p>
+<p >This method returns a string representation of the color in the format "Color(r,g,b,a)". The values r, g, b, and a represent the red, green, blue, and alpha components of the color, respectively.</p>
+<dl class="section return"><dt>Returns</dt><dd>A string representation of the color. </dd></dl>
 
 </div>
 </div>
