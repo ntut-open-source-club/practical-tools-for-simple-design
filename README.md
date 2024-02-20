@@ -28,6 +28,8 @@ cmake --build build
 
 > If using Neovim or other LSP supported editors, append `-DCMAKE_EXPORT_COMPILE_COMMANDS=ON` to the generation command for `clangd` to work
 
+> if output accept, release this line in CMakeLists.txt  `set(CMAKE_COLOR_DIAGNOSTICS ON)` to get colorful output.
+
 ### VSCode
 
 TODO
@@ -46,12 +48,6 @@ Required: Doxygen 1.9.6
 
 ```
 doxygen docs/Doxyfile
-```
-
-## cmake color
-if output accept, release this line to CMakeLists.txt.
-```
-set(CMAKE_COLOR_DIAGNOSTICS ON)
 ```
 
 Open the generated documents with your favorite browser at `docs/html/index.html`
