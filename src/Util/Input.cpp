@@ -1,36 +1,72 @@
 #include "Util/Input.hpp"
 
-#include "config.hpp"
 #include <SDL_events.h> // for SDL_Event
+
+#include "config.hpp"
 
 namespace Util {
 
 // init all static members
 SDL_Event Input::s_Event = SDL_Event();
-const Uint8 *Input::s_KeyState = SDL_GetKeyboardState(nullptr);
+const Uint8 *Input::s_currentKeyState = SDL_GetKeyboardState(nullptr);
+std::vector<bool> Input::s_lastKeyState(512, false);
+
 glm::vec2 Input::s_CursorPosition = glm::vec2(0.0F);
 glm::vec2 Input::s_ScrollDistance = glm::vec2(-1.0F, -1.0F);
-bool Input::s_LBPressed = false;
-bool Input::s_RBPressed = false;
-bool Input::s_MBPressed = false;
+
+std::pair<bool, bool> Input::s_LBPressed = {false, false};
+std::pair<bool, bool> Input::s_RBPressed = {false, false};
+std::pair<bool, bool> Input::s_MBPressed = {false, false};
+
 bool Input::s_Scroll = false;
 bool Input::s_MouseMoving = false;
 bool Input::s_Exit = false;
 
 bool Input::IsKeyPressed(const Keycode &key) {
     const auto temp = static_cast<const int>(key);
-    return s_KeyState[temp] != 0;
+    return s_currentKeyState[temp] != 0;
 }
 
+bool Input::IsKeyDown(const Keycode &key) {
+    return s_currentKeyState[static_cast<int>(key)] &&
+           !s_lastKeyState[static_cast<int>(key)];
+}
+bool Input::IsKeyUp(const Keycode &key) {
+    return !s_currentKeyState[static_cast<int>(key)] &&
+           s_lastKeyState[static_cast<int>(key)];
+}
+
+bool Input::IsLButtonPressed() {
+    return s_LBPressed.second;
+}
 bool Input::IsLButtonDown() {
-    return s_LBPressed;
+    return s_LBPressed.second && !s_LBPressed.first;
+}
+bool Input::IsLButtonUp() {
+    return !s_LBPressed.second && s_LBPressed.first;
+}
+
+bool Input::IsRButtonPressed() {
+    return s_RBPressed.second;
 }
 bool Input::IsRButtonDown() {
-    return s_RBPressed;
+    return s_RBPressed.second && !s_RBPressed.first;
 }
+bool Input::IsRButtonUp() {
+    return !s_RBPressed.second && s_RBPressed.first;
+}
+bool Input::IsMButtonPressed() {
+    return s_MBPressed.second;
+}
+
 bool Input::IsMButtonDown() {
-    return s_MBPressed;
+    return s_MBPressed.second && !s_MBPressed.first;
 }
+
+bool Input::IsMButtonUp() {
+    return !s_MBPressed.second && s_MBPressed.first;
+}
+
 bool Input::IsMouseMoving() {
     return s_MouseMoving;
 }
@@ -59,32 +95,40 @@ void Input::Update() {
 
     s_Scroll = s_MouseMoving = false;
 
+    s_LBPressed.first = s_LBPressed.second;
+    s_RBPressed.first = s_RBPressed.second;
+    s_MBPressed.first = s_MBPressed.second;
+
+    for (int i = 0; i < 512; ++i) {
+        s_lastKeyState[i] = s_currentKeyState[i];
+    }
+
     while (SDL_PollEvent(&s_Event) != 0) {
         if (s_Event.type == SDL_MOUSEBUTTONUP &&
             s_Event.button.button == SDL_BUTTON_LEFT) {
-            s_LBPressed = false;
+            s_LBPressed.second = false;
         }
         if (s_Event.type == SDL_MOUSEBUTTONDOWN &&
             s_Event.button.button == SDL_BUTTON_LEFT) {
-            s_LBPressed = true;
+            s_LBPressed.second = true;
         }
 
         if (s_Event.type == SDL_MOUSEBUTTONUP &&
             s_Event.button.button == SDL_BUTTON_RIGHT) {
-            s_RBPressed = false;
+            s_RBPressed.second = false;
         }
         if (s_Event.type == SDL_MOUSEBUTTONDOWN &&
             s_Event.button.button == SDL_BUTTON_RIGHT) {
-            s_RBPressed = true;
+            s_RBPressed.second = true;
         }
 
         if (s_Event.type == SDL_MOUSEBUTTONUP &&
             s_Event.button.button == SDL_BUTTON_MIDDLE) {
-            s_MBPressed = false;
+            s_MBPressed.second = false;
         }
         if (s_Event.type == SDL_MOUSEBUTTONDOWN &&
             s_Event.button.button == SDL_BUTTON_MIDDLE) {
-            s_MBPressed = true;
+            s_MBPressed.second = true;
         }
 
         s_Scroll = s_Event.type == SDL_MOUSEWHEEL || s_Scroll;
@@ -106,4 +150,5 @@ void Input::SetCursorPosition(const glm::vec2 &pos) {
     SDL_WarpMouseInWindow(nullptr, static_cast<int>(pos.x),
                           static_cast<int>(pos.y));
 }
+
 } // namespace Util
