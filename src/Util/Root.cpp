@@ -1,7 +1,8 @@
 #include <queue>
 
-#include "Util/Logger.hpp"
 #include "Util/Root.hpp"
+
+#include "Util/Logger.hpp"
 
 namespace Util {
 Root::Root(const std::vector<std::shared_ptr<GameObject>> &children)
