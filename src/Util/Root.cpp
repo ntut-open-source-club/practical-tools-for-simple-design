@@ -1,13 +1,13 @@
-#include "Util/Root.hpp"
+#include <queue>
 
 #include "Util/Logger.hpp"
-#include <queue>
+#include "Util/Root.hpp"
 
 namespace Util {
 Root::Root(const std::vector<std::shared_ptr<GameObject>> &children)
     : m_Children(children) {}
 
-void Root::AddChild(const std::shared_ptr<GameObject>& child) {
+void Root::AddChild(const std::shared_ptr<GameObject> &child) {
     m_Children.push_back(child);
 }
 
@@ -26,14 +26,8 @@ void Root::Update() {
     struct StackInfo {
         std::shared_ptr<GameObject> m_GameObject;
         Transform m_ParentTransform;
-        bool operator()(const StackInfo& lhs, const StackInfo& rhs) const {
-            return  lhs.m_GameObject->GetZIndex()> rhs.m_GameObject->GetZIndex();
-        }
     };
-    auto compareFunction = [](const StackInfo& a, const StackInfo& b) {
-        return a.m_GameObject->GetZIndex() > b.m_GameObject->GetZIndex();
-    };
-    
+
     std::vector<StackInfo> stack;
     stack.reserve(m_Children.size());
 
@@ -41,7 +35,12 @@ void Root::Update() {
         stack.push_back(StackInfo{child, Transform{}});
     }
 
-    std::priority_queue<StackInfo, std::vector<StackInfo>, decltype(compareFunction)> renderQueue(compareFunction);
+    auto compareFunction = [](const StackInfo &a, const StackInfo &b) {
+        return a.m_GameObject->GetZIndex() > b.m_GameObject->GetZIndex();
+    };
+    std::priority_queue<StackInfo, std::vector<StackInfo>,
+                        decltype(compareFunction)>
+        renderQueue(compareFunction);
 
     while (!stack.empty()) {
         auto curr = stack.back();
@@ -53,7 +52,7 @@ void Root::Update() {
                 StackInfo{child, curr.m_GameObject->GetTransform()});
         }
     }
-    //draw all in render queue by order
+    // draw all in render queue by order
     while (!renderQueue.empty()) {
         auto curr = renderQueue.top();
         renderQueue.pop();
