@@ -1,6 +1,6 @@
-#include <queue>
-
 #include "Util/Root.hpp"
+
+#include <queue>
 
 #include "Util/Logger.hpp"
 
