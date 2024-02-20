@@ -29,6 +29,7 @@ cmake --build build
 > If using Neovim or other LSP supported editors, append `-DCMAKE_EXPORT_COMPILE_COMMANDS=ON` to the generation command for `clangd` to work
 
 > if output accept, release this line in CMakeLists.txt  `set(CMAKE_COLOR_DIAGNOSTICS ON)` to get colorful output.
+(CMAKE_COLOR_DIAGNOSTICS document)[https://cmake.org/cmake/help/latest/variable/CMAKE_COLOR_DIAGNOSTICS.html]
 
 ### VSCode
 
