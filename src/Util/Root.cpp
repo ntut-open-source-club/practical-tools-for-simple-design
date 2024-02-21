@@ -1,12 +1,14 @@
 #include "Util/Root.hpp"
 
+#include <queue>
+
 #include "Util/Logger.hpp"
 
 namespace Util {
 Root::Root(const std::vector<std::shared_ptr<GameObject>> &children)
     : m_Children(children) {}
 
-void Root::AddChild(const std::shared_ptr<GameObject>& child) {
+void Root::AddChild(const std::shared_ptr<GameObject> &child) {
     m_Children.push_back(child);
 }
 
@@ -34,16 +36,29 @@ void Root::Update() {
         stack.push_back(StackInfo{child, Transform{}});
     }
 
+    auto compareFunction = [](const StackInfo &a, const StackInfo &b) {
+        return a.m_GameObject->GetZIndex() > b.m_GameObject->GetZIndex();
+    };
+    std::priority_queue<StackInfo, std::vector<StackInfo>,
+                        decltype(compareFunction)>
+        renderQueue(compareFunction);
+
     while (!stack.empty()) {
         auto curr = stack.back();
         stack.pop_back();
-
-        curr.m_GameObject->Draw();
+        renderQueue.push(curr);
 
         for (const auto &child : curr.m_GameObject->GetChildren()) {
             stack.push_back(
                 StackInfo{child, curr.m_GameObject->GetTransform()});
         }
+    }
+    // draw all in render queue by order
+    while (!renderQueue.empty()) {
+        auto curr = renderQueue.top();
+        renderQueue.pop();
+
+        curr.m_GameObject->Draw();
     }
 }
 } // namespace Util

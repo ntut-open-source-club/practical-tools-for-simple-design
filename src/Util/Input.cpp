@@ -1,7 +1,7 @@
 #include "Util/Input.hpp"
 
-#include <SDL_events.h> // for SDL_Event
 #include "config.hpp"
+#include <SDL_events.h> // for SDL_Event
 
 namespace Util {
 
@@ -22,13 +22,13 @@ bool Input::IsKeyPressed(const Keycode &key) {
     return s_KeyState[temp] != 0;
 }
 
-bool Input::IsLButtonPressed() {
+bool Input::IsLButtonDown() {
     return s_LBPressed;
 }
-bool Input::IsRButtonPressed() {
+bool Input::IsRButtonDown() {
     return s_RBPressed;
 }
-bool Input::IsMButtonPressed() {
+bool Input::IsMButtonDown() {
     return s_MBPressed;
 }
 bool Input::IsMouseMoving() {
@@ -57,19 +57,38 @@ void Input::Update() {
     s_CursorPosition.y =
         -(s_CursorPosition.y - static_cast<float>(WINDOW_HEIGHT) / 2);
 
-    s_LBPressed = s_RBPressed = s_MBPressed = s_Scroll = s_MouseMoving = false;
+    s_Scroll = s_MouseMoving = false;
 
     while (SDL_PollEvent(&s_Event) != 0) {
-        s_LBPressed = (s_Event.type == SDL_MOUSEBUTTONDOWN &&
-                       s_Event.button.button == SDL_BUTTON_LEFT) ||
-                      s_LBPressed;
-        s_RBPressed = (s_Event.type == SDL_MOUSEBUTTONDOWN &&
-                       s_Event.button.button == SDL_BUTTON_RIGHT) ||
-                      s_RBPressed;
-        s_MBPressed = (s_Event.type == SDL_MOUSEBUTTONDOWN &&
-                       s_Event.button.button == SDL_BUTTON_MIDDLE) ||
-                      s_MBPressed;
+        if (s_Event.type == SDL_MOUSEBUTTONUP &&
+            s_Event.button.button == SDL_BUTTON_LEFT) {
+            s_LBPressed = false;
+        }
+        if (s_Event.type == SDL_MOUSEBUTTONDOWN &&
+            s_Event.button.button == SDL_BUTTON_LEFT) {
+            s_LBPressed = true;
+        }
+
+        if (s_Event.type == SDL_MOUSEBUTTONUP &&
+            s_Event.button.button == SDL_BUTTON_RIGHT) {
+            s_RBPressed = false;
+        }
+        if (s_Event.type == SDL_MOUSEBUTTONDOWN &&
+            s_Event.button.button == SDL_BUTTON_RIGHT) {
+            s_RBPressed = true;
+        }
+
+        if (s_Event.type == SDL_MOUSEBUTTONUP &&
+            s_Event.button.button == SDL_BUTTON_MIDDLE) {
+            s_MBPressed = false;
+        }
+        if (s_Event.type == SDL_MOUSEBUTTONDOWN &&
+            s_Event.button.button == SDL_BUTTON_MIDDLE) {
+            s_MBPressed = true;
+        }
+
         s_Scroll = s_Event.type == SDL_MOUSEWHEEL || s_Scroll;
+
         if (s_Scroll) {
             s_ScrollDistance.x = static_cast<float>(s_Event.wheel.x);
             s_ScrollDistance.y = static_cast<float>(s_Event.wheel.y);
