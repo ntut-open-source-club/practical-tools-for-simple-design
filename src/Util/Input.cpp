@@ -22,15 +22,6 @@ bool Input::IsKeyPressed(const Keycode &key) {
     return s_KeyState[temp] != 0;
 }
 
-bool Input::IsLButtonDown() {
-    return s_LBPressed;
-}
-bool Input::IsRButtonDown() {
-    return s_RBPressed;
-}
-bool Input::IsMButtonDown() {
-    return s_MBPressed;
-}
 bool Input::IsMouseMoving() {
     return s_MouseMoving;
 }
