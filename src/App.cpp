@@ -21,14 +21,14 @@ void App::Start() {
 }
 
 void App::Update() {
-    if (Util::Input::IsLButtonPressed()) {
-        LOG_DEBUG("Left button preesed");
+    if (Util::Input::IsLButtonDown()) {
+        LOG_DEBUG("Left button down");
     }
     if (Util::Input::IsRButtonDown()) {
         LOG_DEBUG("Right button down");
     }
-    if (Util::Input::IsMButtonUp()) {
-        LOG_DEBUG("Middle button up");
+    if (Util::Input::IsMButtonDown()) {
+        LOG_DEBUG("Middle button down");
     }
     if (Util::Input::IfScroll()) {
         auto delta = Util::Input::GetScrollDistance();
@@ -38,7 +38,7 @@ void App::Update() {
         // LOG_DEBUG("Mouse moving! x:{}, y{}", cursorPos.x, cursorPos.y);
     }
 
-    if (Util::Input::IsKeyUp(Util::Keycode::ESCAPE) ||
+    if (Util::Input::IsKeyPressed(Util::Keycode::ESCAPE) ||
         Util::Input::IfExit()) {
         m_CurrentState = State::END;
     }
@@ -46,7 +46,7 @@ void App::Update() {
     if (Util::Input::IsKeyPressed(Util::Keycode::A)) {
         LOG_DEBUG("A");
     }
-    if (Util::Input::IsKeyDown(Util::Keycode::B)) {
+    if (Util::Input::IsKeyPressed(Util::Keycode::B)) {
         LOG_DEBUG("B");
         Util::Input::SetCursorPosition({0.0F, 0.0F});
     }
