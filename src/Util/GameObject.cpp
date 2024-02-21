@@ -8,13 +8,7 @@ void GameObject::Draw() {
         return;
     }
 
-    Util::Transform offsetTransform {
-        m_Transform.translation - m_Pivot,
-        m_Transform.rotation,
-        m_Transform.scale,
-    };
-
-    m_Drawable->Draw(offsetTransform, m_ZIndex);
+    m_Drawable->Draw(m_Transform, m_ZIndex, m_Pivot);
 }
 
 } // namespace Util

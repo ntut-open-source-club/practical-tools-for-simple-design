@@ -3,13 +3,12 @@
 
 #include "pch.hpp" // IWYU pragma: export
 
-#include <functional>
-#include <glm/fwd.hpp>
-
 #include "Core/Drawable.hpp"
+#include "Core/Program.hpp"
 #include "Core/Texture.hpp"
+#include "Core/UniformBuffer.hpp"
+#include "Core/VertexArray.hpp"
 
-#include "Util/Logger.hpp"
 #include "Util/Transform.hpp"
 
 namespace Util {
@@ -57,7 +56,8 @@ public:
      * @param transform The transform to apply to the image.
      * @param zIndex The z-index at which to draw the image.
      */
-    void Draw(const Util::Transform &transform, const float zIndex) override;
+    void Draw(const Util::Transform &transform, const float zIndex,
+              const glm::vec2 &pivot) override;
 
 private:
     void InitProgram();

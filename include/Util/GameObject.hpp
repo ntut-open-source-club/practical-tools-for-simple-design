@@ -1,11 +1,10 @@
 #ifndef UTIL_GAME_OBJECT_HPP
 #define UTIL_GAME_OBJECT_HPP
 
-#include <glm/fwd.hpp>
-#include <memory>
-#include <vector>
+#include "pch.hpp" // IWYU pragma: export
 
 #include "Core/Drawable.hpp"
+
 #include "Util/Transform.hpp"
 
 namespace Util {
@@ -33,8 +32,8 @@ public:
      * @param visible The visibility of the game object.
      * @param children The children of the game object.
      */
-    GameObject(std::unique_ptr<Core::Drawable> drawable, const float zIndex, const glm::vec2& pivot = {0, 0},
-               const bool visible = true,
+    GameObject(std::unique_ptr<Core::Drawable> drawable, const float zIndex,
+               const glm::vec2 &pivot = {0, 0}, const bool visible = true,
                const std::vector<std::shared_ptr<GameObject>> &children =
                    std::vector<std::shared_ptr<GameObject>>())
         : m_Drawable(std::move(drawable)),
@@ -94,7 +93,7 @@ public:
      *
      * @param pivot The pivot of the game object.
      */
-    void SetPivot(glm::vec2 pivot) { m_Pivot = pivot; }
+    void SetPivot(const glm::vec2 &pivot) { m_Pivot = pivot; }
 
     /**
      * @brief Set the z-index of the game object.
@@ -136,8 +135,9 @@ public:
      * @param child The child to be removed.
      */
     void RemoveChild(const std::shared_ptr<GameObject> &child) {
-        m_Children.erase(std::remove(m_Children.begin(), m_Children.end(), child),
-                         m_Children.end());
+        m_Children.erase(
+            std::remove(m_Children.begin(), m_Children.end(), child),
+            m_Children.end());
     }
 
     void Draw();
