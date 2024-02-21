@@ -42,7 +42,7 @@ bool Input::IsKeyDown(const Keycode &key) {
     return s_CurrentKeyState[index] != 0 && s_LastKeyState[index] == 0;
 }
 
-bool Input::IskeyUp(const Keycode &key) {
+bool Input::IsKeyUp(const Keycode &key) {
     if (key > Keycode::PTSD_NUM_SCANCODES) {
         return s_MouseState[key].second && !s_MouseState[key].first;
     }

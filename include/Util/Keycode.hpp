@@ -7,7 +7,6 @@
 
 namespace Util {
 // Prevents from auto format checking fail
-// TODO: Decide whether to reformat this in the future
 // clang-format off
 enum class  Keycode {
     UNKNOWN = 0,

@@ -27,7 +27,7 @@ void App::Update() {
     if (Util::Input::IsKeyDown(Util::Keycode::PTSD_MOUSE_RB)) {
         LOG_DEBUG("Right button down");
     }
-    if (Util::Input::IskeyUp(Util::Keycode::PTSD_MOUSE_RB)) {
+    if (Util::Input::IsKeyUp(Util::Keycode::PTSD_MOUSE_RB)) {
         LOG_DEBUG("Right button up");
     }
     if (Util::Input::IfScroll()) {
@@ -38,7 +38,7 @@ void App::Update() {
         // LOG_DEBUG("Mouse moving! x:{}, y{}", cursorPos.x, cursorPos.y);
     }
 
-    if (Util::Input::IskeyUp(Util::Keycode::ESCAPE) ||
+    if (Util::Input::IsKeyUp(Util::Keycode::ESCAPE) ||
         Util::Input::IfExit()) {
         m_CurrentState = State::END;
     }

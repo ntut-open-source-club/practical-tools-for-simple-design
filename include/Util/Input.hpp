@@ -26,9 +26,9 @@ public:
     Input &operator=(const Input &) = delete;
 
     /**
-     * \brief Retrieves the scroll distance of an element.\n
+     * @brief Retrieves the scroll distance of an element.\n
      *
-     * \details The scroll distance is the distance that the mouse wheel has
+     * @details The scroll distance is the distance that the mouse wheel has
      * been scrolled. The distance is expressed in multiples or fractions of
      * lines; for example, if the mouse wheel is rotated three lines downward,
      * the scroll distance is {-1.0F, 0.0F}. If the mouse wheel is rotated three
@@ -37,7 +37,7 @@ public:
      * mouse wheel is rotated three lines left, the scroll distance is {0.0F,
      * -1.0F}.
      *
-     * \return The scroll distance as vec2(x,y).
+     * @return The scroll distance as vec2(x,y).
      */
     static glm::vec2 GetScrollDistance();
 
@@ -53,22 +53,44 @@ public:
     static glm::vec2 GetCursorPosition();
 
     /**
-     * \brief Check if a specific key is currently pressed.
+     * @brief Check if a specific key is currently pressed.
      *
-     * This function checks whether the given key is currently being pressed on
-     * the keyboard.
+     * This function checks whether the given key is currently pressed.
      *
-     * \param key The keycode of the key to check.
+     * @param key The keycode of the key to check.
      *
-     * \return true if the key is currently pressed, false otherwise.
+     * @return true if `key` is currently pressed, false otherwise.
      *
-     * \see Util::Keycode
+     * @see Util::Keycode
      */
     static bool IsKeyPressed(const Keycode &key);
 
+
+    /**
+     * @brief Check if a specific key is being pressed.
+     *
+     * This function checks whether the given key is currently being pressed.
+     *
+     * @param key The keycode of the key to check.
+     *
+     * @return true if `key` is currently pressed, false otherwise.
+     *
+     * @see Util::Keycode
+     */
     static bool IsKeyDown(const Keycode &key);
 
-    static bool IskeyUp(const Keycode &key);
+    /**
+     * @brief Check if a specific key is being un-pressed.
+     *
+     * This function checks whether the given key is currently being un-pressed.
+     *
+     * @param key The keycode of the key to check.
+     *
+     * @return true if `key` is currently pressed, false otherwise.
+     *
+     * @see Util::Keycode
+     */
+    static bool IsKeyUp(const Keycode &key);
 
     /**
      * @brief Checks if the mouse wheel is currently being scrolled.
