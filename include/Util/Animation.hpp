@@ -89,7 +89,10 @@ public:
      * @brief Set whether the animation loops.
      * @param looping True to enable looping, false to disable.
      */
-    void SetLooping(bool looping) { m_Looping = looping; }
+    void SetLooping(bool looping) {
+        LOG_DEBUG("[ANI] set loop: {}", looping);
+        m_Looping = looping;
+    }
 
     /**
      * @brief Set the cooldown time.
@@ -124,13 +127,19 @@ public:
      * If the animation has ended and `looping` is set to `false`, this would
      * replay the animation once.
      */
-    void Play();
+    void Play() {
+        m_State = State::PLAY;
+        if (m_HasEnded) {
+            m_Index = 0;
+            m_HasEnded = false;
+        }
+    }
 
     /**
      * @brief Pause the animation.
      * If the animation has already been paused, this method won't do anything.
      */
-    void Pause();
+    void Pause() { m_State = State::PAUSE; }
 
 private:
     /**

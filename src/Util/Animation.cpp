@@ -24,60 +24,75 @@ void Animation::Draw(const Util::Transform &transform, const float zIndex) {
     Update();
 }
 
-void Animation::Play() {
-    if (m_State == State::PLAY && !m_HasEnded) {
-        return;
-    }
-
-    if (m_HasEnded) {
-        m_StartTime = Util::Time::GetElapsedTimeMs();
-        m_Index = 0;
-        m_HasEnded = false;
-    }
-
-    if (m_State == State::PAUSE) {
-        m_PauseOffset += Util::Time::GetElapsedTimeMs() - m_PauseTime;
-    }
-
-    m_State = State::PLAY;
-}
-
-void Animation::Pause() {
-    if (m_State == State::PAUSE) {
-        return;
-    }
-
-    m_State = State::PAUSE;
-    m_PauseTime = Util::Time::GetElapsedTimeMs();
-}
-
 void Animation::Update() {
-    std::size_t delta =
-        Util::Time::GetElapsedTimeMs() - m_StartTime - m_PauseOffset;
-    const auto totalSpan = m_Interval * m_Frames.size() + m_Cooldown;
-
-    if (delta > totalSpan && !m_Looping) {
-        m_HasEnded = true;
+    if (m_State == State::PAUSE) {
+        LOG_DEBUG("[ANI] is pause");
+        m_StartTime = Util::Time::GetElapsedTimeMs();
+        return;
     }
 
-    if (m_State == State::PAUSE || m_HasEnded) {
+    if (!m_Looping && m_HasEnded) {
+        LOG_DEBUG("[ANI] not loop and is ended");
+        m_StartTime = Util::Time::GetElapsedTimeMs();
         return;
+    }
+
+    std::size_t delta = Util::Time::GetElapsedTimeMs() - m_StartTime;
+
+// #define TEST_UNFINISHED_OPTIMIZATION_CODE_IN_ANIMATION
+#ifdef TEST_UNFINISHED_OPTIMIZATION_CODE_IN_ANIMATION
+    // FIXME: while loop can be replaced with modulo
+    // i.e. delta %= totalSpan
+
+    // m_StartTime += delta;
+    m_Index = 0;
+
+    const auto totalSpan = m_Interval * m_Frames.size() + m_Cooldown;
+    if (!m_Looping && delta > totalSpan) {
+        LOG_DEBUG("[ANI] not loop and is end");
+        m_HasEnded = true;
+        m_Index = m_Frames.size() - 1;
+        return;
+    }
+
+    delta %= totalSpan;
+
+    auto step = delta / m_Interval;
+
+    if (step < m_Frames.size()) {
+        m_Index = step;
+    } else {
+        m_Index = m_Frames.size() - 1;
     }
 
     LOG_DEBUG("{} {}", m_Index, delta);
-
-    // if last frame it should wait for cooldown
-    if (m_Index >= m_Frames.size() - 1) {
-        if (delta > m_Interval + m_Cooldown && m_Looping) {
-            m_StartTime += m_Interval + m_Cooldown;
-            m_Index = 0;
+#else
+    while (true) {
+        auto this_interval =
+            m_Interval + (m_Index >= m_Frames.size() - 1 ? m_Cooldown : 0);
+        if (m_Index >= m_Frames.size() - 1) {
+            if (!m_Looping) {
+                m_HasEnded = true;
+                return;
+            }
+            // if last frame it should wait for cooldown
+            if (delta > m_Interval + m_Cooldown) {
+                m_StartTime += m_Interval + m_Cooldown;
+                m_Index = 0;
+                delta -= this_interval;
+            } else {
+                break;
+            }
+        } else {
+            if (delta > this_interval) {
+                m_StartTime += this_interval;
+                m_Index = (m_Index + 1) % m_Frames.size();
+                delta -= this_interval;
+            } else {
+                break;
+            }
         }
-        return;
     }
-
-    if (delta > m_Interval) {
-        m_StartTime += m_Interval;
-        m_Index++;
-    }
+#endif /* TEST_UNFINISHED_OPTIMIZATION_CODE_IN_ANIMATION */
 };
 } // namespace Util
