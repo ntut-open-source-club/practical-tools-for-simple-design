@@ -33,8 +33,9 @@ public:
      * @param cooldown Cooldown time in milliseconds before the animation can
      * restart.
      */
-    Animation(const std::vector<std::string> &paths, bool play, int interval,
-              bool looping = true, int cooldown = 100);
+    Animation(const std::vector<std::string> &paths, bool play,
+              std::size_t interval, bool looping = true,
+              std::size_t cooldown = 100);
 
     /**
      * @brief Get the interval between frames.
@@ -161,9 +162,9 @@ private:
     unsigned long m_PauseTime;
     unsigned long m_PauseOffset = 0;
 
-    int m_Interval;
+    std::size_t m_Interval;
     bool m_Looping;
-    int m_Cooldown;
+    std::size_t m_Cooldown;
     bool m_HasEnded;
 
     std::vector<std::shared_ptr<Util::Image>> m_Frames;

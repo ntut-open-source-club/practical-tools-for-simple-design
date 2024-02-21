@@ -4,7 +4,7 @@
 
 namespace Util {
 Animation::Animation(const std::vector<std::string> &paths, bool play,
-                     int interval, bool looping, int cooldown)
+                     std::size_t interval, bool looping, std::size_t cooldown)
     : m_StartTime(Util::Time::GetElapsedTimeMs()),
       m_Interval(interval),
       m_Looping(looping),
@@ -64,16 +64,18 @@ void Animation::Update() {
         return;
     }
 
-    const auto _delta = delta % totalSpan;
-
-    if (_delta > m_Interval * m_Frames.size()) {
-        // if in cooldown, get the last frame
-        m_Index = m_Frames.size() - 1;
-    } else {
-        m_Index = (_delta / m_Interval) % m_Frames.size();
+    // if last frame it should wait for cooldown
+    if (m_Index >= m_Frames.size() - 1) {
+        if (delta > m_Interval + m_Cooldown) {
+            m_StartTime += m_Interval + m_Cooldown;
+            m_Index = 0;
+        }
+        return;
     }
 
-    // debug purposes
-    // LOG_DEBUG("{} {}", m_Index, delta);
+    if (delta > m_Interval) {
+        m_StartTime += m_Interval;
+        m_Index++;
+    }
 };
 } // namespace Util
