@@ -21,14 +21,14 @@ void App::Start() {
 }
 
 void App::Update() {
-    if (Util::Input::IsLButtonDown()) {
-        LOG_DEBUG("Left button down");
+    if (Util::Input::IsKeyPressed(Util::Keycode::PTSD_MOUSE_LB)) {
+        LOG_DEBUG("Left button pressed");
     }
-    if (Util::Input::IsRButtonDown()) {
+    if (Util::Input::IsKeyDown(Util::Keycode::PTSD_MOUSE_RB)) {
         LOG_DEBUG("Right button down");
     }
-    if (Util::Input::IsMButtonDown()) {
-        LOG_DEBUG("Middle button down");
+    if (Util::Input::IskeyUp(Util::Keycode::PTSD_MOUSE_RB)) {
+        LOG_DEBUG("Right button up");
     }
     if (Util::Input::IfScroll()) {
         auto delta = Util::Input::GetScrollDistance();
@@ -38,17 +38,20 @@ void App::Update() {
         // LOG_DEBUG("Mouse moving! x:{}, y{}", cursorPos.x, cursorPos.y);
     }
 
-    if (Util::Input::IsKeyPressed(Util::Keycode::ESCAPE) ||
+    if (Util::Input::IskeyUp(Util::Keycode::ESCAPE) ||
         Util::Input::IfExit()) {
         m_CurrentState = State::END;
     }
 
-    if (Util::Input::IsKeyPressed(Util::Keycode::A)) {
-        LOG_DEBUG("A");
+    if (Util::Input::IsKeyDown(Util::Keycode::A)) {
+        LOG_DEBUG("A Down");
     }
+
     if (Util::Input::IsKeyPressed(Util::Keycode::B)) {
-        LOG_DEBUG("B");
+        LOG_DEBUG("B Pressed. Setting the cursor to (0, 0).");
         Util::Input::SetCursorPosition({0.0F, 0.0F});
+        LOG_DEBUG("Cursor set to {}.", glm::to_string(Util::Input::GetCursorPosition()));
+
     }
 
     m_Giraffe->Update();

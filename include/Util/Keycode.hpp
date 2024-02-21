@@ -9,7 +9,7 @@ namespace Util {
 // Prevents from auto format checking fail
 // TODO: Decide whether to reformat this in the future
 // clang-format off
-enum class Keycode {
+enum class  Keycode {
     UNKNOWN = 0,
 
     /**
@@ -410,5 +410,7 @@ enum class Keycode {
 };
 // clang-format on
 } // namespace Util
+
+
 
 #endif // UTIL_EVENT_STUFF_HPP

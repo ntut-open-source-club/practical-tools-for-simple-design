@@ -1,14 +1,15 @@
 #include "Util/Input.hpp"
 
-#include "config.hpp"
 #include <SDL_events.h> // for SDL_Event
+
+#include "config.hpp"
 
 namespace Util {
 
 // init all static members
 SDL_Event Input::s_Event = SDL_Event();
 const Uint8 *Input::s_CurrentKeyState = SDL_GetKeyboardState(nullptr);
-std::unordered_map<Uint8, bool> Input::s_LastKeyState = {};
+std::unordered_map<int, bool> Input::s_LastKeyState = {};
 
 glm::vec2 Input::s_CursorPosition = glm::vec2(0.0F);
 glm::vec2 Input::s_ScrollDistance = glm::vec2(-1.0F, -1.0F);
@@ -24,8 +25,30 @@ bool Input::s_MouseMoving = false;
 bool Input::s_Exit = false;
 
 bool Input::IsKeyPressed(const Keycode &key) {
-    const auto temp = static_cast<const int>(key);
-    return s_KeyState[temp] != 0;
+    if (key > Keycode::PTSD_NUM_SCANCODES) {
+        return s_MouseState[key].second; // && !s_MouseState[key].first;
+    }
+
+    const auto index = static_cast<const int>(key);
+    return s_CurrentKeyState[index] != 0 && s_LastKeyState[index] != 0;
+}
+
+bool Input::IsKeyDown(const Keycode &key) {
+    if (key > Keycode::PTSD_NUM_SCANCODES) {
+        return s_MouseState[key].second && !s_MouseState[key].first;
+    }
+
+    const auto index = static_cast<const int>(key);
+    return s_CurrentKeyState[index] != 0 && s_LastKeyState[index] == 0;
+}
+
+bool Input::IskeyUp(const Keycode &key) {
+    if (key > Keycode::PTSD_NUM_SCANCODES) {
+        return s_MouseState[key].second && !s_MouseState[key].first;
+    }
+
+    const auto index = static_cast<const int>(key);
+    return s_CurrentKeyState[index] == 0 && s_LastKeyState[index] != 0;
 }
 
 bool Input::IsMouseMoving() {
@@ -56,32 +79,42 @@ void Input::Update() {
 
     s_Scroll = s_MouseMoving = false;
 
+    for (int i = 0; i < 512; ++i) {
+        s_LastKeyState[i] = s_CurrentKeyState[i];
+    }
+
+    for (int i = static_cast<int>(Keycode::PTSD_MOUSE_LB);
+         i <= static_cast<int>(Keycode::PTSD_MOUSE_MB); ++i) {
+        s_MouseState[static_cast<Keycode>(i)].first =
+            s_MouseState[static_cast<Keycode>(i)].second;
+    }
+
     while (SDL_PollEvent(&s_Event) != 0) {
         if (s_Event.type == SDL_MOUSEBUTTONUP &&
             s_Event.button.button == SDL_BUTTON_LEFT) {
-            s_LBPressed = false;
+            s_MouseState[Keycode::PTSD_MOUSE_LB].second = false;
         }
         if (s_Event.type == SDL_MOUSEBUTTONDOWN &&
             s_Event.button.button == SDL_BUTTON_LEFT) {
-            s_LBPressed = true;
+            s_MouseState[Keycode::PTSD_MOUSE_LB].second = true;
         }
 
         if (s_Event.type == SDL_MOUSEBUTTONUP &&
             s_Event.button.button == SDL_BUTTON_RIGHT) {
-            s_RBPressed = false;
+            s_MouseState[Keycode::PTSD_MOUSE_RB].second = false;
         }
         if (s_Event.type == SDL_MOUSEBUTTONDOWN &&
             s_Event.button.button == SDL_BUTTON_RIGHT) {
-            s_RBPressed = true;
+            s_MouseState[Keycode::PTSD_MOUSE_RB].second = true;
         }
 
         if (s_Event.type == SDL_MOUSEBUTTONUP &&
             s_Event.button.button == SDL_BUTTON_MIDDLE) {
-            s_MBPressed = false;
+            s_MouseState[Keycode::PTSD_MOUSE_MB].second = false;
         }
         if (s_Event.type == SDL_MOUSEBUTTONDOWN &&
             s_Event.button.button == SDL_BUTTON_MIDDLE) {
-            s_MBPressed = true;
+            s_MouseState[Keycode::PTSD_MOUSE_MB].second = true;
         }
 
         s_Scroll = s_Event.type == SDL_MOUSEWHEEL || s_Scroll;
@@ -103,4 +136,5 @@ void Input::SetCursorPosition(const glm::vec2 &pos) {
     SDL_WarpMouseInWindow(nullptr, static_cast<int>(pos.x),
                           static_cast<int>(pos.y));
 }
+
 } // namespace Util

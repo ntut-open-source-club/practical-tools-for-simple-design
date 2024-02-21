@@ -66,9 +66,14 @@ public:
      */
     static bool IsKeyPressed(const Keycode &key);
 
+    static bool IsKeyDown(const Keycode &key);
+
+    static bool IskeyUp(const Keycode &key);
+
     /**
      * @brief Checks if the mouse wheel is currently being scrolled.
-     * @return  A bool value representing the current state of the mouse wheel.
+     * @return  A bool value representing the current state of the mouse
+     * wheel.
      */
     static bool IfScroll();
 
@@ -106,7 +111,7 @@ private:
     static SDL_Event s_Event;
 
     static const Uint8 *s_CurrentKeyState;
-    static std::unordered_map<Uint8, bool> s_LastKeyState;
+    static std::unordered_map<int, bool> s_LastKeyState;
 
     static glm::vec2 s_CursorPosition;
     static glm::vec2 s_ScrollDistance;
