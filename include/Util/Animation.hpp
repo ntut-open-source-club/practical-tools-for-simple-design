@@ -89,10 +89,7 @@ public:
      * @brief Set whether the animation loops.
      * @param looping True to enable looping, false to disable.
      */
-    void SetLooping(bool looping) {
-        LOG_DEBUG("[ANI] set loop: {}", looping);
-        m_Looping = looping;
-    }
+    void SetLooping(bool looping) { m_Looping = looping; }
 
     /**
      * @brief Set the cooldown time.
@@ -150,10 +147,7 @@ private:
 private:
     State m_State = State::PLAY;
 
-    unsigned long m_StartTime;
-
-    unsigned long m_PauseTime;
-    unsigned long m_PauseOffset = 0;
+    unsigned long m_LastFrameStartTime;
 
     std::size_t m_Interval;
     bool m_Looping;
