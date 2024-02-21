@@ -105,14 +105,14 @@ public:
 private:
     static SDL_Event s_Event;
 
-    static const Uint8 *s_KeyState;
+    static const Uint8 *s_CurrentKeyState;
+    static std::unordered_map<Uint8, bool> s_LastKeyState;
 
     static glm::vec2 s_CursorPosition;
     static glm::vec2 s_ScrollDistance;
 
-    static bool s_LBPressed;
-    static bool s_RBPressed;
-    static bool s_MBPressed;
+    static std::unordered_map<Keycode, std::pair<bool, bool>> s_MouseState;
+
     static bool s_Scroll;
     static bool s_MouseMoving;
     static bool s_Exit;

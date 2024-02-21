@@ -7,12 +7,18 @@ namespace Util {
 
 // init all static members
 SDL_Event Input::s_Event = SDL_Event();
-const Uint8 *Input::s_KeyState = SDL_GetKeyboardState(nullptr);
+const Uint8 *Input::s_CurrentKeyState = SDL_GetKeyboardState(nullptr);
+std::unordered_map<Uint8, bool> Input::s_LastKeyState = {};
+
 glm::vec2 Input::s_CursorPosition = glm::vec2(0.0F);
 glm::vec2 Input::s_ScrollDistance = glm::vec2(-1.0F, -1.0F);
-bool Input::s_LBPressed = false;
-bool Input::s_RBPressed = false;
-bool Input::s_MBPressed = false;
+
+std::unordered_map<Keycode, std::pair<bool, bool>> Input::s_MouseState = {
+    std::make_pair(Keycode::PTSD_MOUSE_LB, std::make_pair(false, false)),
+    std::make_pair(Keycode::PTSD_MOUSE_RB, std::make_pair(false, false)),
+    std::make_pair(Keycode::PTSD_MOUSE_MB, std::make_pair(false, false)),
+};
+
 bool Input::s_Scroll = false;
 bool Input::s_MouseMoving = false;
 bool Input::s_Exit = false;
