@@ -82,42 +82,26 @@ public:
     /**
      * @brief Set the interval between frames.
      * @param interval Interval between frames in milliseconds.
-     * @todo This method is not yet implemented
      */
-    void SetInterval(int interval) {
-        (void)interval;
-        throw std::logic_error("Not implemented");
-    }
+    void SetInterval(int interval) { m_Interval = interval; }
 
     /**
      * @brief Set whether the animation loops.
      * @param looping True to enable looping, false to disable.
-     * @todo This method is not yet implemented
      */
-    void SetLooping(bool looping) {
-        (void)looping;
-        throw std::logic_error("Not implemented");
-    }
+    void SetLooping(bool looping) { m_Looping = looping; }
 
     /**
      * @brief Set the cooldown time.
      * @param cooldown Cooldown time in milliseconds.
-     * @todo This method is not yet implemented
      */
-    void SetCooldown(int cooldown) {
-        (void)cooldown;
-        throw std::logic_error("Not implemented");
-    }
+    void SetCooldown(int cooldown) { m_Cooldown = cooldown; }
 
     /**
      * @brief Set the current frame of the animation.
      * @param index Index of the frame to set as current.
-     * @todo This method is not yet implemented
      */
-    void SetCurrentFrame(std::size_t index) {
-        (void)index;
-        throw std::logic_error("Not implemented");
-    };
+    void SetCurrentFrame(std::size_t index) { m_Index = index; };
 
     /**
      * @brief Draw the current frame.

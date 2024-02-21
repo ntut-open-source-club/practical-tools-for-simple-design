@@ -64,9 +64,11 @@ void Animation::Update() {
         return;
     }
 
+    LOG_DEBUG("{} {}", m_Index, delta);
+
     // if last frame it should wait for cooldown
     if (m_Index >= m_Frames.size() - 1) {
-        if (delta > m_Interval + m_Cooldown) {
+        if (delta > m_Interval + m_Cooldown && m_Looping) {
             m_StartTime += m_Interval + m_Cooldown;
             m_Index = 0;
         }

@@ -27,4 +27,12 @@ void Cat::Update() {
     if (Util::Input::IsKeyPressed(Util::Keycode::S)) {
         m_Animation->Play();
     }
+
+    if (Util::Input::IsKeyPressed(Util::Keycode::D)) {
+        m_Animation->SetLooping(false);
+    }
+
+    if (Util::Input::IsKeyPressed(Util::Keycode::F)) {
+        m_Animation->SetLooping(true);
+    }
 }
