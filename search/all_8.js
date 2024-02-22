@@ -8,9 +8,8 @@ var searchData=
   ['insert_5',['INSERT',['../namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a61ee777e7f71dc466c3b2c685d8d313b',1,'Util']]],
   ['international1_6',['INTERNATIONAL1',['../namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5af04b16e01e2458b2442f49b30b5d1938',1,'Util']]],
   ['international3_7',['INTERNATIONAL3',['../namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a70055bce1789c7b29d51821ee8d38a72',1,'Util']]],
-  ['iskeypressed_8',['IsKeyPressed',['../classUtil_1_1Input.html#a41d0028f3e27ab1dc4e48eb097a320fa',1,'Util::Input']]],
-  ['islbuttondown_9',['IsLButtonDown',['../classUtil_1_1Input.html#af7adbbd6c12609c522634545ca4f395f',1,'Util::Input']]],
-  ['ismbuttondown_10',['IsMButtonDown',['../classUtil_1_1Input.html#aa99bde7416d6f15e141f2be6364f5fdf',1,'Util::Input']]],
-  ['ismousemoving_11',['IsMouseMoving',['../classUtil_1_1Input.html#a0a540562f9179e8b232326e51bffc09b',1,'Util::Input']]],
-  ['isrbuttondown_12',['IsRButtonDown',['../classUtil_1_1Input.html#aa2505cc7356f3153e5371e7cac6eef6e',1,'Util::Input']]]
+  ['iskeydown_8',['IsKeyDown',['../classUtil_1_1Input.html#a1efb73fc70a8df5358111a595e88e65f',1,'Util::Input']]],
+  ['iskeypressed_9',['IsKeyPressed',['../classUtil_1_1Input.html#a41d0028f3e27ab1dc4e48eb097a320fa',1,'Util::Input']]],
+  ['iskeyup_10',['IsKeyUp',['../classUtil_1_1Input.html#a8583064a829647c244af05b2878c76f5',1,'Util::Input']]],
+  ['ismousemoving_11',['IsMouseMoving',['../classUtil_1_1Input.html#a0a540562f9179e8b232326e51bffc09b',1,'Util::Input']]]
 ];

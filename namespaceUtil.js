@@ -406,7 +406,10 @@ var namespaceUtil =
       [ "SOFTRIGHT", "namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a21758faf52a90dde9e52a40f7493f00c", null ],
       [ "CALL", "namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5aca3547acb9162b49fb4a6594ed9b3030", null ],
       [ "ENDCALL", "namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5ad6c5a239fa4eb6bcc02c369b96586a40", null ],
-      [ "PTSD_NUM_SCANCODES", "namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5adbe11d4ecde9393158c4084023f79e00", null ]
+      [ "NUM_SCANCODES", "namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5af477c09f0e75412ac1c6dd97284a7944", null ],
+      [ "MOUSE_LB", "namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a59d13555ae88cd60556c9ab40b8c6e5d", null ],
+      [ "MOUSE_RB", "namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5aa8f6fc014c7f7c835cda64bcb0e53a71", null ],
+      [ "MOUSE_MB", "namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5ad6552b43c17ac76569953e0a9d55066f", null ]
     ] ],
     [ "ConvertToUniformBufferData", "namespaceUtil.html#a45e3e4f96aaac8e23c435be6bacca014", null ],
     [ "LoadTextFile", "namespaceUtil.html#a343c4ab3cb2daa5a8e7278592870d148", null ]
