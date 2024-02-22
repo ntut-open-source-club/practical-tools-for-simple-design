@@ -22,12 +22,7 @@ public:
     enum class State {
         PLAY,  /**< Animation is playing. */
         PAUSE, /**< Animation is paused. */
-               /**
-                * Animation is in cooldown
-                * @todo This state is not implemented yet
-                */
-        COOLDOWN,
-        ENDED, /**< Animation has ended. */
+
     };
 
     /**
@@ -78,9 +73,6 @@ public:
      * @return The current state of the animation
      */
     State GetState() const {
-        if (m_HasEnded) {
-            return State::ENDED;
-        }
         return m_State;
     }
 
@@ -132,13 +124,7 @@ public:
      * If the animation has ended and `looping` is set to `false`, this would
      * replay the animation once.
      */
-    void Play() {
-        m_State = State::PLAY;
-        if (m_HasEnded) {
-            m_Index = 0;
-            m_HasEnded = false;
-        }
-    }
+    void Play();
 
     /**
      * @brief Pause the animation.
@@ -153,16 +139,16 @@ private:
     void Update();
 
 private:
+    std::vector<std::shared_ptr<Util::Image>> m_Frames;
     State m_State;
-
-    unsigned long m_BaseTime;
-
+    unsigned long m_PrevUpdateTime;
     std::size_t m_Interval;
     bool m_Looping;
     std::size_t m_Cooldown;
-    bool m_HasEnded = false;
 
-    std::vector<std::shared_ptr<Util::Image>> m_Frames;
+    unsigned long m_NextFrameTime;
+
+
     std::size_t m_Index;
 };
 } // namespace Util

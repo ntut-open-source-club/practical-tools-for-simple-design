@@ -14,25 +14,32 @@ Cat::Cat()
               "../assets/sprites/cat/cat-6.bmp",
               "../assets/sprites/cat/cat-7.bmp",
           },
-          true, 50, true, 0)) {
+          true, 50, true, 1000)) {
     m_Transform.translation = {-200, 200};
     SetDrawable(m_Animation);
 }
 
 void Cat::Update() {
-    if (Util::Input::IsKeyPressed(Util::Keycode::A)) {
+    if (Util::Input::IsKeyDown(Util::Keycode::A)) {
         m_Animation->Pause();
     }
 
-    if (Util::Input::IsKeyPressed(Util::Keycode::S)) {
+    if (Util::Input::IsKeyDown(Util::Keycode::S)) {
         m_Animation->Play();
     }
 
-    if (Util::Input::IsKeyPressed(Util::Keycode::D)) {
+    if (Util::Input::IsKeyDown(Util::Keycode::D)) {
         m_Animation->SetLooping(false);
     }
 
-    if (Util::Input::IsKeyPressed(Util::Keycode::F)) {
+    if (Util::Input::IsKeyDown(Util::Keycode::F)) {
         m_Animation->SetLooping(true);
+    }
+
+    if (Util::Input::IsKeyUp(Util::Keycode::K)) {
+        m_Animation->SetInterval(50);
+    }
+    if (Util::Input::IsKeyDown(Util::Keycode::K)) {
+        m_Animation->SetInterval(500);
     }
 }
