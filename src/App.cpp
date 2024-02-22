@@ -16,6 +16,7 @@ void App::Start() {
     m_Giraffe->Start();
 
     m_Root.AddChild(m_Giraffe);
+    m_Root.AddChild(m_Cat);
 
     m_CurrentState = State::UPDATE;
 }
@@ -55,6 +56,7 @@ void App::Update() {
     }
 
     m_Giraffe->Update();
+    m_Cat->Update();
 
     m_Root.Update();
 }
