@@ -83,11 +83,14 @@ void Input::Update() {
         s_LastKeyState[i] = s_CurrentKeyState[i];
     }
 
-    for (int i = static_cast<int>(Keycode::MOUSE_LB);
-         i <= static_cast<int>(Keycode::MOUSE_MB); ++i) {
-        s_MouseState[static_cast<Keycode>(i)].first =
-            s_MouseState[static_cast<Keycode>(i)].second;
-    }
+    s_MouseState[Keycode::MOUSE_LB].first =
+        s_MouseState[Keycode::MOUSE_LB].second;
+
+    s_MouseState[Keycode::MOUSE_RB].first =
+        s_MouseState[Keycode::MOUSE_RB].second;
+
+    s_MouseState[Keycode::MOUSE_MB].first =
+        s_MouseState[Keycode::MOUSE_MB].second;
 
     while (SDL_PollEvent(&s_Event) != 0) {
         if (s_Event.type == SDL_MOUSEBUTTONUP &&
