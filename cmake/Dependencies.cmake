@@ -10,7 +10,7 @@ FetchContent_Declare(
 
     URL         https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0.zip
     URL_HASH    MD5=970535b75b1b69ebd018a0fa05af63d1
-    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/glew
+    SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/glew
 )
 
 FetchContent_Declare(
@@ -18,7 +18,7 @@ FetchContent_Declare(
 
     URL         https://github.com/libsdl-org/SDL/releases/download/release-2.26.5/SDL2-2.26.5.zip
     URL_HASH    MD5=0664f3980570c4641128866e6c9f2e29
-    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/sdl2
+    SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/sdl2
 )
 
 FetchContent_Declare(
@@ -26,7 +26,7 @@ FetchContent_Declare(
 
     URL         https://github.com/libsdl-org/SDL_image/releases/download/release-2.6.3/SDL2_image-2.6.3.zip
     URL_HASH    MD5=ecedb5078bbd31e7d1552e2b1443d2f6
-    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/sdl2_image
+    SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/sdl2_image
 )
 
 FetchContent_Declare(
@@ -34,14 +34,14 @@ FetchContent_Declare(
 
     URL         https://github.com/libsdl-org/SDL_ttf/releases/download/release-2.20.2/SDL2_ttf-2.20.2.zip
     URL_HASH    MD5=7258258fdb2a4adb0072d337f94305f9
-    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/sdl2_ttf
+    SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/sdl2_ttf
 )
 FetchContent_Declare(
         sdl2_mixer
 
         URL         https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.6.3/SDL2_mixer-2.6.3.zip
         URL_HASH    MD5=fb3e71ef072ff8dd793cec3ed384f9a0
-        SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/sdl2_mixer
+        SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/sdl2_mixer
 )
 
 FetchContent_Declare( # At this time 1.11.0 has some issues formatting `const unsigned char *`
@@ -49,7 +49,7 @@ FetchContent_Declare( # At this time 1.11.0 has some issues formatting `const un
 
     URL         https://github.com/gabime/spdlog/archive/refs/tags/v1.10.0.zip
     URL_HASH    MD5=031565384b28f29e44c6e7fb247ad48a
-    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/spdlog
+    SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/spdlog
 )
 
 FetchContent_Declare(
@@ -57,7 +57,7 @@ FetchContent_Declare(
 
     URL         https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
     URL_HASH    MD5=69895110052f0d711c9c54fbf385f6f5
-    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/glm
+    SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/glm
 )
 
 FetchContent_Declare(
@@ -65,7 +65,7 @@ FetchContent_Declare(
 
     URL         https://github.com/google/googletest/archive/refs/tags/v1.13.0.zip
     URL_HASH    MD5=a1279c6fb5bf7d4a5e0d0b2a4adb39ac
-    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/googletest
+    SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/googletest
 )
 
 set(BUILD_SHARED_LIBS FALSE)
@@ -96,7 +96,7 @@ add_compile_definitions(GLEW_NO_GLU)
 FetchContent_GetProperties(glew)
 if (NOT ${glew_POPULATED})
     FetchContent_Populate(glew)
-    add_subdirectory(${CMAKE_SOURCE_DIR}/lib/glew/build/cmake)
+    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/lib/glew/build/cmake)
 endif()
 
 set(DEPENDENCY_LINK_LIBRARIES
@@ -110,10 +110,12 @@ set(DEPENDENCY_LINK_LIBRARIES
 
     spdlog::spdlog
 )
+set(DEPENDENCY_LINK_LIBRARIES ${DEPENDENCY_LINK_LIBRARIES} PARENT_SCOPE)
 
 set(DEPENDENCY_INCLUDE_DIRS
-    ${CMAKE_SOURCE_DIR}/lib/sdl2/include/
-    ${CMAKE_SOURCE_DIR}/lib/glew/include/
-    ${CMAKE_SOURCE_DIR}/lib/spdlog/include/
-    ${CMAKE_SOURCE_DIR}/lib/glm/
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/sdl2/include/
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/glew/include/
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/spdlog/include/
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/glm/
 )
+set(DEPENDENCY_INCLUDE_DIRS ${DEPENDENCY_INCLUDE_DIRS} PARENT_SCOPE)
