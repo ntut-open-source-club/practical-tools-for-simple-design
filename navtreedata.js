@@ -25,6 +25,12 @@
 var NAVTREE =
 [
   [ "Practical Tools for Simple Design", "index.html", [
+    [ "Getting Started", "index.html#autotoc_md1", [
+      [ "Command Line", "index.html#autotoc_md2", null ],
+      [ "VSCode", "index.html#autotoc_md3", null ],
+      [ "CLion", "index.html#autotoc_md4", null ]
+    ] ],
+    [ "Generate Doxygen Documents", "index.html#autotoc_md5", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -52,8 +58,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "App_8hpp_source.html",
-"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a44c29edb103a2872f519ad0c9a0fdaaa",
-"namespaceUtil.html#a80cdf50793a9101631584b20607a14e2a555a47662547aa7870851b2ef9ade925"
+"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a4350986433eebee5442729a1a4ac7add",
+"namespaceUtil.html#a80cdf50793a9101631584b20607a14e2a4f108a43d8c7c5d0c68ee0867293174e"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

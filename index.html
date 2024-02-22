@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=11"/>
 <meta name="generator" content="Doxygen 1.9.5"/>
 <meta name="viewport" content="width=device-width, initial-scale=1"/>
-<title>Practical Tools for Simple Design: Main Page</title>
+<title>Practical Tools for Simple Design: Practical Tools for Simple Design</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -97,10 +97,73 @@ $(document).ready(function(){initNavTree('index.html',''); initResizable(); });
 </div>
 </div>
 
-<div class="header">
-  <div class="headertitle"><div class="title">Practical Tools for Simple Design Documentation</div></div>
+<div><div class="header">
+  <div class="headertitle"><div class="title">Practical Tools for Simple Design </div></div>
 </div><!--header-->
 <div class="contents">
+<div class="textblock"><p ><a class="anchor" id="md_README"></a> </p><h5>Officially Supported Platforms and IDEs</h5>
+<table class="markdownTable">
+<tr class="markdownTableHead">
+<th class="markdownTableHeadCenter"></th><th class="markdownTableHeadCenter">Windows   </th><th class="markdownTableHeadCenter">macOS   </th><th class="markdownTableHeadCenter">Linux    </th></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">CLion   </td><td class="markdownTableBodyCenter">V   </td><td class="markdownTableBodyCenter">V   </td><td class="markdownTableBodyCenter">V    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">VSCode[^codeoss]   </td><td class="markdownTableBodyCenter">V   </td><td class="markdownTableBodyCenter">V   </td><td class="markdownTableBodyCenter">V    </td></tr>
+<tr class="markdownTableRowOdd">
+<td class="markdownTableBodyCenter">Visual Studio[^novs][^vsmacos]   </td><td class="markdownTableBodyCenter">?   </td><td class="markdownTableBodyCenter">X   </td><td class="markdownTableBodyCenter">X    </td></tr>
+<tr class="markdownTableRowEven">
+<td class="markdownTableBodyCenter">No IDE   </td><td class="markdownTableBodyCenter">V   </td><td class="markdownTableBodyCenter">V   </td><td class="markdownTableBodyCenter">V   </td></tr>
+</table>
+<p >[^vsmacos]: <a href="https://visualstudiomagazine.com/articles/2023/08/30/vs-for-mac-retirement.aspx">Microsoft Kills Visual Studio for Mac</a> [^codeoss]: On Linux the support of Code - OSS and VSCodium aren't guaranteed. [^novs]: Due to lack of testing there may or may not be more issues on VS. Anyway, building PTSD on VS is available.</p>
+<h1><a class="anchor" id="autotoc_md1"></a>
+Getting Started</h1>
+<p >Required: Git, CMake, C/C++ Compiler, OpenGL Implementation</p>
+<p >Optional: Ninja Build, Clang</p>
+<blockquote class="doxtable">
+<p >&zwj;You might get some issue like <a href="https://github.com/ntut-open-source-club/practical-tools-for-simple-design/issues/78">https://github.com/ntut-open-source-club/practical-tools-for-simple-design/issues/78</a> check it if you need. </p>
+</blockquote>
+<h2><a class="anchor" id="autotoc_md2"></a>
+Command Line</h2>
+<blockquote class="doxtable">
+<p >&zwj;[!WARNING] <br  />
+ This section is work in progress. </p>
+</blockquote>
+<div class="fragment"><div class="line">git clone https://github.com/ntut-open-source-club/practical-tools-for-simple-design.git</div>
+<div class="line">cd practical-tools-for-simple-design</div>
+<div class="line">cmake -B build</div>
+<div class="line">cmake --build build</div>
+</div><!-- fragment --><blockquote class="doxtable">
+<p >&zwj;If Ninja Build is install use <code>cmake -B build -G Ninja</code> to speed compile time </p>
+</blockquote>
+<blockquote class="doxtable">
+<p >&zwj;For older versions of CMake(<code>&lt;3.13</code>? verification needed) use </p><div class="fragment"><div class="line">mkdir build</div>
+<div class="line">cd build</div>
+<div class="line">cmake .</div>
+<div class="line">cmake --build .</div>
+</div><!-- fragment --><p> if the <code>-B</code> flag is unsupported </p>
+</blockquote>
+<blockquote class="doxtable">
+<p >&zwj;If using Neovim or other LSP supported editors, append <code>-DCMAKE_EXPORT_COMPILE_COMMANDS=ON</code> to the generation command for <code>clangd</code> to work </p>
+</blockquote>
+<h2><a class="anchor" id="autotoc_md3"></a>
+VSCode</h2>
+<blockquote class="doxtable">
+<p >&zwj;[!WARNING] <br  />
+ This section is work in progress. </p>
+</blockquote>
+<h2><a class="anchor" id="autotoc_md4"></a>
+CLion</h2>
+<blockquote class="doxtable">
+<p >&zwj;[!WARNING] <br  />
+ This section is work in progress. </p>
+</blockquote>
+<h5>NOTE: If you have time, read <a href="https://hackmd.io/@OOP2023f/rk2-8cVCh">OOP2023f Environment Setup</a></h5>
+<h1><a class="anchor" id="autotoc_md5"></a>
+Generate Doxygen Documents</h1>
+<p >Required: Doxygen 1.9.6</p>
+<div class="fragment"><div class="line">doxygen docs/Doxyfile</div>
+</div><!-- fragment --><p >Open the generated documents with your favorite browser at <code>docs/html/index.html</code> </p>
+</div></div><!-- PageDoc -->
 </div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
