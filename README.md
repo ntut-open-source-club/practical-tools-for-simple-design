@@ -55,9 +55,7 @@ cmake --build build
 
 ### CLion
 
-[//]: # (TODO: Clion Quick Start)
-> [!WARNING]  
-> This section is work in progress.
+[CLion Quick Start](.github/docs/CLionQuickStart/CLionQuickStart.md)
 
 ###### NOTE: If you have time, read [OOP2023f Environment Setup](https://hackmd.io/@OOP2023f/rk2-8cVCh)
 
