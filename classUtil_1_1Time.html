@@ -115,6 +115,9 @@ Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a0e693cf5ca907e2795f801976a1de5ba"><td class="memItemLeft" align="right" valign="top">static double&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Time.html#a0e693cf5ca907e2795f801976a1de5ba">GetDeltaTime</a> ()</td></tr>
 <tr class="memdesc:a0e693cf5ca907e2795f801976a1de5ba"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the delta time between frames in seconds.  <a href="classUtil_1_1Time.html#a0e693cf5ca907e2795f801976a1de5ba">More...</a><br /></td></tr>
 <tr class="separator:a0e693cf5ca907e2795f801976a1de5ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a36116f0877ab5d2cc81ef51f99e8016a"><td class="memItemLeft" align="right" valign="top">static unsigned long&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Time.html#a36116f0877ab5d2cc81ef51f99e8016a">GetElapsedTimeMs</a> ()</td></tr>
+<tr class="memdesc:a36116f0877ab5d2cc81ef51f99e8016a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the elapsed time from the start of the program in milliseconds.  <a href="classUtil_1_1Time.html#a36116f0877ab5d2cc81ef51f99e8016a">More...</a><br /></td></tr>
+<tr class="separator:a36116f0877ab5d2cc81ef51f99e8016a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2c9e970ad9a7121905b668524d3e528c"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Time.html#a2c9e970ad9a7121905b668524d3e528c">Update</a> ()</td></tr>
 <tr class="memdesc:a2c9e970ad9a7121905b668524d3e528c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Update the time.  <a href="classUtil_1_1Time.html#a2c9e970ad9a7121905b668524d3e528c">More...</a><br /></td></tr>
 <tr class="separator:a2c9e970ad9a7121905b668524d3e528c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -150,6 +153,35 @@ Static Public Member Functions</h2></td></tr>
 <p>Get the delta time between frames in seconds. </p>
 <p >This function returns the time difference between the current frame and the last frame. The time difference is measured in seconds.</p>
 <dl class="section return"><dt>Returns</dt><dd>The delta time between frames in seconds. </dd></dl>
+
+</div>
+</div>
+<a id="a36116f0877ab5d2cc81ef51f99e8016a" name="a36116f0877ab5d2cc81ef51f99e8016a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a36116f0877ab5d2cc81ef51f99e8016a">&#9670;&#160;</a></span>GetElapsedTimeMs()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static unsigned long Util::Time::GetElapsedTimeMs </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Get the elapsed time from the start of the program in milliseconds. </p>
+<dl class="section note"><dt>Note</dt><dd>To create a timer, one may call this function to record the time, and then call it again to obtain the time difference.</dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The elapsed time from the start of the program in milliseconds. </dd></dl>
 
 </div>
 </div>

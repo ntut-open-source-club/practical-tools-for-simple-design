@@ -4,6 +4,7 @@ var hierarchy =
     [ "Util::BGM", "classUtil_1_1BGM.html", null ],
     [ "Core::Context", "classCore_1_1Context.html", null ],
     [ "Core::Drawable", "classCore_1_1Drawable.html", [
+      [ "Util::Animation", "classUtil_1_1Animation.html", null ],
       [ "Util::Image", "classUtil_1_1Image.html", null ],
       [ "Util::Text", "classUtil_1_1Text.html", null ]
     ] ],
@@ -11,6 +12,7 @@ var hierarchy =
       [ "fmt::formatter< Util::Transform >", "structfmt_1_1formatter_3_01Util_1_1Transform_01_4.html", null ]
     ] ],
     [ "Util::GameObject", "classUtil_1_1GameObject.html", [
+      [ "Cat", "classCat.html", null ],
       [ "Giraffe", "classGiraffe.html", null ],
       [ "GiraffeText", "classGiraffeText.html", null ]
     ] ],

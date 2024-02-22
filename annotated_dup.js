@@ -16,6 +16,7 @@ var annotated_dup =
       [ "formatter< Util::Transform >", "structfmt_1_1formatter_3_01Util_1_1Transform_01_4.html", null ]
     ] ],
     [ "Util", "namespaceUtil.html", [
+      [ "Animation", "classUtil_1_1Animation.html", "classUtil_1_1Animation" ],
       [ "BGM", "classUtil_1_1BGM.html", "classUtil_1_1BGM" ],
       [ "Color", "classUtil_1_1Color.html", "classUtil_1_1Color" ],
       [ "GameObject", "classUtil_1_1GameObject.html", "classUtil_1_1GameObject" ],
@@ -28,6 +29,7 @@ var annotated_dup =
       [ "Transform", "structUtil_1_1Transform.html", "structUtil_1_1Transform" ]
     ] ],
     [ "App", "classApp.html", null ],
+    [ "Cat", "classCat.html", null ],
     [ "Giraffe", "classGiraffe.html", null ],
     [ "GiraffeText", "classGiraffeText.html", null ]
 ];

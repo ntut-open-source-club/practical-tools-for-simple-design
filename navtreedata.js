@@ -40,6 +40,7 @@ var NAVTREE =
       [ "File and Folder Naming", "md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md14", null ],
       [ "Variable Naming Convention", "md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md15", null ]
     ] ],
+    [ "Todo List", "todo.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -55,7 +56,8 @@ var NAVTREE =
       [ "Class Members", "functions.html", [
         [ "All", "functions.html", null ],
         [ "Functions", "functions_func.html", null ],
-        [ "Variables", "functions_vars.html", null ]
+        [ "Variables", "functions_vars.html", null ],
+        [ "Enumerations", "functions_enum.html", null ]
       ] ]
     ] ],
     [ "Files", "files.html", [
@@ -66,9 +68,9 @@ var NAVTREE =
 
 var NAVTREEINDEX =
 [
-"App_8hpp_source.html",
-"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a3f416309f0cfb6dc0885935badc76945",
-"namespaceUtil.html#a80cdf50793a9101631584b20607a14e2a468606778feb6257e913aa54cca0bedb"
+"Animation_8hpp_source.html",
+"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a02129bb861061d1a052c592e2dc6b383",
+"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5afe5c3684dce76cdd9f7f42430868aa74"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';

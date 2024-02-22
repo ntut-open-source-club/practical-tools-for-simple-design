@@ -1,5 +1,6 @@
 var namespaceUtil =
 [
+    [ "Animation", "classUtil_1_1Animation.html", "classUtil_1_1Animation" ],
     [ "BGM", "classUtil_1_1BGM.html", "classUtil_1_1BGM" ],
     [ "Color", "classUtil_1_1Color.html", "classUtil_1_1Color" ],
     [ "GameObject", "classUtil_1_1GameObject.html", "classUtil_1_1GameObject" ],

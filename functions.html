@@ -103,6 +103,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <h3><a id="index_a" name="index_a"></a>- a -</h3><ul>
 <li>AddChild()&#160;:&#160;<a class="el" href="classUtil_1_1GameObject.html#afc58b49ea9d973215bddde091f9fc89c">Util::GameObject</a>, <a class="el" href="classUtil_1_1Root.html#ae49433928dae5b58073f6434fca20909">Util::Root</a></li>
 <li>AddChildren()&#160;:&#160;<a class="el" href="classUtil_1_1Root.html#a3de4d94994967de19a8a9c078a10312f">Util::Root</a></li>
+<li>Animation()&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#a1267acfb8c57a7e561724ab83bdde999">Util::Animation</a></li>
 </ul>
 
 
@@ -117,7 +118,7 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 
 <h3><a id="index_d" name="index_d"></a>- d -</h3><ul>
-<li>Draw()&#160;:&#160;<a class="el" href="classUtil_1_1Image.html#a444fe06fbadd712e0619a79f50ffc644">Util::Image</a>, <a class="el" href="classUtil_1_1Text.html#a956487132359c155994f6c58322a1a0d">Util::Text</a></li>
+<li>Draw()&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#afe225f17e61b04f1b4c2d3ab576b9871">Util::Animation</a>, <a class="el" href="classUtil_1_1Image.html#a444fe06fbadd712e0619a79f50ffc644">Util::Image</a>, <a class="el" href="classUtil_1_1Text.html#a956487132359c155994f6c58322a1a0d">Util::Text</a></li>
 </ul>
 
 
@@ -133,13 +134,20 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 
 <h3><a id="index_g" name="index_g"></a>- g -</h3><ul>
-<li>GameObject()&#160;:&#160;<a class="el" href="classUtil_1_1GameObject.html#ae7df90c02e4d0fe5426b46fdc4d88c63">Util::GameObject</a></li>
+<li>GameObject()&#160;:&#160;<a class="el" href="classUtil_1_1GameObject.html#ad9ebcc7932dcde9fe48715af6722dcd8">Util::GameObject</a></li>
 <li>GetChildren()&#160;:&#160;<a class="el" href="classUtil_1_1GameObject.html#a6d90442f733edd59e4fcf2d49477a351">Util::GameObject</a></li>
+<li>GetCooldown()&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#a2498ad5f0009482158b9146b11582431">Util::Animation</a></li>
+<li>GetCurrentFrameIndex()&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#ae15d637855f5f89ca5c5c66cdb0da98c">Util::Animation</a></li>
 <li>GetCursorPosition()&#160;:&#160;<a class="el" href="classUtil_1_1Input.html#a75bd67656c2d7be6f3c318f88a0eda89">Util::Input</a></li>
 <li>GetDeltaTime()&#160;:&#160;<a class="el" href="classUtil_1_1Time.html#a0e693cf5ca907e2795f801976a1de5ba">Util::Time</a></li>
+<li>GetElapsedTimeMs()&#160;:&#160;<a class="el" href="classUtil_1_1Time.html#a36116f0877ab5d2cc81ef51f99e8016a">Util::Time</a></li>
+<li>GetFrameCount()&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#af79f04bbab8c4221e11f5b26bfcc2afa">Util::Animation</a></li>
+<li>GetInterval()&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#a9dbb5e173f188d85271bed5c3db45cbb">Util::Animation</a></li>
+<li>GetLooping()&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#ae05480a1b4f6f601fec163811e2bcb83">Util::Animation</a></li>
 <li>GetScaledSize()&#160;:&#160;<a class="el" href="classUtil_1_1GameObject.html#ada1a72ccdfe1d6aa9a938f70203a9cb9">Util::GameObject</a></li>
 <li>GetScrollDistance()&#160;:&#160;<a class="el" href="classUtil_1_1Input.html#a2dc5fb238f655b3410a5dd504c360bc1">Util::Input</a></li>
-<li>GetSize()&#160;:&#160;<a class="el" href="classUtil_1_1Image.html#a0c6cbb5562274d1ea8d8f37572ab2495">Util::Image</a></li>
+<li>GetSize()&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#ae6d352015ecec0a7c7eb6ffbe15712f4">Util::Animation</a>, <a class="el" href="classUtil_1_1Image.html#a0c6cbb5562274d1ea8d8f37572ab2495">Util::Image</a></li>
+<li>GetState()&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#aed99b5df847be1cf0c35aac614a39c2d">Util::Animation</a></li>
 <li>GetTransform()&#160;:&#160;<a class="el" href="classUtil_1_1GameObject.html#aed7d7fc80b4985a2e134306271aff76e">Util::GameObject</a></li>
 <li>GetVolume()&#160;:&#160;<a class="el" href="classUtil_1_1BGM.html#a20c43ddc9398b024dc5e336804bcb38c">Util::BGM</a>, <a class="el" href="classUtil_1_1SFX.html#a64169aa6ca5ba26fcfe60caaacb92192">Util::SFX</a></li>
 <li>GetZIndex()&#160;:&#160;<a class="el" href="classUtil_1_1GameObject.html#a13950c92838074c12c7a63de8feda92c">Util::GameObject</a></li>
@@ -168,13 +176,14 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 
 
 <h3><a id="index_p" name="index_p"></a>- p -</h3><ul>
-<li>Pause()&#160;:&#160;<a class="el" href="classUtil_1_1BGM.html#a7530f3b399d3911f2923e963683b412c">Util::BGM</a></li>
-<li>Play()&#160;:&#160;<a class="el" href="classUtil_1_1BGM.html#ac92d3a7aff7256675f6981b850e24a53">Util::BGM</a>, <a class="el" href="classUtil_1_1SFX.html#a0a14e92a26e8e9d979415e47a454ef93">Util::SFX</a></li>
+<li>Pause()&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#a13b22a150988b9b330bb1a69bc1a1b62">Util::Animation</a>, <a class="el" href="classUtil_1_1BGM.html#a7530f3b399d3911f2923e963683b412c">Util::BGM</a></li>
+<li>Play()&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#a9814887bd8fb07252a351701bdf83759">Util::Animation</a>, <a class="el" href="classUtil_1_1BGM.html#ac92d3a7aff7256675f6981b850e24a53">Util::BGM</a>, <a class="el" href="classUtil_1_1SFX.html#a0a14e92a26e8e9d979415e47a454ef93">Util::SFX</a></li>
 </ul>
 
 
 <h3><a id="index_r" name="index_r"></a>- r -</h3><ul>
 <li>RemoveChild()&#160;:&#160;<a class="el" href="classUtil_1_1GameObject.html#a52e4bd91afd4dc85f8d907236c08d100">Util::GameObject</a>, <a class="el" href="classUtil_1_1Root.html#a1120dec8e81b4a723fd1f50d3cca21f7">Util::Root</a></li>
+<li>Reset()&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#a73f867f2f4e1a475d30767c48686e446">Util::Animation</a></li>
 <li>Resume()&#160;:&#160;<a class="el" href="classUtil_1_1BGM.html#a86c3c25905176ae91b7038b4adfa7a02">Util::BGM</a></li>
 <li>Root()&#160;:&#160;<a class="el" href="classUtil_1_1Root.html#acba3160c95f1ea95f1819a3ab4b34d2a">Util::Root</a></li>
 <li>rotation&#160;:&#160;<a class="el" href="structUtil_1_1Transform.html#a5885eb82fe988b5155ae825f09cef192">Util::Transform</a></li>
@@ -184,15 +193,20 @@ $(document).ready(function(){initNavTree('functions.html',''); initResizable(); 
 <h3><a id="index_s" name="index_s"></a>- s -</h3><ul>
 <li>scale&#160;:&#160;<a class="el" href="structUtil_1_1Transform.html#a85e9f4d3e7291142916ab40ec5a17ae8">Util::Transform</a></li>
 <li>SetColor()&#160;:&#160;<a class="el" href="classUtil_1_1Text.html#a83bcae856763378dedb2105c6b443192">Util::Text</a></li>
+<li>SetCooldown()&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#ad31ada160728faaebb5fac0f06fc1b37">Util::Animation</a></li>
+<li>SetCurrentFrame()&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#afce33acbf5d811e4e23303876c5f955c">Util::Animation</a></li>
 <li>SetCursorPosition()&#160;:&#160;<a class="el" href="classUtil_1_1Input.html#a2ad3dbffda36c91cdbf6e655361d95c8">Util::Input</a></li>
 <li>SetDrawable()&#160;:&#160;<a class="el" href="classUtil_1_1GameObject.html#a5b6df4f3045976ca91e855edb1c268df">Util::GameObject</a></li>
 <li>SetImage()&#160;:&#160;<a class="el" href="classUtil_1_1Image.html#a63c44b5b608111defb4756d1c107fdb9">Util::Image</a></li>
 <li>SetIndexBuffer()&#160;:&#160;<a class="el" href="classCore_1_1VertexArray.html#aeedcb54dd6b85df0b3b06c51d89de32d">Core::VertexArray</a></li>
+<li>SetInterval()&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#adff3a96241e6ba261afc21281ac76184">Util::Animation</a></li>
+<li>SetLooping()&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#abd434f915c73c56efc93e6531cf60b69">Util::Animation</a></li>
 <li>SetText()&#160;:&#160;<a class="el" href="classUtil_1_1Text.html#a23f19b1edefa474979211c28b7d3d4fa">Util::Text</a></li>
 <li>SetVisible()&#160;:&#160;<a class="el" href="classUtil_1_1GameObject.html#aececee7e51cc6dc2e53ee8224abc525b">Util::GameObject</a></li>
 <li>SetVolume()&#160;:&#160;<a class="el" href="classUtil_1_1BGM.html#a15c71a7ea1ebea0286d0e26b42cb3828">Util::BGM</a>, <a class="el" href="classUtil_1_1SFX.html#ae562cb20a6da4402d0d4f267a61670ba">Util::SFX</a></li>
 <li>SetZIndex()&#160;:&#160;<a class="el" href="classUtil_1_1GameObject.html#afe8d38d2c43d4967a39b59c4edb1d1e0">Util::GameObject</a></li>
 <li>SFX()&#160;:&#160;<a class="el" href="classUtil_1_1SFX.html#a31128cc995e362681ef7d0a0a1b3b40b">Util::SFX</a></li>
+<li>State&#160;:&#160;<a class="el" href="classUtil_1_1Animation.html#a35566c5f2af25f6330e5ee004aeeb700">Util::Animation</a></li>
 </ul>
 
 

@@ -112,22 +112,27 @@ $(document).ready(function(){initNavTree('Time_8hpp_source.html',''); initResiza
 <div class="line"><a id="l00019" name="l00019"></a><span class="lineno">   19</span><span class="keyword">public</span>:</div>
 <div class="line"><a id="l00028" name="l00028"></a><span class="lineno"><a class="line" href="classUtil_1_1Time.html#a0e693cf5ca907e2795f801976a1de5ba">   28</a></span>    <span class="keyword">static</span> <span class="keywordtype">double</span> <a class="code hl_function" href="classUtil_1_1Time.html#a0e693cf5ca907e2795f801976a1de5ba">GetDeltaTime</a>() { <span class="keywordflow">return</span> s_DeltaTime; }</div>
 <div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno"><a class="line" href="classUtil_1_1Time.html#a2c9e970ad9a7121905b668524d3e528c">   37</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUtil_1_1Time.html#a2c9e970ad9a7121905b668524d3e528c">Update</a>();</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> s_Now;</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
-<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> s_Last;</div>
-<div class="line"><a id="l00053" name="l00053"></a><span class="lineno">   53</span> </div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keyword">static</span> <span class="keywordtype">double</span> s_DeltaTime;</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>};</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>} <span class="comment">// namespace Util</span></div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span> </div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="preprocessor">#endif </span><span class="comment">/* UTIL_TIME_H */</span><span class="preprocessor"></span></div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno"><a class="line" href="classUtil_1_1Time.html#a36116f0877ab5d2cc81ef51f99e8016a">   39</a></span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> <a class="code hl_function" href="classUtil_1_1Time.html#a36116f0877ab5d2cc81ef51f99e8016a">GetElapsedTimeMs</a>();</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classUtil_1_1Time.html#a2c9e970ad9a7121905b668524d3e528c">   48</a></span>    <span class="keyword">static</span> <span class="keywordtype">void</span> <a class="code hl_function" href="classUtil_1_1Time.html#a2c9e970ad9a7121905b668524d3e528c">Update</a>();</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> s_Start;</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> s_Now;</div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span> </div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>    <span class="keyword">static</span> <span class="keywordtype">unsigned</span> <span class="keywordtype">long</span> s_Last;</div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">static</span> <span class="keywordtype">double</span> s_DeltaTime;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>};</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>} <span class="comment">// namespace Util</span></div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span> </div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span><span class="preprocessor">#endif </span><span class="comment">/* UTIL_TIME_H */</span><span class="preprocessor"></span></div>
 <div class="ttc" id="aclassUtil_1_1Time_html"><div class="ttname"><a href="classUtil_1_1Time.html">Util::Time</a></div><div class="ttdoc">A singleton class that provides time-related functionalities.</div><div class="ttdef"><b>Definition:</b> Time.hpp:18</div></div>
 <div class="ttc" id="aclassUtil_1_1Time_html_a0e693cf5ca907e2795f801976a1de5ba"><div class="ttname"><a href="classUtil_1_1Time.html#a0e693cf5ca907e2795f801976a1de5ba">Util::Time::GetDeltaTime</a></div><div class="ttdeci">static double GetDeltaTime()</div><div class="ttdoc">Get the delta time between frames in seconds.</div><div class="ttdef"><b>Definition:</b> Time.hpp:28</div></div>
 <div class="ttc" id="aclassUtil_1_1Time_html_a2c9e970ad9a7121905b668524d3e528c"><div class="ttname"><a href="classUtil_1_1Time.html#a2c9e970ad9a7121905b668524d3e528c">Util::Time::Update</a></div><div class="ttdeci">static void Update()</div><div class="ttdoc">Update the time.</div></div>
-<div class="ttc" id="anamespaceUtil_html"><div class="ttname"><a href="namespaceUtil.html">Util</a></div><div class="ttdoc">Useful tools for development.</div><div class="ttdef"><b>Definition:</b> BGM.hpp:6</div></div>
+<div class="ttc" id="aclassUtil_1_1Time_html_a36116f0877ab5d2cc81ef51f99e8016a"><div class="ttname"><a href="classUtil_1_1Time.html#a36116f0877ab5d2cc81ef51f99e8016a">Util::Time::GetElapsedTimeMs</a></div><div class="ttdeci">static unsigned long GetElapsedTimeMs()</div><div class="ttdoc">Get the elapsed time from the start of the program in milliseconds.</div></div>
+<div class="ttc" id="anamespaceUtil_html"><div class="ttname"><a href="namespaceUtil.html">Util</a></div><div class="ttdoc">Useful tools for development.</div><div class="ttdef"><b>Definition:</b> Animation.hpp:12</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->
