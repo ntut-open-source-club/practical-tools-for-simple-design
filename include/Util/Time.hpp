@@ -17,8 +17,6 @@ namespace Util {
  */
 class Time {
 public:
-    static void StartCounter() { s_Start = SDL_GetPerformanceCounter(); }
-
     /**
      * @brief Get the delta time between frames in seconds.
      *
@@ -29,6 +27,15 @@ public:
      */
     static double GetDeltaTime() { return s_DeltaTime; }
 
+    /**
+     * @brief Get the elapsed time from the start of the program in
+     * milliseconds.
+     *
+     * @note To create a timer, one may call this function to record the time,
+     * and then call it again to obtain the time difference.
+     *
+     * @return The elapsed time from the start of the program in milliseconds.
+     */
     static unsigned long GetElapsedTimeMs();
 
     /**
