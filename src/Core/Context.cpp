@@ -103,7 +103,7 @@ void Context::Update() {
     SDL_GL_SwapWindow(m_Window);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    if constexpr (FPS_CAP != 0) {
+    if (FPS_CAP != 0) {
         constexpr double frameTime = 1000 / static_cast<double>(FPS_CAP);
         SDL_Delay(static_cast<Uint32>(frameTime - Util::Time::GetDeltaTime()));
     }
