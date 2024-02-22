@@ -19,10 +19,9 @@ the [official guide](https://www.jetbrains.com/help/clion/clion-quick-start-guid
    ![CMake_config.png](./CMake_config.png)
    A few adjustments are recommend:
     * On the top of the window, The user may want to
-      enable `Reload CMake project on editing CMakeLists.txt or other Cmake configuration files` as it would be
-      convenient not having to manually reload after adding/removing source files.
+      enable `Reload CMake project on editing CMakeLists.txt or other Cmake configuration files` for the convenience of automatically reloading after adding or removing source files."
     * The user may want to add more cmake profiles(One may do so by pressing the `+` button or with hot
-      key `Alt Insert`) for different toolchains or build type.
+      key `Alt Insert`) for different toolchains or build types.
 4. Build, run, and debug the project\
    After opening the project, CLion loads CMakeLists.txt(`cmake -B cmake-build-debug` or paths set).
     * ![build.png](./build.png): Build(`cmake --build $CMAKE_BUILD_PATH`, hot key:`Ctrl F9` by default)
