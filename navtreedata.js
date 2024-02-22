@@ -31,6 +31,15 @@ var NAVTREE =
       [ "CLion", "index.html#autotoc_md4", null ]
     ] ],
     [ "Generate Doxygen Documents", "index.html#autotoc_md5", null ],
+    [ "CLion Quick Start", "md__github_docs_CLionQuickStart_CLionQuickStart.html", null ],
+    [ "Code Styles and Guidelines", "md__github_docs_Code_Styles_and_Guidelines.html", [
+      [ "General", "md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md10", null ],
+      [ "Includes", "md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md11", null ],
+      [ "Class", "md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md12", null ],
+      [ "File Types", "md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md13", null ],
+      [ "File and Folder Naming", "md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md14", null ],
+      [ "Variable Naming Convention", "md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md15", null ]
+    ] ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
@@ -58,8 +67,8 @@ var NAVTREE =
 var NAVTREEINDEX =
 [
 "App_8hpp_source.html",
-"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a4350986433eebee5442729a1a4ac7add",
-"namespaceUtil.html#a80cdf50793a9101631584b20607a14e2a4f108a43d8c7c5d0c68ee0867293174e"
+"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a3f416309f0cfb6dc0885935badc76945",
+"namespaceUtil.html#a80cdf50793a9101631584b20607a14e2a468606778feb6257e913aa54cca0bedb"
 ];
 
 var SYNCONMSG = 'click to disable panel synchronisation';
