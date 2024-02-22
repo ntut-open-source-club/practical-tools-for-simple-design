@@ -149,7 +149,7 @@ private:
     std::size_t m_Interval;
     bool m_Looping;
     std::size_t m_Cooldown;
-    bool m_HasEnded;
+    bool m_HasEnded = false;
 
     std::vector<std::shared_ptr<Util::Image>> m_Frames;
     std::size_t m_Index;

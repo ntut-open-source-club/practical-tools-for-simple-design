@@ -5,11 +5,11 @@
 namespace Util {
 Animation::Animation(const std::vector<std::string> &paths, bool play,
                      std::size_t interval, bool looping, std::size_t cooldown)
-    : m_BaseTime(Util::Time::GetElapsedTimeMs()),
+    : m_State(play ? State::PLAY : State::PAUSE),
+      m_BaseTime(Util::Time::GetElapsedTimeMs()),
       m_Interval(interval),
       m_Looping(looping),
       m_Cooldown(cooldown),
-      m_HasEnded(!play),
       m_Index(0) {
     m_Frames.reserve(paths.size());
     for (const auto &path : paths) {
