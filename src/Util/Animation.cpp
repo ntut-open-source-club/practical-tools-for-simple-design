@@ -5,7 +5,7 @@
 namespace Util {
 Animation::Animation(const std::vector<std::string> &paths, bool play,
                      std::size_t interval, bool looping, std::size_t cooldown)
-    : m_LastFrameStartTime(Util::Time::GetElapsedTimeMs()),
+    : m_BaseTime(Util::Time::GetElapsedTimeMs()),
       m_Interval(interval),
       m_Looping(looping),
       m_Cooldown(cooldown),
@@ -19,6 +19,11 @@ Animation::Animation(const std::vector<std::string> &paths, bool play,
     Update();
 }
 
+void Animation::SetCurrentFrame(std::size_t index) {
+    m_Index = index;
+    m_BaseTime = Util::Time::GetElapsedTimeMs();
+}
+
 void Animation::Draw(const Util::Transform &transform, const float zIndex) {
     m_Frames[m_Index]->Draw(transform, zIndex);
     Update();
@@ -27,35 +32,37 @@ void Animation::Draw(const Util::Transform &transform, const float zIndex) {
 void Animation::Update() {
     if (m_State == State::PAUSE) {
         LOG_TRACE("[ANI] is pause");
-        m_LastFrameStartTime = Util::Time::GetElapsedTimeMs();
+        m_BaseTime = Util::Time::GetElapsedTimeMs();
         return;
     }
 
     if (!m_Looping && m_HasEnded) {
         LOG_TRACE("[ANI] not loop and is ended");
-        m_LastFrameStartTime = Util::Time::GetElapsedTimeMs();
+        m_BaseTime = Util::Time::GetElapsedTimeMs();
         return;
     }
 
-    std::size_t delta = Util::Time::GetElapsedTimeMs() - m_LastFrameStartTime;
+    std::size_t delta = Util::Time::GetElapsedTimeMs() - m_BaseTime;
 
     // FIXME: maybe less if
 
     if (!m_Looping) {
+        // don't need to consider cooldown when there is no looping
         if (delta > m_Interval) {
-            m_LastFrameStartTime += (delta / m_Interval) * m_Interval;
+            m_BaseTime += (delta / m_Interval) * m_Interval;
             m_Index += delta / m_Interval;
+
+            if (m_Index >= m_Frames.size() - 1) {
+                m_HasEnded = true;
+                m_Index = m_Frames.size() - 1;
+            }
         }
 
-        if (m_Index >= m_Frames.size() - 1) {
-            m_HasEnded = true;
-            m_Index = m_Frames.size() - 1;
-        }
     } else {
         const auto totalSpan = m_Interval * m_Frames.size() + m_Cooldown;
 
         const auto spanCount = delta / totalSpan;
-        m_LastFrameStartTime += totalSpan * spanCount;
+        m_BaseTime += totalSpan * spanCount;
         delta %= totalSpan;
 
         auto addFrameCount = 0;
@@ -64,17 +71,17 @@ void Animation::Update() {
             if (delta > m_Interval + m_Cooldown) {
                 addFrameCount = (delta - m_Cooldown) / m_Interval;
 
-                m_LastFrameStartTime += addFrameCount * m_Interval + m_Cooldown;
+                m_BaseTime += addFrameCount * m_Interval + m_Cooldown;
             }
         } else if (delta > m_Interval) {
             addFrameCount = delta / m_Interval;
 
-            m_LastFrameStartTime += addFrameCount * m_Interval;
+            m_BaseTime += addFrameCount * m_Interval;
         }
 
         m_Index = (m_Index + addFrameCount) % m_Frames.size();
 
-        LOG_DEBUG("{} {}", m_Index, delta);
+        // LOG_DEBUG("{} {}", m_Index, delta);
     }
 };
 } // namespace Util

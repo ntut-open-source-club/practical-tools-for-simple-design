@@ -27,7 +27,7 @@ public:
     /**
      * @brief Constructor for Animation class.
      * @param paths Vector of file paths for the frames.
-     * @param bool Whether the animation should play right away.
+     * @param play Whether the animation should play right away.
      * @param interval Interval between frames in milliseconds.
      * @param looping Whether the animation should loop.
      * @param cooldown Cooldown time in milliseconds before the animation can
@@ -101,7 +101,7 @@ public:
      * @brief Set the current frame of the animation.
      * @param index Index of the frame to set as current.
      */
-    void SetCurrentFrame(std::size_t index) { m_Index = index; };
+    void SetCurrentFrame(std::size_t index);
 
     /**
      * @brief Draw the current frame.
@@ -113,10 +113,7 @@ public:
     /**
      * @brief Reset the animation to its initial frame.
      */
-    void Reset() {
-        // TODO: use `SetCurrentFrame(0)` when it's implemented
-        m_Index = 0;
-    }
+    void Reset() { SetCurrentFrame(0); }
 
     /**
      * @brief Start playing the animation.
@@ -145,9 +142,9 @@ private:
     void Update();
 
 private:
-    State m_State = State::PLAY;
+    State m_State;
 
-    unsigned long m_LastFrameStartTime;
+    unsigned long m_BaseTime;
 
     std::size_t m_Interval;
     bool m_Looping;
