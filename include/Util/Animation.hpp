@@ -22,6 +22,12 @@ public:
     enum class State {
         PLAY,  /**< Animation is playing. */
         PAUSE, /**< Animation is paused. */
+               /**
+                * Animation is in cooldown
+                * @todo This state is not implemented yet
+                */
+        COOLDOWN,
+        ENDED, /**< Animation has ended. */
     };
 
     /**
@@ -71,7 +77,12 @@ public:
      * @brief Get the current state of the animation
      * @return The current state of the animation
      */
-    State GetState() const { return m_State; }
+    State GetState() const {
+        if (m_HasEnded) {
+            return State::ENDED;
+        }
+        return m_State;
+    }
 
     /**
      * @brief Get the size of the current frame.

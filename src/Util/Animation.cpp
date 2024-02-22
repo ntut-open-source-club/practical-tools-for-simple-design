@@ -74,6 +74,12 @@ void Animation::Update() {
                 m_BaseTime += addFrameCount * m_Interval + m_Cooldown;
             }
         } else if (delta > m_Interval) {
+            /**
+             * ! if the frame drop spans across the cooldown period, the
+             * ! animation can become out of sync
+             * ! the probability of this happening is very low, so we leave this
+             * ! for now
+             */
             addFrameCount = delta / m_Interval;
 
             m_BaseTime += addFrameCount * m_Interval;
