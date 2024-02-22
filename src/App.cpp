@@ -21,13 +21,13 @@ void App::Start() {
 }
 
 void App::Update() {
-    if (Util::Input::IsKeyPressed(Util::Keycode::PTSD_MOUSE_LB)) {
+    if (Util::Input::IsKeyPressed(Util::Keycode::MOUSE_LB)) {
         LOG_DEBUG("Left button pressed");
     }
-    if (Util::Input::IsKeyDown(Util::Keycode::PTSD_MOUSE_RB)) {
+    if (Util::Input::IsKeyDown(Util::Keycode::MOUSE_RB)) {
         LOG_DEBUG("Right button down");
     }
-    if (Util::Input::IsKeyUp(Util::Keycode::PTSD_MOUSE_RB)) {
+    if (Util::Input::IsKeyUp(Util::Keycode::MOUSE_RB)) {
         LOG_DEBUG("Right button up");
     }
     if (Util::Input::IfScroll()) {

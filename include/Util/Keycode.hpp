@@ -397,15 +397,15 @@ enum class  Keycode {
 
     /* Add any other keys here. */
 
-    PTSD_NUM_SCANCODES = SDL_NUM_SCANCODES, /**< not a key, just marks the number of scancodes
+    NUM_SCANCODES = SDL_NUM_SCANCODES, /**< not a key, just marks the number of scancodes
                                  for array bounds */
 
 
     // Below are the keycodes handling mouse buttons.
 
-    PTSD_MOUSE_LB = 513,
-    PTSD_MOUSE_RB = 514,
-    PTSD_MOUSE_MB = 515,
+    MOUSE_LB = 513,
+    MOUSE_RB = 514,
+    MOUSE_MB = 515,
 };
 // clang-format on
 } // namespace Util
