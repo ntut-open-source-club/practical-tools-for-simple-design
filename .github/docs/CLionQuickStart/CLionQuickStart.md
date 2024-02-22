@@ -1,7 +1,5 @@
 ### CLion Quick Start
 
-####   
-
 The reader is encouraged to read
 the [official guide](https://www.jetbrains.com/help/clion/clion-quick-start-guide.html#before-start).
 
