@@ -20,9 +20,9 @@ public:
      * @brief Enum representing the state of the animation.
      */
     enum class State {
-        PLAY,  /**< Animation is playing. */
-        PAUSE, /**< Animation is paused. */
-
+        PLAY,     /**< Animation is playing. */
+        PAUSE,    /**< Animation is paused. */
+        COOLDOWN, /**< Animation is COOLDOWN. */
     };
 
     /**
@@ -72,9 +72,7 @@ public:
      * @brief Get the current state of the animation
      * @return The current state of the animation
      */
-    State GetState() const {
-        return m_State;
-    }
+    State GetState() const { return m_State; }
 
     /**
      * @brief Get the size of the current frame.
@@ -130,7 +128,7 @@ public:
      * @brief Pause the animation.
      * If the animation has already been paused, this method won't do anything.
      */
-    void Pause() { m_State = State::PAUSE; }
+    void Pause();
 
 private:
     /**
@@ -147,7 +145,6 @@ private:
     std::size_t m_Cooldown;
 
     unsigned long m_NextFrameTime;
-
 
     std::size_t m_Index;
 };
