@@ -1,5 +1,5 @@
-#ifndef UTIL_TRANSPARENT_IMAGE_HPP
-#define UTIL_TRANSPARENT_IMAGE_HPP
+#ifndef UTIL_MISSING_TEXTURE_HPP
+#define UTIL_MISSING_TEXTURE_HPP
 
 #include <string>
 #include <SDL.h>
