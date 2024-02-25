@@ -23,6 +23,7 @@ public:
         PLAY,     /**< Animation is playing. */
         PAUSE,    /**< Animation is paused. */
         COOLDOWN, /**< Animation is COOLDOWN. */
+        ENDED     /**< Animation is Ended(looping == false && Animate end.). */
     };
 
     /**

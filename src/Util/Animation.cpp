@@ -35,14 +35,14 @@ void Animation::Play() {
 }
 
 void Animation::Pause() {
-    if (m_State == State::PAUSE)
+    if (m_State == State::PAUSE || m_State == State::ENDED)
         return;
     m_State = State::PAUSE;
 }
 
 void Animation::Update() {
     unsigned long nowTime = Util::Time::GetElapsedTimeMs();
-    if (m_State == State::PAUSE) {
+    if (m_State == State::PAUSE || m_State == State::ENDED) {
         LOG_TRACE("[ANI] is pause");
         return;
     }
@@ -52,6 +52,7 @@ void Animation::Update() {
             m_NextFrameTime = nowTime + m_Interval;
             m_State = State::PLAY;
         }
+        return;
     }
 
     m_NextFrameTime = m_PrevUpdateTime + m_Interval;
@@ -61,9 +62,13 @@ void Animation::Update() {
         m_Index += updateFrameCount;
 
         if (m_Index >= totalFramesCount) {
-            m_NextFrameTime = nowTime + m_Cooldown;
             m_Index = 0;
-            m_State = m_Looping ? State::COOLDOWN : State::PAUSE;
+            if (m_Looping) {
+                m_State = State::COOLDOWN;
+                m_NextFrameTime = nowTime + m_Cooldown;
+            } else {
+                m_State = State::ENDED;
+            }
         }
 
         m_PrevUpdateTime = nowTime;
