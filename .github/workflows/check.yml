@@ -25,7 +25,7 @@ jobs:
       - name: Run Linter
         uses: ZedThree/clang-tidy-review@v0.14.0
         with: 
-          apt_packages: ninja-build libglu1-mesa-dev mesa-common-dev xorg-dev
+          apt_packages: ninja-build,libglu1-mesa-dev,mesa-common-dev,xorg-dev
           cmake_command: cmake -B build -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=on
           build_dir: build
           exclude: lib
