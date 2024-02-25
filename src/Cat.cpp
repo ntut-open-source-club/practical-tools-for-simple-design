@@ -42,4 +42,7 @@ void Cat::Update() {
     if (Util::Input::IsKeyDown(Util::Keycode::K)) {
         m_Animation->SetInterval(500);
     }
+    if (Util::Input::IsKeyDown(Util::Keycode::O)) {
+        m_Animation->SetCurrentFrame(5);
+    }
 }

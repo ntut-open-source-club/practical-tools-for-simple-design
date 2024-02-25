@@ -144,6 +144,7 @@ private:
     std::size_t m_Interval;
     bool m_Looping;
     std::size_t m_Cooldown;
+    bool m_IsChangeFrame;
 
     unsigned long m_NextFrameTime;
 
