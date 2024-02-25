@@ -58,20 +58,18 @@ void Animation::Update() {
     m_NextFrameTime = m_PrevUpdateTime + m_Interval;
     unsigned int updateFrameCount = nowTime / m_NextFrameTime;
     unsigned int totalFramesCount = m_Frames.size();
-    if (updateFrameCount > 0) {
-        m_Index += updateFrameCount;
+    if (updateFrameCount <= 0)
+        return;
 
-        if (m_Index >= totalFramesCount) {
-            m_Index = 0;
-            if (m_Looping) {
-                m_State = State::COOLDOWN;
-                m_NextFrameTime = nowTime + m_Cooldown;
-            } else {
-                m_State = State::ENDED;
-            }
+    m_Index += updateFrameCount;
+    m_PrevUpdateTime = nowTime;
+
+    if (m_Index >= totalFramesCount) {
+        m_Index = 0;
+        if (m_Looping) {
+            m_NextFrameTime = m_PrevUpdateTime + m_Cooldown;
         }
-
-        m_PrevUpdateTime = nowTime;
+        m_State = m_Looping ? State::COOLDOWN : State::ENDED;
     }
 };
 } // namespace Util
