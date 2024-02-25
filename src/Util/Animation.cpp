@@ -44,8 +44,7 @@ void Animation::Play() {
 }
 
 void Animation::Pause() {
-    if (m_State == State::PAUSE || m_State == State::ENDED ||
-        m_State == State::COOLDOWN)
+    if (m_State != State::PLAY)
         return;
     m_State = State::PAUSE;
 }
