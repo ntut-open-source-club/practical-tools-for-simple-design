@@ -18,7 +18,7 @@ jobs:
       - name: Check Format
         uses: jidicula/clang-format-action@v4.11.0
         with:
-          clang-format-version: '16'
+          clang-format-version: '17'
           check-path: src include test assets/shaders
           include-regex: ^.*\.((((c|C)(c|pp|xx|\+\+)?$)|((h|H)h?(pp|xx|\+\+)?$))|(vert|frag))$
 
