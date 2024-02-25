@@ -28,6 +28,17 @@ public:
     static double GetDeltaTime() { return s_DeltaTime; }
 
     /**
+     * @brief Get the elapsed time from the start of the program in
+     * milliseconds.
+     *
+     * @note To create a timer, one may call this function to record the time,
+     * and then call it again to obtain the time difference.
+     *
+     * @return The elapsed time from the start of the program in milliseconds.
+     */
+    static unsigned long GetElapsedTimeMs();
+
+    /**
      * @brief Update the time.
      *
      * This function updates the current time and the delta time.
@@ -37,6 +48,8 @@ public:
     static void Update();
 
 private:
+    static unsigned long s_Start;
+
     /**
      * @brief The current time.
      *
