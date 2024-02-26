@@ -46,6 +46,7 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Root.cpp
     ${SRC_DIR}/Util/Color.cpp
     ${SRC_DIR}/Util/Animation.cpp
+    ${SRC_DIR}/Util/MissingTexture.cpp
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/Giraffe.cpp
