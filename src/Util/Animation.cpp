@@ -60,14 +60,14 @@ void Animation::Update() {
         return;
     }
 
-    m_timeBetweenFrameUpdate += Util::Time::GetDeltaTime();
+    m_TimeBetweenFrameUpdate += Util::Time::GetDeltaTime();
     unsigned int updateFrameCount =
-        m_timeBetweenFrameUpdate / (m_Interval / 1000);
+        m_TimeBetweenFrameUpdate / (m_Interval / 1000);
     if (updateFrameCount <= 0)
         return;
 
     m_Index += updateFrameCount;
-    m_timeBetweenFrameUpdate = 0;
+    m_TimeBetweenFrameUpdate = 0;
 
     unsigned int totalFramesCount = m_Frames.size();
     if (m_Index >= totalFramesCount) {

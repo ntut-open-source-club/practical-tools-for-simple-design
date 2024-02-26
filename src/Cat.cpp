@@ -31,9 +31,11 @@ void Cat::Update() {
         m_Animation->Play();
     }
     if (Util::Input::IsKeyDown(Util::Keycode::V)) {
+        LOG_DEBUG("Set Visible to true");
         SetVisible(true);
     }
     if (Util::Input::IsKeyDown(Util::Keycode::B)) {
+        LOG_DEBUG("Set Visible to false");
         SetVisible(false);
     }
 

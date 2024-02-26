@@ -146,7 +146,7 @@ private:
     bool m_IsChangeFrame;
 
     unsigned long m_ColddownEndTime;
-    double m_timeBetweenFrameUpdate;
+    double m_TimeBetweenFrameUpdate;
 
     std::size_t m_Index;
 };
