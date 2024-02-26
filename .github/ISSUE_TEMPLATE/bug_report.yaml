@@ -1,0 +1,76 @@
+name: Bug Report
+description: Report a problem in PTSD
+labels: [bug]
+body:
+
+  - type: markdown
+    attributes:
+      value: |
+        *Before reporting:*
+        - Confirm the problem is reproducible on **master** or **latest stable** release
+        - Search [existing issues](https://github.com/ntut-open-source-club/practical-tools-for-simple-design/issues?q=is%3Aissue+label%3Abug)
+  - type: textarea
+    attributes:
+      label: "Problem"
+      description: "Describe the current behavior. May include logs, images, or videos."
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "Steps to reproduce"
+      description: |
+        - If the bug pertains to crashing (or segfault), please include a stacktrace.
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "Expected behavior"
+      description: "Describe the behavior you expect."
+    validations:
+      required: true
+
+  - type: input
+    attributes:
+      label: "PTSD version"
+      placeholder: "release 1.0.0 or commit 013246df758a14ea083bfbe7726a589db19a560a"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: "Operating system/version"
+      placeholder: "macOS 11.5"
+    validations:
+      required: true
+  - type: input
+    attributes:
+      label: "CMake version"
+      placeholder: "3.27.8"
+    validations:
+      required: true
+  - type: textarea
+    attributes:
+      label: "CMakeCache.txt"
+      description: |
+        Can found in the build dir:
+        
+        - CLion (`cmake-build-debug/CMakeCache.txt`)
+        - Visual Studio (`out\build\x64-Debug\CMakeCache.txt`)
+        - Others (`build/CMakeCache.txt`)
+        
+        Please use [Attach File](https://docs.github.com/en/get-started/writing-on-github/working-with-advanced-formatting/attaching-files), do not copy paste whole file.
+    validations:
+      required: true
+
+  - type: textarea
+    attributes:
+      label: "OpenGL Info"
+      description: "The first thing printed in the log when you run the program."
+      placeholder: |
+        [info] OpenGL Info
+        [info]   Vendor: Apple
+        [info]   Renderer: Apple M2
+        [info]   Version: 4.1 Metal - 88
+        [info]   GLSL Version: 4.10
+      render: txt
+    validations:
+      required: true

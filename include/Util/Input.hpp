@@ -15,7 +15,7 @@ namespace Util {
 * @brief The Input class provides access to keyboard and mouse input.
 * @note This class is a singleton and constructable. Use is as follows: \n
             `Util::Input::IsKeyPressed(Keycode::A)`,
-            `Util::Input::IsLButtonPressed()`, etc.
+            `Util::Input::IsLButtonDown()`, etc.
 */
 class Input {
 public:
@@ -26,9 +26,9 @@ public:
     Input &operator=(const Input &) = delete;
 
     /**
-     * \brief Retrieves the scroll distance of an element.\n
+     * @brief Retrieves the scroll distance of an element.\n
      *
-     * \details The scroll distance is the distance that the mouse wheel has
+     * @details The scroll distance is the distance that the mouse wheel has
      * been scrolled. The distance is expressed in multiples or fractions of
      * lines; for example, if the mouse wheel is rotated three lines downward,
      * the scroll distance is {-1.0F, 0.0F}. If the mouse wheel is rotated three
@@ -37,7 +37,7 @@ public:
      * mouse wheel is rotated three lines left, the scroll distance is {0.0F,
      * -1.0F}.
      *
-     * \return The scroll distance as vec2(x,y).
+     * @return The scroll distance as vec2(x,y).
      */
     static glm::vec2 GetScrollDistance();
 
@@ -53,45 +53,49 @@ public:
     static glm::vec2 GetCursorPosition();
 
     /**
-     * \brief Check if a specific key is currently pressed.
+     * @brief Check if a specific key is currently pressed.
      *
-     * This function checks whether the given key is currently being pressed on
-     * the keyboard.
+     * This function checks whether the given key is currently pressed.
      *
-     * \param key The keycode of the key to check.
+     * @param key The keycode of the key to check.
      *
-     * \return true if the key is currently pressed, false otherwise.
+     * @return true if `key` is currently pressed, false otherwise.
      *
-     * \see Util::Keycode
+     * @see Util::Keycode
      */
     static bool IsKeyPressed(const Keycode &key);
 
-    /**
-     * \brief Checks if the left mouse button is currently pressed.
-     *
-     * \return true if the left mouse button is currently pressed, false
-     * otherwise.r
-     *
-     */
-    static bool IsLButtonPressed();
 
     /**
-     * @brief Checks if the right mouse button is currently pressed.
-     * @return  true if the right mouse button is currently pressed, false
-     * otherwise.
+     * @brief Check if a specific key is being pressed.
+     *
+     * This function checks whether the given key is currently being pressed.
+     *
+     * @param key The keycode of the key to check.
+     *
+     * @return true if `key` is currently pressed, false otherwise.
+     *
+     * @see Util::Keycode
      */
-    static bool IsRButtonPressed();
+    static bool IsKeyDown(const Keycode &key);
 
     /**
-     * @brief Checks if the middle mouse button is currently pressed.
-     * @return  true if the middle mouse button is currently pressed, false
-     * otherwise.
+     * @brief Check if a specific key is being un-pressed.
+     *
+     * This function checks whether the given key is currently being un-pressed.
+     *
+     * @param key The keycode of the key to check.
+     *
+     * @return true if `key` is currently pressed, false otherwise.
+     *
+     * @see Util::Keycode
      */
-    static bool IsMButtonPressed();
+    static bool IsKeyUp(const Keycode &key);
 
     /**
      * @brief Checks if the mouse wheel is currently being scrolled.
-     * @return  A bool value representing the current state of the mouse wheel.
+     * @return  A bool value representing the current state of the mouse
+     * wheel.
      */
     static bool IfScroll();
 
@@ -128,14 +132,14 @@ public:
 private:
     static SDL_Event s_Event;
 
-    static const Uint8 *s_KeyState;
+    static const Uint8 *s_CurrentKeyState;
+    static std::unordered_map<int, bool> s_LastKeyState;
 
     static glm::vec2 s_CursorPosition;
     static glm::vec2 s_ScrollDistance;
 
-    static bool s_LBPressed;
-    static bool s_RBPressed;
-    static bool s_MBPressed;
+    static std::unordered_map<Keycode, std::pair<bool, bool>> s_MouseState;
+
     static bool s_Scroll;
     static bool s_MouseMoving;
     static bool s_Exit;

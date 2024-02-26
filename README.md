@@ -1,16 +1,35 @@
 # Practical Tools for Simple Design
 
+###### Officially Supported Platforms and IDEs
+
+|                                | Windows | macOS | Linux |
+|:------------------------------:|:-------:|:-----:|:-----:|
+|             CLion              |    V    |   V   |   V   |
+|        VSCode[^codeoss]        |    V    |   V   |   V   |
+| Visual Studio[^novs][^vsmacos] |    ?    |   X   |   X   |
+|             No IDE             |    V    |   V   |   V   |
+
+[^vsmacos]: [Microsoft Kills Visual Studio for Mac](https://visualstudiomagazine.com/articles/2023/08/30/vs-for-mac-retirement.aspx)
+[^codeoss]: On Linux the support of Code - OSS and VSCodium aren't guaranteed.
+[^novs]: Due to lack of testing there may or may not be more issues on VS. Anyway, building PTSD on VS is available.
+
 ## Getting Started
 
-Required: Git, CMake, C/C++ compiler
+Required: Git, CMake, C/C++ Compiler, OpenGL Implementation
 
-Optional: Ninja Build, clang
+Optional: Ninja Build, Clang
+
+> You might get some issue like https://github.com/ntut-open-source-club/practical-tools-for-simple-design/issues/78 check it if you need.
 
 ### Command Line
 
-```
-git clone https://ntut-open-source-club/practical-tools-for-simple-design.git
+[//]: # (TODO: No IDE Quick Start)
+> [!WARNING]  
+> This section is work in progress.
 
+```
+git clone https://github.com/ntut-open-source-club/practical-tools-for-simple-design.git
+cd practical-tools-for-simple-design
 cmake -B build
 cmake --build build
 ```
@@ -30,15 +49,15 @@ cmake --build build
 
 ### VSCode
 
-TODO
+[//]: # (TODO: VSCode Quick Start)
+> [!WARNING]  
+> This section is work in progress.
 
 ### CLion
 
-TODO
+[CLion Quick Start](.github/docs/CLionQuickStart/CLionQuickStart.md)
 
-### Visual Studio
-
-TODO
+###### NOTE: If you have time, read [OOP2023f Environment Setup](https://hackmd.io/@OOP2023f/rk2-8cVCh)
 
 ## Generate Doxygen Documents
 
