@@ -1,12 +1,11 @@
 #include "Util/Animation.hpp"
-
+#include "Util/Logger.hpp"
 #include "Util/Time.hpp"
 
 namespace Util {
 Animation::Animation(const std::vector<std::string> &paths, bool play,
                      std::size_t interval, bool looping, std::size_t cooldown)
     : m_State(play ? State::PLAY : State::PAUSE),
-      m_PrevUpdateTime(Util::Time::GetElapsedTimeMs()),
       m_Interval(interval),
       m_Looping(looping),
       m_Cooldown(cooldown),
@@ -24,7 +23,6 @@ void Animation::SetCurrentFrame(std::size_t index) {
          * where you set the frame*/
         m_IsChangeFrame = true;
     }
-    m_PrevUpdateTime = Util::Time::GetElapsedTimeMs();
 }
 
 void Animation::Draw(const Util::Transform &transform, const float zIndex) {
@@ -40,7 +38,6 @@ void Animation::Play() {
         m_IsChangeFrame = false;
     }
     m_State = State::PLAY;
-    m_PrevUpdateTime = Util::Time::GetElapsedTimeMs();
 }
 
 void Animation::Pause() {
@@ -57,24 +54,25 @@ void Animation::Update() {
     }
 
     if (m_State == State::COOLDOWN) {
-        if (nowTime >= m_NextFrameTime) {
+        if (nowTime >= m_ColddownEndTime) {
             Play();
         }
         return;
     }
 
-    m_NextFrameTime = m_PrevUpdateTime + m_Interval;
-    unsigned int updateFrameCount = nowTime / m_NextFrameTime;
+    m_timeBetweenFrameUpdate += Util::Time::GetDeltaTime();
+    unsigned int updateFrameCount =
+        m_timeBetweenFrameUpdate / (m_Interval / 1000);
     if (updateFrameCount <= 0)
         return;
 
     m_Index += updateFrameCount;
-    m_PrevUpdateTime = nowTime;
+    m_timeBetweenFrameUpdate = 0;
 
     unsigned int totalFramesCount = m_Frames.size();
     if (m_Index >= totalFramesCount) {
         if (m_Looping) {
-            m_NextFrameTime = m_PrevUpdateTime + m_Cooldown;
+            m_ColddownEndTime = nowTime + m_Cooldown;
         }
         m_State = m_Looping ? State::COOLDOWN : State::ENDED;
         m_Index = m_Frames.size() - 1;

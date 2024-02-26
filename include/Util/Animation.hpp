@@ -140,13 +140,13 @@ private:
 private:
     std::vector<std::shared_ptr<Util::Image>> m_Frames;
     State m_State;
-    unsigned long m_PrevUpdateTime;
-    std::size_t m_Interval;
+    double m_Interval;
     bool m_Looping;
     std::size_t m_Cooldown;
     bool m_IsChangeFrame;
 
-    unsigned long m_NextFrameTime;
+    unsigned long m_ColddownEndTime;
+    double m_timeBetweenFrameUpdate;
 
     std::size_t m_Index;
 };

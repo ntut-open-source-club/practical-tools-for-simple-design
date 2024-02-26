@@ -1,6 +1,7 @@
 #include "Cat.hpp"
 
 #include "Util/Input.hpp"
+#include "Util/Logger.hpp"
 
 Cat::Cat()
     : m_Animation(std::make_shared<Util::Animation>(
@@ -21,12 +22,22 @@ Cat::Cat()
 
 void Cat::Update() {
     if (Util::Input::IsKeyDown(Util::Keycode::A)) {
+        LOG_DEBUG("Pause Animate");
         m_Animation->Pause();
     }
 
     if (Util::Input::IsKeyDown(Util::Keycode::S)) {
+        LOG_DEBUG("Play Animate");
         m_Animation->Play();
     }
+    if (Util::Input::IsKeyDown(Util::Keycode::V)) {
+        SetVisible(true);
+    }
+    if (Util::Input::IsKeyDown(Util::Keycode::B)) {
+        SetVisible(false);
+    }
+
+    LOG_TRACE(m_Animation->GetCurrentFrameIndex());
 
     if (Util::Input::IsKeyDown(Util::Keycode::D)) {
         m_Animation->SetLooping(false);
