@@ -69,7 +69,7 @@ void Animation::Update() {
     m_Index += updateFrameCount;
     m_TimeBetweenFrameUpdate = 0;
 
-    unsigned int totalFramesCount = m_Frames.size();
+    unsigned int const totalFramesCount = m_Frames.size();
     if (m_Index >= totalFramesCount) {
         if (m_Looping) {
             m_CooldownEndTime = nowTime + m_Cooldown;
