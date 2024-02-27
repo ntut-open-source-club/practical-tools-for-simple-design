@@ -40,7 +40,6 @@ var NAVTREE =
       [ "File and Folder Naming", "md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md14", null ],
       [ "Variable Naming Convention", "md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md15", null ]
     ] ],
-    [ "Todo List", "todo.html", null ],
     [ "Namespaces", "namespaces.html", [
       [ "Namespace List", "namespaces.html", "namespaces_dup" ],
       [ "Namespace Members", "namespacemembers.html", [
