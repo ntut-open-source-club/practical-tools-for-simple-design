@@ -39,8 +39,7 @@ void App::Update() {
         // LOG_DEBUG("Mouse moving! x:{}, y{}", cursorPos.x, cursorPos.y);
     }
 
-    if (Util::Input::IsKeyUp(Util::Keycode::ESCAPE) ||
-        Util::Input::IfExit()) {
+    if (Util::Input::IsKeyUp(Util::Keycode::ESCAPE) || Util::Input::IfExit()) {
         m_CurrentState = State::END;
     }
 
@@ -51,8 +50,8 @@ void App::Update() {
     if (Util::Input::IsKeyPressed(Util::Keycode::B)) {
         LOG_DEBUG("B Pressed. Setting the cursor to (0, 0).");
         Util::Input::SetCursorPosition({0.0F, 0.0F});
-        LOG_DEBUG("Cursor set to {}.", glm::to_string(Util::Input::GetCursorPosition()));
-
+        LOG_DEBUG("Cursor set to {}.",
+                  glm::to_string(Util::Input::GetCursorPosition()));
     }
 
     m_Giraffe->Update();
