@@ -145,7 +145,7 @@ private:
     std::size_t m_Cooldown;
     bool m_IsChangeFrame;
 
-    unsigned long m_ColddownEndTime;
+    unsigned long m_CooldownEndTime;
     double m_TimeBetweenFrameUpdate;
 
     std::size_t m_Index;
