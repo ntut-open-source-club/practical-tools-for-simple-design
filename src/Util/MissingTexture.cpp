@@ -1,6 +1,3 @@
-//
-// Created by 黃漢軒 on 2024/2/26.
-//
 #include <SDL.h>
 #include <SDL_image.h>
 #include <Util/Logger.hpp>
