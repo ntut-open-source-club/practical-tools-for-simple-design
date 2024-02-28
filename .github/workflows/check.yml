@@ -30,6 +30,7 @@ jobs:
           build_dir: build
           exclude: lib
           split_workflow: true
+          config_file: .clang-tidy
         
       - name: Upload Result
         uses: ZedThree/clang-tidy-review/upload@v0.14.0
