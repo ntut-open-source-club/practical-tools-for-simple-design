@@ -128,6 +128,10 @@ void Input::Update() {
         }
         s_MouseMoving = s_Event.type == SDL_MOUSEMOTION || s_MouseMoving;
         s_Exit = s_Event.type == SDL_QUIT;
+
+        // ? I think this is bad, but IDK if we should move `s_Event` to
+        // ? `Core::Context` and use callback functions
+        ImGui_ImplSDL2_ProcessEvent(&s_Event);
     }
 }
 

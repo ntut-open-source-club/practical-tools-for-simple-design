@@ -68,6 +68,14 @@ FetchContent_Declare(
     SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/googletest
 )
 
+FetchContent_Declare(
+    imgui
+
+    URL         https://github.com/ocornut/imgui/archive/refs/tags/v1.90.4-docking.zip
+    URL_HASH    MD5=384084df566474aec3729df4ea30b937
+    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/imgui
+)
+
 set(BUILD_SHARED_LIBS FALSE)
 
 set(SDL2IMAGE_INSTALL OFF)
@@ -99,6 +107,33 @@ if (NOT ${glew_POPULATED})
     add_subdirectory(${CMAKE_SOURCE_DIR}/lib/glew/build/cmake)
 endif()
 
+FetchContent_GetProperties(imgui)
+if (NOT ${imgui_POPULATED})
+    FetchContent_Populate(imgui)
+    set(IMGUI_SOURCE
+        ${CMAKE_SOURCE_DIR}/lib/imgui/backends/imgui_impl_sdl2.cpp
+        ${CMAKE_SOURCE_DIR}/lib/imgui/backends/imgui_impl_opengl3.cpp
+        ${CMAKE_SOURCE_DIR}/lib/imgui/imgui.cpp
+        ${CMAKE_SOURCE_DIR}/lib/imgui/imgui_demo.cpp
+        ${CMAKE_SOURCE_DIR}/lib/imgui/imgui_draw.cpp
+        ${CMAKE_SOURCE_DIR}/lib/imgui/imgui_tables.cpp
+        ${CMAKE_SOURCE_DIR}/lib/imgui/imgui_widgets.cpp
+    )
+
+    set(IMGUI_INCLUDE_DIR
+        ${CMAKE_SOURCE_DIR}/lib/imgui/
+        ${CMAKE_SOURCE_DIR}/lib/imgui/backends/
+        ${CMAKE_SOURCE_DIR}/lib/sdl2/include/
+    )
+
+    add_library(ImGui STATIC
+        ${IMGUI_SOURCE}
+    )
+    target_include_directories(ImGui PUBLIC
+        ${IMGUI_INCLUDE_DIR}
+    )
+endif()
+
 set(DEPENDENCY_LINK_LIBRARIES
     ${OPENGL_LIBRARY}
     glew_s
@@ -109,6 +144,8 @@ set(DEPENDENCY_LINK_LIBRARIES
     SDL2_mixer::SDL2_mixer-static
 
     spdlog::spdlog
+
+    ImGui
 )
 
 set(DEPENDENCY_INCLUDE_DIRS
@@ -116,4 +153,5 @@ set(DEPENDENCY_INCLUDE_DIRS
     ${CMAKE_SOURCE_DIR}/lib/glew/include/
     ${CMAKE_SOURCE_DIR}/lib/spdlog/include/
     ${CMAKE_SOURCE_DIR}/lib/glm/
+    ${IMGUI_INCLUDE_DIR}
 )

@@ -58,6 +58,8 @@ void App::Update() {
     m_Cat->Update();
 
     m_Root.Update();
+
+    ImGui::ShowDemoWindow();
 }
 
 void App::End() { // NOLINT(this method will mutate members in the future)
