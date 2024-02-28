@@ -17,6 +17,11 @@ else()
     )
 endif()
 
+if (WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    # see https://github.com/ntut-open-source-club/practical-tools-for-simple-design/issues/22
+    set(CMAKE_RC_FLAGS="-C 1252")
+endif()
+
 option(PTSD_ENABLE_PCH "Turn on PCH to increase compilation speed" OFF)
 
 include(cmake/Dependencies.cmake)
