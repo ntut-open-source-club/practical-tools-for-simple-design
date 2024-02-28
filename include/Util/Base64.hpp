@@ -29,8 +29,7 @@ static constexpr std::array<int, 256> PrepareBase64DecodeTable() {
 }
 
 template<int N>
-static constexpr std::array<std::byte, N> DecodeBase64(std::string_view b64Str)
-{
+static constexpr std::array<std::byte, N> DecodeBase64(std::string_view b64Str){
     constexpr auto T = PrepareBase64DecodeTable();
     std::array<std::byte, N> out = { std::byte(0) };
     int valb = -8;
