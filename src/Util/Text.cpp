@@ -10,9 +10,10 @@
 
 namespace Util {
 Text::Text(const std::string &font, int fontSize, const std::string &text,
-           const Util::Color &color)
+           const Util::Color &color, Alignment alignment, int wrapLength)
     : m_Text(text),
-      m_Color(color) {
+      m_Color(color),
+      m_WrapLength(wrapLength) {
     if (s_Program == nullptr) {
         InitProgram();
     }
@@ -30,10 +31,12 @@ Text::Text(const std::string &font, int fontSize, const std::string &text,
         LOG_ERROR("{}", TTF_GetError());
     }
 
+    TTF_SetFontWrappedAlign(m_Font.get(), static_cast<int>(alignment));
+
     auto surface =
         std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
             TTF_RenderUTF8_Blended_Wrapped(m_Font.get(), m_Text.c_str(),
-                                           m_Color.ToSdlColor(), 0),
+                                           m_Color.ToSdlColor(), m_WrapLength),
             SDL_FreeSurface,
         };
     if (surface == nullptr) {
@@ -46,6 +49,11 @@ Text::Text(const std::string &font, int fontSize, const std::string &text,
         surface->pitch / surface->format->BytesPerPixel, surface->h,
         surface->pixels);
     m_Size = {surface->pitch / surface->format->BytesPerPixel, surface->h};
+}
+
+void Text::SetAlignment(Alignment alignment) {
+    TTF_SetFontWrappedAlign(m_Font.get(), static_cast<int>(alignment));
+    ApplyTexture();
 }
 
 void Text::Draw(const Util::Transform &transform, const float zIndex) {
@@ -115,7 +123,7 @@ void Text::ApplyTexture() {
     auto surface =
         std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
             TTF_RenderUTF8_Blended_Wrapped(m_Font.get(), m_Text.c_str(),
-                                           m_Color.ToSdlColor(), 0),
+                                           m_Color.ToSdlColor(), m_WrapLength),
             SDL_FreeSurface,
         };
     if (surface == nullptr) {

@@ -23,8 +23,26 @@ namespace Util {
  */
 class Text : public Core::Drawable {
 public:
+    enum class Alignment {
+        LEFT = TTF_WRAPPED_ALIGN_LEFT,
+        CENTER = TTF_WRAPPED_ALIGN_CENTER,
+        RIGHT = TTF_WRAPPED_ALIGN_RIGHT,
+    };
+
+    /**
+     * @brief Constructor for the Text class.
+     *
+     * @param font The font to use for the text.
+     * @param size The size of the text.
+     * @param text The actual text content.
+     * @param color The color of the text (default is gray).
+     * @param alignment The alignment of the text (default is right-aligned).
+     * @param wrapLength The maximum length at which text should wrap (default
+     * is 0, no wrapping).
+     */
     Text(const std::string &font, int size, const std::string &text,
-         const Util::Color &color = Color(127, 127, 127));
+         const Util::Color &color = Color(127, 127, 127),
+         Alignment alignment = Alignment::LEFT, int wrapLength = 0);
 
     glm::vec2 GetSize() const override { return m_Size; };
 
@@ -47,6 +65,25 @@ public:
         m_Color = color;
         ApplyTexture();
     };
+
+    /**
+     * @brief Set the maximum length at which text should wrap.
+     *
+     * The text will only wrap on `\n` when set to 0
+     *
+     * @param wrapLength The maximum length at which text should wrap.
+     */
+    void SetWrapLength(int wrapLength) {
+        m_WrapLength = wrapLength;
+        ApplyTexture();
+    }
+
+    /**
+     * @brief Set the alignment of the text.
+     *
+     * @param alignment The alignment to set.
+     */
+    void SetAlignment(Alignment alignment);
 
     /**
      * @brief Draws the text with a given transform and z-index.
@@ -81,6 +118,7 @@ private:
     std::string m_Text;
     Util::Color m_Color;
     glm::vec2 m_Size;
+    int m_WrapLength;
 };
 } // namespace Util
 
