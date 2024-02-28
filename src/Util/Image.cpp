@@ -30,7 +30,7 @@ Image::Image(const std::string &filepath)
         };
 
     if (surface == nullptr) {
-        surface = { GetMissingTextureSDLSurface(), SDL_FreeSurface };
+        surface = {GetMissingTextureSDLSurface(), SDL_FreeSurface};
         LOG_ERROR("Failed to load image: '{}'", filepath);
         LOG_ERROR("{}", IMG_GetError());
     }
