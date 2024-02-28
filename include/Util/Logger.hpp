@@ -64,6 +64,7 @@ Level GetLevel();
  *
  * Credit to: https://github.com/fmtlib/fmt/issues/3306#issuecomment-1432711988
  */
+// NOLINTBEGIN(readability-identifier-naming)
 template <glm::length_t L, typename Pre>
 struct fmt::formatter<glm::vec<L, Pre>> : fmt::formatter<Pre> {
     auto format(const glm::vec<L, Pre> &vec, format_context &ctx) const
@@ -88,5 +89,6 @@ struct fmt::formatter<Util::Transform> : fmt::formatter<std::string> {
                          t.rotation, t.scale);
     }
 };
+// NOLINTEND
 
 #endif
