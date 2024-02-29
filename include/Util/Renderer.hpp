@@ -25,16 +25,16 @@ public:
     Renderer(const std::vector<std::shared_ptr<GameObject>> &children = {});
 
     /**
-     * @brief Add a child to the Renderer.
+     * @brief Add a child to Renderer.
      *
-     * @param child The GameObject needing to be managed by the Renderer.
+     * @param child The GameObject needing to be managed by Renderer.
      */
     void AddChild(const std::shared_ptr<GameObject> &child);
 
     /**
-     * @brief Add children to the Renderer.
+     * @brief Add children to Renderer.
      *
-     * @param children The GameObjects needing to be managed by the Renderer.
+     * @param children The GameObjects needing to be managed by Renderer.
      */
     void AddChildren(const std::vector<std::shared_ptr<GameObject>> &children);
 
