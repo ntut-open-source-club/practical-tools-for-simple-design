@@ -51,6 +51,7 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Root.cpp
     ${SRC_DIR}/Util/Color.cpp
     ${SRC_DIR}/Util/Animation.cpp
+    ${SRC_DIR}/Util/MissingTexture.cpp
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/Giraffe.cpp
@@ -86,6 +87,8 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/GameObject.hpp
     ${INCLUDE_DIR}/Util/Root.hpp
     ${INCLUDE_DIR}/Util/Color.hpp
+    ${INCLUDE_DIR}/Util/TransparentImage.hpp
+    ${INCLUDE_DIR}/Util/Base64.hpp
     ${INCLUDE_DIR}/Util/Animation.hpp
 
     ${INCLUDE_DIR}/App.hpp

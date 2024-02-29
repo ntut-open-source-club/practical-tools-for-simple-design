@@ -5,6 +5,7 @@
 #include "Core/Texture.hpp"
 #include "Core/TextureUtils.hpp"
 
+#include "Util/MissingTexture.hpp"
 #include "Util/TransformUtils.hpp"
 
 #include "config.hpp"
@@ -27,7 +28,9 @@ Image::Image(const std::string &filepath)
             IMG_Load(filepath.c_str()),
             SDL_FreeSurface,
         };
+
     if (surface == nullptr) {
+        surface = {GetMissingTextureSDLSurface(), SDL_FreeSurface};
         LOG_ERROR("Failed to load image: '{}'", filepath);
         LOG_ERROR("{}", IMG_GetError());
     }
