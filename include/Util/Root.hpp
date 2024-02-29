@@ -9,6 +9,11 @@
 class App;
 
 namespace Util {
+/**
+ * @class Root
+ * @brief A class handling GameObjects' Draw()
+ * @see Util::GameObject
+ */
 class Root final {
 public:
     /**
