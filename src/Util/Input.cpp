@@ -44,7 +44,7 @@ bool Input::IsKeyDown(const Keycode &key) {
 
 bool Input::IsKeyUp(const Keycode &key) {
     if (key > Keycode::NUM_SCANCODES) {
-        return s_MouseState[key].second && !s_MouseState[key].first;
+        return !s_MouseState[key].second && s_MouseState[key].first;
     }
 
     const auto index = static_cast<const int>(key);
