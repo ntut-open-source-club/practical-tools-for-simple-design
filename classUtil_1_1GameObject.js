@@ -1,7 +1,9 @@
 var classUtil_1_1GameObject =
 [
     [ "GameObject", "classUtil_1_1GameObject.html#ae7df90c02e4d0fe5426b46fdc4d88c63", null ],
-    [ "GameObject", "classUtil_1_1GameObject.html#ad9ebcc7932dcde9fe48715af6722dcd8", null ],
+    [ "GameObject", "classUtil_1_1GameObject.html#a50de79f3094f1714add8eea6dbc1095c", null ],
+    [ "GameObject", "classUtil_1_1GameObject.html#a2b42040c45d8043eef7225fcddd9ecde", null ],
+    [ "GameObject", "classUtil_1_1GameObject.html#a1a52f30d2e5706bfa881d9290049b82c", null ],
     [ "~GameObject", "classUtil_1_1GameObject.html#abe85f442afc7e5b6ef278e6098174d1d", null ],
     [ "AddChild", "classUtil_1_1GameObject.html#afc58b49ea9d973215bddde091f9fc89c", null ],
     [ "GetChildren", "classUtil_1_1GameObject.html#a6d90442f733edd59e4fcf2d49477a351", null ],

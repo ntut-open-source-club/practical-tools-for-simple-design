@@ -6,7 +6,7 @@ var namespaceUtil =
     [ "GameObject", "classUtil_1_1GameObject.html", "classUtil_1_1GameObject" ],
     [ "Image", "classUtil_1_1Image.html", "classUtil_1_1Image" ],
     [ "Input", "classUtil_1_1Input.html", null ],
-    [ "Root", "classUtil_1_1Root.html", "classUtil_1_1Root" ],
+    [ "Renderer", "classUtil_1_1Renderer.html", "classUtil_1_1Renderer" ],
     [ "SFX", "classUtil_1_1SFX.html", "classUtil_1_1SFX" ],
     [ "Text", "classUtil_1_1Text.html", "classUtil_1_1Text" ],
     [ "Time", "classUtil_1_1Time.html", null ],
