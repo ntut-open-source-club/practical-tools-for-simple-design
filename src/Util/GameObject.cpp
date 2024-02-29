@@ -15,7 +15,6 @@ void GameObject::Draw() {
         data.m_Model, glm::vec3{m_Pivot / m_Drawable->GetSize(), 0} * -1.0F);
 
     m_Drawable->Draw(data);
-    // m_Drawable->Draw(m_Transform, m_ZIndex);
 }
 
 } // namespace Util
