@@ -1,5 +1,5 @@
-#ifndef UTIL_ROOT_HPP
-#define UTIL_ROOT_HPP
+#ifndef UTIL_Renderer_HPP
+#define UTIL_Renderer_HPP
 
 #include <memory>
 #include <vector>
@@ -10,7 +10,7 @@ class App;
 
 namespace Util {
 /**
- * @class Root
+ * @class Renderer
  * @brief A class handling GameObjects' Draw()
  * @see Util::GameObject
  */
@@ -20,21 +20,21 @@ public:
      * @brief Parameterized constructor.
      *`
      *
-     * @param children The GameObject needing to be managed by the root.
+     * @param children The GameObject needing to be managed by Renderer.
      */
     Renderer(const std::vector<std::shared_ptr<GameObject>> &children = {});
 
     /**
-     * @brief Add a child to the root.
+     * @brief Add a child to the Renderer.
      *
-     * @param child The GameObject needing to be managed by the root.
+     * @param child The GameObject needing to be managed by the Renderer.
      */
     void AddChild(const std::shared_ptr<GameObject> &child);
 
     /**
-     * @brief Add children to the root.
+     * @brief Add children to the Renderer.
      *
-     * @param children The GameObjects needing to be managed by the root.
+     * @param children The GameObjects needing to be managed by the Renderer.
      */
     void AddChildren(const std::vector<std::shared_ptr<GameObject>> &children);
 

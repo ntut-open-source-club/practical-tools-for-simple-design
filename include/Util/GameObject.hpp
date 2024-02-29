@@ -19,7 +19,7 @@ namespace Util {
  */
 class GameObject {
 public:
-    Util::Transform m_Transform;
+    Util::Transform m_Transform; // IDC if this should be here.
 
 public:
     /**
