@@ -110,7 +110,7 @@ public:
      * @param transform Transformation matrix for drawing.
      * @param zIndex Z-index for drawing.
      */
-    void Draw(const Util::Transform &transform, const float zIndex) override;
+    void Draw(const Core::Matrices &data) override;
 
     /**
      * @brief Reset the animation to its initial frame.
