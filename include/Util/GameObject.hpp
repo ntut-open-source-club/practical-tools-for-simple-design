@@ -35,8 +35,8 @@ public:
      * @param visible The visibility of the game object.
      * @param children The children of the game object.
      */
-    GameObject(const std::shared_ptr<Core::Drawable>& drawable, const float zIndex,
-               const bool visible = true,
+    GameObject(const std::shared_ptr<Core::Drawable> &drawable,
+               const float zIndex, const bool visible = true,
                const std::vector<std::shared_ptr<GameObject>> &children =
                    std::vector<std::shared_ptr<GameObject>>())
         : m_Drawable(drawable),
@@ -44,11 +44,19 @@ public:
           m_ZIndex(zIndex),
           m_Visible(visible) {}
 
-    // Deleted copy constructor.
-    GameObject(const GameObject &other) = delete;
+    /**
+     * @brief Copy constructor.
+     * @param other
+     *
+     * @note This is a shallow copy constructor, meaning the m_drawable points
+     * to the same reference as same as `other`'s does..
+     */
+    GameObject(const GameObject &other) = default;
 
-    // Deleted move constructor.
-    GameObject(GameObject &&other) = delete;
+    /**
+     * @brief Default move constructor..
+     */
+    GameObject(GameObject &&other) = default;
 
     /**
      * @brief Default destructor.
@@ -138,7 +146,6 @@ public:
     void Draw();
 
 protected:
-
     std::shared_ptr<Core::Drawable> m_Drawable = nullptr;
     std::vector<std::shared_ptr<GameObject>> m_Children;
 
