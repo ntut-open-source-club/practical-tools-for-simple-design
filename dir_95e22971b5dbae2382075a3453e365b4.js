@@ -1,6 +1,7 @@
 var dir_95e22971b5dbae2382075a3453e365b4 =
 [
     [ "Animation.hpp", "Animation_8hpp_source.html", null ],
+    [ "Base64.hpp", "Base64_8hpp_source.html", null ],
     [ "BGM.hpp", "BGM_8hpp_source.html", null ],
     [ "Color.hpp", "Color_8hpp_source.html", null ],
     [ "Docs.hpp", "Util_2Docs_8hpp_source.html", null ],
@@ -10,6 +11,7 @@ var dir_95e22971b5dbae2382075a3453e365b4 =
     [ "Keycode.hpp", "Keycode_8hpp_source.html", null ],
     [ "LoadTextFile.hpp", "LoadTextFile_8hpp_source.html", null ],
     [ "Logger.hpp", "Logger_8hpp_source.html", null ],
+    [ "MissingTexture.hpp", "MissingTexture_8hpp_source.html", null ],
     [ "Root.hpp", "Root_8hpp_source.html", null ],
     [ "SFX.hpp", "SFX_8hpp_source.html", null ],
     [ "Text.hpp", "Text_8hpp_source.html", null ],

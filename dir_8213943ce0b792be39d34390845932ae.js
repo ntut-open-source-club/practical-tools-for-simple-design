@@ -5,6 +5,7 @@ var dir_8213943ce0b792be39d34390845932ae =
     [ "Docs.hpp", "Core_2Docs_8hpp_source.html", null ],
     [ "Drawable.hpp", "Drawable_8hpp_source.html", null ],
     [ "IndexBuffer.hpp", "IndexBuffer_8hpp_source.html", null ],
+    [ "MissingTextureBase64.hpp", "MissingTextureBase64_8hpp_source.html", null ],
     [ "Program.hpp", "Program_8hpp_source.html", null ],
     [ "Shader.hpp", "Shader_8hpp_source.html", null ],
     [ "Texture.hpp", "Texture_8hpp_source.html", null ],
