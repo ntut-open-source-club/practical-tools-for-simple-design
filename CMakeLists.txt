@@ -17,6 +17,19 @@ else()
     )
 endif()
 
+if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+    target_compile_definitions(${PROJECT_NAME} PRIVATE
+            PTSD_DIR="${CMAKE_CURRENT_SOURCE_DIR}"
+    )
+elseif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+    file(COPY assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+    target_compile_definitions(${PROJECT_NAME} PRIVATE
+            PTSD_DIR="."
+    )
+else ()
+    message(FATAL_ERROR "Unknown build type: ${CMAKE_BUILD_TYPE}"
+endif()
+
 if (WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     # see https://github.com/ntut-open-source-club/practical-tools-for-simple-design/issues/22
     set(CMAKE_RC_FLAGS="-C 1252")
