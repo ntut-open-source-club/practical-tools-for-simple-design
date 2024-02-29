@@ -19,6 +19,9 @@ namespace Util {
  */
 class GameObject {
 public:
+    Util::Transform m_Transform;
+
+public:
     /**
      * @brief Default constructor.
      */
@@ -135,7 +138,6 @@ public:
     void Draw();
 
 protected:
-    Util::Transform m_Transform; // IDK if this should be here.
 
     std::shared_ptr<Core::Drawable> m_Drawable = nullptr;
     std::vector<std::shared_ptr<GameObject>> m_Children;
