@@ -62,8 +62,8 @@ void Text::Draw(const Util::Transform &transform, const float zIndex) {
 
 void Text::InitProgram() {
     // TODO: Create `BaseProgram` from `Program` and pass it into `Drawable`
-    s_Program = std::make_unique<Core::Program>(PTSD_DIR"/assets/shaders/Base.vert",
-                                                PTSD_DIR"/assets/shaders/Base.frag");
+    s_Program = std::make_unique<Core::Program>("../assets/shaders/Base.vert",
+                                                "../assets/shaders/Base.frag");
     s_Program->Bind();
 
     GLint location = glGetUniformLocation(s_Program->GetId(), "surface");
