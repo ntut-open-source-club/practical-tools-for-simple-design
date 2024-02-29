@@ -14,7 +14,7 @@ namespace Util {
  * @brief A class handling GameObjects' Draw()
  * @see Util::GameObject
  */
-class Root final {
+class Renderer final {
 public:
     /**
      * @brief Parameterized constructor.
@@ -22,7 +22,7 @@ public:
      *
      * @param children The GameObject needing to be managed by the root.
      */
-    Root(const std::vector<std::shared_ptr<GameObject>> &children = {});
+    Renderer(const std::vector<std::shared_ptr<GameObject>> &children = {});
 
     /**
      * @brief Add a child to the root.
