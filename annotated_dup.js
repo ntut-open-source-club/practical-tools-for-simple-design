@@ -29,5 +29,9 @@ var annotated_dup =
       [ "Text", "classUtil_1_1Text.html", "classUtil_1_1Text" ],
       [ "Time", "classUtil_1_1Time.html", null ],
       [ "Transform", "structUtil_1_1Transform.html", "structUtil_1_1Transform" ]
-    ] ]
+    ] ],
+    [ "App", "classApp.html", null ],
+    [ "Cat", "classCat.html", null ],
+    [ "Giraffe", "classGiraffe.html", null ],
+    [ "GiraffeText", "classGiraffeText.html", null ]
 ];

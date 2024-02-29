@@ -12,5 +12,6 @@ var searchData=
   ['again_9',['AGAIN',['../namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a5de19cbf59fe7c6f3e2d8ef20bc0e825',1,'Util']]],
   ['alterase_10',['ALTERASE',['../namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a4e5951984092bf8d1e99142907966dd9',1,'Util']]],
   ['animation_11',['Animation',['../classUtil_1_1Animation.html#a1267acfb8c57a7e561724ab83bdde999',1,'Util::Animation::Animation()'],['../classUtil_1_1Animation.html',1,'Util::Animation']]],
-  ['application_12',['APPLICATION',['../namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a0ec0a3f8aade8993f11fedcbaa0d8db6',1,'Util']]]
+  ['app_12',['App',['../classApp.html',1,'']]],
+  ['application_13',['APPLICATION',['../namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a0ec0a3f8aade8993f11fedcbaa0d8db6',1,'Util']]]
 ];

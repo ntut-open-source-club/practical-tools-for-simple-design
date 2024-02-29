@@ -1,5 +1,6 @@
 var hierarchy =
 [
+    [ "App", "classApp.html", null ],
     [ "Util::BGM", "classUtil_1_1BGM.html", null ],
     [ "Core::Context", "classCore_1_1Context.html", null ],
     [ "Core::Drawable", "classCore_1_1Drawable.html", [
@@ -12,7 +13,11 @@ var hierarchy =
       [ "fmt::formatter< glm::mat< C, R, Pre > >", "structfmt_1_1formatter_3_01glm_1_1mat_3_01C_00_01R_00_01Pre_01_4_01_4.html", null ],
       [ "fmt::formatter< glm::vec< L, Pre > >", "structfmt_1_1formatter_3_01glm_1_1vec_3_01L_00_01Pre_01_4_01_4.html", null ]
     ] ],
-    [ "Util::GameObject", "classUtil_1_1GameObject.html", null ],
+    [ "Util::GameObject", "classUtil_1_1GameObject.html", [
+      [ "Cat", "classCat.html", null ],
+      [ "Giraffe", "classGiraffe.html", null ],
+      [ "GiraffeText", "classGiraffeText.html", null ]
+    ] ],
     [ "Core::IndexBuffer", "classCore_1_1IndexBuffer.html", null ],
     [ "Util::Input", "classUtil_1_1Input.html", null ],
     [ "Core::Matrices", "structCore_1_1Matrices.html", null ],

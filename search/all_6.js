@@ -17,5 +17,7 @@ var searchData=
   ['gettransform_14',['GetTransform',['../classUtil_1_1GameObject.html#aed7d7fc80b4985a2e134306271aff76e',1,'Util::GameObject']]],
   ['getvolume_15',['GetVolume',['../classUtil_1_1BGM.html#a20c43ddc9398b024dc5e336804bcb38c',1,'Util::BGM::GetVolume()'],['../classUtil_1_1SFX.html#a64169aa6ca5ba26fcfe60caaacb92192',1,'Util::SFX::GetVolume()']]],
   ['getzindex_16',['GetZIndex',['../classUtil_1_1GameObject.html#a13950c92838074c12c7a63de8feda92c',1,'Util::GameObject']]],
-  ['grave_17',['GRAVE',['../namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a0454988b6250b7e13d8e9222e118c127',1,'Util']]]
+  ['giraffe_17',['Giraffe',['../classGiraffe.html',1,'']]],
+  ['giraffetext_18',['GiraffeText',['../classGiraffeText.html',1,'']]],
+  ['grave_19',['GRAVE',['../namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5a0454988b6250b7e13d8e9222e118c127',1,'Util']]]
 ];
