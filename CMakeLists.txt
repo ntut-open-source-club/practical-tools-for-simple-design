@@ -8,9 +8,9 @@ if (MSVC)
     set(TARGET_COMPILE_OPTIONS
         /W4
     )
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_SOURCE_DIR}/build)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_SOURCE_DIR}/build)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_SOURCE_DIR}/build)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/build)
 else()
     set(TARGET_COMPILE_OPTIONS
         -Wall -Wextra -pedantic
@@ -24,9 +24,9 @@ endif()
 
 option(PTSD_ENABLE_PCH "Turn on PCH to increase compilation speed" OFF)
 
-include(cmake/Dependencies.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Dependencies.cmake)
 
-set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
+set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(SRC_FILES
     ${SRC_DIR}/Core/Context.cpp
     ${SRC_DIR}/Core/DebugMessageCallback.cpp
@@ -52,13 +52,9 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Color.cpp
     ${SRC_DIR}/Util/Animation.cpp
     ${SRC_DIR}/Util/MissingTexture.cpp
-
-    ${SRC_DIR}/App.cpp
-    ${SRC_DIR}/Giraffe.cpp
-    ${SRC_DIR}/GiraffeText.cpp
-    ${SRC_DIR}/Cat.cpp
 )
-set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
+
+set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(INCLUDE_FILES
     ${INCLUDE_DIR}/Core/Context.hpp
     ${INCLUDE_DIR}/Core/DebugMessageCallback.hpp
@@ -91,83 +87,44 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/Base64.hpp
     ${INCLUDE_DIR}/Util/Animation.hpp
 
-    ${INCLUDE_DIR}/App.hpp
-    ${INCLUDE_DIR}/Giraffe.hpp
-    ${INCLUDE_DIR}/GiraffeText.hpp
-    ${INCLUDE_DIR}/Cat.hpp
     ${INCLUDE_DIR}/config.hpp
 )
-set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
-set(TEST_FILES
-    ${TEST_DIR}/SimpleTest.cpp
-    ${TEST_DIR}/NotSimpleTest.cpp
-    ${TEST_DIR}/TransformTest.cpp
+
+add_library(${PROJECT_NAME}
+    ${SRC_FILES}
 )
 
-add_executable(Sample
-    ${SRC_FILES}
-    ${SRC_DIR}/main.cpp
+if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
+    target_compile_definitions(${PROJECT_NAME} PRIVATE
+        PTSD_DIR="${CMAKE_CURRENT_SOURCE_DIR}"
+    )
+elseif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+    file(COPY assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
+    target_compile_definitions(${PROJECT_NAME} PRIVATE
+        PTSD_DIR="."
+    )
+else ()
+    message(FATAL_ERROR "Unknown build type: ${CMAKE_BUILD_TYPE}")
+endif()
+
+target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE
+    ${DEPENDENCY_INCLUDE_DIRS}
 )
-target_link_libraries(Sample
+target_link_libraries(${PROJECT_NAME}
     SDL2::SDL2main # IDK what happens if we don't link SDL2main
     ${DEPENDENCY_LINK_LIBRARIES}
 )
-target_include_directories(Sample SYSTEM PRIVATE
+target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE
     ${DEPENDENCY_INCLUDE_DIRS}
 )
-target_include_directories(Sample PRIVATE
+target_include_directories(${PROJECT_NAME} PRIVATE
     ${INCLUDE_DIR}
 )
-if (${PTSD_ENABLE_PCH})
-    target_precompile_headers(Sample PRIVATE
+if(${PTSD_ENABLE_PCH})
+    target_precompile_headers(${PROJECT_NAME} PRIVATE
         include/pch.hpp
     )
 endif()
-target_compile_options(Sample PRIVATE
+target_compile_options(${PROJECT_NAME} PRIVATE
     ${TARGET_COMPILE_OPTIONS}
 )
-
-enable_testing()
-
-add_executable(Tests
-    ${TEST_FILES}
-    ${SRC_FILES}
-)
-target_link_libraries(Tests
-    GTest::gtest_main
-    ${DEPENDENCY_LINK_LIBRARIES}
-)
-target_include_directories(Tests SYSTEM PRIVATE
-    ${DEPENDENCY_INCLUDE_DIRS}
-    lib/googletest/googletest/include
-    lib/googletest/googlemock/include
-)
-target_include_directories(Tests PRIVATE
-    ${INCLUDE_DIR}
-)
-target_compile_options(Tests PRIVATE
-    ${TARGET_COMPILE_OPTIONS}
-)
-
-add_executable(AudioTest
-    ${TEST_DIR}/Interactive/Audio.cpp
-    ${SRC_FILES}
-)
-target_link_libraries(AudioTest
-    GTest::gtest_main
-    ${DEPENDENCY_LINK_LIBRARIES}
-)
-target_include_directories(AudioTest SYSTEM PRIVATE
-    ${DEPENDENCY_INCLUDE_DIRS}
-    lib/googletest/googletest/include
-    lib/googletest/googlemock/include
-)
-target_include_directories(AudioTest PRIVATE
-    ${INCLUDE_DIR}
-)
-target_compile_options(AudioTest PRIVATE
-    ${TARGET_COMPILE_OPTIONS}
-)
-
-include(GoogleTest)
-gtest_discover_tests(Tests)
