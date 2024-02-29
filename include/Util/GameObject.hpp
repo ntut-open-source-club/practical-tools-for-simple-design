@@ -35,11 +35,11 @@ public:
      * @param visible The visibility of the game object.
      * @param children The children of the game object.
      */
-    GameObject(std::unique_ptr<Core::Drawable> drawable, const float zIndex,
+    GameObject(const std::shared_ptr<Core::Drawable>& drawable, const float zIndex,
                const bool visible = true,
                const std::vector<std::shared_ptr<GameObject>> &children =
                    std::vector<std::shared_ptr<GameObject>>())
-        : m_Drawable(std::move(drawable)),
+        : m_Drawable(drawable),
           m_Children(children),
           m_ZIndex(zIndex),
           m_Visible(visible) {}
