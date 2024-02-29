@@ -7,7 +7,6 @@
 
 namespace Util {
 // Prevents from auto format checking fail
-// TODO: Decide whether to reformat this in the future
 // clang-format off
 enum class Keycode {
     UNKNOWN = 0,
@@ -398,8 +397,15 @@ enum class Keycode {
 
     /* Add any other keys here. */
 
-    PTSD_NUM_SCANCODES = SDL_NUM_SCANCODES /**< not a key, just marks the number of scancodes
+    NUM_SCANCODES = SDL_NUM_SCANCODES, /**< not a key, just marks the number of scancodes
                                  for array bounds */
+
+
+    // Below are the keycodes handling mouse buttons.
+
+    MOUSE_LB = 513,
+    MOUSE_RB = 514,
+    MOUSE_MB = 515,
 };
 // clang-format on
 } // namespace Util
