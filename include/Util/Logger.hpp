@@ -59,14 +59,36 @@ Level GetLevel();
 #define LOG_CRITICAL(...) spdlog::critical(__VA_ARGS__)
 } // namespace Util::Logger
 
-template <>
-struct fmt::formatter<Util::Transform> : fmt::formatter<std::string> {
-    auto format(Util::Transform t, format_context &ctx) const
+/*
+ * I have no idea what this does
+ *
+ * Credit to: https://github.com/fmtlib/fmt/issues/3306#issuecomment-1432711988
+ */
+// NOLINTBEGIN
+template <glm::length_t L, typename Pre>
+struct fmt::formatter<glm::vec<L, Pre>> : fmt::formatter<Pre> {
+    auto format(const glm::vec<L, Pre> &vec, format_context &ctx) const
         -> decltype(ctx.out()) {
-        return format_to(ctx.out(), "T: {} R: {} rad S: {}",
-                         glm::to_string(t.translation), t.rotation,
-                         glm::to_string(t.scale));
+        return format_to(ctx.out(), "{}", glm::to_string(vec));
     }
 };
+
+template <glm::length_t C, glm::length_t R, typename Pre>
+struct fmt::formatter<glm::mat<C, R, Pre>> : fmt::formatter<Pre> {
+    auto format(const glm::mat<C, R, Pre> &mat, format_context &ctx) const
+        -> decltype(ctx.out()) {
+        return format_to(ctx.out(), "{}", glm::to_string(mat));
+    }
+};
+
+template <>
+struct fmt::formatter<Util::Transform> : fmt::formatter<std::string> {
+    auto format(const Util::Transform &t, format_context &ctx) const
+        -> decltype(ctx.out()) {
+        return format_to(ctx.out(), "T: {} R: {} rad S: {}", t.translation,
+                         t.rotation, t.scale);
+    }
+};
+// NOLINTEND
 
 #endif

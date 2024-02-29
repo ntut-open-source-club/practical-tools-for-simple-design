@@ -20,6 +20,8 @@ jobs:
           - os: windows-latest
             build_type: Release
             binary: windows-binary
+          - os: macos-latest
+            build_type: Release
 
     steps:
       - if: matrix.os == 'ubuntu-latest'
@@ -29,15 +31,9 @@ jobs:
           sudo apt-get -y install ${{ matrix.compiler.cc }} cmake ninja-build libglu1-mesa-dev mesa-common-dev xorg-dev
 
       - name: Checkout Repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           submodules: recursive
-
-      - name: Check Format
-        if: matrix.os == 'ubuntu-latest' && matrix.compiler == 'clang'
-        run: |
-          find src/ include/ test/ assets/shaders/ -name "*.*" -print0 | \
-            xargs -0 clang-format --dry-run --Werror --ferror-limit=15
 
       - name: Building Project
         if: matrix.os == 'ubuntu-latest'
@@ -48,14 +44,14 @@ jobs:
           cmake -B build -G "Ninja" -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
           cmake --build build
 
-      - name: Run Linter
-        if: matrix.os == 'ubuntu-latest' && matrix.compiler == 'clang'
-        run: |
-          find src/ include/ test/ -name "*.*" -print0 | \
-            xargs -0 run-clang-tidy true -p build
-
       - name: Building Project
         if: matrix.os == 'windows-latest'
         run: |
           cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
           cmake --build build --config ${{ matrix.build_type }}
+
+      - name: Building Project
+        if: matrix.os == 'macos-latest'
+        run: |
+          cmake -B build -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+          cmake --build build

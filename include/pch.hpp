@@ -10,7 +10,6 @@
 #include <unordered_map>
 #include <vector>
 
-
 #include <SDL.h>
 #include <SDL_events.h>
 #include <SDL_image.h>
