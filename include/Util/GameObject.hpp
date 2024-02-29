@@ -48,8 +48,8 @@ public:
      * @brief Copy constructor.
      * @param other
      *
-     * @note This is a shallow copy constructor, meaning the m_drawable points
-     * to the same reference as same as `other`'s does..
+     * @note This is a shallow copy constructor, meaning the m_Drawable points
+     * to the same reference as same as `other`'s does.
      */
     GameObject(const GameObject &other) = default;
 
