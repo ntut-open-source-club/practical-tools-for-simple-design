@@ -14,8 +14,7 @@ struct Matrices {
 class Drawable {
 public:
     virtual ~Drawable() = default;
-    virtual void Draw(const Util::Transform &transform, const float zIndex,
-                      const glm::vec2 &pivot) = 0;
+    virtual void Draw(const Core::Matrices &data) = 0;
     virtual glm::vec2 GetSize() const = 0;
 };
 } // namespace Core

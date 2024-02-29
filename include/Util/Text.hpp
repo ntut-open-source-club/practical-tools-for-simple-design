@@ -56,8 +56,7 @@ public:
      * @param transform The transform to apply to the text.
      * @param zIndex The z-index at which to draw the text.
      */
-    void Draw(const Transform &transform, const float zIndex,
-              const glm::vec2 &pivot) override;
+    void Draw(const Core::Matrices &data) override;
 
 private:
     void InitProgram();

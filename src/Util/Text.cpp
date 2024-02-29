@@ -48,11 +48,7 @@ Text::Text(const std::string &font, int fontSize, const std::string &text,
     m_Size = {surface->pitch / surface->format->BytesPerPixel, surface->h};
 }
 
-void Text::Draw(const Util::Transform &transform, const float zIndex,
-                const glm::vec2 &pivot) {
-    auto data = Util::ConvertToUniformBufferData(transform, m_Size, zIndex);
-    data.m_Model =
-        glm::translate(data.m_Model, glm::vec3{pivot / m_Size, 0} * -1.0F);
+void Text::Draw(const Core::Matrices &data) {
     s_UniformBuffer->SetData(0, data);
 
     m_Texture->Bind(UNIFORM_SURFACE_LOCATION);
