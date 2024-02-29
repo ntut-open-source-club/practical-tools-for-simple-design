@@ -134,17 +134,39 @@ $(document).ready(function(){initNavTree('Logger_8hpp_source.html',''); initResi
 <div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span><span class="preprocessor">#define LOG_CRITICAL(...) spdlog::critical(__VA_ARGS__)</span></div>
 <div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>} <span class="comment">// namespace Util::Logger</span></div>
 <div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span> </div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="keyword">template</span> &lt;&gt;</div>
-<div class="line"><a id="l00063" name="l00063"></a><span class="lineno"><a class="line" href="structfmt_1_1formatter_3_01Util_1_1Transform_01_4.html">   63</a></span><span class="keyword">struct </span>fmt::formatter&lt;<a class="code hl_namespace" href="namespaceUtil.html">Util</a>::Transform&gt; : fmt::formatter&lt;std::string&gt; {</div>
-<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keyword">auto</span> format(<a class="code hl_struct" href="structUtil_1_1Transform.html">Util::Transform</a> t, format_context &amp;ctx) <span class="keyword">const</span></div>
-<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span>        -&gt; <span class="keyword">decltype</span>(ctx.out()) {</div>
-<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span>        <span class="keywordflow">return</span> format_to(ctx.out(), <span class="stringliteral">&quot;T: {} R: {} rad S: {}&quot;</span>,</div>
-<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span>                         glm::to_string(t.<a class="code hl_variable" href="structUtil_1_1Transform.html#abfab7f18e58b9f581d7ba06f2790c5ab">translation</a>), t.<a class="code hl_variable" href="structUtil_1_1Transform.html#a5885eb82fe988b5155ae825f09cef192">rotation</a>,</div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>                         glm::to_string(t.<a class="code hl_variable" href="structUtil_1_1Transform.html#a85e9f4d3e7291142916ab40ec5a17ae8">scale</a>));</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span>    }</div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>};</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span><span class="comment">/*</span></div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span><span class="comment"> * I have no idea what this does</span></div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span><span class="comment"> *</span></div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span><span class="comment"> * Credit to: https://github.com/fmtlib/fmt/issues/3306#issuecomment-1432711988</span></div>
+<div class="line"><a id="l00066" name="l00066"></a><span class="lineno">   66</span><span class="comment"> */</span></div>
+<div class="line"><a id="l00067" name="l00067"></a><span class="lineno">   67</span><span class="comment">// NOLINTBEGIN</span></div>
+<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span><span class="keyword">template</span> &lt;glm::length_t L, <span class="keyword">typename</span> Pre&gt;</div>
+<div class="line"><a id="l00069" name="l00069"></a><span class="lineno"><a class="line" href="structfmt_1_1formatter_3_01glm_1_1vec_3_01L_00_01Pre_01_4_01_4.html">   69</a></span><span class="keyword">struct </span>fmt::formatter&lt;glm::vec&lt;L, Pre&gt;&gt; : fmt::formatter&lt;Pre&gt; {</div>
+<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">auto</span> format(<span class="keyword">const</span> glm::vec&lt;L, Pre&gt; &amp;vec, format_context &amp;ctx) <span class="keyword">const</span></div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>        -&gt; <span class="keyword">decltype</span>(ctx.out()) {</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>        <span class="keywordflow">return</span> format_to(ctx.out(), <span class="stringliteral">&quot;{}&quot;</span>, glm::to_string(vec));</div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    }</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>};</div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keyword">template</span> &lt;glm::length_t C, glm::length_t R, <span class="keyword">typename</span> Pre&gt;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno"><a class="line" href="structfmt_1_1formatter_3_01glm_1_1mat_3_01C_00_01R_00_01Pre_01_4_01_4.html">   77</a></span><span class="keyword">struct </span>fmt::formatter&lt;glm::mat&lt;C, R, Pre&gt;&gt; : fmt::formatter&lt;Pre&gt; {</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    <span class="keyword">auto</span> format(<span class="keyword">const</span> glm::mat&lt;C, R, Pre&gt; &amp;mat, format_context &amp;ctx) <span class="keyword">const</span></div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span>        -&gt; <span class="keyword">decltype</span>(ctx.out()) {</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>        <span class="keywordflow">return</span> format_to(ctx.out(), <span class="stringliteral">&quot;{}&quot;</span>, glm::to_string(mat));</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    }</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>};</div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span> </div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span><span class="keyword">template</span> &lt;&gt;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno"><a class="line" href="structfmt_1_1formatter_3_01Util_1_1Transform_01_4.html">   85</a></span><span class="keyword">struct </span>fmt::formatter&lt;<a class="code hl_namespace" href="namespaceUtil.html">Util</a>::Transform&gt; : fmt::formatter&lt;std::string&gt; {</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>    <span class="keyword">auto</span> format(<span class="keyword">const</span> <a class="code hl_struct" href="structUtil_1_1Transform.html">Util::Transform</a> &amp;t, format_context &amp;ctx) <span class="keyword">const</span></div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>        -&gt; <span class="keyword">decltype</span>(ctx.out()) {</div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span>        <span class="keywordflow">return</span> format_to(ctx.out(), <span class="stringliteral">&quot;T: {} R: {} rad S: {}&quot;</span>, t.<a class="code hl_variable" href="structUtil_1_1Transform.html#abfab7f18e58b9f581d7ba06f2790c5ab">translation</a>,</div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span>                         t.<a class="code hl_variable" href="structUtil_1_1Transform.html#a5885eb82fe988b5155ae825f09cef192">rotation</a>, t.<a class="code hl_variable" href="structUtil_1_1Transform.html#a85e9f4d3e7291142916ab40ec5a17ae8">scale</a>);</div>
+<div class="line"><a id="l00090" name="l00090"></a><span class="lineno">   90</span>    }</div>
+<div class="line"><a id="l00091" name="l00091"></a><span class="lineno">   91</span>};</div>
+<div class="line"><a id="l00092" name="l00092"></a><span class="lineno">   92</span><span class="comment">// NOLINTEND</span></div>
+<div class="line"><a id="l00093" name="l00093"></a><span class="lineno">   93</span> </div>
+<div class="line"><a id="l00094" name="l00094"></a><span class="lineno">   94</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="anamespaceUtil_html"><div class="ttname"><a href="namespaceUtil.html">Util</a></div><div class="ttdoc">Useful tools for development.</div><div class="ttdef"><b>Definition:</b> Animation.hpp:12</div></div>
 <div class="ttc" id="astructUtil_1_1Transform_html"><div class="ttname"><a href="structUtil_1_1Transform.html">Util::Transform</a></div><div class="ttdoc">A struct representing a transformation in 2D space.</div><div class="ttdef"><b>Definition:</b> Transform.hpp:16</div></div>
 <div class="ttc" id="astructUtil_1_1Transform_html_a5885eb82fe988b5155ae825f09cef192"><div class="ttname"><a href="structUtil_1_1Transform.html#a5885eb82fe988b5155ae825f09cef192">Util::Transform::rotation</a></div><div class="ttdeci">float rotation</div><div class="ttdoc">The rotation of the transformation.</div><div class="ttdef"><b>Definition:</b> Transform.hpp:32</div></div>

@@ -9,7 +9,9 @@ var hierarchy =
       [ "Util::Text", "classUtil_1_1Text.html", null ]
     ] ],
     [ "fmt::formatter", null, [
-      [ "fmt::formatter< Util::Transform >", "structfmt_1_1formatter_3_01Util_1_1Transform_01_4.html", null ]
+      [ "fmt::formatter< Util::Transform >", "structfmt_1_1formatter_3_01Util_1_1Transform_01_4.html", null ],
+      [ "fmt::formatter< glm::mat< C, R, Pre > >", "structfmt_1_1formatter_3_01glm_1_1mat_3_01C_00_01R_00_01Pre_01_4_01_4.html", null ],
+      [ "fmt::formatter< glm::vec< L, Pre > >", "structfmt_1_1formatter_3_01glm_1_1vec_3_01L_00_01Pre_01_4_01_4.html", null ]
     ] ],
     [ "Util::GameObject", "classUtil_1_1GameObject.html", [
       [ "Cat", "classCat.html", null ],
