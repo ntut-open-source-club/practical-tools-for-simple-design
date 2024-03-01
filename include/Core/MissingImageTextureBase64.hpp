@@ -1,10 +1,10 @@
-#ifndef CORE_MISSING_TEXTURE_BASE64_HPP
-#define CORE_MISSING_TEXTURE_BASE64_HPP
+#ifndef CORE_MISSING_IMAGE_TEXTURE_BASE64_HPP
+#define CORE_MISSING_IMAGE_TEXTURE_BASE64_HPP
 
 // A transparent image base64 string.
 // Since we want to hardcode the image, we have such a long string here.
 // The original image should find in here: https://i.imgur.com/zS4sPCN.png
-static constexpr const char *MISSING_TEXTURE =
+static constexpr const char *MISSING_IMAGE_TEXTURE =
     "iVBORw0KGgoAAAANSUhEUgAAAQAAAAEABAMAAACuXLVVAAAAIGNIUk0AAHomAACAhAAA+"
     "gAAAIDoAAB1MAAA6mAAADqYAAAXcJy6UTwAAAAhUExURf8A3P8A3uEAwh4AGgAAAP8A3+"
     "IAwx0AGcoArjUALv///"
@@ -21,4 +21,4 @@ static constexpr const char *MISSING_TEXTURE =
     "IgAAACh0RVh0ZGF0ZTp0aW1lc3RhbXAAMjAyMy0xMi0yNVQxODozMjo0NCswMDowMIYEjHkAAA"
     "AASUVORK5CYII=";
 
-#endif // CORE_MISSING_TEXTURE_BASE64_HPP
+#endif // CORE_MISSING_IMAGE_TEXTURE_BASE64_HPP
