@@ -3,7 +3,7 @@
 
 #include "pch.hpp" // IWYU pragma: export
 
-#include "Util/Root.hpp"
+#include "Util/Renderer.hpp"
 
 #include "Cat.hpp"
 #include "Giraffe.hpp"
@@ -31,7 +31,7 @@ private:
     //    std::make_shared<GiraffeText>();
 
     std::shared_ptr<Cat> m_Cat = std::make_shared<Cat>();
-    Util::Root m_Root;
+    Util::Renderer m_Root;
 };
 
 #endif
