@@ -9,6 +9,8 @@ Animation::Animation(const std::vector<std::string> &paths, bool play,
       m_Interval(interval),
       m_Looping(looping),
       m_Cooldown(cooldown),
+      m_IsChangeFrame(false),
+      m_TimeBetweenFrameUpdate(0),
       m_Index(0) {
     m_Frames.reserve(paths.size());
     for (const auto &path : paths) {
