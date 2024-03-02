@@ -2,7 +2,7 @@
 #define SPRITESHEETTESTER_HPP
 
 #include "Util/GameObject.hpp"
-#include "Util/Image.hpp"
+#include "Util/SpriteSheet.hpp"
 class SpriteSheetTester : public Util::GameObject {
 public:
     SpriteSheetTester();
@@ -10,7 +10,7 @@ public:
     void Update();
 
 private:
-    std::shared_ptr<Util::Image> image;
+    std::shared_ptr<Util::SpriteSheet> m_Spritesheet;
 };
 
 #endif

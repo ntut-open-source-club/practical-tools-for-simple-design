@@ -1,6 +1,7 @@
 #ifndef UTIL_IMAGE_HPP
 #define UTIL_IMAGE_HPP
 
+#include "SDL_surface.h"
 #include "pch.hpp" // IWYU pragma: export
 
 #include <functional>
@@ -61,11 +62,19 @@ public:
     void Draw(const Util::Transform &transform, const float zIndex) override;
 
     /**
-     * @brief Set draw range.
+     * @brief Get the SDL_Surface that current draw.
      *
-     * @param displayRect The Rect of draw range
+     * This function return the SDL_Surface that current draw.
+     *
      */
-    void SetDrawRect(const SDL_Rect displayRect);
+    SDL_Surface &GetSDLSurface() const { return *m_Surface.get(); }
+    /**
+     * @brief Update TextureDate by SDL_Surface
+     *
+     * This function Update TextureDate by SDL_Surface.
+     *
+     */
+    void UpdateTextureData(const SDL_Surface &surface);
 
 private:
     void InitProgram();

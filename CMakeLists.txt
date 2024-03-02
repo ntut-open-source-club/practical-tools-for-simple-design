@@ -53,6 +53,7 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Color.cpp
     ${SRC_DIR}/Util/Animation.cpp
     ${SRC_DIR}/Util/MissingTexture.cpp
+    ${SRC_DIR}/Util/SpriteSheet.cpp
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/Giraffe.cpp
@@ -92,6 +93,7 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/TransparentImage.hpp
     ${INCLUDE_DIR}/Util/Base64.hpp
     ${INCLUDE_DIR}/Util/Animation.hpp
+    ${INCLUDE_DIR}/Util/SpriteSheet.hpp
 
     ${INCLUDE_DIR}/App.hpp
     ${INCLUDE_DIR}/Giraffe.hpp
