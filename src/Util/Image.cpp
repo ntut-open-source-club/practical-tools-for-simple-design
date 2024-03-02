@@ -1,5 +1,8 @@
 #include "Util/Image.hpp"
 
+#include "SDL_error.h"
+#include "SDL_surface.h"
+#include "Util/Logger.hpp"
 #include "pch.hpp"
 
 #include "Core/Texture.hpp"
@@ -9,6 +12,7 @@
 #include "Util/TransformUtils.hpp"
 
 #include "config.hpp"
+#include <memory>
 
 namespace Util {
 Image::Image(const std::string &filepath)
@@ -23,38 +27,38 @@ Image::Image(const std::string &filepath)
         InitUniformBuffer();
     }
 
-    auto surface =
+    m_Surface =
         std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
             IMG_Load(filepath.c_str()),
             SDL_FreeSurface,
         };
 
-    if (surface == nullptr) {
-        surface = {GetMissingTextureSDLSurface(), SDL_FreeSurface};
+    if (m_Surface == nullptr) {
+        m_Surface = {GetMissingTextureSDLSurface(), SDL_FreeSurface};
         LOG_ERROR("Failed to load image: '{}'", filepath);
         LOG_ERROR("{}", IMG_GetError());
     }
 
     m_Texture = std::make_unique<Core::Texture>(
-        Core::SdlFormatToGlFormat(surface->format->format), surface->w,
-        surface->h, surface->pixels);
-    m_Size = {surface->w, surface->h};
+        Core::SdlFormatToGlFormat(m_Surface->format->format), m_Surface->w,
+        m_Surface->h, m_Surface->pixels);
+    m_Size = {m_Surface->w, m_Surface->h};
 }
 
 void Image::SetImage(const std::string &filepath) {
-    auto surface =
+    m_Surface =
         std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
             IMG_Load(filepath.c_str()),
             SDL_FreeSurface,
         };
-    if (surface == nullptr) {
+    if (m_Surface == nullptr) {
         LOG_ERROR("Failed to load image: '{}'", filepath);
         LOG_ERROR("{}", IMG_GetError());
     }
 
-    m_Texture->UpdateData(Core::SdlFormatToGlFormat(surface->format->format),
-                          surface->w, surface->h, surface->pixels);
-    m_Size = {surface->w, surface->h};
+    m_Texture->UpdateData(Core::SdlFormatToGlFormat(m_Surface->format->format),
+                          m_Surface->w, m_Surface->h, m_Surface->pixels);
+    m_Size = {m_Surface->w, m_Surface->h};
 }
 
 void Image::Draw(const Util::Transform &transform, const float zIndex) {
@@ -118,6 +122,35 @@ void Image::InitVertexArray() {
 void Image::InitUniformBuffer() {
     s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
+}
+
+void Image::SetDrawRect(const SDL_Rect displayRect) {
+    // can't just simplely use SDL_SetClipRect, because we use opengl to render
+    // and I'm not sure this way if cost a lot performance?
+    if (displayRect.h + displayRect.y > m_Surface->h ||
+        displayRect.w + displayRect.x > m_Surface->w) {
+        LOG_DEBUG("SetDrawRect OverRange");
+        return;
+    }
+
+    auto targetSurface =
+        std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
+            SDL_CreateRGBSurfaceWithFormat(0, displayRect.w, displayRect.h, 32,
+                                           m_Surface->format->format),
+            SDL_FreeSurface,
+        };
+
+    int isCopyWork = SDL_BlitSurface(m_Surface.get(), &displayRect,
+                                     targetSurface.get(), NULL);
+    if (isCopyWork != 0) {
+        LOG_ERROR("{}", SDL_GetError());
+        return;
+    }
+
+    m_Texture->UpdateData(
+        Core::SdlFormatToGlFormat(targetSurface->format->format),
+        targetSurface->w, targetSurface->h, targetSurface->pixels);
+    m_Size = {targetSurface->w, targetSurface->h};
 }
 
 std::unique_ptr<Core::Program> Image::s_Program = nullptr;

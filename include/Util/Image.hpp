@@ -5,6 +5,7 @@
 
 #include <functional>
 #include <glm/fwd.hpp>
+#include <memory>
 
 #include "Core/Drawable.hpp"
 #include "Core/Texture.hpp"
@@ -59,6 +60,13 @@ public:
      */
     void Draw(const Util::Transform &transform, const float zIndex) override;
 
+    /**
+     * @brief Set draw range.
+     *
+     * @param displayRect The Rect of draw range
+     */
+    void SetDrawRect(const SDL_Rect displayRect);
+
 private:
     void InitProgram();
     void InitVertexArray();
@@ -72,7 +80,7 @@ private:
 
 private:
     std::unique_ptr<Core::Texture> m_Texture = nullptr;
-
+    std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> m_Surface;
     std::string m_Path;
     glm::vec2 m_Size;
 };
