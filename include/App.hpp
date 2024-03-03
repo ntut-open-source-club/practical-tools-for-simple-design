@@ -1,6 +1,7 @@
 #ifndef APP_HPP
 #define APP_HPP
 
+#include "SpriteSheetTester.hpp"
 #include "pch.hpp" // IWYU pragma: export
 
 #include "Util/Renderer.hpp"
@@ -31,6 +32,8 @@ private:
     //    std::make_shared<GiraffeText>();
 
     std::shared_ptr<Cat> m_Cat = std::make_shared<Cat>();
+    std::shared_ptr<SpriteSheetTester> m_SpriteSheet =
+        std::make_shared<SpriteSheetTester>();
     Util::Renderer m_Root;
 };
 
