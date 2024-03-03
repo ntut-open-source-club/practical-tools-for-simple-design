@@ -143,12 +143,12 @@ private:
     double m_Interval;
     bool m_Looping;
     std::size_t m_Cooldown;
-    bool m_IsChangeFrame;
+    bool m_IsChangeFrame = false;
 
-    unsigned long m_CooldownEndTime;
-    double m_TimeBetweenFrameUpdate;
+    unsigned long m_CooldownEndTime = 0;
+    double m_TimeBetweenFrameUpdate = 0;
 
-    std::size_t m_Index;
+    std::size_t m_Index = 0;
 };
 } // namespace Util
 
