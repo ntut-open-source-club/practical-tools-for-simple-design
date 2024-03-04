@@ -103,7 +103,7 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
 elseif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
     file(COPY assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
     target_compile_definitions(${PROJECT_NAME} PRIVATE
-        PTSD_DIR="."
+        PTSD_DIR=".."
     )
 else ()
     message(FATAL_ERROR "Unknown build type: ${CMAKE_BUILD_TYPE}")
@@ -130,3 +130,4 @@ endif()
 target_compile_options(${PROJECT_NAME} PRIVATE
     ${TARGET_COMPILE_OPTIONS}
 )
+
