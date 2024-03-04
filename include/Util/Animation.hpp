@@ -20,14 +20,10 @@ public:
      * @brief Enum representing the state of the animation.
      */
     enum class State {
-        PLAY,  /**< Animation is playing. */
-        PAUSE, /**< Animation is paused. */
-               /**
-                * Animation is in cooldown
-                * @todo This state is not implemented yet
-                */
-        COOLDOWN,
-        ENDED, /**< Animation has ended. */
+        PLAY,     /**< Animation is playing. */
+        PAUSE,    /**< Animation is paused. */
+        COOLDOWN, /**< Animation is COOLDOWN. */
+        ENDED     /**< Animation is Ended(looping == false && Animate end.). */
     };
 
     /**
@@ -77,12 +73,7 @@ public:
      * @brief Get the current state of the animation
      * @return The current state of the animation
      */
-    State GetState() const {
-        if (m_HasEnded) {
-            return State::ENDED;
-        }
-        return m_State;
-    }
+    State GetState() const { return m_State; }
 
     /**
      * @brief Get the size of the current frame.
@@ -132,19 +123,13 @@ public:
      * If the animation has ended and `looping` is set to `false`, this would
      * replay the animation once.
      */
-    void Play() {
-        m_State = State::PLAY;
-        if (m_HasEnded) {
-            m_Index = 0;
-            m_HasEnded = false;
-        }
-    }
+    void Play();
 
     /**
      * @brief Pause the animation.
      * If the animation has already been paused, this method won't do anything.
      */
-    void Pause() { m_State = State::PAUSE; }
+    void Pause();
 
 private:
     /**
@@ -153,17 +138,17 @@ private:
     void Update();
 
 private:
+    std::vector<std::shared_ptr<Util::Image>> m_Frames;
     State m_State;
-
-    unsigned long m_BaseTime;
-
-    std::size_t m_Interval;
+    double m_Interval;
     bool m_Looping;
     std::size_t m_Cooldown;
-    bool m_HasEnded = false;
+    bool m_IsChangeFrame = false;
 
-    std::vector<std::shared_ptr<Util::Image>> m_Frames;
-    std::size_t m_Index;
+    unsigned long m_CooldownEndTime = 0;
+    double m_TimeBetweenFrameUpdate = 0;
+
+    std::size_t m_Index = 0;
 };
 } // namespace Util
 

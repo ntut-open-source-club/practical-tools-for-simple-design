@@ -65,7 +65,6 @@ public:
      */
     static bool IsKeyPressed(const Keycode &key);
 
-
     /**
      * @brief Check if a specific key is being pressed.
      *

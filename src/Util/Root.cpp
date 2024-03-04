@@ -6,59 +6,24 @@
 
 namespace Util {
 Root::Root(const std::vector<std::shared_ptr<GameObject>> &children)
-    : m_Children(children) {}
+    : m_Renderer(std::make_unique<Renderer>(children)) {
+        LOG_WARN("Root is deprecated, use Renderer instead.");
+    }
 
 void Root::AddChild(const std::shared_ptr<GameObject> &child) {
-    m_Children.push_back(child);
+    m_Renderer->AddChild(child);
 }
 
 void Root::RemoveChild(std::shared_ptr<GameObject> child) {
-    m_Children.erase(std::remove(m_Children.begin(), m_Children.end(), child),
-                     m_Children.end());
+    m_Renderer->RemoveChild(child);
 }
 
 void Root::AddChildren(
     const std::vector<std::shared_ptr<GameObject>> &children) {
-    m_Children.reserve(m_Children.size() + children.size());
-    m_Children.insert(m_Children.end(), children.begin(), children.end());
+    m_Renderer->AddChildren(children);
 }
 
 void Root::Update() {
-    struct StackInfo {
-        std::shared_ptr<GameObject> m_GameObject;
-        Transform m_ParentTransform;
-    };
-
-    std::vector<StackInfo> stack;
-    stack.reserve(m_Children.size());
-
-    for (const auto &child : m_Children) {
-        stack.push_back(StackInfo{child, Transform{}});
-    }
-
-    auto compareFunction = [](const StackInfo &a, const StackInfo &b) {
-        return a.m_GameObject->GetZIndex() > b.m_GameObject->GetZIndex();
-    };
-    std::priority_queue<StackInfo, std::vector<StackInfo>,
-                        decltype(compareFunction)>
-        renderQueue(compareFunction);
-
-    while (!stack.empty()) {
-        auto curr = stack.back();
-        stack.pop_back();
-        renderQueue.push(curr);
-
-        for (const auto &child : curr.m_GameObject->GetChildren()) {
-            stack.push_back(
-                StackInfo{child, curr.m_GameObject->GetTransform()});
-        }
-    }
-    // draw all in render queue by order
-    while (!renderQueue.empty()) {
-        auto curr = renderQueue.top();
-        renderQueue.pop();
-
-        curr.m_GameObject->Draw();
-    }
+    m_Renderer->Update();
 }
 } // namespace Util

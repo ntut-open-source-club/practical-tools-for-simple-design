@@ -1,27 +1,27 @@
 #include "Util/Animation.hpp"
-
+#include "Util/Logger.hpp"
 #include "Util/Time.hpp"
 
 namespace Util {
 Animation::Animation(const std::vector<std::string> &paths, bool play,
                      std::size_t interval, bool looping, std::size_t cooldown)
     : m_State(play ? State::PLAY : State::PAUSE),
-      m_BaseTime(Util::Time::GetElapsedTimeMs()),
       m_Interval(interval),
       m_Looping(looping),
-      m_Cooldown(cooldown),
-      m_Index(0) {
+      m_Cooldown(cooldown) {
     m_Frames.reserve(paths.size());
     for (const auto &path : paths) {
         m_Frames.push_back(std::make_shared<Util::Image>(path));
     }
-
-    Update();
 }
 
 void Animation::SetCurrentFrame(std::size_t index) {
     m_Index = index;
-    m_BaseTime = Util::Time::GetElapsedTimeMs();
+    if (m_State == State::ENDED || m_State == State::COOLDOWN) {
+        /*this make sure if user setframe on ENDED/COOLDOWN, will play from
+         * where you set the frame*/
+        m_IsChangeFrame = true;
+    }
 }
 
 void Animation::Draw(const Util::Transform &transform, const float zIndex) {
@@ -29,65 +29,52 @@ void Animation::Draw(const Util::Transform &transform, const float zIndex) {
     Update();
 }
 
+void Animation::Play() {
+    if (m_State == State::PLAY)
+        return;
+    if (m_State == State::ENDED || m_State == State::COOLDOWN) {
+        m_Index = m_IsChangeFrame ? m_Index : 0;
+        m_IsChangeFrame = false;
+    }
+    m_State = State::PLAY;
+}
+
+void Animation::Pause() {
+    if (m_State == State::PLAY || m_State == State::COOLDOWN) {
+        m_State = State::PAUSE;
+    }
+}
+
 void Animation::Update() {
-    if (m_State == State::PAUSE) {
+    unsigned long nowTime = Util::Time::GetElapsedTimeMs();
+    if (m_State == State::PAUSE || m_State == State::ENDED) {
         LOG_TRACE("[ANI] is pause");
-        m_BaseTime = Util::Time::GetElapsedTimeMs();
         return;
     }
 
-    if (!m_Looping && m_HasEnded) {
-        LOG_TRACE("[ANI] not loop and is ended");
-        m_BaseTime = Util::Time::GetElapsedTimeMs();
+    if (m_State == State::COOLDOWN) {
+        if (nowTime >= m_CooldownEndTime) {
+            Play();
+        }
         return;
     }
 
-    std::size_t delta = Util::Time::GetElapsedTimeMs() - m_BaseTime;
+    m_TimeBetweenFrameUpdate += Util::Time::GetDeltaTime();
+    unsigned int updateFrameCount =
+        m_TimeBetweenFrameUpdate / (m_Interval / 1000);
+    if (updateFrameCount <= 0)
+        return;
 
-    // FIXME: maybe less if
+    m_Index += updateFrameCount;
+    m_TimeBetweenFrameUpdate = 0;
 
-    if (!m_Looping) {
-        // don't need to consider cooldown when there is no looping
-        if (delta > m_Interval) {
-            m_BaseTime += (delta / m_Interval) * m_Interval;
-            m_Index += delta / m_Interval;
-
-            if (m_Index >= m_Frames.size() - 1) {
-                m_HasEnded = true;
-                m_Index = m_Frames.size() - 1;
-            }
+    unsigned int const totalFramesCount = m_Frames.size();
+    if (m_Index >= totalFramesCount) {
+        if (m_Looping) {
+            m_CooldownEndTime = nowTime + m_Cooldown;
         }
-
-    } else {
-        const auto totalSpan = m_Interval * m_Frames.size() + m_Cooldown;
-
-        const auto spanCount = delta / totalSpan;
-        m_BaseTime += totalSpan * spanCount;
-        delta %= totalSpan;
-
-        auto addFrameCount = 0;
-
-        if (m_Index == m_Frames.size() - 1) {
-            if (delta > m_Interval + m_Cooldown) {
-                addFrameCount = (delta - m_Cooldown) / m_Interval;
-
-                m_BaseTime += addFrameCount * m_Interval + m_Cooldown;
-            }
-        } else if (delta > m_Interval) {
-            /**
-             * ! if the frame drop spans across the cooldown period, the
-             * ! animation can become out of sync
-             * ! the probability of this happening is very low, so we leave this
-             * ! for now
-             */
-            addFrameCount = delta / m_Interval;
-
-            m_BaseTime += addFrameCount * m_Interval;
-        }
-
-        m_Index = (m_Index + addFrameCount) % m_Frames.size();
-
-        // LOG_DEBUG("{} {}", m_Index, delta);
+        m_State = m_Looping ? State::COOLDOWN : State::ENDED;
+        m_Index = m_Frames.size() - 1;
     }
 };
 } // namespace Util
