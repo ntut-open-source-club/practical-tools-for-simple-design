@@ -17,6 +17,11 @@ else()
     )
 endif()
 
+if (WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    # see https://github.com/ntut-open-source-club/practical-tools-for-simple-design/issues/22
+    set(CMAKE_RC_FLAGS="-C 1252")
+endif()
+
 option(PTSD_ENABLE_PCH "Turn on PCH to increase compilation speed" OFF)
 
 include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Dependencies.cmake)
@@ -43,9 +48,10 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Text.cpp
     ${SRC_DIR}/Util/TransformUtils.cpp
     ${SRC_DIR}/Util/GameObject.cpp
-    ${SRC_DIR}/Util/Root.cpp
+    ${SRC_DIR}/Util/Renderer.cpp
     ${SRC_DIR}/Util/Color.cpp
     ${SRC_DIR}/Util/Animation.cpp
+    ${SRC_DIR}/Util/MissingTexture.cpp
 )
 
 set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -75,8 +81,10 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/Transform.hpp
     ${INCLUDE_DIR}/Util/TransformUtils.hpp
     ${INCLUDE_DIR}/Util/GameObject.hpp
-    ${INCLUDE_DIR}/Util/Root.hpp
+    ${INCLUDE_DIR}/Util/Renderer.hpp
     ${INCLUDE_DIR}/Util/Color.hpp
+    ${INCLUDE_DIR}/Util/TransparentImage.hpp
+    ${INCLUDE_DIR}/Util/Base64.hpp
     ${INCLUDE_DIR}/Util/Animation.hpp
 
     ${INCLUDE_DIR}/config.hpp
@@ -90,10 +98,13 @@ if(${CMAKE_BUILD_TYPE} STREQUAL "Debug")
     target_compile_definitions(${PROJECT_NAME} PRIVATE
         PTSD_DIR="${CMAKE_CURRENT_SOURCE_DIR}"
     )
-else()
+elseif(${CMAKE_BUILD_TYPE} STREQUAL "Release")
+    file(COPY assets DESTINATION ${CMAKE_RUNTIME_OUTPUT_DIRECTORY})
     target_compile_definitions(${PROJECT_NAME} PRIVATE
-        PTSD_DIR=".."
+        PTSD_DIR="."
     )
+else ()
+    message(FATAL_ERROR "Unknown build type: ${CMAKE_BUILD_TYPE}")
 endif()
 
 target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE
