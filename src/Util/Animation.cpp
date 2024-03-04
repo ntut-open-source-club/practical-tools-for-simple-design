@@ -24,8 +24,8 @@ void Animation::SetCurrentFrame(std::size_t index) {
     }
 }
 
-void Animation::Draw(const Util::Transform &transform, const float zIndex) {
-    m_Frames[m_Index]->Draw(transform, zIndex);
+void Animation::Draw(const Core::Matrices &data) {
+    m_Frames[m_Index]->Draw(data);
     Update();
 }
 

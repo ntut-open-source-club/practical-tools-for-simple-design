@@ -1,5 +1,6 @@
 #include "Util/Image.hpp"
 
+#include "Util/Logger.hpp"
 #include "pch.hpp"
 
 #include "Core/Texture.hpp"
@@ -9,6 +10,7 @@
 #include "Util/TransformUtils.hpp"
 
 #include "config.hpp"
+#include <glm/fwd.hpp>
 
 namespace Util {
 Image::Image(const std::string &filepath)
@@ -57,8 +59,7 @@ void Image::SetImage(const std::string &filepath) {
     m_Size = {surface->w, surface->h};
 }
 
-void Image::Draw(const Util::Transform &transform, const float zIndex) {
-    auto data = Util::ConvertToUniformBufferData(transform, m_Size, zIndex);
+void Image::Draw(const Core::Matrices &data) {
     s_UniformBuffer->SetData(0, data);
 
     m_Texture->Bind(UNIFORM_SURFACE_LOCATION);

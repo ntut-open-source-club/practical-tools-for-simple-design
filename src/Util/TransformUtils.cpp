@@ -1,6 +1,7 @@
 #include "Util/TransformUtils.hpp"
 
 #include "config.hpp"
+#include <glm/gtx/matrix_transform_2d.hpp>
 
 namespace Util {
 Core::Matrices ConvertToUniformBufferData(const Util::Transform &transform,

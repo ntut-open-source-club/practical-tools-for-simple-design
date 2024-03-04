@@ -1,10 +1,10 @@
 #ifndef UTIL_GAME_OBJECT_HPP
 #define UTIL_GAME_OBJECT_HPP
 
-#include <memory>
-#include <vector>
+#include "pch.hpp" // IWYU pragma: export
 
 #include "Core/Drawable.hpp"
+
 #include "Util/Transform.hpp"
 
 namespace Util {
@@ -36,13 +36,15 @@ public:
      * @param children The children of the game object.
      */
     GameObject(const std::shared_ptr<Core::Drawable> &drawable,
-               const float zIndex, const bool visible = true,
+               const float zIndex, const glm::vec2 &pivot = {0, 0},
+               const bool visible = true,
                const std::vector<std::shared_ptr<GameObject>> &children =
                    std::vector<std::shared_ptr<GameObject>>())
         : m_Drawable(drawable),
           m_Children(children),
           m_ZIndex(zIndex),
-          m_Visible(visible) {}
+          m_Visible(visible),
+          m_Pivot(pivot) {}
 
     /**
      * @brief Copy constructor.
@@ -99,6 +101,13 @@ public:
     }
 
     /**
+     * @brief Set the pivot of the game object.
+     *
+     * @param pivot The pivot of the game object.
+     */
+    void SetPivot(const glm::vec2 &pivot) { m_Pivot = pivot; }
+
+    /**
      * @brief Set the z-index of the game object.
      * z-index is used to determine the order in which game objects are drawn,
      * the greater z-index, the topper the its Util::Drawable is
@@ -151,6 +160,7 @@ protected:
 
     float m_ZIndex = 0;
     bool m_Visible = true;
+    glm::vec2 m_Pivot;
 };
 } // namespace Util
 #endif
