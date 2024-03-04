@@ -54,7 +54,7 @@ public:
     void Update();
 
 private:
-    std::make_unique<Renderer> m_Renderer;
+    std::unique_ptr<Renderer> m_Renderer;
 };
 } // namespace Util
 
