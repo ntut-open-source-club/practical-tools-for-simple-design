@@ -1,7 +1,5 @@
 #include "Util/Image.hpp"
 
-#include "SDL_surface.h"
-#include "Util/Logger.hpp"
 #include "pch.hpp"
 
 #include "Core/Texture.hpp"
@@ -11,7 +9,6 @@
 #include "Util/TransformUtils.hpp"
 
 #include "config.hpp"
-#include <memory>
 
 namespace Util {
 Image::Image(const std::string &filepath)
@@ -26,35 +23,38 @@ Image::Image(const std::string &filepath)
         InitUniformBuffer();
     }
 
-    m_Surface =
+    auto surface =
         std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
             IMG_Load(filepath.c_str()),
             SDL_FreeSurface,
         };
 
-    if (m_Surface == nullptr) {
-        m_Surface = {GetMissingTextureSDLSurface(), SDL_FreeSurface};
+    if (surface == nullptr) {
+        surface = {GetMissingTextureSDLSurface(), SDL_FreeSurface};
         LOG_ERROR("Failed to load image: '{}'", filepath);
         LOG_ERROR("{}", IMG_GetError());
     }
 
     m_Texture = std::make_unique<Core::Texture>(
-        Core::SdlFormatToGlFormat(m_Surface->format->format), m_Surface->w,
-        m_Surface->h, m_Surface->pixels);
-    m_Size = {m_Surface->w, m_Surface->h};
+        Core::SdlFormatToGlFormat(surface->format->format), surface->w,
+        surface->h, surface->pixels);
+    m_Size = {surface->w, surface->h};
 }
 
 void Image::SetImage(const std::string &filepath) {
-    m_Surface =
+    auto surface =
         std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
             IMG_Load(filepath.c_str()),
             SDL_FreeSurface,
         };
-    if (m_Surface == nullptr) {
+    if (surface == nullptr) {
         LOG_ERROR("Failed to load image: '{}'", filepath);
         LOG_ERROR("{}", IMG_GetError());
     }
-    UpdateTextureData(*m_Surface.get());
+
+    m_Texture->UpdateData(Core::SdlFormatToGlFormat(surface->format->format),
+                          surface->w, surface->h, surface->pixels);
+    m_Size = {surface->w, surface->h};
 }
 
 void Image::Draw(const Util::Transform &transform, const float zIndex) {
@@ -71,8 +71,8 @@ void Image::Draw(const Util::Transform &transform, const float zIndex) {
 
 void Image::InitProgram() {
     // TODO: Create `BaseProgram` from `Program` and pass it into `Drawable`
-    s_Program = std::make_unique<Core::Program>("../assets/shaders/Base.vert",
-                                                "../assets/shaders/Base.frag");
+    s_Program = std::make_unique<Core::Program>(PTSD_DIR"/assets/shaders/Base.vert",
+                                                PTSD_DIR"/assets/shaders/Base.frag");
     s_Program->Bind();
 
     GLint location = glGetUniformLocation(s_Program->GetId(), "surface");
@@ -118,12 +118,6 @@ void Image::InitVertexArray() {
 void Image::InitUniformBuffer() {
     s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
-}
-
-void Image::UpdateTextureData(const SDL_Surface &surface) {
-    m_Texture->UpdateData(Core::SdlFormatToGlFormat(surface.format->format),
-                          surface.w, surface.h, surface.pixels);
-    m_Size = {surface.w, surface.h};
 }
 
 std::unique_ptr<Core::Program> Image::s_Program = nullptr;

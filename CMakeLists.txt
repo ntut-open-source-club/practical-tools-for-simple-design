@@ -4,30 +4,29 @@ project(PracticalToolsForSimpleDesign)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-
-if(MSVC)
+if (MSVC)
     set(TARGET_COMPILE_OPTIONS
         /W4
     )
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/build)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_SOURCE_DIR}/build)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_SOURCE_DIR}/build)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_SOURCE_DIR}/build)
+    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/build)
 else()
     set(TARGET_COMPILE_OPTIONS
         -Wall -Wextra -pedantic
     )
 endif()
 
-if(WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+if (WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     # see https://github.com/ntut-open-source-club/practical-tools-for-simple-design/issues/22
     set(CMAKE_RC_FLAGS="-C 1252")
 endif()
 
 option(PTSD_ENABLE_PCH "Turn on PCH to increase compilation speed" OFF)
 
-include(cmake/Dependencies.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Dependencies.cmake)
 
-set(SRC_DIR ${CMAKE_SOURCE_DIR}/src)
+set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(SRC_FILES
     ${SRC_DIR}/Core/Context.cpp
     ${SRC_DIR}/Core/DebugMessageCallback.cpp
@@ -54,15 +53,9 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Color.cpp
     ${SRC_DIR}/Util/Animation.cpp
     ${SRC_DIR}/Util/MissingTexture.cpp
-    ${SRC_DIR}/Util/SpriteSheet.cpp
-
-    ${SRC_DIR}/App.cpp
-    ${SRC_DIR}/Giraffe.cpp
-    ${SRC_DIR}/GiraffeText.cpp
-    ${SRC_DIR}/Cat.cpp
-    ${SRC_DIR}/SpriteSheetTester.cpp
 )
-set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
+
+set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(INCLUDE_FILES
     ${INCLUDE_DIR}/Core/Context.hpp
     ${INCLUDE_DIR}/Core/DebugMessageCallback.hpp
@@ -95,23 +88,11 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/TransparentImage.hpp
     ${INCLUDE_DIR}/Util/Base64.hpp
     ${INCLUDE_DIR}/Util/Animation.hpp
-    ${INCLUDE_DIR}/Util/SpriteSheet.hpp
 
-    ${INCLUDE_DIR}/App.hpp
-    ${INCLUDE_DIR}/Giraffe.hpp
-    ${INCLUDE_DIR}/GiraffeText.hpp
-    ${INCLUDE_DIR}/Cat.hpp
     ${INCLUDE_DIR}/config.hpp
-    ${INCLUDE_DIR}/SpriteSheetTester.hpp
-)
-set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
-set(TEST_FILES
-    ${TEST_DIR}/SimpleTest.cpp
-    ${TEST_DIR}/NotSimpleTest.cpp
-    ${TEST_DIR}/TransformTest.cpp
 )
 
-add_executable(Sample
+add_library(${PROJECT_NAME}
     ${SRC_FILES}
 )
 
@@ -135,62 +116,18 @@ target_link_libraries(${PROJECT_NAME}
     SDL2::SDL2main # IDK what happens if we don't link SDL2main
     ${DEPENDENCY_LINK_LIBRARIES}
 )
-target_include_directories(Sample SYSTEM PRIVATE
+target_include_directories(${PROJECT_NAME} SYSTEM PRIVATE
     ${DEPENDENCY_INCLUDE_DIRS}
 )
-target_include_directories(Sample PRIVATE
+target_include_directories(${PROJECT_NAME} PRIVATE
     ${INCLUDE_DIR}
 )
-
 if(${PTSD_ENABLE_PCH})
-    target_precompile_headers(Sample PRIVATE
+    target_precompile_headers(${PROJECT_NAME} PRIVATE
         include/pch.hpp
     )
 endif()
-
-target_compile_options(Sample PRIVATE
-    ${TARGET_COMPILE_OPTIONS}
-)
-
-enable_testing()
-
-add_executable(Tests
-    ${TEST_FILES}
-    ${SRC_FILES}
-)
-target_link_libraries(Tests
-    GTest::gtest_main
-    ${DEPENDENCY_LINK_LIBRARIES}
-)
-target_include_directories(Tests SYSTEM PRIVATE
-    ${DEPENDENCY_INCLUDE_DIRS}
-    lib/googletest/googletest/include
-    lib/googletest/googlemock/include
-)
-target_include_directories(Tests PRIVATE
-    ${INCLUDE_DIR}
-)
-target_compile_options(Tests PRIVATE
-    ${TARGET_COMPILE_OPTIONS}
-)
-
-add_executable(AudioTest
-    ${TEST_DIR}/Interactive/Audio.cpp
-    ${SRC_FILES}
-)
-target_link_libraries(AudioTest
-    GTest::gtest_main
-    ${DEPENDENCY_LINK_LIBRARIES}
-)
-target_include_directories(AudioTest SYSTEM PRIVATE
-    ${DEPENDENCY_INCLUDE_DIRS}
-    lib/googletest/googletest/include
-    lib/googletest/googlemock/include
-)
-target_include_directories(AudioTest PRIVATE
-    ${INCLUDE_DIR}
-)
-target_compile_options(AudioTest PRIVATE
+target_compile_options(${PROJECT_NAME} PRIVATE
     ${TARGET_COMPILE_OPTIONS}
 )
 
