@@ -89,6 +89,7 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/TransparentImage.hpp
     ${INCLUDE_DIR}/Util/Base64.hpp
     ${INCLUDE_DIR}/Util/Animation.hpp
+    ${INCLUDE_DIR}/Util/MissingTexture.hpp
     ${INCLUDE_DIR}/Util/SpriteSheet.hpp
     
     ${INCLUDE_DIR}/config.hpp
