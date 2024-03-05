@@ -58,9 +58,9 @@ void Renderer::Update(glm::vec2 translation) {
         auto curr = renderQueue.top();
         renderQueue.pop();
 
-        curr.m_GameObject->GetTransform().translation += translation;
+        curr.m_GameObject->m_Transform.translation += translation;
         curr.m_GameObject->Draw();
-        curr.m_GameObject->GetTransform().translation -= translation;
+        curr.m_GameObject->m_Transform.translation -= translation;
     }
 }
 } // namespace Util
