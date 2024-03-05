@@ -53,6 +53,7 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Color.cpp
     ${SRC_DIR}/Util/Animation.cpp
     ${SRC_DIR}/Util/MissingTexture.cpp
+    ${SRC_DIR}/Util/SpriteSheet.cpp
 )
 
 set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
@@ -88,7 +89,8 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/TransparentImage.hpp
     ${INCLUDE_DIR}/Util/Base64.hpp
     ${INCLUDE_DIR}/Util/Animation.hpp
-
+    ${INCLUDE_DIR}/Util/SpriteSheet.hpp
+    
     ${INCLUDE_DIR}/config.hpp
 )
 
@@ -130,4 +132,3 @@ endif()
 target_compile_options(${PROJECT_NAME} PRIVATE
     ${TARGET_COMPILE_OPTIONS}
 )
-
