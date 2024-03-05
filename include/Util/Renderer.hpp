@@ -50,7 +50,7 @@ public:
      *
      * @note The user is not recommended to modify this function.
      */
-    void Update();
+    void Update(glm::vec2 translation = {0, 0});
 
 private:
     std::vector<std::shared_ptr<GameObject>> m_Children;
