@@ -24,7 +24,14 @@ bool Input::s_Scroll = false;
 bool Input::s_MouseMoving = false;
 bool Input::s_Exit = false;
 
+ImGuiIO Input::s_Io; // allocate memory only because it is invalid
+                     // to call `ImGui::GetIO()` at this time
+
 bool Input::IsKeyPressed(const Keycode &key) {
+    if (s_Io.WantCaptureMouse || s_Io.WantTextInput) {
+        return false;
+    }
+
     if (key > Keycode::NUM_SCANCODES) {
         return s_MouseState[key].second; // && !s_MouseState[key].first;
     }
@@ -34,6 +41,10 @@ bool Input::IsKeyPressed(const Keycode &key) {
 }
 
 bool Input::IsKeyDown(const Keycode &key) {
+    if (s_Io.WantCaptureMouse || s_Io.WantTextInput) {
+        return false;
+    }
+
     if (key > Keycode::NUM_SCANCODES) {
         return s_MouseState[key].second && !s_MouseState[key].first;
     }
@@ -43,6 +54,10 @@ bool Input::IsKeyDown(const Keycode &key) {
 }
 
 bool Input::IsKeyUp(const Keycode &key) {
+    if (s_Io.WantCaptureMouse || s_Io.WantTextInput) {
+        return false;
+    }
+
     if (key > Keycode::NUM_SCANCODES) {
         return s_MouseState[key].second && !s_MouseState[key].first;
     }
@@ -52,10 +67,18 @@ bool Input::IsKeyUp(const Keycode &key) {
 }
 
 bool Input::IsMouseMoving() {
+    if (s_Io.WantCaptureMouse) {
+        return false;
+    }
+
     return s_MouseMoving;
 }
 
 bool Input::IfScroll() {
+    if (s_Io.WantCaptureMouse) {
+        return false;
+    }
+
     return s_Scroll;
 }
 
@@ -64,6 +87,10 @@ bool Input::IfExit() {
 }
 
 glm::vec2 Input::GetScrollDistance() {
+    if (s_Io.WantCaptureMouse) {
+        return {0.0F, 0.0F};
+    }
+
     return s_ScrollDistance;
 }
 
@@ -91,6 +118,8 @@ void Input::Update() {
 
     s_MouseState[Keycode::MOUSE_MB].first =
         s_MouseState[Keycode::MOUSE_MB].second;
+
+    s_Io = ImGui::GetIO();
 
     while (SDL_PollEvent(&s_Event) != 0) {
         if (s_Event.type == SDL_MOUSEBUTTONUP &&

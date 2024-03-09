@@ -142,6 +142,8 @@ private:
     static bool s_Scroll;
     static bool s_MouseMoving;
     static bool s_Exit;
+
+    static ImGuiIO s_Io;
 };
 
 } // namespace Util

@@ -30,6 +30,7 @@ public:
     void SetWindowWidth(unsigned int width) { m_WindowWidth = width; }
     void SetWindowHeight(unsigned int height) { m_WindowHeight = height; }
 
+    void Setup();
     void Update();
 
 private:

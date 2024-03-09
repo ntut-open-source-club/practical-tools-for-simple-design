@@ -9,10 +9,7 @@ int main(int, char **) {
     App app;
 
     while (!context->GetExit()) {
-        // TODO: perhaps find a better way to integrate with `Core::Context`
-        ImGui_ImplOpenGL3_NewFrame();
-        ImGui_ImplSDL2_NewFrame();
-        ImGui::NewFrame();
+        context->Setup();
 
         switch (app.GetCurrentState()) {
         case App::State::START:

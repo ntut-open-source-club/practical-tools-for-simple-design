@@ -111,6 +111,12 @@ Context::~Context() {
     SDL_Quit();
 }
 
+void Context::Setup() {
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplSDL2_NewFrame();
+    ImGui::NewFrame();
+}
+
 void Context::Update() {
     Util::Time::Update();
     Util::Input::Update();
