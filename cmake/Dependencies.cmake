@@ -73,7 +73,7 @@ FetchContent_Declare(
 
     URL         https://github.com/ocornut/imgui/archive/refs/tags/v1.90.4-docking.zip
     URL_HASH    MD5=384084df566474aec3729df4ea30b937
-    SOURCE_DIR  ${CMAKE_SOURCE_DIR}/lib/imgui
+    SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui
 )
 
 set(BUILD_SHARED_LIBS FALSE)
@@ -111,19 +111,19 @@ FetchContent_GetProperties(imgui)
 if (NOT ${imgui_POPULATED})
     FetchContent_Populate(imgui)
     set(IMGUI_SOURCE
-        ${CMAKE_SOURCE_DIR}/lib/imgui/backends/imgui_impl_sdl2.cpp
-        ${CMAKE_SOURCE_DIR}/lib/imgui/backends/imgui_impl_opengl3.cpp
-        ${CMAKE_SOURCE_DIR}/lib/imgui/imgui.cpp
-        ${CMAKE_SOURCE_DIR}/lib/imgui/imgui_demo.cpp
-        ${CMAKE_SOURCE_DIR}/lib/imgui/imgui_draw.cpp
-        ${CMAKE_SOURCE_DIR}/lib/imgui/imgui_tables.cpp
-        ${CMAKE_SOURCE_DIR}/lib/imgui/imgui_widgets.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/backends/imgui_impl_sdl2.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/backends/imgui_impl_opengl3.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/imgui.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/imgui_demo.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/imgui_draw.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/imgui_tables.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/imgui_widgets.cpp
     )
 
     set(IMGUI_INCLUDE_DIR
-        ${CMAKE_SOURCE_DIR}/lib/imgui/
-        ${CMAKE_SOURCE_DIR}/lib/imgui/backends/
-        ${CMAKE_SOURCE_DIR}/lib/sdl2/include/
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/backends/
+        ${CMAKE_CURRENT_SOURCE_DIR}/lib/sdl2/include/
     )
 
     add_library(ImGui STATIC
