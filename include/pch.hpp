@@ -1,10 +1,13 @@
 #ifndef PCH_HPP
 #define PCH_HPP
 
+#include <algorithm>
 #include <array>
 #include <memory>
 #include <set>
+#include <stdexcept>
 #include <string>
+#include <unordered_map>
 #include <vector>
 
 #include <SDL.h>

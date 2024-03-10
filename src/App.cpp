@@ -15,23 +15,21 @@ void App::Start() {
     m_Giraffe->SetZIndex(5);
     m_Giraffe->Start();
 
-    auto gf = std::make_shared<GiraffeText>("../assets/fonts/Inter.ttf", 50);
-    gf->SetZIndex(m_Giraffe->GetZIndex() - 1);
-    gf->Start();
-    m_Giraffe->AddChild(gf);
+    m_Root.AddChild(m_Giraffe);
+    m_Root.AddChild(m_Cat);
 
     m_CurrentState = State::UPDATE;
 }
 
 void App::Update() {
-    if (Util::Input::IsLButtonPressed()) {
+    if (Util::Input::IsKeyPressed(Util::Keycode::MOUSE_LB)) {
         LOG_DEBUG("Left button pressed");
     }
-    if (Util::Input::IsRButtonPressed()) {
-        LOG_DEBUG("Right button pressed");
+    if (Util::Input::IsKeyDown(Util::Keycode::MOUSE_RB)) {
+        LOG_DEBUG("Right button down");
     }
-    if (Util::Input::IsMButtonPressed()) {
-        LOG_DEBUG("Middle button pressed");
+    if (Util::Input::IsKeyUp(Util::Keycode::MOUSE_RB)) {
+        LOG_DEBUG("Right button up");
     }
     if (Util::Input::IfScroll()) {
         auto delta = Util::Input::GetScrollDistance();
@@ -41,20 +39,25 @@ void App::Update() {
         // LOG_DEBUG("Mouse moving! x:{}, y{}", cursorPos.x, cursorPos.y);
     }
 
-    if (Util::Input::IsKeyPressed(Util::Keycode::ESCAPE) ||
-        Util::Input::IfExit()) {
+    if (Util::Input::IsKeyUp(Util::Keycode::ESCAPE) || Util::Input::IfExit()) {
         m_CurrentState = State::END;
     }
 
-    if (Util::Input::IsKeyPressed(Util::Keycode::A)) {
-        LOG_DEBUG("A");
+    if (Util::Input::IsKeyDown(Util::Keycode::A)) {
+        LOG_DEBUG("A Down");
     }
+
     if (Util::Input::IsKeyPressed(Util::Keycode::B)) {
-        LOG_DEBUG("B");
+        LOG_DEBUG("B Pressed. Setting the cursor to (0, 0).");
         Util::Input::SetCursorPosition({0.0F, 0.0F});
+        LOG_DEBUG("Cursor set to {}.",
+                  glm::to_string(Util::Input::GetCursorPosition()));
     }
 
     m_Giraffe->Update();
+    m_Cat->Update();
+
+    m_Root.Update();
 }
 
 void App::End() { // NOLINT(this method will mutate members in the future)

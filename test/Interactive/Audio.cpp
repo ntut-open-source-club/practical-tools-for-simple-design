@@ -5,8 +5,8 @@
 #include <gtest/gtest.h>
 
 #include "Util/BGM.hpp"
-#include "Util/SFX.hpp"
 #include "Util/Logger.hpp"
+#include "Util/SFX.hpp"
 
 bool UserCheck(const std::string &text) {
     while (true) {
@@ -53,13 +53,12 @@ void AudioQuit() {
 
 class AudioTest : public ::testing::Test {
 protected:
-	void SetUp() override {
-		Util::Logger::Init();
-		AudioInit();
-	}
-	void TearDown() override {
-		AudioQuit();
-	}
+    void SetUp() override {
+        Util::Logger::Init();
+        AudioInit();
+    }
+
+    void TearDown() override { AudioQuit(); }
 };
 
 TEST_F(AudioTest, BGM_TEST) {
@@ -139,4 +138,3 @@ TEST_F(AudioTest, BGM_SFX_TEST) {
     sfx.Play();
     EXCEPT_INPUT_YES("Do you hear the sfx?");
 }
-

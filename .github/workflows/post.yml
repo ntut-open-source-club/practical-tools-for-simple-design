@@ -1,0 +1,16 @@
+name: post
+
+on:
+  workflow_run:
+    workflows: ["check"]
+    types:
+      - completed
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: ZedThree/clang-tidy-review/post@v0.14.0
+        with:
+          annotations: false

@@ -17,6 +17,11 @@ else()
     )
 endif()
 
+if (WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+    # see https://github.com/ntut-open-source-club/practical-tools-for-simple-design/issues/22
+    set(CMAKE_RC_FLAGS="-C 1252")
+endif()
+
 option(PTSD_ENABLE_PCH "Turn on PCH to increase compilation speed" OFF)
 
 include(cmake/Dependencies.cmake)
@@ -43,11 +48,15 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Text.cpp
     ${SRC_DIR}/Util/TransformUtils.cpp
     ${SRC_DIR}/Util/GameObject.cpp
-    ${SRC_DIR}/Util/Root.cpp
+    ${SRC_DIR}/Util/Renderer.cpp
+    ${SRC_DIR}/Util/Color.cpp
+    ${SRC_DIR}/Util/Animation.cpp
+    ${SRC_DIR}/Util/MissingTexture.cpp
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/Giraffe.cpp
     ${SRC_DIR}/GiraffeText.cpp
+    ${SRC_DIR}/Cat.cpp
 )
 set(INCLUDE_DIR ${CMAKE_SOURCE_DIR}/include)
 set(INCLUDE_FILES
@@ -76,12 +85,16 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/Transform.hpp
     ${INCLUDE_DIR}/Util/TransformUtils.hpp
     ${INCLUDE_DIR}/Util/GameObject.hpp
-    ${INCLUDE_DIR}/Util/Root.hpp
+    ${INCLUDE_DIR}/Util/Renderer.hpp
     ${INCLUDE_DIR}/Util/Color.hpp
+    ${INCLUDE_DIR}/Util/TransparentImage.hpp
+    ${INCLUDE_DIR}/Util/Base64.hpp
+    ${INCLUDE_DIR}/Util/Animation.hpp
 
     ${INCLUDE_DIR}/App.hpp
     ${INCLUDE_DIR}/Giraffe.hpp
     ${INCLUDE_DIR}/GiraffeText.hpp
+    ${INCLUDE_DIR}/Cat.hpp
     ${INCLUDE_DIR}/config.hpp
 )
 set(TEST_DIR ${CMAKE_SOURCE_DIR}/test)
