@@ -3,13 +3,11 @@
 
 #include "pch.hpp" // IWYU pragma: export
 
-#include <functional>
 #include <glm/fwd.hpp>
 
 #include "Core/Drawable.hpp"
 #include "Core/Texture.hpp"
 
-#include "Util/Logger.hpp"
 #include "Util/Transform.hpp"
 
 namespace Util {
@@ -64,11 +62,17 @@ private:
     void InitVertexArray();
     void InitUniformBuffer();
 
+    static std::shared_ptr<SDL_Surface>
+    LoadSurface(const std::string &filepath);
+
     static constexpr int UNIFORM_SURFACE_LOCATION = 0;
 
     static std::unique_ptr<Core::Program> s_Program;
     static std::unique_ptr<Core::VertexArray> s_VertexArray;
     static std::unique_ptr<Core::UniformBuffer<Core::Matrices>> s_UniformBuffer;
+
+    static std::unordered_map<std::string, std::shared_ptr<SDL_Surface>>
+        s_Store;
 
 private:
     std::unique_ptr<Core::Texture> m_Texture = nullptr;
