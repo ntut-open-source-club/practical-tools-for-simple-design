@@ -2,20 +2,23 @@
 
 namespace Util {
 template <typename T>
-void AssetStore<T>::Load(std::string_view filepath) {
-    auto path = m_AssetPath / filepath;
-    m_Map[filepath] = m_Loader(path);
+void AssetStore<T>::Load(const std::string &filepath) {
+    m_Map[filepath] = m_Loader(filepath);
 }
 
 template <typename T>
-std::shared_ptr<T> AssetStore<T>::Get(std::string_view filepath) {
-    auto path = m_AssetPath / filepath;
-    if (m_Map.find(filepath) == m_Map.end()) {
+T AssetStore<T>::Get(const std::string &filepath) {
+    if (m_Map.find(filepath) != m_Map.end()) {
+        return m_Map[filepath];
     }
-    if (!std::filesystem::exists(path)) {
-    }
+
+    Load(filepath);
+
+    return m_Map[filepath];
 }
 
 template <typename T>
-void AssetStore<T>::Remove(std::string_view filepath) {}
+void AssetStore<T>::Remove(const std::string &filepath) {
+    m_Map.erase(filepath);
+}
 } // namespace Util

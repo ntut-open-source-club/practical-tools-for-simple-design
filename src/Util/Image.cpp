@@ -10,6 +10,19 @@
 
 #include "config.hpp"
 
+std::shared_ptr<SDL_Surface> LoadSurface(const std::string &filepath) {
+    auto surface = std::shared_ptr<SDL_Surface>(IMG_Load(filepath.c_str()),
+                                                SDL_FreeSurface);
+
+    if (surface == nullptr) {
+        surface = {GetMissingTextureSDLSurface(), SDL_FreeSurface};
+        LOG_ERROR("Failed to load image: '{}'", filepath);
+        LOG_ERROR("{}", IMG_GetError());
+    }
+
+    return surface;
+}
+
 namespace Util {
 Image::Image(const std::string &filepath)
     : m_Path(filepath) {
@@ -23,7 +36,7 @@ Image::Image(const std::string &filepath)
         InitUniformBuffer();
     }
 
-    auto surface = LoadSurface(filepath);
+    auto surface = s_Store.Get(filepath);
 
     m_Texture = std::make_unique<Core::Texture>(
         Core::SdlFormatToGlFormat(surface->format->format), surface->w,
@@ -32,7 +45,7 @@ Image::Image(const std::string &filepath)
 }
 
 void Image::SetImage(const std::string &filepath) {
-    auto surface = LoadSurface(filepath);
+    auto surface = s_Store.Get(filepath);
 
     m_Texture->UpdateData(Core::SdlFormatToGlFormat(surface->format->format),
                           surface->w, surface->h, surface->pixels);
@@ -102,29 +115,10 @@ void Image::InitUniformBuffer() {
         *s_Program, "Matrices", 0);
 }
 
-std::shared_ptr<SDL_Surface> Image::LoadSurface(const std::string &filepath) {
-    if (s_Store.find(filepath) != s_Store.end()) {
-        return s_Store[filepath];
-    }
-
-    auto surface = std::shared_ptr<SDL_Surface>(IMG_Load(filepath.c_str()),
-                                                SDL_FreeSurface);
-
-    if (surface == nullptr) {
-        surface = {GetMissingTextureSDLSurface(), SDL_FreeSurface};
-        LOG_ERROR("Failed to load image: '{}'", filepath);
-        LOG_ERROR("{}", IMG_GetError());
-    }
-
-    s_Store[filepath] = surface;
-
-    return surface;
-}
-
 std::unique_ptr<Core::Program> Image::s_Program = nullptr;
 std::unique_ptr<Core::VertexArray> Image::s_VertexArray = nullptr;
 std::unique_ptr<Core::UniformBuffer<Core::Matrices>> Image::s_UniformBuffer =
     nullptr;
 
-std::unordered_map<std::string, std::shared_ptr<SDL_Surface>> Image::s_Store;
+Util::AssetStore<std::shared_ptr<SDL_Surface>> Image::s_Store(LoadSurface);
 } // namespace Util
