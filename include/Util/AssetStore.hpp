@@ -5,8 +5,6 @@
 
 #include <functional>
 
-// TODO: figure out a better way to abstract API
-
 namespace Util {
 /**
  * @brief A class template for managing assets.
@@ -25,9 +23,8 @@ public:
      * @brief Constructs an AssetStore object with the specified loader
      * function.
      *
-     * @note `loader` should handle missing files
-     *
      * @param loader The function used to load assets of type T from filepaths.
+     * Missing files should be handled inside loader.
      */
     AssetStore(std::function<T(const std::string &)> loader)
         : m_Loader(loader) {}

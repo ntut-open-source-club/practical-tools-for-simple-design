@@ -1,15 +1,22 @@
 #include "Util/SFX.hpp"
 #include "Util/Logger.hpp"
 
+std::shared_ptr<Mix_Chunk> LoadChunk(const std::string &filepath) {
+    auto chunk = std::shared_ptr<Mix_Chunk>(Mix_LoadWAV(filepath.c_str()),
+                                            Mix_FreeChunk);
+
+    if (chunk == nullptr) {
+        LOG_DEBUG("Failed to load SFX: '{}'", filepath);
+        LOG_DEBUG("{}", Mix_GetError());
+    }
+
+    return chunk;
+}
+
 namespace Util {
 
 SFX::SFX(const std::string &path)
-    : m_Chunk(Mix_LoadWAV(path.c_str()), SFX::ChunkDeleter()) {
-    if (m_Chunk == nullptr) {
-        LOG_DEBUG("Failed to load SFX: {}{}", path,
-                  std::string(Mix_GetError()));
-    }
-}
+    : m_Chunk(s_Store.Get(path)) {}
 
 int SFX::GetVolume() const {
     return Mix_VolumeChunk(m_Chunk.get(), -1);
@@ -20,10 +27,7 @@ void SFX::SetVolume(const int volume) {
 }
 
 void SFX::LoadMedia(const std::string &path) {
-    if (m_Chunk != nullptr) {
-        Mix_FreeChunk(m_Chunk.get());
-    }
-    m_Chunk.reset(Mix_LoadWAV(path.c_str()));
+    m_Chunk = s_Store.Get(path);
 }
 
 void SFX::VolumeUp(const int step) {
@@ -43,5 +47,7 @@ void SFX::FadeIn(const unsigned int tick, const int loop,
     Mix_FadeInChannelTimed(-1, m_Chunk.get(), loop, static_cast<int>(tick),
                            static_cast<int>(duration));
 }
+
+Util::AssetStore<std::shared_ptr<Mix_Chunk>> SFX::s_Store(LoadChunk);
 
 } // namespace Util
