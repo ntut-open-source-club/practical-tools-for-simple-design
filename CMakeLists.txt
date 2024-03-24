@@ -42,8 +42,8 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Logger.cpp
     ${SRC_DIR}/Util/Time.cpp
     ${SRC_DIR}/Util/Input.cpp
-    ${SRC_DIR}/Util/SFX.cpp
-    ${SRC_DIR}/Util/BGM.cpp
+    # ${SRC_DIR}/Util/SFX.cpp
+    # ${SRC_DIR}/Util/BGM.cpp
     ${SRC_DIR}/Util/Image.cpp
     ${SRC_DIR}/Util/Text.cpp
     ${SRC_DIR}/Util/TransformUtils.cpp
@@ -76,8 +76,8 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/Time.hpp
     ${INCLUDE_DIR}/Util/Input.hpp
     ${INCLUDE_DIR}/Util/Keycode.hpp
-    ${INCLUDE_DIR}/Util/SFX.hpp
-    ${INCLUDE_DIR}/Util/BGM.hpp
+    # ${INCLUDE_DIR}/Util/SFX.hpp
+    # ${INCLUDE_DIR}/Util/BGM.hpp
     ${INCLUDE_DIR}/Util/Image.hpp
     ${INCLUDE_DIR}/Util/Text.hpp
     ${INCLUDE_DIR}/Util/Transform.hpp
