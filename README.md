@@ -75,3 +75,12 @@ doxygen docs/Doxyfile
 ```
 
 Open the generated documents with your favorite browser at `docs/html/index.html`
+
+## Reference
+- [glew](https://github.com/nigels-com/glew)
+- [sdl2](https://github.com/libsdl-org/SDL)
+- [sdl2_image](https://github.com/libsdl-org/SDL_image)
+- [sdl2_ttf](https://github.com/libsdl-org/SDL_ttf)
+- [spdlog](https://github.com/gabime/spdlog)
+- [glm](https://github.com/g-truc/glm)
+- [googletest](https://github.com/google/googletest)
