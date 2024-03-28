@@ -17,7 +17,6 @@ var classUtil_1_1Animation =
     [ "GetState", "classUtil_1_1Animation.html#aed99b5df847be1cf0c35aac614a39c2d", null ],
     [ "Pause", "classUtil_1_1Animation.html#a13b22a150988b9b330bb1a69bc1a1b62", null ],
     [ "Play", "classUtil_1_1Animation.html#a9814887bd8fb07252a351701bdf83759", null ],
-    [ "Reset", "classUtil_1_1Animation.html#a73f867f2f4e1a475d30767c48686e446", null ],
     [ "SetCooldown", "classUtil_1_1Animation.html#ad31ada160728faaebb5fac0f06fc1b37", null ],
     [ "SetCurrentFrame", "classUtil_1_1Animation.html#afce33acbf5d811e4e23303876c5f955c", null ],
     [ "SetInterval", "classUtil_1_1Animation.html#adff3a96241e6ba261afc21281ac76184", null ],
