@@ -129,15 +129,14 @@ public:
     static void Update();
 
 private:
-    static SDL_Event s_Event;
+    static void UpdateKeyState(const SDL_Event *event);
 
-    static const Uint8 *s_CurrentKeyState;
-    static std::unordered_map<int, bool> s_LastKeyState;
+    static SDL_Event s_Event;
 
     static glm::vec2 s_CursorPosition;
     static glm::vec2 s_ScrollDistance;
 
-    static std::unordered_map<Keycode, std::pair<bool, bool>> s_MouseState;
+    static std::unordered_map<Keycode, std::pair<bool, bool>> s_KeyState;
 
     static bool s_Scroll;
     static bool s_MouseMoving;
