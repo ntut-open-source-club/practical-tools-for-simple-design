@@ -13,6 +13,19 @@
 #include "config.hpp"
 #include <memory>
 
+std::shared_ptr<SDL_Surface> LoadSurface(const std::string &filepath) {
+    auto surface = std::shared_ptr<SDL_Surface>(IMG_Load(filepath.c_str()),
+                                                SDL_FreeSurface);
+
+    if (surface == nullptr) {
+        surface = {GetMissingTextureSDLSurface(), SDL_FreeSurface};
+        LOG_ERROR("Failed to load image: '{}'", filepath);
+        LOG_ERROR("{}", IMG_GetError());
+    }
+
+    return surface;
+}
+
 namespace Util {
 Image::Image(const std::string &filepath)
     : m_Path(filepath) {
@@ -26,17 +39,7 @@ Image::Image(const std::string &filepath)
         InitUniformBuffer();
     }
 
-    m_Surface =
-        std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
-            IMG_Load(filepath.c_str()),
-            SDL_FreeSurface,
-        };
-
-    if (m_Surface == nullptr) {
-        m_Surface = {GetMissingTextureSDLSurface(), SDL_FreeSurface};
-        LOG_ERROR("Failed to load image: '{}'", filepath);
-        LOG_ERROR("{}", IMG_GetError());
-    }
+    m_Surface = s_Store.Get(filepath);
 
     m_Texture = std::make_unique<Core::Texture>(
         Core::SdlFormatToGlFormat(m_Surface->format->format), m_Surface->w,
@@ -45,16 +48,11 @@ Image::Image(const std::string &filepath)
 }
 
 void Image::SetImage(const std::string &filepath) {
-    m_Surface =
-        std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
-            IMG_Load(filepath.c_str()),
-            SDL_FreeSurface,
-        };
-    if (m_Surface == nullptr) {
-        LOG_ERROR("Failed to load image: '{}'", filepath);
-        LOG_ERROR("{}", IMG_GetError());
-    }
-    UpdateTextureData(*m_Surface.get());
+    m_Surface = s_Store.Get(filepath);
+
+    m_Texture->UpdateData(Core::SdlFormatToGlFormat(m_Surface->format->format),
+                          m_Surface->w, m_Surface->h, m_Surface->pixels);
+    m_Size = {m_Surface->w, m_Surface->h};
 }
 
 void Image::Draw(const Util::Transform &transform, const float zIndex) {
@@ -131,4 +129,6 @@ std::unique_ptr<Core::Program> Image::s_Program = nullptr;
 std::unique_ptr<Core::VertexArray> Image::s_VertexArray = nullptr;
 std::unique_ptr<Core::UniformBuffer<Core::Matrices>> Image::s_UniformBuffer =
     nullptr;
+
+Util::AssetStore<std::shared_ptr<SDL_Surface>> Image::s_Store(LoadSurface);
 } // namespace Util

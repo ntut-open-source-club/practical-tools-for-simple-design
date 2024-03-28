@@ -1,17 +1,14 @@
 #ifndef UTIL_IMAGE_HPP
 #define UTIL_IMAGE_HPP
 
-#include "SDL_surface.h"
 #include "pch.hpp" // IWYU pragma: export
 
-#include <functional>
 #include <glm/fwd.hpp>
-#include <memory>
 
 #include "Core/Drawable.hpp"
 #include "Core/Texture.hpp"
 
-#include "Util/Logger.hpp"
+#include "Util/AssetStore.hpp"
 #include "Util/Transform.hpp"
 
 namespace Util {
@@ -87,9 +84,12 @@ private:
     static std::unique_ptr<Core::VertexArray> s_VertexArray;
     static std::unique_ptr<Core::UniformBuffer<Core::Matrices>> s_UniformBuffer;
 
+    static Util::AssetStore<std::shared_ptr<SDL_Surface>> s_Store;
+
 private:
     std::unique_ptr<Core::Texture> m_Texture = nullptr;
-    std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> m_Surface;
+    std::shared_ptr<SDL_Surface> m_Surface;
+
     std::string m_Path;
     glm::vec2 m_Size;
 };

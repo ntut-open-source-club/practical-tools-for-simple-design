@@ -1,15 +1,22 @@
 #include "Util/BGM.hpp"
 #include "Util/Logger.hpp"
 
+std::shared_ptr<Mix_Music> LoadMusic(const std::string &filepath) {
+    auto music = std::shared_ptr<Mix_Music>(Mix_LoadMUS(filepath.c_str()),
+                                            Mix_FreeMusic);
+
+    if (music == nullptr) {
+        LOG_DEBUG("Failed to load BGM: '{}'", filepath);
+        LOG_DEBUG("{}", Mix_GetError());
+    }
+
+    return music;
+}
+
 namespace Util {
 
 BGM::BGM(const std::string &path)
-    : m_BGM(Mix_LoadMUS(path.c_str()), BGM::MusicDeleter()) {
-    if (m_BGM == nullptr) {
-        LOG_DEBUG("Failed to load BGM: {} {}", path,
-                  std::string(Mix_GetError()));
-    }
-}
+    : m_BGM(s_Store.Get(path)) {}
 
 int BGM::GetVolume() const {
     return Mix_VolumeMusic(-1);
@@ -20,7 +27,7 @@ void BGM::SetVolume(const int volume) {
 }
 
 void BGM::LoadMedia(const std::string &path) {
-    m_BGM.reset(Mix_LoadMUS(path.c_str()));
+    m_BGM = s_Store.Get(path);
 }
 
 void BGM::VolumeUp(const int step) {
@@ -51,5 +58,7 @@ void BGM::Pause() {
 void BGM::Resume() {
     Mix_ResumeMusic();
 }
+
+Util::AssetStore<std::shared_ptr<Mix_Music>> BGM::s_Store(LoadMusic);
 
 } // namespace Util

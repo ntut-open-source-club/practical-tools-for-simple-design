@@ -8,8 +8,8 @@
 #include "Core/Drawable.hpp"
 #include "Core/Texture.hpp"
 
+#include "Util/AssetStore.hpp"
 #include "Util/Color.hpp"
-#include "Util/Logger.hpp"
 #include "Util/Transform.hpp"
 
 namespace Util {
@@ -73,6 +73,9 @@ private:
     static std::unique_ptr<Core::Program> s_Program;
     static std::unique_ptr<Core::VertexArray> s_VertexArray;
     static std::unique_ptr<Core::UniformBuffer<Core::Matrices>> s_UniformBuffer;
+
+    // loads resources using `TTF_OpenFontRW`
+    static Util::AssetStore<std::shared_ptr<SDL_RWops>> s_Store;
 
 private:
     std::unique_ptr<Core::Texture> m_Texture = nullptr;

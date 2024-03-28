@@ -113,11 +113,6 @@ public:
     void Draw(const Util::Transform &transform, const float zIndex) override;
 
     /**
-     * @brief Reset the animation to its initial frame.
-     */
-    void Reset() { SetCurrentFrame(0); }
-
-    /**
      * @brief Start playing the animation.
      * If the animation is already playing, this method won't do anything.
      * If the animation has ended and `looping` is set to `false`, this would
