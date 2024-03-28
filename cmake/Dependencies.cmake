@@ -61,6 +61,14 @@ FetchContent_Declare(
     SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/googletest
 )
 
+FetchContent_Declare(
+    imgui
+
+    URL         https://github.com/ocornut/imgui/archive/refs/tags/v1.90.4-docking.zip
+    URL_HASH    MD5=384084df566474aec3729df4ea30b937
+    SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui
+)
+
 set(BUILD_SHARED_LIBS FALSE)
 
 set(SDL2IMAGE_INSTALL OFF)
@@ -92,6 +100,33 @@ if (NOT ${glew_POPULATED})
     add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/glew/build/cmake)
 endif()
 
+FetchContent_GetProperties(imgui)
+if (NOT ${imgui_POPULATED})
+    FetchContent_Populate(imgui)
+    set(IMGUI_SOURCE
+        ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/backends/imgui_impl_sdl2.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/backends/imgui_impl_opengl3.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/imgui.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/imgui_demo.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/imgui_draw.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/imgui_tables.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/imgui_widgets.cpp
+    )
+
+    set(IMGUI_INCLUDE_DIR
+        ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/
+        ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/imgui/backends/
+        ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/sdl2/include/
+    )
+
+    add_library(ImGui STATIC
+        ${IMGUI_SOURCE}
+    )
+    target_include_directories(ImGui PUBLIC
+        ${IMGUI_INCLUDE_DIR}
+    )
+endif()
+
 set(DEPENDENCY_LINK_LIBRARIES
     ${OPENGL_LIBRARY}
     glew_s
@@ -101,6 +136,8 @@ set(DEPENDENCY_LINK_LIBRARIES
     SDL2_ttf::SDL2_ttf-static
 
     spdlog::spdlog
+
+    ImGui
 )
 set(DEPENDENCY_LINK_LIBRARIES ${DEPENDENCY_LINK_LIBRARIES} PARENT_SCOPE)
 

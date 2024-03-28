@@ -56,7 +56,6 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Root.cpp
     ${SRC_DIR}/Util/SpriteSheet.cpp
 )
-
 set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(INCLUDE_FILES
     ${INCLUDE_DIR}/Core/Context.hpp

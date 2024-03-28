@@ -81,10 +81,24 @@ Context::Context() {
     LOG_INFO("  Renderer: {}", glGetString(GL_RENDERER));
     LOG_INFO("  Version: {}", glGetString(GL_VERSION));
     LOG_INFO("  GLSL Version: {}", glGetString(GL_SHADING_LANGUAGE_VERSION));
+
+    IMGUI_CHECKVERSION();
+    ImGui::CreateContext();
+    ImGuiIO &io = ImGui::GetIO();
+    io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
+    io.ConfigFlags |= ImGuiConfigFlags_DockingEnable;
+    io.ConfigWindowsMoveFromTitleBarOnly = true;
+
+    ImGui_ImplSDL2_InitForOpenGL(m_Window, m_GlContext);
+    ImGui_ImplOpenGL3_Init();
 }
 std::shared_ptr<Context> Context::s_Instance(nullptr);
 
 Context::~Context() {
+    ImGui_ImplOpenGL3_Shutdown();
+    ImGui_ImplSDL2_Shutdown();
+    ImGui::DestroyContext();
+
     SDL_DestroyWindow(m_Window);
     SDL_GL_DeleteContext(m_GlContext);
     SDL_VideoQuit();
@@ -95,6 +109,12 @@ Context::~Context() {
     IMG_Quit();
     // Mix_Quit();
     SDL_Quit();
+}
+
+void Context::Setup() {
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplSDL2_NewFrame();
+    ImGui::NewFrame();
 }
 
 void Context::Update() {
