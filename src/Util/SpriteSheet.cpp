@@ -1,6 +1,4 @@
 #include "Util/SpriteSheet.hpp"
-#include "Util/Image.hpp"
-#include <memory>
 
 namespace Util {
 SpriteSheet::SpriteSheet(const std::string &filepath)

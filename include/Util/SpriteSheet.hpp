@@ -4,6 +4,7 @@
 #include "Core/Drawable.hpp"
 #include "SDL_rect.h"
 #include "Util/Image.hpp"
+#include "Util/Logger.hpp"
 #include <memory>
 namespace Util {
 class SpriteSheet : public Core::Drawable {
