@@ -8,8 +8,9 @@ void AssetStore<T>::Load(const std::string &filepath) {
 
 template <typename T>
 T AssetStore<T>::Get(const std::string &filepath) {
-    if (m_Map.find(filepath) != m_Map.end()) {
-        return m_Map[filepath];
+    auto result = m_Map.find(filepath);
+    if (result != m_Map.end()) {
+        return result;
     }
 
     Load(filepath);
