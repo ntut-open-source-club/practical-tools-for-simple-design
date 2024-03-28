@@ -1,9 +1,11 @@
 #ifndef UTIL_IMAGE_HPP
 #define UTIL_IMAGE_HPP
 
+#include "SDL_surface.h"
 #include "pch.hpp" // IWYU pragma: export
 
 #include <glm/fwd.hpp>
+#include <memory>
 
 #include "Core/Drawable.hpp"
 #include "Core/Texture.hpp"
@@ -58,6 +60,21 @@ public:
      */
     void Draw(const Util::Transform &transform, const float zIndex) override;
 
+    /**
+     * @brief Get the SDL_Surface that current draw.
+     *
+     * This function return the SDL_Surface that current draw.
+     *
+     */
+    SDL_Surface &GetSDLSurface() const { return *m_Surface.get(); }
+    /**
+     * @brief Update TextureDate by SDL_Surface
+     *
+     * This function Update TextureDate by SDL_Surface.
+     *
+     */
+    void UpdateTextureData(const SDL_Surface &surface);
+
 private:
     void InitProgram();
     void InitVertexArray();
@@ -73,7 +90,7 @@ private:
 
 private:
     std::unique_ptr<Core::Texture> m_Texture = nullptr;
-
+    std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>> m_Surface;
     std::string m_Path;
     glm::vec2 m_Size;
 };

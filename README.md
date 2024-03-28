@@ -19,7 +19,8 @@ Required: Git, CMake, C/C++ Compiler, OpenGL Implementation
 
 Optional: Ninja Build, Clang
 
-> You might get some issue like https://github.com/ntut-open-source-club/practical-tools-for-simple-design/issues/78 check it if you need.
+> You might get some issue like https://github.com/ntut-open-source-club/practical-tools-for-simple-design/issues/78
+> check it if you need.
 
 ### Command Line
 
@@ -28,8 +29,9 @@ Optional: Ninja Build, Clang
 > This section is work in progress.
 
 ```
-git clone https://github.com/ntut-open-source-club/practical-tools-for-simple-design.git
-cd practical-tools-for-simple-design
+# Inside your Project
+mkdir PTSD
+git submodule add  https://github.com/ntut-open-source-club/practical-tools-for-simple-design/tree/submodule-ized PTSD
 cmake -B build
 cmake --build build
 ```
@@ -45,7 +47,8 @@ cmake --build build
 > ```
 > if the `-B` flag is unsupported
 
-> If using Neovim or other LSP supported editors, append `-DCMAKE_EXPORT_COMPILE_COMMANDS=ON` to the generation command for `clangd` to work
+> If using Neovim or other LSP supported editors, append `-DCMAKE_EXPORT_COMPILE_COMMANDS=ON` to the generation command
+> for `clangd` to work
 
 ### VSCode
 
@@ -55,7 +58,11 @@ cmake --build build
 
 ### CLion
 
-[CLion Quick Start](.github/docs/CLionQuickStart/CLionQuickStart.md)
+[//]: #
+> [!WARNING]  
+> The guide may not be helpful when using PTSD as a submodule.  
+> [CLion Quick Start](.github/docs/CLionQuickStart/CLionQuickStart.md)
+
 
 ###### NOTE: If you have time, read [OOP2023f Environment Setup](https://hackmd.io/@OOP2023f/rk2-8cVCh)
 
@@ -68,3 +75,12 @@ doxygen docs/Doxyfile
 ```
 
 Open the generated documents with your favorite browser at `docs/html/index.html`
+
+## Reference
+- [glew](https://github.com/nigels-com/glew)
+- [sdl2](https://github.com/libsdl-org/SDL)
+- [sdl2_image](https://github.com/libsdl-org/SDL_image)
+- [sdl2_ttf](https://github.com/libsdl-org/SDL_ttf)
+- [spdlog](https://github.com/gabime/spdlog)
+- [glm](https://github.com/g-truc/glm)
+- [googletest](https://github.com/google/googletest)
