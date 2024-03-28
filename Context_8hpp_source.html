@@ -130,22 +130,23 @@ $(document).ready(function(){initNavTree('Context_8hpp_source.html',''); initRes
 <div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    <span class="keywordtype">void</span> SetWindowWidth(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> width) { m_WindowWidth = width; }</div>
 <div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    <span class="keywordtype">void</span> SetWindowHeight(<span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> height) { m_WindowHeight = height; }</div>
 <div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
-<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> Update();</div>
-<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>    SDL_Window *m_Window;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    SDL_GLContext m_GlContext;</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span> </div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>    <span class="keyword">static</span> std::shared_ptr&lt;Context&gt; s_Instance;</div>
-<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keywordtype">bool</span> m_Exit = <span class="keyword">false</span>;</div>
-<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span> </div>
-<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_WindowWidth = WINDOW_WIDTH;</div>
-<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_WindowHeight = WINDOW_HEIGHT;</div>
-<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>};</div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span> </div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>} <span class="comment">// namespace Core</span></div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span> </div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span>    <span class="keywordtype">void</span> Setup();</div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span>    <span class="keywordtype">void</span> Update();</div>
+<div class="line"><a id="l00035" name="l00035"></a><span class="lineno">   35</span> </div>
+<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>    SDL_Window *m_Window;</div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    SDL_GLContext m_GlContext;</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>    <span class="keyword">static</span> std::shared_ptr&lt;Context&gt; s_Instance;</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    <span class="keywordtype">bool</span> m_Exit = <span class="keyword">false</span>;</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00043" name="l00043"></a><span class="lineno">   43</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_WindowWidth = WINDOW_WIDTH;</div>
+<div class="line"><a id="l00044" name="l00044"></a><span class="lineno">   44</span>    <span class="keywordtype">unsigned</span> <span class="keywordtype">int</span> m_WindowHeight = WINDOW_HEIGHT;</div>
+<div class="line"><a id="l00045" name="l00045"></a><span class="lineno">   45</span>};</div>
+<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span> </div>
+<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>} <span class="comment">// namespace Core</span></div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span> </div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassCore_1_1Context_html"><div class="ttname"><a href="classCore_1_1Context.html">Core::Context</a></div><div class="ttdef"><b>Definition:</b> Context.hpp:9</div></div>
 <div class="ttc" id="aclassCore_1_1Context_html_a7cbc7d91a45aa27c6a247eca7b3c40c6"><div class="ttname"><a href="classCore_1_1Context.html#a7cbc7d91a45aa27c6a247eca7b3c40c6">Core::Context::Context</a></div><div class="ttdeci">Context()</div><div class="ttdoc">Initialize context for SDL, OpenGL, and create a window.</div></div>
 <div class="ttc" id="anamespaceCore_html"><div class="ttname"><a href="namespaceCore.html">Core</a></div><div class="ttdoc">Core functionality of the framework</div><div class="ttdef"><b>Definition:</b> Context.hpp:8</div></div>
