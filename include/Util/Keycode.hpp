@@ -404,8 +404,8 @@ enum class Keycode {
     // Below are the keycodes handling mouse buttons.
 
     MOUSE_LB = 513,
-    MOUSE_RB = 514,
-    MOUSE_MB = 515,
+    MOUSE_MB = 514,
+    MOUSE_RB = 515,
 };
 // clang-format on
 } // namespace Util
