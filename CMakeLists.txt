@@ -49,10 +49,11 @@ set(SRC_FILES
     ${SRC_DIR}/Util/TransformUtils.cpp
     ${SRC_DIR}/Util/GameObject.cpp
     ${SRC_DIR}/Util/Renderer.cpp
-    ${SRC_DIR}/Util/Root.cpp
     ${SRC_DIR}/Util/Color.cpp
     ${SRC_DIR}/Util/Animation.cpp
     ${SRC_DIR}/Util/MissingTexture.cpp
+
+    ${SRC_DIR}/Util/Root.cpp
     ${SRC_DIR}/Util/SpriteSheet.cpp
 )
 
@@ -84,11 +85,14 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/TransformUtils.hpp
     ${INCLUDE_DIR}/Util/GameObject.hpp
     ${INCLUDE_DIR}/Util/Renderer.hpp
-    ${INCLUDE_DIR}/Util/Root.hpp
     ${INCLUDE_DIR}/Util/Color.hpp
     ${INCLUDE_DIR}/Util/TransparentImage.hpp
     ${INCLUDE_DIR}/Util/Base64.hpp
     ${INCLUDE_DIR}/Util/Animation.hpp
+
+    ${INCLUDE_DIR}/Util/AssetStore.hpp
+    ${INCLUDE_DIR}/Util/AssetStore.inl
+    ${INCLUDE_DIR}/Util/Root.hpp
     ${INCLUDE_DIR}/Util/MissingTexture.hpp
     ${INCLUDE_DIR}/Util/SpriteSheet.hpp
     
