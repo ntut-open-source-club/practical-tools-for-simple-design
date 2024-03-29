@@ -58,6 +58,8 @@ set(SRC_FILES
 )
 set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(INCLUDE_FILES
+    ${INCLUDE_DIR}/pch.hpp
+
     ${INCLUDE_DIR}/Core/Context.hpp
     ${INCLUDE_DIR}/Core/DebugMessageCallback.hpp
     ${INCLUDE_DIR}/Core/VertexArray.hpp
@@ -85,9 +87,17 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Util/GameObject.hpp
     ${INCLUDE_DIR}/Util/Renderer.hpp
     ${INCLUDE_DIR}/Util/Color.hpp
-    ${INCLUDE_DIR}/Util/TransparentImage.hpp
+    ${INCLUDE_DIR}/Util/MissingTexture.hpp
     ${INCLUDE_DIR}/Util/Base64.hpp
     ${INCLUDE_DIR}/Util/Animation.hpp
+)
+set(EXAMPLE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/example)
+set(EXAMPLE_FILES
+    ${EXAMPLE_DIR}/src/App.cpp
+    ${EXAMPLE_DIR}/src/Giraffe.cpp
+    ${EXAMPLE_DIR}/src/GiraffeText.cpp
+    ${EXAMPLE_DIR}/src/Cat.cpp
+    ${EXAMPLE_DIR}/src/main.cpp
 
     ${INCLUDE_DIR}/Util/AssetStore.hpp
     ${INCLUDE_DIR}/Util/AssetStore.inl
