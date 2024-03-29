@@ -114,8 +114,6 @@ void Image::InitVertexArray() {
     // NOLINTEND
 }
 
-void Image::InitUniformBuffer() {}
-
 void Image::UpdateTextureData(const SDL_Surface &surface) {
     m_Texture->UpdateData(Core::SdlFormatToGlFormat(surface.format->format),
                           surface.w, surface.h, surface.pixels);
