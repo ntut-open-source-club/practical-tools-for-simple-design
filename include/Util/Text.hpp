@@ -72,7 +72,7 @@ private:
 
     static std::unique_ptr<Core::Program> s_Program;
     static std::unique_ptr<Core::VertexArray> s_VertexArray;
-    static std::unique_ptr<Core::UniformBuffer<Core::Matrices>> s_UniformBuffer;
+    std::unique_ptr<Core::UniformBuffer<Core::Matrices>> m_UniformBuffer;
 
     // loads resources using `TTF_OpenFontRW`
     static Util::AssetStore<std::shared_ptr<SDL_RWops>> s_Store;
