@@ -68,11 +68,11 @@ void GLAPIENTRY OpenGLDebugMessageCallback(GLenum source, GLenum type,
         break;
 
     case GL_DEBUG_SEVERITY_NOTIFICATION:
-        LOG_DEBUG("OpenGL Severity {}", severityString);
-        LOG_DEBUG(" ID: {}", id);
-        LOG_DEBUG(" Source: {}", sourceString);
-        LOG_DEBUG(" Type: {}", typeString);
-        LOG_DEBUG(" Message: {}", message);
+        // LOG_DEBUG("OpenGL Severity {}", severityString);
+        // LOG_DEBUG(" ID: {}", id);
+        // LOG_DEBUG(" Source: {}", sourceString);
+        // LOG_DEBUG(" Type: {}", typeString);
+        // LOG_DEBUG(" Message: {}", message);
         break;
 
     default:
