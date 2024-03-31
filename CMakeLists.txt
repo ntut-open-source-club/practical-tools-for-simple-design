@@ -131,7 +131,7 @@ target_compile_options(PTSD PRIVATE
     ${TARGET_COMPILE_OPTIONS}
 )
 
-add_executable(Example
+add_executable(Example EXCLUDE_FROM_ALL
     ${EXAMPLE_FILES}
 )
 target_link_libraries(Example
@@ -147,41 +147,35 @@ target_include_directories(Example PRIVATE
 
 enable_testing()
 
-add_executable(Tests
+add_executable(Tests EXCLUDE_FROM_ALL
     ${TEST_FILES}
     ${SRC_FILES}
 )
 target_link_libraries(Tests
-    GTest::gtest_main
-    ${DEPENDENCY_LINK_LIBRARIES}
+    PTSD
 )
 target_include_directories(Tests SYSTEM PRIVATE
+    ${INCLUDE_DIR}
     ${DEPENDENCY_INCLUDE_DIRS}
     lib/googletest/googletest/include
     lib/googletest/googlemock/include
-)
-target_include_directories(Tests PRIVATE
-    ${INCLUDE_DIR}
 )
 target_compile_options(Tests PRIVATE
     ${TARGET_COMPILE_OPTIONS}
 )
 
-add_executable(AudioTest
+add_executable(AudioTest EXCLUDE_FROM_ALL
     ${TEST_DIR}/Interactive/Audio.cpp
     ${SRC_FILES}
 )
 target_link_libraries(AudioTest
-    GTest::gtest_main
-    ${DEPENDENCY_LINK_LIBRARIES}
+    PTSD
 )
 target_include_directories(AudioTest SYSTEM PRIVATE
+    ${INCLUDE_DIR}
     ${DEPENDENCY_INCLUDE_DIRS}
     lib/googletest/googletest/include
     lib/googletest/googlemock/include
-)
-target_include_directories(AudioTest PRIVATE
-    ${INCLUDE_DIR}
 )
 target_compile_options(AudioTest PRIVATE
     ${TARGET_COMPILE_OPTIONS}
