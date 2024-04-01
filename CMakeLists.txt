@@ -154,6 +154,7 @@ add_executable(Tests EXCLUDE_FROM_ALL
 )
 target_link_libraries(Tests
     PTSD
+    GTest::gtest_main
 )
 target_include_directories(Tests SYSTEM PRIVATE
     ${INCLUDE_DIR}
@@ -171,6 +172,7 @@ add_executable(AudioTest EXCLUDE_FROM_ALL
 )
 target_link_libraries(AudioTest
     PTSD
+    GTest::gtest_main
 )
 target_include_directories(AudioTest SYSTEM PRIVATE
     ${INCLUDE_DIR}
