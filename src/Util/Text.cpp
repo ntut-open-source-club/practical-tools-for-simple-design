@@ -9,18 +9,6 @@
 
 #include "config.hpp"
 
-std::shared_ptr<SDL_RWops> LoadFontFile(const std::string &filepath) {
-    auto file = std::shared_ptr<SDL_RWops>(
-        SDL_RWFromFile(filepath.c_str(), "rb"), SDL_RWclose);
-
-    if (file == nullptr) {
-        LOG_ERROR("Failed to load font: '{}'", filepath);
-        LOG_ERROR("{}", TTF_GetError());
-    }
-
-    return file;
-}
-
 namespace Util {
 Text::Text(const std::string &font, int fontSize, const std::string &text,
            const Util::Color &color)
@@ -36,8 +24,7 @@ Text::Text(const std::string &font, int fontSize, const std::string &text,
         InitUniformBuffer();
     }
 
-    m_Font = {TTF_OpenFontRW(s_Store.Get(font).get(), 0, fontSize),
-              TTF_CloseFont};
+    m_Font = {TTF_OpenFont(font.c_str(), fontSize), TTF_CloseFont};
 
     auto surface =
         std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
@@ -142,5 +129,4 @@ std::unique_ptr<Core::VertexArray> Text::s_VertexArray = nullptr;
 std::unique_ptr<Core::UniformBuffer<Core::Matrices>> Text::s_UniformBuffer =
     nullptr;
 
-Util::AssetStore<std::shared_ptr<SDL_RWops>> Text::s_Store(LoadFontFile);
 } // namespace Util
