@@ -56,6 +56,7 @@ set(SRC_FILES
 set(INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
 set(INCLUDE_FILES
     ${INCLUDE_DIR}/pch.hpp
+    ${INCLUDE_DIR}/config.hpp
 
     ${INCLUDE_DIR}/Core/Context.hpp
     ${INCLUDE_DIR}/Core/DebugMessageCallback.hpp
