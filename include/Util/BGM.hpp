@@ -3,6 +3,8 @@
 
 #include "pch.hpp" // IWYU pragma: export
 
+#include "Util/AssetStore.hpp"
+
 namespace Util {
 /**
  * @class BGM
@@ -106,13 +108,10 @@ public:
     void Resume();
 
 private:
-    // Use functor instead of function pointer as deleter to
-    // make it less confusing.
-    struct MusicDeleter {
-        void operator()(Mix_Music *music) { Mix_FreeMusic(music); }
-    };
+    static Util::AssetStore<std::shared_ptr<Mix_Music>> s_Store;
 
-    std::unique_ptr<Mix_Music, MusicDeleter> m_BGM;
+private:
+    std::shared_ptr<Mix_Music> m_BGM;
 };
 
 } // namespace Util

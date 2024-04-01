@@ -8,8 +8,7 @@ Animation::Animation(const std::vector<std::string> &paths, bool play,
     : m_State(play ? State::PLAY : State::PAUSE),
       m_Interval(interval),
       m_Looping(looping),
-      m_Cooldown(cooldown),
-      m_Index(0) {
+      m_Cooldown(cooldown) {
     m_Frames.reserve(paths.size());
     for (const auto &path : paths) {
         m_Frames.push_back(std::make_shared<Util::Image>(path));

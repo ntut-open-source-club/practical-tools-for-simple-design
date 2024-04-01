@@ -3,12 +3,15 @@
 
 #include "pch.hpp" // IWYU pragma: export
 
+#include <glm/fwd.hpp>
+
 #include "Core/Drawable.hpp"
 #include "Core/Program.hpp"
 #include "Core/Texture.hpp"
 #include "Core/UniformBuffer.hpp"
 #include "Core/VertexArray.hpp"
 
+#include "Util/AssetStore.hpp"
 #include "Util/Transform.hpp"
 
 namespace Util {
@@ -68,6 +71,8 @@ private:
     static std::unique_ptr<Core::Program> s_Program;
     static std::unique_ptr<Core::VertexArray> s_VertexArray;
     static std::unique_ptr<Core::UniformBuffer<Core::Matrices>> s_UniformBuffer;
+
+    static Util::AssetStore<std::shared_ptr<SDL_Surface>> s_Store;
 
 private:
     std::unique_ptr<Core::Texture> m_Texture = nullptr;

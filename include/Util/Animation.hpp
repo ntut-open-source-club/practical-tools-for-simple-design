@@ -113,11 +113,6 @@ public:
     void Draw(const Core::Matrices &data) override;
 
     /**
-     * @brief Reset the animation to its initial frame.
-     */
-    void Reset() { SetCurrentFrame(0); }
-
-    /**
      * @brief Start playing the animation.
      * If the animation is already playing, this method won't do anything.
      * If the animation has ended and `looping` is set to `false`, this would
@@ -143,12 +138,12 @@ private:
     double m_Interval;
     bool m_Looping;
     std::size_t m_Cooldown;
-    bool m_IsChangeFrame;
+    bool m_IsChangeFrame = false;
 
-    unsigned long m_CooldownEndTime;
-    double m_TimeBetweenFrameUpdate;
+    unsigned long m_CooldownEndTime = 0;
+    double m_TimeBetweenFrameUpdate = 0;
 
-    std::size_t m_Index;
+    std::size_t m_Index = 0;
 };
 } // namespace Util
 
