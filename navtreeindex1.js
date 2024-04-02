@@ -1,13 +1,5 @@
 var NAVTREEINDEX1 =
 {
-"index.html#autotoc_md2":[0,0],
-"index.html#autotoc_md3":[0,1],
-"index.html#autotoc_md4":[0,2],
-"index.html#autotoc_md5":[1],
-"md__github_docs_CLionQuickStart_CLionQuickStart.html":[2],
-"md__github_docs_Code_Styles_and_Guidelines.html":[3],
-"md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md10":[3,0],
-"md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md11":[3,1],
 "md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md12":[3,2],
 "md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md13":[3,3],
 "md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md14":[3,4],
@@ -249,5 +241,13 @@ var NAVTREEINDEX1 =
 "namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5ae7e0e72401a9f2718ed0f39f2861d702":[4,0,1,13,59],
 "namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5ae8606d021da140a92c7eba8d9b8af84f":[4,0,1,13,122],
 "namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5ae902674982fc99aa343cdd94da7476c3":[4,0,1,13,67],
-"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5ae99176d9051dda771e0cc81afd2c2f9f":[4,0,1,13,179]
+"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5ae99176d9051dda771e0cc81afd2c2f9f":[4,0,1,13,179],
+"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5aebd7820c520d05eca2d775c37d141273":[4,0,1,13,113],
+"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5aecb4a6f3440c2ed0dff59f17375a27c0":[4,0,1,13,47],
+"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5aef373774188a51f80463f37b6bd9e83a":[4,0,1,13,155],
+"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5af04b16e01e2458b2442f49b30b5d1938":[4,0,1,13,130],
+"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5af09564c9ca56850d4cd6b3319e541aee":[4,0,1,13,18],
+"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5af186217753c37b9b9f958d906208506e":[4,0,1,13,16],
+"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5af1abec704339d368b3b9d4e219b40c94":[4,0,1,13,128],
+"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5af45fde1eaac63c5a55cf87e584f5e6bb":[4,0,1,13,34]
 };
