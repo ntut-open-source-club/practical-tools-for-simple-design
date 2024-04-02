@@ -4,7 +4,6 @@ var hierarchy =
     [ "Util::AssetStore< T >", "classUtil_1_1AssetStore.html", null ],
     [ "Util::AssetStore< std::shared_ptr< Mix_Chunk > >", "classUtil_1_1AssetStore.html", null ],
     [ "Util::AssetStore< std::shared_ptr< Mix_Music > >", "classUtil_1_1AssetStore.html", null ],
-    [ "Util::AssetStore< std::shared_ptr< SDL_RWops > >", "classUtil_1_1AssetStore.html", null ],
     [ "Util::AssetStore< std::shared_ptr< SDL_Surface > >", "classUtil_1_1AssetStore.html", null ],
     [ "Util::BGM", "classUtil_1_1BGM.html", null ],
     [ "Core::Context", "classCore_1_1Context.html", null ],
