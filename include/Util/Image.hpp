@@ -67,7 +67,16 @@ private:
 
     static std::unique_ptr<Core::Program> s_Program;
     static std::unique_ptr<Core::VertexArray> s_VertexArray;
+
+    // See
+    // https://github.com/ntut-open-source-club/practical-tools-for-simple-design/pull/162
+    // Some OpenGL implementations may result in drastically different
+    // performances
+#ifndef __APPLE__
+    static std::unique_ptr<Core::UniformBuffer<Core::Matrices>> m_UniformBuffer;
+#else
     std::unique_ptr<Core::UniformBuffer<Core::Matrices>> m_UniformBuffer;
+#endif
 
     static Util::AssetStore<std::shared_ptr<SDL_Surface>> s_Store;
 
