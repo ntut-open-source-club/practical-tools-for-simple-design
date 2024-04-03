@@ -6,9 +6,11 @@
 #include <functional>
 
 #include "Core/Drawable.hpp"
+#include "Core/Program.hpp"
 #include "Core/Texture.hpp"
+#include "Core/UniformBuffer.hpp"
+#include "Core/VertexArray.hpp"
 
-#include "Util/AssetStore.hpp"
 #include "Util/Color.hpp"
 #include "Util/Transform.hpp"
 
@@ -54,7 +56,7 @@ public:
      * @param transform The transform to apply to the text.
      * @param zIndex The z-index at which to draw the text.
      */
-    void Draw(const Transform &transform, const float zIndex) override;
+    void Draw(const Core::Matrices &data) override;
 
 private:
     void InitProgram();
@@ -73,9 +75,6 @@ private:
     static std::unique_ptr<Core::Program> s_Program;
     static std::unique_ptr<Core::VertexArray> s_VertexArray;
     std::unique_ptr<Core::UniformBuffer<Core::Matrices>> m_UniformBuffer;
-
-    // loads resources using `TTF_OpenFontRW`
-    static Util::AssetStore<std::shared_ptr<SDL_RWops>> s_Store;
 
 private:
     std::unique_ptr<Core::Texture> m_Texture = nullptr;
