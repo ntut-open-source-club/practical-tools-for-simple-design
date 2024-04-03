@@ -34,9 +34,9 @@ Image::Image(const std::string &filepath)
     if (s_VertexArray == nullptr) {
         InitVertexArray();
     }
-    if (s_UniformBuffer == nullptr) {
-        InitUniformBuffer();
-    }
+
+    m_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
+        *s_Program, "Matrices", 0);
 
     auto surface = s_Store.Get(filepath);
 
@@ -55,7 +55,7 @@ void Image::SetImage(const std::string &filepath) {
 }
 
 void Image::Draw(const Core::Matrices &data) {
-    s_UniformBuffer->SetData(0, data);
+    m_UniformBuffer->SetData(0, data);
 
     m_Texture->Bind(UNIFORM_SURFACE_LOCATION);
     s_Program->Bind();
@@ -111,15 +111,8 @@ void Image::InitVertexArray() {
     // NOLINTEND
 }
 
-void Image::InitUniformBuffer() {
-    s_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
-        *s_Program, "Matrices", 0);
-}
-
 std::unique_ptr<Core::Program> Image::s_Program = nullptr;
 std::unique_ptr<Core::VertexArray> Image::s_VertexArray = nullptr;
-std::unique_ptr<Core::UniformBuffer<Core::Matrices>> Image::s_UniformBuffer =
-    nullptr;
 
 Util::AssetStore<std::shared_ptr<SDL_Surface>> Image::s_Store(LoadSurface);
 } // namespace Util
