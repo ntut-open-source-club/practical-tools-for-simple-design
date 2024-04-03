@@ -6,7 +6,10 @@
 #include <functional>
 
 #include "Core/Drawable.hpp"
+#include "Core/Program.hpp"
 #include "Core/Texture.hpp"
+#include "Core/UniformBuffer.hpp"
+#include "Core/VertexArray.hpp"
 
 #include "Util/Color.hpp"
 #include "Util/Transform.hpp"
@@ -53,7 +56,7 @@ public:
      * @param transform The transform to apply to the text.
      * @param zIndex The z-index at which to draw the text.
      */
-    void Draw(const Transform &transform, const float zIndex) override;
+    void Draw(const Core::Matrices &data) override;
 
 private:
     void InitProgram();
