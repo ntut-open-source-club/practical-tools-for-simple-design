@@ -109,63 +109,66 @@ $(document).ready(function(){initNavTree('Text_8hpp_source.html',''); initResiza
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="preprocessor">#include &lt;functional&gt;</span></div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno">    7</span> </div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="preprocessor">#include &quot;Core/Drawable.hpp&quot;</span></div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;Core/Texture.hpp&quot;</span></div>
-<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span> </div>
-<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;Util/Color.hpp&quot;</span></div>
-<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;Util/Transform.hpp&quot;</span></div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span><span class="preprocessor">#include &quot;Core/Program.hpp&quot;</span></div>
+<div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span><span class="preprocessor">#include &quot;Core/Texture.hpp&quot;</span></div>
+<div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span><span class="preprocessor">#include &quot;Core/UniformBuffer.hpp&quot;</span></div>
+<div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span><span class="preprocessor">#include &quot;Core/VertexArray.hpp&quot;</span></div>
 <div class="line"><a id="l00013" name="l00013"></a><span class="lineno">   13</span> </div>
-<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceUtil.html">Util</a> {</div>
-<div class="line"><a id="l00023" name="l00023"></a><span class="lineno"><a class="line" href="classUtil_1_1Text.html">   23</a></span><span class="keyword">class </span><a class="code hl_class" href="classUtil_1_1Text.html">Text</a> : <span class="keyword">public</span> <a class="code hl_class" href="classCore_1_1Drawable.html">Core::Drawable</a> {</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span>    <a class="code hl_class" href="classUtil_1_1Text.html">Text</a>(<span class="keyword">const</span> std::string &amp;font, <span class="keywordtype">int</span> size, <span class="keyword">const</span> std::string &amp;text,</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>         <span class="keyword">const</span> <a class="code hl_class" href="classUtil_1_1Color.html">Util::Color</a> &amp;color = <a class="code hl_class" href="classUtil_1_1Color.html">Color</a>(127, 127, 127));</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span> </div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    glm::vec2 GetSize()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> m_Size; };</div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00035" name="l00035"></a><span class="lineno"><a class="line" href="classUtil_1_1Text.html#a23f19b1edefa474979211c28b7d3d4fa">   35</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUtil_1_1Text.html#a23f19b1edefa474979211c28b7d3d4fa">SetText</a>(<span class="keyword">const</span> std::string &amp;text) {</div>
-<div class="line"><a id="l00036" name="l00036"></a><span class="lineno">   36</span>        m_Text = text;</div>
-<div class="line"><a id="l00037" name="l00037"></a><span class="lineno">   37</span>        ApplyTexture();</div>
-<div class="line"><a id="l00038" name="l00038"></a><span class="lineno">   38</span>    }</div>
-<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span> </div>
-<div class="line"><a id="l00045" name="l00045"></a><span class="lineno"><a class="line" href="classUtil_1_1Text.html#a83bcae856763378dedb2105c6b443192">   45</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUtil_1_1Text.html#a83bcae856763378dedb2105c6b443192">SetColor</a>(<span class="keyword">const</span> <a class="code hl_class" href="classUtil_1_1Color.html">Util::Color</a> &amp;color) {</div>
-<div class="line"><a id="l00046" name="l00046"></a><span class="lineno">   46</span>        m_Color = color;</div>
-<div class="line"><a id="l00047" name="l00047"></a><span class="lineno">   47</span>        ApplyTexture();</div>
-<div class="line"><a id="l00048" name="l00048"></a><span class="lineno">   48</span>    };</div>
-<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span> </div>
-<div class="line"><a id="l00056" name="l00056"></a><span class="lineno"><a class="line" href="classUtil_1_1Text.html#a956487132359c155994f6c58322a1a0d">   56</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUtil_1_1Text.html#a956487132359c155994f6c58322a1a0d">Draw</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structUtil_1_1Transform.html">Transform</a> &amp;transform, <span class="keyword">const</span> <span class="keywordtype">float</span> zIndex) <span class="keyword">override</span>;</div>
-<div class="line"><a id="l00057" name="l00057"></a><span class="lineno">   57</span> </div>
-<div class="line"><a id="l00058" name="l00058"></a><span class="lineno">   58</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00059" name="l00059"></a><span class="lineno">   59</span>    <span class="keywordtype">void</span> InitProgram();</div>
-<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span>    <span class="keywordtype">void</span> InitVertexArray();</div>
-<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span>    <span class="keywordtype">void</span> InitUniformBuffer();</div>
-<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span> </div>
-<div class="line"><a id="l00068" name="l00068"></a><span class="lineno">   68</span>    <span class="keywordtype">void</span> ApplyTexture();</div>
-<div class="line"><a id="l00069" name="l00069"></a><span class="lineno">   69</span> </div>
-<div class="line"><a id="l00070" name="l00070"></a><span class="lineno">   70</span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">int</span> UNIFORM_SURFACE_LOCATION = 0;</div>
-<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span> </div>
-<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span>    <span class="keyword">static</span> std::unique_ptr&lt;Core::Program&gt; s_Program;</div>
-<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">static</span> std::unique_ptr&lt;Core::VertexArray&gt; s_VertexArray;</div>
-<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span>    <span class="keyword">static</span> std::unique_ptr&lt;Core::UniformBuffer&lt;Core::Matrices&gt;&gt; s_UniformBuffer;</div>
-<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span> </div>
-<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    std::unique_ptr&lt;Core::Texture&gt; m_Texture = <span class="keyword">nullptr</span>;</div>
-<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span>    std::unique_ptr&lt;TTF_Font, std::function&lt;void(TTF_Font *)&gt;&gt; m_Font;</div>
-<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span> </div>
-<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    std::string m_Text;</div>
-<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    <a class="code hl_class" href="classUtil_1_1Color.html">Util::Color</a> m_Color;</div>
-<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span>    glm::vec2 m_Size;</div>
-<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>};</div>
-<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>} <span class="comment">// namespace Util</span></div>
-<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span> </div>
-<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span><span class="preprocessor">#endif</span></div>
-<div class="ttc" id="aclassCore_1_1Drawable_html"><div class="ttname"><a href="classCore_1_1Drawable.html">Core::Drawable</a></div><div class="ttdef"><b>Definition:</b> Drawable.hpp:21</div></div>
+<div class="line"><a id="l00014" name="l00014"></a><span class="lineno">   14</span><span class="preprocessor">#include &quot;Util/Color.hpp&quot;</span></div>
+<div class="line"><a id="l00015" name="l00015"></a><span class="lineno">   15</span><span class="preprocessor">#include &quot;Util/Transform.hpp&quot;</span></div>
+<div class="line"><a id="l00016" name="l00016"></a><span class="lineno">   16</span> </div>
+<div class="line"><a id="l00017" name="l00017"></a><span class="lineno">   17</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceUtil.html">Util</a> {</div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno"><a class="line" href="classUtil_1_1Text.html">   26</a></span><span class="keyword">class </span><a class="code hl_class" href="classUtil_1_1Text.html">Text</a> : <span class="keyword">public</span> <a class="code hl_class" href="classCore_1_1Drawable.html">Core::Drawable</a> {</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span><span class="keyword">public</span>:</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>    <a class="code hl_class" href="classUtil_1_1Text.html">Text</a>(<span class="keyword">const</span> std::string &amp;font, <span class="keywordtype">int</span> size, <span class="keyword">const</span> std::string &amp;text,</div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>         <span class="keyword">const</span> <a class="code hl_class" href="classUtil_1_1Color.html">Util::Color</a> &amp;color = <a class="code hl_class" href="classUtil_1_1Color.html">Color</a>(127, 127, 127));</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span> </div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>    glm::vec2 GetSize()<span class="keyword"> const override </span>{ <span class="keywordflow">return</span> m_Size; };</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span> </div>
+<div class="line"><a id="l00038" name="l00038"></a><span class="lineno"><a class="line" href="classUtil_1_1Text.html#a23f19b1edefa474979211c28b7d3d4fa">   38</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUtil_1_1Text.html#a23f19b1edefa474979211c28b7d3d4fa">SetText</a>(<span class="keyword">const</span> std::string &amp;text) {</div>
+<div class="line"><a id="l00039" name="l00039"></a><span class="lineno">   39</span>        m_Text = text;</div>
+<div class="line"><a id="l00040" name="l00040"></a><span class="lineno">   40</span>        ApplyTexture();</div>
+<div class="line"><a id="l00041" name="l00041"></a><span class="lineno">   41</span>    }</div>
+<div class="line"><a id="l00042" name="l00042"></a><span class="lineno">   42</span> </div>
+<div class="line"><a id="l00048" name="l00048"></a><span class="lineno"><a class="line" href="classUtil_1_1Text.html#a83bcae856763378dedb2105c6b443192">   48</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUtil_1_1Text.html#a83bcae856763378dedb2105c6b443192">SetColor</a>(<span class="keyword">const</span> <a class="code hl_class" href="classUtil_1_1Color.html">Util::Color</a> &amp;color) {</div>
+<div class="line"><a id="l00049" name="l00049"></a><span class="lineno">   49</span>        m_Color = color;</div>
+<div class="line"><a id="l00050" name="l00050"></a><span class="lineno">   50</span>        ApplyTexture();</div>
+<div class="line"><a id="l00051" name="l00051"></a><span class="lineno">   51</span>    };</div>
+<div class="line"><a id="l00052" name="l00052"></a><span class="lineno">   52</span> </div>
+<div class="line"><a id="l00059" name="l00059"></a><span class="lineno"><a class="line" href="classUtil_1_1Text.html#a3ade9a6419c098abd16b1c3b9c9c83ce">   59</a></span>    <span class="keywordtype">void</span> <a class="code hl_function" href="classUtil_1_1Text.html#a3ade9a6419c098abd16b1c3b9c9c83ce">Draw</a>(<span class="keyword">const</span> <a class="code hl_struct" href="structCore_1_1Matrices.html">Core::Matrices</a> &amp;data) <span class="keyword">override</span>;</div>
+<div class="line"><a id="l00060" name="l00060"></a><span class="lineno">   60</span> </div>
+<div class="line"><a id="l00061" name="l00061"></a><span class="lineno">   61</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00062" name="l00062"></a><span class="lineno">   62</span>    <span class="keywordtype">void</span> InitProgram();</div>
+<div class="line"><a id="l00063" name="l00063"></a><span class="lineno">   63</span>    <span class="keywordtype">void</span> InitVertexArray();</div>
+<div class="line"><a id="l00064" name="l00064"></a><span class="lineno">   64</span>    <span class="keywordtype">void</span> InitUniformBuffer();</div>
+<div class="line"><a id="l00065" name="l00065"></a><span class="lineno">   65</span> </div>
+<div class="line"><a id="l00071" name="l00071"></a><span class="lineno">   71</span>    <span class="keywordtype">void</span> ApplyTexture();</div>
+<div class="line"><a id="l00072" name="l00072"></a><span class="lineno">   72</span> </div>
+<div class="line"><a id="l00073" name="l00073"></a><span class="lineno">   73</span>    <span class="keyword">static</span> <span class="keyword">constexpr</span> <span class="keywordtype">int</span> UNIFORM_SURFACE_LOCATION = 0;</div>
+<div class="line"><a id="l00074" name="l00074"></a><span class="lineno">   74</span> </div>
+<div class="line"><a id="l00075" name="l00075"></a><span class="lineno">   75</span>    <span class="keyword">static</span> std::unique_ptr&lt;Core::Program&gt; s_Program;</div>
+<div class="line"><a id="l00076" name="l00076"></a><span class="lineno">   76</span>    <span class="keyword">static</span> std::unique_ptr&lt;Core::VertexArray&gt; s_VertexArray;</div>
+<div class="line"><a id="l00077" name="l00077"></a><span class="lineno">   77</span>    <span class="keyword">static</span> std::unique_ptr&lt;Core::UniformBuffer&lt;Core::Matrices&gt;&gt; s_UniformBuffer;</div>
+<div class="line"><a id="l00078" name="l00078"></a><span class="lineno">   78</span> </div>
+<div class="line"><a id="l00079" name="l00079"></a><span class="lineno">   79</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00080" name="l00080"></a><span class="lineno">   80</span>    std::unique_ptr&lt;Core::Texture&gt; m_Texture = <span class="keyword">nullptr</span>;</div>
+<div class="line"><a id="l00081" name="l00081"></a><span class="lineno">   81</span>    std::unique_ptr&lt;TTF_Font, std::function&lt;void(TTF_Font *)&gt;&gt; m_Font;</div>
+<div class="line"><a id="l00082" name="l00082"></a><span class="lineno">   82</span> </div>
+<div class="line"><a id="l00083" name="l00083"></a><span class="lineno">   83</span>    std::string m_Text;</div>
+<div class="line"><a id="l00084" name="l00084"></a><span class="lineno">   84</span>    <a class="code hl_class" href="classUtil_1_1Color.html">Util::Color</a> m_Color;</div>
+<div class="line"><a id="l00085" name="l00085"></a><span class="lineno">   85</span>    glm::vec2 m_Size;</div>
+<div class="line"><a id="l00086" name="l00086"></a><span class="lineno">   86</span>};</div>
+<div class="line"><a id="l00087" name="l00087"></a><span class="lineno">   87</span>} <span class="comment">// namespace Util</span></div>
+<div class="line"><a id="l00088" name="l00088"></a><span class="lineno">   88</span> </div>
+<div class="line"><a id="l00089" name="l00089"></a><span class="lineno">   89</span><span class="preprocessor">#endif</span></div>
+<div class="ttc" id="aclassCore_1_1Drawable_html"><div class="ttname"><a href="classCore_1_1Drawable.html">Core::Drawable</a></div><div class="ttdef"><b>Definition:</b> Drawable.hpp:14</div></div>
 <div class="ttc" id="aclassUtil_1_1Color_html"><div class="ttname"><a href="classUtil_1_1Color.html">Util::Color</a></div><div class="ttdoc">A class representing a color.</div><div class="ttdef"><b>Definition:</b> Color.hpp:19</div></div>
-<div class="ttc" id="aclassUtil_1_1Text_html"><div class="ttname"><a href="classUtil_1_1Text.html">Util::Text</a></div><div class="ttdoc">A class representing a text.</div><div class="ttdef"><b>Definition:</b> Text.hpp:23</div></div>
-<div class="ttc" id="aclassUtil_1_1Text_html_a23f19b1edefa474979211c28b7d3d4fa"><div class="ttname"><a href="classUtil_1_1Text.html#a23f19b1edefa474979211c28b7d3d4fa">Util::Text::SetText</a></div><div class="ttdeci">void SetText(const std::string &amp;text)</div><div class="ttdoc">Sets the text to the specified string.</div><div class="ttdef"><b>Definition:</b> Text.hpp:35</div></div>
-<div class="ttc" id="aclassUtil_1_1Text_html_a83bcae856763378dedb2105c6b443192"><div class="ttname"><a href="classUtil_1_1Text.html#a83bcae856763378dedb2105c6b443192">Util::Text::SetColor</a></div><div class="ttdeci">void SetColor(const Util::Color &amp;color)</div><div class="ttdoc">Sets the color of the text.</div><div class="ttdef"><b>Definition:</b> Text.hpp:45</div></div>
-<div class="ttc" id="aclassUtil_1_1Text_html_a956487132359c155994f6c58322a1a0d"><div class="ttname"><a href="classUtil_1_1Text.html#a956487132359c155994f6c58322a1a0d">Util::Text::Draw</a></div><div class="ttdeci">void Draw(const Transform &amp;transform, const float zIndex) override</div><div class="ttdoc">Draws the text with a given transform and z-index.</div></div>
+<div class="ttc" id="aclassUtil_1_1Text_html"><div class="ttname"><a href="classUtil_1_1Text.html">Util::Text</a></div><div class="ttdoc">A class representing a text.</div><div class="ttdef"><b>Definition:</b> Text.hpp:26</div></div>
+<div class="ttc" id="aclassUtil_1_1Text_html_a23f19b1edefa474979211c28b7d3d4fa"><div class="ttname"><a href="classUtil_1_1Text.html#a23f19b1edefa474979211c28b7d3d4fa">Util::Text::SetText</a></div><div class="ttdeci">void SetText(const std::string &amp;text)</div><div class="ttdoc">Sets the text to the specified string.</div><div class="ttdef"><b>Definition:</b> Text.hpp:38</div></div>
+<div class="ttc" id="aclassUtil_1_1Text_html_a3ade9a6419c098abd16b1c3b9c9c83ce"><div class="ttname"><a href="classUtil_1_1Text.html#a3ade9a6419c098abd16b1c3b9c9c83ce">Util::Text::Draw</a></div><div class="ttdeci">void Draw(const Core::Matrices &amp;data) override</div><div class="ttdoc">Draws the text with a given transform and z-index.</div></div>
+<div class="ttc" id="aclassUtil_1_1Text_html_a83bcae856763378dedb2105c6b443192"><div class="ttname"><a href="classUtil_1_1Text.html#a83bcae856763378dedb2105c6b443192">Util::Text::SetColor</a></div><div class="ttdeci">void SetColor(const Util::Color &amp;color)</div><div class="ttdoc">Sets the color of the text.</div><div class="ttdef"><b>Definition:</b> Text.hpp:48</div></div>
 <div class="ttc" id="anamespaceUtil_html"><div class="ttname"><a href="namespaceUtil.html">Util</a></div><div class="ttdoc">Useful tools for development.</div><div class="ttdef"><b>Definition:</b> Animation.hpp:12</div></div>
-<div class="ttc" id="astructUtil_1_1Transform_html"><div class="ttname"><a href="structUtil_1_1Transform.html">Util::Transform</a></div><div class="ttdoc">A struct representing a transformation in 2D space.</div><div class="ttdef"><b>Definition:</b> Transform.hpp:16</div></div>
+<div class="ttc" id="astructCore_1_1Matrices_html"><div class="ttname"><a href="structCore_1_1Matrices.html">Core::Matrices</a></div><div class="ttdef"><b>Definition:</b> Drawable.hpp:9</div></div>
 </div><!-- fragment --></div><!-- contents -->
 </div><!-- doc-content -->
 <!-- start footer part -->

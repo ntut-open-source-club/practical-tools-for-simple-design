@@ -118,9 +118,9 @@ Public Member Functions</h2></td></tr>
 &#160;</td><td class="memItemRight" valign="bottom"><b>GameObject</b> ()=default</td></tr>
 <tr class="memdesc:ae7df90c02e4d0fe5426b46fdc4d88c63"><td class="mdescLeft">&#160;</td><td class="mdescRight">Default constructor. <br /></td></tr>
 <tr class="separator:ae7df90c02e4d0fe5426b46fdc4d88c63"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a50de79f3094f1714add8eea6dbc1095c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1GameObject.html#a50de79f3094f1714add8eea6dbc1095c">GameObject</a> (const std::shared_ptr&lt; <a class="el" href="classCore_1_1Drawable.html">Core::Drawable</a> &gt; &amp;drawable, const float zIndex, const bool visible=true, const std::vector&lt; std::shared_ptr&lt; <a class="el" href="classUtil_1_1GameObject.html">GameObject</a> &gt; &gt; &amp;children=std::vector&lt; std::shared_ptr&lt; <a class="el" href="classUtil_1_1GameObject.html">GameObject</a> &gt; &gt;())</td></tr>
-<tr class="memdesc:a50de79f3094f1714add8eea6dbc1095c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameterized constructor.  <a href="classUtil_1_1GameObject.html#a50de79f3094f1714add8eea6dbc1095c">More...</a><br /></td></tr>
-<tr class="separator:a50de79f3094f1714add8eea6dbc1095c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0addc230eb32fcbfe5af0004f179e921"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1GameObject.html#a0addc230eb32fcbfe5af0004f179e921">GameObject</a> (const std::shared_ptr&lt; <a class="el" href="classCore_1_1Drawable.html">Core::Drawable</a> &gt; &amp;drawable, const float zIndex, const glm::vec2 &amp;pivot={0, 0}, const bool visible=true, const std::vector&lt; std::shared_ptr&lt; <a class="el" href="classUtil_1_1GameObject.html">GameObject</a> &gt; &gt; &amp;children=std::vector&lt; std::shared_ptr&lt; <a class="el" href="classUtil_1_1GameObject.html">GameObject</a> &gt; &gt;())</td></tr>
+<tr class="memdesc:a0addc230eb32fcbfe5af0004f179e921"><td class="mdescLeft">&#160;</td><td class="mdescRight">Parameterized constructor.  <a href="classUtil_1_1GameObject.html#a0addc230eb32fcbfe5af0004f179e921">More...</a><br /></td></tr>
+<tr class="separator:a0addc230eb32fcbfe5af0004f179e921"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a2b42040c45d8043eef7225fcddd9ecde"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1GameObject.html#a2b42040c45d8043eef7225fcddd9ecde">GameObject</a> (const <a class="el" href="classUtil_1_1GameObject.html">GameObject</a> &amp;other)=default</td></tr>
 <tr class="memdesc:a2b42040c45d8043eef7225fcddd9ecde"><td class="mdescLeft">&#160;</td><td class="mdescRight">Copy constructor.  <a href="classUtil_1_1GameObject.html#a2b42040c45d8043eef7225fcddd9ecde">More...</a><br /></td></tr>
 <tr class="separator:a2b42040c45d8043eef7225fcddd9ecde"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -147,6 +147,9 @@ virtual&#160;</td><td class="memItemRight" valign="bottom"><b>~GameObject</b> ()
 <tr class="memitem:a6d90442f733edd59e4fcf2d49477a351"><td class="memItemLeft" align="right" valign="top">const std::vector&lt; std::shared_ptr&lt; <a class="el" href="classUtil_1_1GameObject.html">GameObject</a> &gt; &gt; &amp;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1GameObject.html#a6d90442f733edd59e4fcf2d49477a351">GetChildren</a> () const</td></tr>
 <tr class="memdesc:a6d90442f733edd59e4fcf2d49477a351"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the children of the game object.  <a href="classUtil_1_1GameObject.html#a6d90442f733edd59e4fcf2d49477a351">More...</a><br /></td></tr>
 <tr class="separator:a6d90442f733edd59e4fcf2d49477a351"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a3f410f4a45f0a1854320061a3dbe068f"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1GameObject.html#a3f410f4a45f0a1854320061a3dbe068f">SetPivot</a> (const glm::vec2 &amp;pivot)</td></tr>
+<tr class="memdesc:a3f410f4a45f0a1854320061a3dbe068f"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the pivot of the game object.  <a href="classUtil_1_1GameObject.html#a3f410f4a45f0a1854320061a3dbe068f">More...</a><br /></td></tr>
+<tr class="separator:a3f410f4a45f0a1854320061a3dbe068f"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afe8d38d2c43d4967a39b59c4edb1d1e0"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1GameObject.html#afe8d38d2c43d4967a39b59c4edb1d1e0">SetZIndex</a> (float index)</td></tr>
 <tr class="memdesc:afe8d38d2c43d4967a39b59c4edb1d1e0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the z-index of the game object. z-index is used to determine the order in which game objects are drawn, the greater z-index, the topper the its Util::Drawable is.  <a href="classUtil_1_1GameObject.html#afe8d38d2c43d4967a39b59c4edb1d1e0">More...</a><br /></td></tr>
 <tr class="separator:afe8d38d2c43d4967a39b59c4edb1d1e0"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -186,13 +189,16 @@ float&#160;</td><td class="memItemRight" valign="bottom"><b>m_ZIndex</b> = 0</td
 <tr class="memitem:a6dbd9660579d958a1074db01829683aa"><td class="memItemLeft" align="right" valign="top"><a id="a6dbd9660579d958a1074db01829683aa" name="a6dbd9660579d958a1074db01829683aa"></a>
 bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_Visible</b> = true</td></tr>
 <tr class="separator:a6dbd9660579d958a1074db01829683aa"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0804a78aac5365b904682d5442355cee"><td class="memItemLeft" align="right" valign="top"><a id="a0804a78aac5365b904682d5442355cee" name="a0804a78aac5365b904682d5442355cee"></a>
+glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><b>m_Pivot</b></td></tr>
+<tr class="separator:a0804a78aac5365b904682d5442355cee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >A class representing a game object. </p>
 <p >This class encapsulates the properties and behaviors of a game object. </p><dl class="section note"><dt>Note</dt><dd>This is an abstract class. Inherit from this class to create your own game objects. </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a50de79f3094f1714add8eea6dbc1095c" name="a50de79f3094f1714add8eea6dbc1095c"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a50de79f3094f1714add8eea6dbc1095c">&#9670;&#160;</a></span>GameObject() <span class="overload">[1/2]</span></h2>
+<a id="a0addc230eb32fcbfe5af0004f179e921" name="a0addc230eb32fcbfe5af0004f179e921"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a0addc230eb32fcbfe5af0004f179e921">&#9670;&#160;</a></span>GameObject() <span class="overload">[1/2]</span></h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -211,6 +217,12 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_Visible</b> = true<
           <td></td>
           <td class="paramtype">const float&#160;</td>
           <td class="paramname"><em>zIndex</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const glm::vec2 &amp;&#160;</td>
+          <td class="paramname"><em>pivot</em> = <code>{0,&#160;0}</code>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
@@ -494,6 +506,40 @@ bool&#160;</td><td class="memItemRight" valign="bottom"><b>m_Visible</b> = true<
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">drawable</td><td>The new drawable component of the game object. </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<a id="a3f410f4a45f0a1854320061a3dbe068f" name="a3f410f4a45f0a1854320061a3dbe068f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a3f410f4a45f0a1854320061a3dbe068f">&#9670;&#160;</a></span>SetPivot()</h2>
+
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Util::GameObject::SetPivot </td>
+          <td>(</td>
+          <td class="paramtype">const glm::vec2 &amp;&#160;</td>
+          <td class="paramname"><em>pivot</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">inline</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+
+<p>Set the pivot of the game object. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">pivot</td><td>The pivot of the game object. </td></tr>
   </table>
   </dd>
 </dl>

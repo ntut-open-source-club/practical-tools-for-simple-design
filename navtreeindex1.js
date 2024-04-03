@@ -1,5 +1,7 @@
 var NAVTREEINDEX1 =
 {
+"md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md10":[3,0],
+"md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md11":[3,1],
 "md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md12":[3,2],
 "md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md13":[3,3],
 "md__github_docs_Code_Styles_and_Guidelines.html#autotoc_md14":[3,4],
@@ -247,7 +249,5 @@ var NAVTREEINDEX1 =
 "namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5aef373774188a51f80463f37b6bd9e83a":[4,0,1,13,155],
 "namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5af04b16e01e2458b2442f49b30b5d1938":[4,0,1,13,130],
 "namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5af09564c9ca56850d4cd6b3319e541aee":[4,0,1,13,18],
-"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5af186217753c37b9b9f958d906208506e":[4,0,1,13,16],
-"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5af1abec704339d368b3b9d4e219b40c94":[4,0,1,13,128],
-"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5af45fde1eaac63c5a55cf87e584f5e6bb":[4,0,1,13,34]
+"namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5af186217753c37b9b9f958d906208506e":[4,0,1,13,16]
 };
