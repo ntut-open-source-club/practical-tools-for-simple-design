@@ -32,14 +32,9 @@ Image::Image(const std::string &filepath)
     if (s_VertexArray == nullptr) {
         InitVertexArray();
     }
-#ifndef __APPLE__
-    if (m_UniformBuffer == nullptr) {
-        InitUniformBuffer();
-    }
-#else
+
     m_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
-#endif
 
     auto surface = s_Store.Get(filepath);
 
@@ -115,20 +110,8 @@ void Image::InitVertexArray() {
     // NOLINTEND
 }
 
-#ifndef __APPLE__
-void Image::InitUniformBuffer() {
-    m_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
-        *s_Program, "Matrices", 0);
-}
-#endif
-
 std::unique_ptr<Core::Program> Image::s_Program = nullptr;
 std::unique_ptr<Core::VertexArray> Image::s_VertexArray = nullptr;
-
-#ifndef __APPLE__
-std::unique_ptr<Core::UniformBuffer<Core::Matrices>> Image::m_UniformBuffer =
-    nullptr;
-#endif
 
 Util::AssetStore<std::shared_ptr<SDL_Surface>> Image::s_Store(LoadSurface);
 } // namespace Util

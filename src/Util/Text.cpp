@@ -33,14 +33,8 @@ Text::Text(const std::string &font, int fontSize, const std::string &text,
         InitVertexArray();
     }
 
-#ifndef __APPLE__
-    if (m_UniformBuffer == nullptr) {
-        InitUniformBuffer();
-    }
-#else
     m_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
-#endif
 
     m_Font = {TTF_OpenFontRW(s_Store.Get(font).get(), 0, fontSize),
               TTF_CloseFont};
@@ -138,20 +132,8 @@ void Text::ApplyTexture() {
     m_Size = {surface->pitch / surface->format->BytesPerPixel, surface->h};
 }
 
-#ifndef __APPLE__
-void Text::InitUniformBuffer() {
-    m_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
-        *s_Program, "Matrices", 0);
-}
-#endif
-
 std::unique_ptr<Core::Program> Text::s_Program = nullptr;
 std::unique_ptr<Core::VertexArray> Text::s_VertexArray = nullptr;
-
-#ifndef __APPLE__
-std::unique_ptr<Core::UniformBuffer<Core::Matrices>> Text::m_UniformBuffer =
-    nullptr;
-#endif
 
 Util::AssetStore<std::shared_ptr<SDL_RWops>> Text::s_Store(LoadFontFile);
 } // namespace Util
