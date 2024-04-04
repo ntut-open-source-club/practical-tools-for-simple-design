@@ -120,6 +120,27 @@ void Image::UpdateTextureData(const SDL_Surface &surface) {
     m_Size = {surface.w, surface.h};
 }
 
+void Image::SetAlpha(const Uint8 alpha) {
+    auto OriginalBlendMode = SDL_BlendMode::SDL_BLENDMODE_BLEND;
+    SDL_SetSurfaceAlphaMod(m_Surface.get(), alpha);
+    SDL_GetSurfaceBlendMode(m_Surface.get(), &OriginalBlendMode);
+    SDL_SetSurfaceBlendMode(m_Surface.get(), SDL_BLENDMODE_BLEND);
+
+    auto targetSurface =
+        std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
+            SDL_CreateRGBSurfaceWithFormat(0, m_Surface->w, m_Surface->h,
+                                           m_Surface->format->BitsPerPixel,
+                                           m_Surface->format->format),
+            SDL_FreeSurface,
+        };
+    SDL_BlitSurface(m_Surface.get(), NULL, targetSurface.get(), NULL);
+    m_Texture->UpdateData(
+        Core::SdlFormatToGlFormat(targetSurface->format->format),
+        targetSurface->w, targetSurface->h, targetSurface->pixels);
+    SDL_SetSurfaceAlphaMod(m_Surface.get(), 255);
+    SDL_SetSurfaceBlendMode(m_Surface.get(), OriginalBlendMode);
+}
+
 std::unique_ptr<Core::Program> Image::s_Program = nullptr;
 std::unique_ptr<Core::VertexArray> Image::s_VertexArray = nullptr;
 
