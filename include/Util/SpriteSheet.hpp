@@ -47,9 +47,13 @@ public:
 
     void RestDrawRect();
 
+    void SetAlpha(const Uint8 alpha);
+
 private:
     std::unique_ptr<Image> m_Image;
     SDL_Rect m_OriginRect;
+    SDL_Rect m_DisplayRect;
+    Uint8 m_Alpha = 255;
 };
 
 } // namespace Util

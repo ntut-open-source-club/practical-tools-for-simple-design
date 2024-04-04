@@ -73,6 +73,8 @@ public:
      */
     void UpdateTextureData(const SDL_Surface &surface);
 
+    void SetAlpha(const Uint8 alpha);
+
 private:
     void InitProgram();
     void InitVertexArray();

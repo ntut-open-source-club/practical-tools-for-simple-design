@@ -7,6 +7,7 @@ SpriteSheet::SpriteSheet(const std::string &filepath)
     m_OriginRect.y = 0;
     m_OriginRect.w = m_Image->GetSize().x;
     m_OriginRect.h = m_Image->GetSize().y;
+    m_DisplayRect = m_OriginRect;
 }
 
 void SpriteSheet::SetImage(const std::string &filepath) {
@@ -15,6 +16,7 @@ void SpriteSheet::SetImage(const std::string &filepath) {
     m_OriginRect.y = 0;
     m_OriginRect.w = m_Image->GetSize().x;
     m_OriginRect.h = m_Image->GetSize().y;
+    m_DisplayRect = m_OriginRect;
 }
 
 void SpriteSheet::Draw(const Util::Transform &transform, const float zIndex) {
@@ -27,6 +29,7 @@ glm::vec2 SpriteSheet::GetSize() const {
 
 void SpriteSheet::RestDrawRect() {
     SetDrawRect(m_OriginRect);
+    m_DisplayRect = m_OriginRect;
 }
 
 void SpriteSheet::SetDrawRect(const SDL_Rect displayRect) {
@@ -40,6 +43,12 @@ void SpriteSheet::SetDrawRect(const SDL_Rect displayRect) {
         return;
     }
 
+    auto OriginalBlendMode = SDL_BlendMode::SDL_BLENDMODE_BLEND;
+    SDL_GetSurfaceBlendMode(&originSDLSurface, &OriginalBlendMode);
+    SDL_SetSurfaceAlphaMod(&originSDLSurface, m_Alpha);
+    SDL_SetSurfaceBlendMode(&originSDLSurface,
+                            SDL_BlendMode::SDL_BLENDMODE_NONE);
+
     auto targetSurface =
         std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
             SDL_CreateRGBSurfaceWithFormat(
@@ -51,11 +60,22 @@ void SpriteSheet::SetDrawRect(const SDL_Rect displayRect) {
 
     int isCopyWork = SDL_BlitSurface(&originSDLSurface, &displayRect,
                                      targetSurface.get(), NULL);
+
+    SDL_SetSurfaceAlphaMod(&originSDLSurface, 255);
+    SDL_SetSurfaceBlendMode(&originSDLSurface, OriginalBlendMode);
+
     if (isCopyWork != 0) {
         LOG_ERROR("{}", SDL_GetError());
         return;
     }
+
+    m_DisplayRect = displayRect;
     m_Image->UpdateTextureData(*targetSurface.get());
+}
+
+void SpriteSheet::SetAlpha(const Uint8 alpha) {
+    m_Alpha = alpha;
+    SetDrawRect(m_DisplayRect);
 }
 
 } // namespace Util
