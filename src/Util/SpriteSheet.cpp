@@ -19,8 +19,8 @@ void SpriteSheet::SetImage(const std::string &filepath) {
     m_DisplayRect = m_OriginRect;
 }
 
-void SpriteSheet::Draw(const Util::Transform &transform, const float zIndex) {
-    m_Image->Draw(transform, zIndex);
+void SpriteSheet::Draw(const Core::Matrices &data) {
+    m_Image->Draw(data);
 }
 
 glm::vec2 SpriteSheet::GetSize() const {

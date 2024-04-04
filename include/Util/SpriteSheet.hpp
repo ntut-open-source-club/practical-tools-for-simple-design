@@ -19,7 +19,7 @@ public:
      * @param transform The transform to apply to the image.
      * @param zIndex The z-index at which to draw the image.
      */
-    void Draw(const Util::Transform &transform, const float zIndex) override;
+    void Draw(const Core::Matrices &data) override;
     /**
      * @brief Retrieves the size of the image.
      *

@@ -160,7 +160,7 @@ protected:
 
     float m_ZIndex = 0;
     bool m_Visible = true;
-    glm::vec2 m_Pivot;
+    glm::vec2 m_Pivot = {0, 0};
 };
 } // namespace Util
 #endif
