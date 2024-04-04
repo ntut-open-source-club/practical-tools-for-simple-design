@@ -1,6 +1,5 @@
 #include "Util/Image.hpp"
 
-#include "SDL_surface.h"
 #include "Util/Logger.hpp"
 #include "pch.hpp"
 
@@ -11,7 +10,7 @@
 #include "Util/TransformUtils.hpp"
 
 #include "config.hpp"
-#include <memory>
+#include <glm/fwd.hpp>
 
 std::shared_ptr<SDL_Surface> LoadSurface(const std::string &filepath) {
     auto surface = std::shared_ptr<SDL_Surface>(IMG_Load(filepath.c_str()),
@@ -55,8 +54,7 @@ void Image::SetImage(const std::string &filepath) {
     m_Size = {m_Surface->w, m_Surface->h};
 }
 
-void Image::Draw(const Util::Transform &transform, const float zIndex) {
-    auto data = Util::ConvertToUniformBufferData(transform, m_Size, zIndex);
+void Image::Draw(const Core::Matrices &data) {
     m_UniformBuffer->SetData(0, data);
 
     m_Texture->Bind(UNIFORM_SURFACE_LOCATION);
