@@ -76,6 +76,14 @@ FetchContent_Declare(
     SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui
 )
 
+FetchContent_Declare(
+    nlohmann_json
+
+    URL https://github.com/nlohmann/json/releases/download/v3.11.3/include.zip
+    URL_HASH MD5=e2f46211f4cf5285412a63e8164d4ba6
+    SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/nlohmann_json
+)
+
 set(BUILD_SHARED_LIBS FALSE)
 
 set(SDL2IMAGE_INSTALL OFF)
@@ -97,7 +105,7 @@ set(SDL2MIXER_VOC OFF)
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
-FetchContent_MakeAvailable(sdl2 sdl2_image sdl2_ttf sdl2_mixer spdlog glm googletest)
+FetchContent_MakeAvailable(sdl2 sdl2_image sdl2_ttf sdl2_mixer spdlog glm googletest nlohmann_json)
 
 add_compile_definitions(GLEW_NO_GLU)
 
@@ -134,6 +142,7 @@ if (NOT ${imgui_POPULATED})
     )
 endif()
 
+
 set(DEPENDENCY_LINK_LIBRARIES
     ${OPENGL_LIBRARY}
     glew_s
@@ -146,6 +155,8 @@ set(DEPENDENCY_LINK_LIBRARIES
     spdlog::spdlog
 
     ImGui
+
+    nlohmann_json
 )
 
 set(DEPENDENCY_INCLUDE_DIRS
@@ -154,4 +165,5 @@ set(DEPENDENCY_INCLUDE_DIRS
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/spdlog/include/
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/glm/
     ${IMGUI_INCLUDE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/nlohmann_json/include/
 )
