@@ -42,6 +42,9 @@ private:
 
     unsigned int m_WindowWidth = WINDOW_WIDTH;
     unsigned int m_WindowHeight = WINDOW_HEIGHT;
+
+    Uint32 m_FPS_Timer = 0;
+    Uint32 m_FPS_DeltaTime = 0;
 };
 
 } // namespace Core

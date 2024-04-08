@@ -125,7 +125,11 @@ void Context::Update() {
 
     constexpr double frameTime =
         FPS_CAP != 0 ? 1000 / static_cast<double>(FPS_CAP) : 0;
-    SDL_Delay(static_cast<Uint32>(frameTime - Util::Time::GetDeltaTime()));
+    m_FPS_DeltaTime = Util::Time::GetElapsedTimeMs() - m_FPS_Timer;
+    if (m_FPS_DeltaTime < frameTime) {
+        SDL_Delay(static_cast<Uint32>(frameTime - m_FPS_DeltaTime));
+    }
+    m_FPS_Timer = Util::Time::GetElapsedTimeMs();
 }
 
 std::shared_ptr<Context> Context::GetInstance() {
