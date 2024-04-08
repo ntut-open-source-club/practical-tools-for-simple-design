@@ -28,6 +28,16 @@ public:
     static double GetDeltaTime() { return s_DeltaTime; }
 
     /**
+     * @brief Get the delta time between function call Update in seconds.
+     *
+     * This function returns the time difference between the current function call and
+     * the function call. The time difference is measured in seconds.
+     *
+     * @return The delta time between frames in seconds.
+     */
+    static double GetExecutionTime() { return s_ExecTime; }
+
+    /**
      * @brief Get the elapsed time from the start of the program in
      * milliseconds.
      *
@@ -71,6 +81,10 @@ private:
      * the last frame.
      */
     static double s_DeltaTime;
+
+    static double s_ExecTime;
+
+    static double s_LastExecTime;
 };
 } // namespace Util
 

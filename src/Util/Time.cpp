@@ -15,9 +15,16 @@ void Util::Time::Update() {
 
     s_DeltaTime = static_cast<double>(s_Now - s_Last) /
                   static_cast<double>(SDL_GetPerformanceFrequency());
+
+    s_ExecTime = s_DeltaTime - s_LastExecTime;
+    s_LastExecTime = s_DeltaTime;
+
+    s_ExecTime = s_ExecTime < 0 ? 0.000f : s_ExecTime;
 }
 
 unsigned long Util::Time::s_Start = SDL_GetPerformanceCounter();
 unsigned long Util::Time::s_Now = SDL_GetPerformanceCounter();
 unsigned long Util::Time::s_Last = 0;
 double Util::Time::s_DeltaTime = 0;
+double Util::Time::s_LastExecTime = 0.0f;
+double Util::Time::s_ExecTime = 0.0f;
