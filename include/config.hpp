@@ -20,6 +20,6 @@ constexpr Util::Logger::Level DEFAULT_LOG_LEVEL = Util::Logger::Level::DEBUG;
  *
  * Set value to 0 to turn off FPS cap
  */
-constexpr unsigned int FPS_CAP = 0;
+constexpr unsigned int FPS_CAP = 60;
 
 #endif
