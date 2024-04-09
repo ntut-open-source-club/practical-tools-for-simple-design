@@ -48,6 +48,9 @@ Context::Context() {
         LOG_ERROR(SDL_GetError());
     }
 
+    SDL_Surface* image = IMG_Load(ASSETS_DIR "/icon.jpg");
+    SDL_SetWindowIcon(m_Window, image);
+
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK,
                         SDL_GL_CONTEXT_PROFILE_CORE);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);

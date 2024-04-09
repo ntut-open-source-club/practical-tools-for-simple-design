@@ -128,6 +128,9 @@ if (${PTSD_ENABLE_PCH})
         include/pch.hpp
     )
 endif()
+
+target_compile_definitions(PTSD PRIVATE ASSETS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/assets")
+
 target_compile_options(PTSD PRIVATE
     ${TARGET_COMPILE_OPTIONS}
 )
