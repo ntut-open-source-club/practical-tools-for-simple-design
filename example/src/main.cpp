@@ -9,7 +9,7 @@ int main(int, char **) {
     App app;
 
     // set icon in window.
-    context->SetWindowIcon(ASSETS_DIR"/icon.jpg");
+    context->SetWindowIcon(ASSETS_DIR "/icon.jpg");
 
     while (!context->GetExit()) {
         context->Setup();
