@@ -48,9 +48,6 @@ Context::Context() {
         LOG_ERROR(SDL_GetError());
     }
 
-    SDL_Surface* image = IMG_Load(ASSETS_DIR "/icon.jpg");
-    SDL_SetWindowIcon(m_Window, image);
-
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK,
                         SDL_GL_CONTEXT_PROFILE_CORE);
     SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 4);
@@ -137,4 +134,11 @@ std::shared_ptr<Context> Context::GetInstance() {
     }
     return s_Instance;
 }
+
+void Context::SetWindowIcon(const std::string path) {
+    SDL_Surface* image = IMG_Load(path.c_str());
+    SDL_SetWindowIcon(m_Window, image);
+}
 } // namespace Core
+
+

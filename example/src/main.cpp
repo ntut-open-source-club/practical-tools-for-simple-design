@@ -10,6 +10,7 @@ int main(int, char **) {
 
     while (!context->GetExit()) {
         context->Setup();
+        context->SetWindowIcon(ASSETS_DIR"/icon.jpg");
 
         switch (app.GetCurrentState()) {
         case App::State::START:
