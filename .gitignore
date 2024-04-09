@@ -8,7 +8,7 @@
 
 # Ignore .DS_Store file from a git repository
 
-./**/.DS_Store
+.DS_Store
 
 # User-specific stuff
 .idea/**/workspace.xml
