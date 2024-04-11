@@ -1,5 +1,5 @@
-#ifndef UTIL_MISSING_FONT_TEXTURE_HPP
-#define UTIL_MISSING_FONT_TEXTURE_HPP
+#ifndef UTIL_MISSING_TEXTURE_HPP
+#define UTIL_MISSING_TEXTURE_HPP
 
 #include <SDL.h>
 #include <SDL_image.h>
