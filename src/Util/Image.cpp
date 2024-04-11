@@ -3,11 +3,10 @@
 #include "Util/Logger.hpp"
 #include "pch.hpp"
 
+#include "Util/MissingTexture.hpp"
 #include "Core/Texture.hpp"
 #include "Core/TextureUtils.hpp"
 #include "Util/TransformUtils.hpp"
-#include "Util/Image.hpp"
-#include "Util/MissingTexture.hpp"
 
 #include "config.hpp"
 #include <glm/fwd.hpp>
