@@ -4,8 +4,6 @@
 #include <SDL.h>
 #include <SDL_image.h>
 #include <Util/Logger.hpp>
-#include <iostream>
-#include <string>
 
 #include "Base64.hpp"
 #include "Core/MissingImageTextureBase64.hpp"
