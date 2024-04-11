@@ -3,7 +3,7 @@
 #include "Core/Texture.hpp"
 #include "Core/TextureUtils.hpp"
 
-#include "Util/MissingFontTexture.hpp"
+#include "Util/MissingTexture.hpp"
 #include "Util/Text.hpp"
 #include "Util/TransformUtils.hpp"
 

@@ -1,14 +1,10 @@
-#include "Util/Image.hpp"
-
-#include "pch.hpp"
-
 #include "Core/Texture.hpp"
 #include "Core/TextureUtils.hpp"
-
-#include "Util/MissingImageTexture.hpp"
 #include "Util/TransformUtils.hpp"
+#include "Util/Image.hpp"
+#include "Util/MissingTexture.hpp"
 
-#include "config.hpp"
+#include "pch.hpp"
 
 namespace Util {
 Image::Image(const std::string &filepath)
