@@ -51,8 +51,7 @@ set(SRC_FILES
     ${SRC_DIR}/Util/Renderer.cpp
     ${SRC_DIR}/Util/Color.cpp
     ${SRC_DIR}/Util/Animation.cpp
-    ${SRC_DIR}/Util/MissingImageTexture.cpp
-    ${SRC_DIR}/Util/MissingFontTexture.cpp
+    ${SRC_DIR}/Util/MissingTexture.cpp
 
     ${SRC_DIR}/App.cpp
     ${SRC_DIR}/Giraffe.cpp
@@ -73,8 +72,7 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Core/Texture.hpp
     ${INCLUDE_DIR}/Core/TextureUtils.hpp
     ${INCLUDE_DIR}/Core/Drawable.hpp
-    ${INCLUDE_DIR}/Util/MissingImageTexture.hpp
-    ${INCLUDE_DIR}/Util/MissingFontTexture.hpp
+    ${INCLUDE_DIR}/Util/MissingTexture.hpp
 
     ${INCLUDE_DIR}/Util/LoadTextFile.hpp
     ${INCLUDE_DIR}/Util/Logger.hpp
