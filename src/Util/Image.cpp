@@ -3,9 +3,9 @@
 #include "Util/Logger.hpp"
 #include "pch.hpp"
 
-#include "Util/MissingTexture.hpp"
 #include "Core/Texture.hpp"
 #include "Core/TextureUtils.hpp"
+#include "Util/MissingTexture.hpp"
 #include "Util/TransformUtils.hpp"
 
 #include "config.hpp"
