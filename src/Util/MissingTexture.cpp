@@ -2,7 +2,7 @@
 #include <SDL_image.h>
 #include <Util/Logger.hpp>
 
-#include "Util/MissingFontTexture.hpp"
+#include "Util/MissingTexture.hpp"
 
 SDL_Surface *GetMissingFontTextureSDLSurface() {
     SDL_RWops *rwop =
