@@ -36,9 +36,9 @@ Text::Text(const std::string &font, int fontSize, const std::string &text,
     } else {
         surface =
             std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
-                TTF_RenderUTF8_Blended_Wrapped(m_Font.get(), m_Text.c_str(),
-                                               m_Color.ToSdlColor(), 0),
-                SDL_FreeSurface,
+                TTF_RenderUTF8_Blended_Wrapped(
+                    m_Font.get(), m_Text.c_str(), m_Color.ToSdlColor(), 0
+                ), SDL_FreeSurface,
             };
         }
 
