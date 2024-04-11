@@ -32,6 +32,8 @@ private:
 
     std::shared_ptr<Cat> m_Cat = std::make_shared<Cat>();
     Util::Renderer m_Root;
+
+    bool showDemoWindow = true;
 };
 
 #endif
