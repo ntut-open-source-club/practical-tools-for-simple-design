@@ -134,4 +134,9 @@ std::shared_ptr<Context> Context::GetInstance() {
     }
     return s_Instance;
 }
+
+void Context::SetWindowIcon(const std::string &path) {
+    SDL_Surface *image = IMG_Load(path.c_str());
+    SDL_SetWindowIcon(m_Window, image);
+}
 } // namespace Core
