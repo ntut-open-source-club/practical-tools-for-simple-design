@@ -3,13 +3,15 @@
 
 #include "pch.hpp" // IWYU pragma: export
 
-#include <functional>
 #include <glm/fwd.hpp>
 
 #include "Core/Drawable.hpp"
+#include "Core/Program.hpp"
 #include "Core/Texture.hpp"
+#include "Core/UniformBuffer.hpp"
+#include "Core/VertexArray.hpp"
 
-#include "Util/Logger.hpp"
+#include "Util/AssetStore.hpp"
 #include "Util/Transform.hpp"
 
 namespace Util {
@@ -57,7 +59,7 @@ public:
      * @param transform The transform to apply to the image.
      * @param zIndex The z-index at which to draw the image.
      */
-    void Draw(const Util::Transform &transform, const float zIndex) override;
+    void Draw(const Core::Matrices &data) override;
 
 private:
     void InitProgram();
@@ -68,7 +70,9 @@ private:
 
     static std::unique_ptr<Core::Program> s_Program;
     static std::unique_ptr<Core::VertexArray> s_VertexArray;
-    static std::unique_ptr<Core::UniformBuffer<Core::Matrices>> s_UniformBuffer;
+    std::unique_ptr<Core::UniformBuffer<Core::Matrices>> m_UniformBuffer;
+
+    static Util::AssetStore<std::shared_ptr<SDL_Surface>> s_Store;
 
 private:
     std::unique_ptr<Core::Texture> m_Texture = nullptr;

@@ -8,13 +8,11 @@ namespace Util {
 
 // init all static members
 SDL_Event Input::s_Event = SDL_Event();
-const Uint8 *Input::s_CurrentKeyState = SDL_GetKeyboardState(nullptr);
-std::unordered_map<int, bool> Input::s_LastKeyState = {};
 
 glm::vec2 Input::s_CursorPosition = glm::vec2(0.0F);
 glm::vec2 Input::s_ScrollDistance = glm::vec2(-1.0F, -1.0F);
 
-std::unordered_map<Keycode, std::pair<bool, bool>> Input::s_MouseState = {
+std::unordered_map<Keycode, std::pair<bool, bool>> Input::s_KeyState = {
     std::make_pair(Keycode::MOUSE_LB, std::make_pair(false, false)),
     std::make_pair(Keycode::MOUSE_RB, std::make_pair(false, false)),
     std::make_pair(Keycode::MOUSE_MB, std::make_pair(false, false)),
@@ -24,38 +22,31 @@ bool Input::s_Scroll = false;
 bool Input::s_MouseMoving = false;
 bool Input::s_Exit = false;
 
-bool Input::IsKeyPressed(const Keycode &key) {
-    if (key > Keycode::NUM_SCANCODES) {
-        return s_MouseState[key].second; // && !s_MouseState[key].first;
-    }
+ImGuiIO Input::s_Io; // allocate memory only because it is invalid
+                     // to call `ImGui::GetIO()` at this time
 
-    const auto index = static_cast<const int>(key);
-    return s_CurrentKeyState[index] != 0 && s_LastKeyState[index] != 0;
+bool Input::IsKeyPressed(const Keycode &key) {
+
+    return s_KeyState[key].second;
 }
 
 bool Input::IsKeyDown(const Keycode &key) {
-    if (key > Keycode::NUM_SCANCODES) {
-        return s_MouseState[key].second && !s_MouseState[key].first;
-    }
 
-    const auto index = static_cast<const int>(key);
-    return s_CurrentKeyState[index] != 0 && s_LastKeyState[index] == 0;
+    return s_KeyState[key].second && !s_KeyState[key].first;
 }
 
 bool Input::IsKeyUp(const Keycode &key) {
-    if (key > Keycode::NUM_SCANCODES) {
-        return !s_MouseState[key].second && s_MouseState[key].first;
-    }
 
-    const auto index = static_cast<const int>(key);
-    return s_CurrentKeyState[index] == 0 && s_LastKeyState[index] != 0;
+    return !s_KeyState[key].second && s_KeyState[key].first;
 }
 
 bool Input::IsMouseMoving() {
+
     return s_MouseMoving;
 }
 
 bool Input::IfScroll() {
+
     return s_Scroll;
 }
 
@@ -64,7 +55,24 @@ bool Input::IfExit() {
 }
 
 glm::vec2 Input::GetScrollDistance() {
+
     return s_ScrollDistance;
+}
+
+void Input::UpdateKeyState(const SDL_Event *event) {
+    if (event->type == SDL_MOUSEBUTTONDOWN) {
+        s_KeyState[static_cast<Keycode>(512 + event->button.button)].second =
+            true;
+    } else if (event->type == SDL_MOUSEBUTTONUP) {
+        s_KeyState[static_cast<Keycode>(512 + event->button.button)].second =
+            false;
+    } else if (event->type == SDL_KEYDOWN) {
+        s_KeyState[static_cast<Keycode>(event->key.keysym.scancode)].second =
+            true;
+    } else if (event->type == SDL_KEYUP) {
+        s_KeyState[static_cast<Keycode>(event->key.keysym.scancode)].second =
+            false;
+    }
 }
 
 void Input::Update() {
@@ -79,45 +87,22 @@ void Input::Update() {
 
     s_Scroll = s_MouseMoving = false;
 
-    for (int i = 0; i < 512; ++i) {
-        s_LastKeyState[i] = s_CurrentKeyState[i];
+    for (auto &[_, i] : s_KeyState) {
+        i.first = i.second;
     }
 
-    s_MouseState[Keycode::MOUSE_LB].first =
-        s_MouseState[Keycode::MOUSE_LB].second;
-
-    s_MouseState[Keycode::MOUSE_RB].first =
-        s_MouseState[Keycode::MOUSE_RB].second;
-
-    s_MouseState[Keycode::MOUSE_MB].first =
-        s_MouseState[Keycode::MOUSE_MB].second;
+    s_Io = ImGui::GetIO();
 
     while (SDL_PollEvent(&s_Event) != 0) {
-        if (s_Event.type == SDL_MOUSEBUTTONUP &&
-            s_Event.button.button == SDL_BUTTON_LEFT) {
-            s_MouseState[Keycode::MOUSE_LB].second = false;
+        if (s_Io.WantCaptureMouse) {
+            ImGui_ImplSDL2_ProcessEvent(&s_Event);
+            continue;
         }
-        if (s_Event.type == SDL_MOUSEBUTTONDOWN &&
-            s_Event.button.button == SDL_BUTTON_LEFT) {
-            s_MouseState[Keycode::MOUSE_LB].second = true;
-        }
-
-        if (s_Event.type == SDL_MOUSEBUTTONUP &&
-            s_Event.button.button == SDL_BUTTON_RIGHT) {
-            s_MouseState[Keycode::MOUSE_RB].second = false;
-        }
-        if (s_Event.type == SDL_MOUSEBUTTONDOWN &&
-            s_Event.button.button == SDL_BUTTON_RIGHT) {
-            s_MouseState[Keycode::MOUSE_RB].second = true;
-        }
-
-        if (s_Event.type == SDL_MOUSEBUTTONUP &&
-            s_Event.button.button == SDL_BUTTON_MIDDLE) {
-            s_MouseState[Keycode::MOUSE_MB].second = false;
-        }
-        if (s_Event.type == SDL_MOUSEBUTTONDOWN &&
-            s_Event.button.button == SDL_BUTTON_MIDDLE) {
-            s_MouseState[Keycode::MOUSE_MB].second = true;
+        if (s_Event.type == SDL_KEYDOWN || s_Event.type == SDL_KEYUP) {
+            UpdateKeyState(&s_Event);
+        } else if (s_Event.type == SDL_MOUSEBUTTONDOWN ||
+                   s_Event.type == SDL_MOUSEBUTTONUP) {
+            UpdateKeyState(&s_Event);
         }
 
         s_Scroll = s_Event.type == SDL_MOUSEWHEEL || s_Scroll;
