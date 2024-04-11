@@ -117,7 +117,7 @@ add_library(PTSD STATIC
     ${INCLUDE_FILES}
 )
 target_link_libraries(PTSD
-    SDL2::SDL2main # IDK what happens if we don't link SDL2main
+    # SDL2::SDL2main # IDK what happens if we don't link SDL2main
     ${DEPENDENCY_LINK_LIBRARIES}
 )
 target_include_directories(PTSD SYSTEM PRIVATE
@@ -140,6 +140,7 @@ add_executable(Example EXCLUDE_FROM_ALL
     ${EXAMPLE_FILES}
 )
 target_link_libraries(Example
+    SDL2::SDL2main # IDK what happens if we don't link SDL2main
     PTSD
 )
 target_include_directories(Example SYSTEM PRIVATE
