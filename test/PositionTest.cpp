@@ -8,14 +8,14 @@
 TEST(CastingTest, PTSD2SDL) {
     float a=4.32, b=65.32;
     auto p = PTSDPosition(a, b);
-    auto s = p.toSDLPosition();
+    auto s = SDLPosition(p); // explicit constructor (not lossless)
     EXPECT_NEAR(s.x, a + WINDOW_WIDTH/2, FLOAT_TO_INT_ERROR);
     EXPECT_NEAR(s.y, b + WINDOW_HEIGHT/2, FLOAT_TO_INT_ERROR);
 }
 
 TEST(CastingTest, SDL2PTSD) {
     auto s = SDLPosition(0, 0);
-    PTSDPosition p = s.toPTSDPosition();
+    PTSDPosition p = s; // converting constructor
     EXPECT_EQ(p.x, -(float)WINDOW_WIDTH/2);
     EXPECT_EQ(p.y, -(float)WINDOW_HEIGHT/2);
 }

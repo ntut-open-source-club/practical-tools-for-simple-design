@@ -114,9 +114,9 @@ PTSDPosition Input::GetCursorPosition() {
     return s_CursorPosition;
 }
 
-void Input::SetCursorPosition(const PTSDPosition && pos_) {
-    SDLPosition pos = pos_.toSDLPosition();
-    SDL_WarpMouseInWindow(nullptr, static_cast<int>(pos.x),
-                          static_cast<int>(pos.y));
+void Input::SetCursorPosition(const PTSDPosition && ptsdPos) {
+    auto sdlPos = SDLPosition(ptsdPos);
+    SDL_WarpMouseInWindow(nullptr, static_cast<int>(sdlPos.x),
+                          static_cast<int>(sdlPos.y));
 }
 } // namespace Util
