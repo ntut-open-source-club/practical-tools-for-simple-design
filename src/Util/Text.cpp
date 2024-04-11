@@ -29,9 +29,9 @@ Text::Text(const std::string &font, int fontSize, const std::string &text,
     m_Font = {TTF_OpenFont(font.c_str(), fontSize), TTF_CloseFont};
 
     if (m_Font == nullptr) {
-        surface = {GetMissingFontTextureSDLSurface(), SDL_FreeSurface};
         LOG_ERROR("Failed to load font: '{}'", font.c_str());
         LOG_ERROR("{}", TTF_GetError());
+        surface = {GetMissingFontTextureSDLSurface(), SDL_FreeSurface};
     } else {
         surface =
             std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
