@@ -8,7 +8,7 @@ namespace Util {
 
 // init all static members
 SDL_Event Input::s_Event = SDL_Event();
-PTSDPosition Input::s_CursorPosition = PTSDPosition(0.0F, 0.0F);
+Util::PTSDPosition Input::s_CursorPosition = Util::PTSDPosition(0.0F, 0.0F);
 glm::vec2 Input::s_ScrollDistance = glm::vec2(-1.0F, -1.0F);
 
 std::unordered_map<Keycode, std::pair<bool, bool>> Input::s_KeyState = {
@@ -75,7 +75,7 @@ void Input::UpdateKeyState(const SDL_Event *event) {
 }
 
 void Input::Update() {
-    SDLPosition sdlPos = {0,0};
+    Util::SDLPosition sdlPos = {0,0};
     SDL_GetMouseState(&sdlPos.x, &sdlPos.y);
     s_CursorPosition = sdlPos;
 
@@ -110,12 +110,12 @@ void Input::Update() {
     }
 }
 
-PTSDPosition Input::GetCursorPosition() {
+Util::PTSDPosition Input::GetCursorPosition() {
     return s_CursorPosition;
 }
 
-void Input::SetCursorPosition(const PTSDPosition && ptsdPos) {
-    auto sdlPos = SDLPosition(ptsdPos);
+void Input::SetCursorPosition(const Util::PTSDPosition && ptsdPos) {
+    auto sdlPos = Util::SDLPosition(ptsdPos);
     SDL_WarpMouseInWindow(nullptr, static_cast<int>(sdlPos.x),
                           static_cast<int>(sdlPos.y));
 }

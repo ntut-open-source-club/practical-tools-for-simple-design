@@ -8,7 +8,7 @@
 
 #include "Util/Keycode.hpp" // for Keycode
 
-#include "Util/Position.hpp" // PTSDPosition
+#include "Util/Position.hpp" // Util::PTSDPosition
 
 namespace Util {
 
@@ -52,7 +52,7 @@ public:
      *
      * @see Util::Input::SetCursorPosition()
      */
-    static PTSDPosition GetCursorPosition();
+    static Util::PTSDPosition GetCursorPosition();
 
     /**
      * @brief Check if a specific key is currently pressed.
@@ -121,7 +121,7 @@ public:
      * Util::Input::IsMouseMoving() to return true in this update-cycle.
      * @see Util::Input::GetCursorPosition()
      */
-    static void SetCursorPosition(const PTSDPosition && pos);
+    static void SetCursorPosition(const Util::PTSDPosition && pos);
 
     /**
      * @brief Updates the state of the input.
@@ -135,7 +135,7 @@ private:
 
     static SDL_Event s_Event;
 
-    static PTSDPosition s_CursorPosition;
+    static Util::PTSDPosition s_CursorPosition;
     static glm::vec2 s_ScrollDistance;
 
     static std::unordered_map<Keycode, std::pair<bool, bool>> s_KeyState;

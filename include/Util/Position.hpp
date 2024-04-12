@@ -3,6 +3,8 @@
 
 #include <glm/glm.hpp>
 
+namespace Util {
+
 struct PTSDPosition;
 
 struct SDLPosition {
@@ -36,6 +38,8 @@ struct PTSDPosition {
     
     SDLPosition toSDLPosition() const;
 };
+
+} // namespace Util 
 
 #include "Position.inl"
 
