@@ -70,7 +70,6 @@ set(INCLUDE_FILES
     ${INCLUDE_DIR}/Core/Texture.hpp
     ${INCLUDE_DIR}/Core/TextureUtils.hpp
     ${INCLUDE_DIR}/Core/Drawable.hpp
-    ${INCLUDE_DIR}/Util/MissingTexture.hpp
 
     ${INCLUDE_DIR}/Util/LoadTextFile.hpp
     ${INCLUDE_DIR}/Util/Logger.hpp
