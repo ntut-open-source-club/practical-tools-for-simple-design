@@ -57,8 +57,8 @@ void Text::Draw(const Core::Matrices &data) {
 
 void Text::InitProgram() {
     // TODO: Create `BaseProgram` from `Program` and pass it into `Drawable`
-    s_Program = std::make_unique<Core::Program>("../assets/shaders/Base.vert",
-                                                "../assets/shaders/Base.frag");
+    s_Program = std::make_unique<Core::Program>(
+        ASSETS_DIR "/shaders/Base.vert", ASSETS_DIR "/shaders/Base.frag");
     s_Program->Bind();
 
     GLint location = glGetUniformLocation(s_Program->GetId(), "surface");
