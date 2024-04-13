@@ -26,7 +26,7 @@ struct SDLPosition {
     SDLPosition operator-(const glm::vec2&& vec2) const {
         return (*this) + (vec2*(-1.0f));
     }
-    
+
     PTSDPosition toPTSDPosition() const;
 };
 
