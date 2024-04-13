@@ -121,7 +121,7 @@ public:
      * Util::Input::IsMouseMoving() to return true in this update-cycle.
      * @see Util::Input::GetCursorPosition()
      */
-    static void SetCursorPosition(const Util::PTSDPosition && pos);
+    static void SetCursorPosition(const Util::PTSDPosition &&pos);
 
     /**
      * @brief Updates the state of the input.

@@ -75,7 +75,7 @@ void Input::UpdateKeyState(const SDL_Event *event) {
 }
 
 void Input::Update() {
-    Util::SDLPosition sdlPos = {0,0};
+    Util::SDLPosition sdlPos = {0, 0};
     SDL_GetMouseState(&sdlPos.x, &sdlPos.y);
     s_CursorPosition = sdlPos;
 
@@ -114,7 +114,7 @@ Util::PTSDPosition Input::GetCursorPosition() {
     return s_CursorPosition;
 }
 
-void Input::SetCursorPosition(const Util::PTSDPosition && ptsdPos) {
+void Input::SetCursorPosition(const Util::PTSDPosition &&ptsdPos) {
     auto sdlPos = Util::SDLPosition(ptsdPos);
     SDL_WarpMouseInWindow(nullptr, static_cast<int>(sdlPos.x),
                           static_cast<int>(sdlPos.y));
