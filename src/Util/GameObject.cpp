@@ -5,7 +5,7 @@
 namespace Util {
 
 void GameObject::Draw() {
-    if (!m_Visible) {
+    if (!m_Visible || m_Drawable == nullptr) {
         return;
     }
 
