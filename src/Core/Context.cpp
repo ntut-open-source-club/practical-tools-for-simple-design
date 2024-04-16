@@ -10,6 +10,8 @@
 
 #include "config.hpp"
 
+using Util::ms_t;
+
 namespace Core {
 Context::Context() {
     Util::Logger::Init();
@@ -123,9 +125,30 @@ void Context::Update() {
     SDL_GL_SwapWindow(m_Window);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    constexpr double frameTime =
+    constexpr ms_t frameTime =
         FPS_CAP != 0 ? 1000 / static_cast<double>(FPS_CAP) : 0;
-    SDL_Delay(static_cast<Uint32>(frameTime - Util::Time::GetDeltaTime()));
+    ms_t after_update = Util::Time::GetElapsedTimeMs();
+    ms_t update_time = after_update - m_before_update_time;
+    if (update_time < frameTime) {
+        SDL_Delay(static_cast<Uint32>(frameTime - update_time));
+    }
+    m_before_update_time = Util::Time::GetElapsedTimeMs();
+
+    // Here's a figure explaining how Delta time & Delay work:
+    //
+    // --|--UT--|--Delay--|--UT--|--
+    //   |---Delta time---|  ^ Last delta time used here
+    //   ^                ^
+    //   (s_Last)         (s_Now) Time::Update here
+    //
+    // # Updating/rendering time is denoted as "UT"
+    Util::Time::Update();
+
+    Util::second_t deltaTime = Util::Time::GetDeltaTime();
+    LOG_DEBUG("Delta(Update+Delay): {:.1f}({:.1f}+{:.1f}) ms, FPS: {:.1f}",
+              deltaTime * 1000, update_time,
+              update_time < frameTime ? frameTime - update_time : 0,
+              1.0f / deltaTime);
 }
 
 std::shared_ptr<Context> Context::GetInstance() {
