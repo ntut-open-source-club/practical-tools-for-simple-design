@@ -5,6 +5,9 @@
 
 namespace Util {
 
+using second_t = double;
+using ms_t = double;
+
 /**
  * @class Time
  * @brief A singleton class that provides time-related functionalities.
@@ -25,7 +28,7 @@ public:
      *
      * @return The delta time between frames in seconds.
      */
-    static double GetDeltaTime() { return s_DeltaTime; }
+    static second_t GetDeltaTime() { return s_DeltaTime; }
 
     /**
      * @brief Get the elapsed time from the start of the program in
@@ -36,7 +39,7 @@ public:
      *
      * @return The elapsed time from the start of the program in milliseconds.
      */
-    static unsigned long GetElapsedTimeMs();
+    static ms_t GetElapsedTimeMs();
 
     /**
      * @brief Update the time.
@@ -48,21 +51,21 @@ public:
     static void Update();
 
 private:
-    static unsigned long s_Start;
+    static Uint64 s_Start;
 
     /**
      * @brief The current time.
      *
      * This variable stores the current time.
      */
-    static unsigned long s_Now;
+    static Uint64 s_Now;
 
     /**
      * @brief The time of the last frame.
      *
      * This variable stores the time of the last frame.
      */
-    static unsigned long s_Last;
+    static Uint64 s_Last;
 
     /**
      * @brief The delta time between frames.
@@ -70,7 +73,7 @@ private:
      * This variable stores the time difference between the current frame and
      * the last frame.
      */
-    static double s_DeltaTime;
+    static second_t s_DeltaTime;
 };
 } // namespace Util
 
