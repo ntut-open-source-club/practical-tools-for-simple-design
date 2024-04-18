@@ -1,5 +1,6 @@
 #include "Core/Context.hpp"
 
+#include <fstream>
 #include <memory>
 
 #include "Core/DebugMessageCallback.hpp"
@@ -13,6 +14,8 @@
 namespace Core {
 Context::Context() {
     Util::Logger::Init();
+    PTSD_Config::Init();
+    Util::Logger::SetLevel(PTSD_Config::DEFAULT_LOG_LEVEL);
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         LOG_ERROR("Failed to initialize SDL");
@@ -39,9 +42,10 @@ Context::Context() {
         LOG_ERROR(SDL_GetError());
     }
 
-    m_Window =
-        SDL_CreateWindow(TITLE, WINDOW_POS_X, WINDOW_POS_Y, WINDOW_WIDTH,
-                         WINDOW_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+    m_Window = SDL_CreateWindow(
+        PTSD_Config::TITLE.c_str(), PTSD_Config::WINDOW_POS_X,
+        PTSD_Config::WINDOW_POS_Y, PTSD_Config::WINDOW_WIDTH,
+        PTSD_Config::WINDOW_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 
     if (m_Window == nullptr) {
         LOG_ERROR("Failed to create window");
@@ -123,8 +127,9 @@ void Context::Update() {
     SDL_GL_SwapWindow(m_Window);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    constexpr double frameTime =
-        FPS_CAP != 0 ? 1000 / static_cast<double>(FPS_CAP) : 0;
+    double frameTime = PTSD_Config::FPS_CAP != 0
+                           ? 1000 / static_cast<double>(PTSD_Config::FPS_CAP)
+                           : 0;
     SDL_Delay(static_cast<Uint32>(frameTime - Util::Time::GetDeltaTime()));
 }
 

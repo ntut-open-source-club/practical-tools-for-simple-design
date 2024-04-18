@@ -40,8 +40,8 @@ private:
     static std::shared_ptr<Context> s_Instance;
     bool m_Exit = false;
 
-    unsigned int m_WindowWidth = WINDOW_WIDTH;
-    unsigned int m_WindowHeight = WINDOW_HEIGHT;
+    unsigned int m_WindowWidth = PTSD_Config::WINDOW_WIDTH;
+    unsigned int m_WindowHeight = PTSD_Config::WINDOW_HEIGHT;
 };
 
 } // namespace Core

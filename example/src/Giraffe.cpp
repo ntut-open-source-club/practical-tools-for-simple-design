@@ -22,12 +22,12 @@ void Giraffe::Update() {
     auto &scale = m_Transform.scale;
     auto &rotation = m_Transform.rotation;
 
-    if (pos.y >= static_cast<float>(WINDOW_HEIGHT) / 2 ||
-        pos.y + static_cast<float>(WINDOW_HEIGHT) / 2 <= 0) {
+    if (pos.y >= static_cast<float>(PTSD_Config::WINDOW_HEIGHT) / 2 ||
+        pos.y + static_cast<float>(PTSD_Config::WINDOW_HEIGHT) / 2 <= 0) {
         dir.y *= -1;
     }
-    if (pos.x >= static_cast<float>(WINDOW_WIDTH) / 2 ||
-        pos.x + static_cast<float>(WINDOW_WIDTH) / 2 <= 0) {
+    if (pos.x >= static_cast<float>(PTSD_Config::WINDOW_WIDTH) / 2 ||
+        pos.x + static_cast<float>(PTSD_Config::WINDOW_WIDTH) / 2 <= 0) {
         dir.x *= -1;
     }
 
