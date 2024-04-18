@@ -5,3 +5,4 @@ AllowShortFunctionsOnASingleLine: Inline
 AlwaysBreakTemplateDeclarations: Yes
 PackConstructorInitializers: Never
 InsertNewlineAtEOF: true
+BreakAfterAttributes: Always

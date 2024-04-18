@@ -5,6 +5,8 @@
 
 #include "config.hpp"
 
+#include "Util/Time.hpp"
+
 namespace Core {
 class Context {
 public:
@@ -43,6 +45,9 @@ private:
 
     unsigned int m_WindowWidth = WINDOW_WIDTH;
     unsigned int m_WindowHeight = WINDOW_HEIGHT;
+
+    // Can't access Time::s_Now, so using this variable to track time.
+    Util::ms_t m_BeforeUpdateTime = Util::Time::GetElapsedTimeMs();
 };
 
 } // namespace Core
