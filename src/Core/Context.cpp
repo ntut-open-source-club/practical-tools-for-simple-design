@@ -126,13 +126,14 @@ void Context::Update() {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
     constexpr ms_t frameTime =
-        FPS_CAP != 0 ? 1000 / static_cast<double>(FPS_CAP) : 0;
-    ms_t after_update = Util::Time::GetElapsedTimeMs();
-    ms_t update_time = after_update - m_before_update_time;
-    if (update_time < frameTime) {
-        SDL_Delay(static_cast<Uint32>(frameTime - update_time));
+        FPS_CAP != 0 ? static_cast<float>(1000.0F / FPS_CAP) : 0;
+    ms_t afterUpdate = Util::Time::GetElapsedTimeMs();
+    ms_t updateTime = afterUpdate - m_BeforeUpdateTime;
+    if (updateTime < frameTime) {
+        // FIXME: SDL_Delay() accuracy issue
+        SDL_Delay(static_cast<Uint32>(frameTime - updateTime));
     }
-    m_before_update_time = Util::Time::GetElapsedTimeMs();
+    m_BeforeUpdateTime = Util::Time::GetElapsedTimeMs();
 
     // Here's a figure explaining how Delta time & Delay work:
     //
@@ -144,11 +145,13 @@ void Context::Update() {
     // # Updating/rendering time is denoted as "UT"
     Util::Time::Update();
 
+#ifdef DEBUG_DELTA_TIME
     auto deltaTime = Util::Time::GetDeltaTimeMs();
     LOG_DEBUG("Delta(Update+Delay): {:.1f}({:.1f}+{:.1f}) ms, FPS: {:.1f}",
-              deltaTime, update_time,
-              update_time < frameTime ? frameTime - update_time : 0,
+              deltaTime, updateTime,
+              updateTime < frameTime ? frameTime - updateTime : 0,
               1000.0f / deltaTime);
+#endif // DEBUG_DELTA_TIME
 }
 
 std::shared_ptr<Context> Context::GetInstance() {
