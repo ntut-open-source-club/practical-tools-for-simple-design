@@ -27,7 +27,8 @@ struct PTSDPosition {
     PTSDPosition(float x, float y)
         : x{x},
           y{y} {};
-    [[deprecated("Implicit conversion will be removed. Use explicit conversion instead")]]
+    [[deprecated("Implicit conversion will be removed. Use explicit conversion "
+                 "instead")]] // `\_(:/)_/`
     PTSDPosition(glm::vec2 v)
         : x{v.x},
           y{v.y} {};
