@@ -9,24 +9,17 @@
 
 TEST(CastingTest, PTSD2SDL) {
     float a = 4.32, b = 65.32;
-    auto p = Util::PTSDPosition(a, b);
-    auto s = Util::SDLPosition(p); // explicit constructor (not lossless)
-    EXPECT_NEAR(s.x, a + WINDOW_WIDTH / 2, FLOAT_TO_INT_ERROR);
-    EXPECT_NEAR(s.y, b + WINDOW_HEIGHT / 2, FLOAT_TO_INT_ERROR);
+    auto ptsdpos = Util::PTSDPosition(a, b);
+    auto sdlpos = ptsdpos.ToSDLPosition();
+    EXPECT_NEAR(sdlpos.x, a + WINDOW_WIDTH / 2, FLOAT_TO_INT_ERROR);
+    EXPECT_NEAR(sdlpos.y, b + WINDOW_HEIGHT / 2, FLOAT_TO_INT_ERROR);
 }
 
 TEST(CastingTest, SDL2PTSD) {
-    auto s = Util::SDLPosition(0, 0);
-    Util::PTSDPosition p = s; // converting constructor
-    EXPECT_EQ(p.x, -(float)WINDOW_WIDTH / 2);
-    EXPECT_EQ(p.y, -(float)WINDOW_HEIGHT / 2);
-}
-
-TEST(CastingTest, SDL2PTSD_Implicit) {
-    auto s = Util::SDLPosition(0, 0);
-    Util::PTSDPosition p = s;
-    EXPECT_EQ(p.x, -(float)WINDOW_WIDTH / 2);
-    EXPECT_EQ(p.y, -(float)WINDOW_HEIGHT / 2);
+    int a = 74, b = 14;
+    auto ptsdpos = Util::PTSDPosition::FromSDL(a, b);
+    EXPECT_EQ(ptsdpos.x, (float)a - WINDOW_WIDTH / 2);
+    EXPECT_EQ(ptsdpos.y, (float)b - WINDOW_HEIGHT / 2);
 }
 
 TEST(CastingTest, AddingVec2) {

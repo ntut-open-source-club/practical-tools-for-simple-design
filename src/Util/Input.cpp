@@ -75,9 +75,9 @@ void Input::UpdateKeyState(const SDL_Event *event) {
 }
 
 void Input::Update() {
-    Util::SDLPosition sdlPos = {0, 0};
-    SDL_GetMouseState(&sdlPos.x, &sdlPos.y);
-    s_CursorPosition = sdlPos;
+    int x, y;
+    SDL_GetMouseState(&x, &y);
+    s_CursorPosition = Util::PTSDPosition::FromSDL(x, y);
 
     s_Scroll = s_MouseMoving = false;
 
@@ -115,8 +115,8 @@ Util::PTSDPosition Input::GetCursorPosition() {
 }
 
 void Input::SetCursorPosition(const Util::PTSDPosition &&ptsdPos) {
-    auto sdlPos = Util::SDLPosition(ptsdPos);
-    SDL_WarpMouseInWindow(nullptr, static_cast<int>(sdlPos.x),
-                          static_cast<int>(sdlPos.y));
+    auto sdlPos = ptsdPos.ToSDLPosition();
+    SDL_WarpMouseInWindow(nullptr, sdlPos.x, sdlPos.y);
 }
+
 } // namespace Util
