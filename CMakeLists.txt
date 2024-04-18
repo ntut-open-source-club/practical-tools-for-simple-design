@@ -28,6 +28,8 @@ include(cmake/Dependencies.cmake)
 
 set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(SRC_FILES
+    ${SRC_DIR}/config.cpp
+
     ${SRC_DIR}/Core/Context.cpp
     ${SRC_DIR}/Core/DebugMessageCallback.cpp
     ${SRC_DIR}/Core/VertexArray.cpp

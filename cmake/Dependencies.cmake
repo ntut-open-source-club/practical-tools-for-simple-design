@@ -79,8 +79,8 @@ FetchContent_Declare(
 FetchContent_Declare(
     nlohmann_json
 
-    URL https://github.com/nlohmann/json/releases/download/v3.11.3/include.zip
-    URL_HASH MD5=e2f46211f4cf5285412a63e8164d4ba6
+    URL  https://github.com/nlohmann/json/releases/download/v3.11.3/json.tar.xz
+    URL_HASH MD5=c23a33f04786d85c29fda8d16b5f0efd
     SOURCE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/lib/nlohmann_json
 )
 
@@ -101,6 +101,8 @@ set(SDL2MIXER_OPUS OFF)
 set(SDL2MIXER_OGG OFF)
 set(SDL2MIXER_VORBIS OFF)
 set(SDL2MIXER_VOC OFF)
+
+set(JSON_ImplicitConversions OFF)
 
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
