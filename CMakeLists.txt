@@ -122,9 +122,11 @@ target_include_directories(PTSD SYSTEM PRIVATE
 target_include_directories(PTSD PRIVATE
     ${INCLUDE_DIR}
 )
-target_compile_definitions(PTSD PRIVATE
-    PTSD_ASSETS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/assets"
-)
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    target_compile_definitions(PTSD PRIVATE PTSD_ASSETS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/assets")
+else()
+    message(FATAL_ERROR "relative PTSD_ASSETS_DIR is WIP, Please use `-DCMAKE_BUILD_TYPE=Debug` build for now.")
+endif()
 if (${PTSD_ENABLE_PCH})
     target_precompile_headers(PTSD PRIVATE
         include/pch.hpp
