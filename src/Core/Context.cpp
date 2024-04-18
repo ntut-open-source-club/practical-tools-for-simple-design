@@ -120,7 +120,6 @@ void Context::Setup() {
 }
 
 void Context::Update() {
-    Util::Time::Update();
     Util::Input::Update();
     SDL_GL_SwapWindow(m_Window);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -130,7 +129,6 @@ void Context::Update() {
     ms_t afterUpdate = Util::Time::GetElapsedTimeMs();
     ms_t updateTime = afterUpdate - m_BeforeUpdateTime;
     if (updateTime < frameTime) {
-        // FIXME: SDL_Delay() accuracy issue
         SDL_Delay(static_cast<Uint32>(frameTime - updateTime));
     }
     m_BeforeUpdateTime = Util::Time::GetElapsedTimeMs();
