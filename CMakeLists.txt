@@ -122,6 +122,9 @@ target_include_directories(PTSD SYSTEM PRIVATE
 target_include_directories(PTSD PRIVATE
     ${INCLUDE_DIR}
 )
+target_compile_definitions(PTSD PRIVATE
+    PTSD_ASSETS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/assets"
+)
 if (${PTSD_ENABLE_PCH})
     target_precompile_headers(PTSD PRIVATE
         include/pch.hpp
