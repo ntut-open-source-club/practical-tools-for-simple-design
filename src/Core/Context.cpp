@@ -146,7 +146,7 @@ void Context::Update() {
 
     auto deltaTime = Util::Time::GetDeltaTimeMs();
     LOG_DEBUG("Delta(Update+Delay): {:.1f}({:.1f}+{:.1f}) ms, FPS: {:.1f}",
-              deltaTime , update_time,
+              deltaTime, update_time,
               update_time < frameTime ? frameTime - update_time : 0,
               1000.0f / deltaTime);
 }
