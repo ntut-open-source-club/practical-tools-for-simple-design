@@ -1,25 +1,28 @@
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#include "Util/Logger.hpp"
 #include "pch.hpp" // IWYU pragma: export
 
-#include "Util/Logger.hpp"
+namespace PTSD_Config {
 
-constexpr const char *TITLE = "Practical Tools for Simple Design";
+void Init();
+extern std::string TITLE ;
 
-constexpr int WINDOW_POS_X = SDL_WINDOWPOS_UNDEFINED;
-constexpr int WINDOW_POS_Y = SDL_WINDOWPOS_UNDEFINED;
+extern int WINDOW_POS_X ;
+extern int WINDOW_POS_Y ;
 
-constexpr unsigned int WINDOW_WIDTH = 1280;
-constexpr unsigned int WINDOW_HEIGHT = 720;
+extern unsigned int WINDOW_WIDTH ;
+extern unsigned int WINDOW_HEIGHT ;
 
-constexpr Util::Logger::Level DEFAULT_LOG_LEVEL = Util::Logger::Level::DEBUG;
+extern Util::Logger::Level DEFAULT_LOG_LEVEL ;
 
 /**
  * @brief FPS limit
  *
  * Set value to 0 to turn off FPS cap
  */
-constexpr unsigned int FPS_CAP = 60;
+extern unsigned int FPS_CAP ;
+}; // namespace PTSD_Config
 
 #endif
