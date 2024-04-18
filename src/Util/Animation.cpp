@@ -59,9 +59,9 @@ void Animation::Update() {
         return;
     }
 
-    m_TimeBetweenFrameUpdate += Util::Time::GetDeltaTime();
-    unsigned int updateFrameCount =
-        m_TimeBetweenFrameUpdate / (m_Interval / 1000);
+    m_TimeBetweenFrameUpdate += Util::Time::GetDeltaTimeMs();
+    auto updateFrameCount =
+        static_cast<unsigned int>(m_TimeBetweenFrameUpdate / m_Interval);
     if (updateFrameCount <= 0)
         return;
 

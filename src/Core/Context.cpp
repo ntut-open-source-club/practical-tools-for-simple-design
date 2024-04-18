@@ -144,11 +144,11 @@ void Context::Update() {
     // # Updating/rendering time is denoted as "UT"
     Util::Time::Update();
 
-    Util::second_t deltaTime = Util::Time::GetDeltaTime();
+    auto deltaTime = Util::Time::GetDeltaTimeMs();
     LOG_DEBUG("Delta(Update+Delay): {:.1f}({:.1f}+{:.1f}) ms, FPS: {:.1f}",
-              deltaTime * 1000, update_time,
+              deltaTime , update_time,
               update_time < frameTime ? frameTime - update_time : 0,
-              1.0f / deltaTime);
+              1000.0f / deltaTime);
 }
 
 std::shared_ptr<Context> Context::GetInstance() {

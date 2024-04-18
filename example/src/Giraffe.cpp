@@ -31,9 +31,9 @@ void Giraffe::Update() {
         dir.x *= -1;
     }
 
-    auto delta = static_cast<float>(Util::Time::GetDeltaTime());
+    auto delta = static_cast<float>(Util::Time::GetDeltaTimeMs());
     Util::Transform deltaTransform{
-        dir * delta * 1000.0F, 2 * delta,
+        dir * delta, 0.002F * delta,
         glm::vec2(1, 1) * (std::sin(rotation / 2) + 1.0F) * 100.0F};
 
     pos += deltaTransform.translation;
