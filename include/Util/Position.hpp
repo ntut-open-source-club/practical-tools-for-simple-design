@@ -11,6 +11,7 @@ struct SDLPosition {
 public:
     const int x, y;
     SDLPosition() = delete;
+
 private:
     friend PTSDPosition;
     SDLPosition(float x, float y)
