@@ -9,11 +9,10 @@ struct PTSDPosition;
 
 struct SDLPosition {
 public:
-    int x, y;
-
+    const int x, y;
+    SDLPosition() = delete;
 private:
     friend PTSDPosition;
-    SDLPosition() = delete;
     SDLPosition(float x, float y)
         : x(x),
           y(y) {}

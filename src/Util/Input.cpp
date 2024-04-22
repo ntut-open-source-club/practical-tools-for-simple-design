@@ -114,7 +114,7 @@ Util::PTSDPosition Input::GetCursorPosition() {
     return s_CursorPosition;
 }
 
-void Input::SetCursorPosition(const Util::PTSDPosition &&ptsdPos) {
+void Input::SetCursorPosition(const Util::PTSDPosition &ptsdPos) {
     auto sdlPos = ptsdPos.ToSDLPosition();
     SDL_WarpMouseInWindow(nullptr, sdlPos.x, sdlPos.y);
 }
