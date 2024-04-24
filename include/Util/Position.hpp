@@ -23,7 +23,7 @@ struct PTSDPosition {
     float x{};
     float y{};
     PTSDPosition() = delete;
-    static PTSDPosition FromSDL(const int &sdlx, const int &sdly);
+    static PTSDPosition FromSDL(int sdlx, int sdly);
     PTSDPosition(float x, float y)
         : x{x},
           y{y} {};

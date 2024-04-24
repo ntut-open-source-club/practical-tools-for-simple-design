@@ -6,7 +6,7 @@ PTSDPosition PTSDPosition::operator+(const glm::vec2 vec2) const {
     return PTSDPosition(x + vec2.x, y + vec2.y);
 }
 
-PTSDPosition PTSDPosition::FromSDL(const int &sdlx, const int &sdly) {
+PTSDPosition PTSDPosition::FromSDL(int sdlx, int sdly) {
     return PTSDPosition{static_cast<float>(sdlx) - WINDOW_WIDTH / 2,
                         static_cast<float>(sdly) - WINDOW_HEIGHT / 2};
 }
