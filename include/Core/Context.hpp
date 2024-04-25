@@ -5,6 +5,8 @@
 
 #include "config.hpp"
 
+#include "Util/Time.hpp"
+
 namespace Core {
 class Context {
 public:
@@ -29,6 +31,7 @@ public:
     void SetExit(bool exit) { m_Exit = exit; }
     void SetWindowWidth(unsigned int width) { m_WindowWidth = width; }
     void SetWindowHeight(unsigned int height) { m_WindowHeight = height; }
+    void SetWindowIcon(const std::string &path);
 
     void Setup();
     void Update();

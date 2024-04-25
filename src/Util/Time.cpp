@@ -2,22 +2,24 @@
 
 #include <SDL.h>
 
-Util::Time Time(); // static lifetime object
+namespace Util {
 
-unsigned long Util::Time::GetElapsedTimeMs() {
-    return 1000 * (SDL_GetPerformanceCounter() - s_Start) /
-           (SDL_GetPerformanceFrequency());
+ms_t Time::GetElapsedTimeMs() {
+    return static_cast<float>(SDL_GetPerformanceCounter() - s_Start) /
+           static_cast<float>((SDL_GetPerformanceFrequency())) * 1000.0F;
 }
 
-void Util::Time::Update() {
+void Time::Update() {
     s_Last = s_Now;
-    s_Now = static_cast<unsigned long>(SDL_GetPerformanceCounter());
+    s_Now = SDL_GetPerformanceCounter();
 
-    s_DeltaTime = static_cast<double>(s_Now - s_Last) /
-                  static_cast<double>(SDL_GetPerformanceFrequency());
+    s_DeltaTime = static_cast<float>(s_Now - s_Last) /
+                  static_cast<float>(SDL_GetPerformanceFrequency()) * 1000.0F;
 }
 
-unsigned long Util::Time::s_Start = SDL_GetPerformanceCounter();
-unsigned long Util::Time::s_Now = SDL_GetPerformanceCounter();
-unsigned long Util::Time::s_Last = 0;
-double Util::Time::s_DeltaTime = 0;
+sdl_count_t Time::s_Start = SDL_GetPerformanceCounter();
+sdl_count_t Time::s_Now = Time::s_Start;
+sdl_count_t Time::s_Last = 0;
+ms_t Time::s_DeltaTime = 0;
+
+} // namespace Util

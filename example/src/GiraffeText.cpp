@@ -17,7 +17,8 @@ void GiraffeText::Update() {
                      2 * glm::pi<float>());
     ImGui::DragFloat2("Scale", &m_Transform.scale[0], 0.1F, 1, 10);
     ImGui::End();
-    m_Text->SetText(fmt::format("{:.02f}", 1.0F / Util::Time::GetDeltaTime()));
+    m_Text->SetText(
+        fmt::format("{:.02f}", 1000.0F / Util::Time::GetDeltaTimeMs()));
 
     m_Text->SetColor(Util::Color::FromName(Util::Colors::RED));
 }

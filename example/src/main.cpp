@@ -8,6 +8,9 @@ int main(int, char **) {
     auto context = Core::Context::GetInstance();
     App app;
 
+    // set icon in window.
+    context->SetWindowIcon(ASSETS_DIR "/icon.jpg");
+
     while (!context->GetExit()) {
         context->Setup();
 

@@ -24,7 +24,7 @@ endif()
 
 option(PTSD_ENABLE_PCH "Turn on PCH to increase compilation speed" OFF)
 
-include(cmake/Dependencies.cmake)
+include(${CMAKE_CURRENT_SOURCE_DIR}/cmake/Dependencies.cmake)
 
 set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
 set(SRC_FILES
@@ -116,7 +116,6 @@ add_library(PTSD STATIC
     ${INCLUDE_FILES}
 )
 target_link_libraries(PTSD
-    SDL2::SDL2main # IDK what happens if we don't link SDL2main
     ${DEPENDENCY_LINK_LIBRARIES}
 )
 target_include_directories(PTSD SYSTEM PRIVATE
@@ -125,19 +124,33 @@ target_include_directories(PTSD SYSTEM PRIVATE
 target_include_directories(PTSD PRIVATE
     ${INCLUDE_DIR}
 )
+if (CMAKE_BUILD_TYPE STREQUAL "Debug")
+    target_compile_definitions(PTSD PRIVATE PTSD_ASSETS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/assets")
+else()
+    # TODO
+    message(AUTHOR_WARNING "relative PTSD_ASSETS_DIR is WIP, Please use `-DCMAKE_BUILD_TYPE=Debug` build for now.")
+    target_compile_definitions(PTSD PRIVATE PTSD_ASSETS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/assets")
+endif()
 if (${PTSD_ENABLE_PCH})
     target_precompile_headers(PTSD PRIVATE
         include/pch.hpp
     )
 endif()
+
 target_compile_options(PTSD PRIVATE
     ${TARGET_COMPILE_OPTIONS}
 )
+
+if(NOT PROJECT_IS_TOP_LEVEL)
+    set(DEPENDENCY_INCLUDE_DIRS ${DEPENDENCY_INCLUDE_DIRS} PARENT_SCOPE)
+    set(DEPENDENCY_LINK_LIBRARIES ${DEPENDENCY_LINK_LIBRARIES} PARENT_SCOPE)
+endif()
 
 add_executable(Example EXCLUDE_FROM_ALL
     ${EXAMPLE_FILES}
 )
 target_link_libraries(Example
+    SDL2::SDL2main # IDK what happens if we don't link SDL2main
     PTSD
 )
 target_include_directories(Example SYSTEM PRIVATE
@@ -147,6 +160,8 @@ target_include_directories(Example SYSTEM PRIVATE
 target_include_directories(Example PRIVATE
     ${EXAMPLE_DIR}/include
 )
+
+target_compile_definitions(Example PRIVATE ASSETS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/assets")
 
 enable_testing()
 
