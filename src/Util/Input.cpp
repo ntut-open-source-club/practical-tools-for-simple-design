@@ -82,8 +82,8 @@ void Input::Update() {
     s_CursorPosition.y = static_cast<float>(y);
 
     s_CursorPosition.x -= static_cast<float>(PTSD_Config::WINDOW_WIDTH) / 2;
-    s_CursorPosition.y =
-        -(s_CursorPosition.y - static_cast<float>(PTSD_Config::WINDOW_HEIGHT) / 2);
+    s_CursorPosition.y = -(s_CursorPosition.y -
+                           static_cast<float>(PTSD_Config::WINDOW_HEIGHT) / 2);
 
     s_Scroll = s_MouseMoving = false;
 
