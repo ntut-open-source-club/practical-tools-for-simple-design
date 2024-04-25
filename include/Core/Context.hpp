@@ -45,8 +45,10 @@ private:
 
     unsigned int m_WindowWidth = PTSD_Config::WINDOW_WIDTH;
     unsigned int m_WindowHeight = PTSD_Config::WINDOW_HEIGHT;
-};
 
+    // Can't access Time::s_Now, so using this variable to track time.
+    Util::ms_t m_BeforeUpdateTime = Util::Time::GetElapsedTimeMs();
+};
 } // namespace Core
 
 #endif
