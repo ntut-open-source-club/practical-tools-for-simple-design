@@ -7,8 +7,6 @@
 #include "Util/Text.hpp"
 #include "Util/TransformUtils.hpp"
 
-#include "config.hpp"
-
 namespace Util {
 Text::Text(const std::string &font, int fontSize, const std::string &text,
            const Util::Color &color)
