@@ -4,25 +4,32 @@
 #include "Util/Logger.hpp"
 #include "pch.hpp" // IWYU pragma: export
 
-namespace PTSD_Config {
+namespace Core {
+class Context;
+}
 
-void Init();
-extern std::string TITLE;
+struct PTSD_Config {
+public:
+    static std::string TITLE;
 
-extern int WINDOW_POS_X;
-extern int WINDOW_POS_Y;
+    static int WINDOW_POS_X;
 
-extern unsigned int WINDOW_WIDTH;
-extern unsigned int WINDOW_HEIGHT;
+    static int WINDOW_POS_Y;
+    static unsigned int WINDOW_WIDTH;
 
-extern Util::Logger::Level DEFAULT_LOG_LEVEL;
+    static unsigned int WINDOW_HEIGHT;
+    static Util::Logger::Level DEFAULT_LOG_LEVEL;
 
-/**
- * @brief FPS limit
- *
- * Set value to 0 to turn off FPS cap
- */
-extern unsigned int FPS_CAP;
+    /**
+     * @brief FPS limit
+     *
+     * Set value to 0 to turn off FPS cap
+     */
+    static unsigned int FPS_CAP;
+
+private:
+    friend class Core::Context;
+    static void Init();
 }; // namespace PTSD_Config
 
 #endif
