@@ -15,6 +15,14 @@ Util::Logger::Level PTSD_Config::DEFAULT_LOG_LEVEL = Util::Logger::Level::INFO;
 
 unsigned int PTSD_Config::FPS_CAP = 60;
 
+template <typename T>
+inline static void AssignValueFromConfigFile(const nlohmann::json &j,
+                                             std::string_view key, T &value) {
+    if (j.contains(key.data())) {
+        value = j[key.data()].get<T>();
+    }
+}
+
 void PTSD_Config::Init() {
     nlohmann::json j;
     std::ifstream file;
@@ -28,12 +36,11 @@ void PTSD_Config::Init() {
     }
     file >> j;
     file.close();
-    TITLE = j["title"].get<std::string_view>();
-    WINDOW_POS_X = j["window_pos_x"].get<int>();
-    WINDOW_POS_Y = j["window_pos_y"].get<int>();
-    WINDOW_WIDTH = j["window_width"].get<int>();
-    WINDOW_HEIGHT = j["window_height"].get<int>();
-    DEFAULT_LOG_LEVEL =
-        static_cast<Util::Logger::Level>(j["default_log_level"].get<int>());
-    FPS_CAP = j["fps_cap"].get<int>();
+    AssignValueFromConfigFile(j, "title", TITLE);
+    AssignValueFromConfigFile(j, "window_pos_x", WINDOW_POS_X);
+    AssignValueFromConfigFile(j, "window_pos_y", WINDOW_POS_Y);
+    AssignValueFromConfigFile(j, "window_width", WINDOW_WIDTH);
+    AssignValueFromConfigFile(j, "window_height", WINDOW_HEIGHT);
+    AssignValueFromConfigFile(j, "default_log_level", DEFAULT_LOG_LEVEL);
+    AssignValueFromConfigFile(j, "fps_cap", FPS_CAP);
 }
