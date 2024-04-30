@@ -44,7 +44,7 @@ Context::Context() {
     }
 
     m_Window = SDL_CreateWindow(
-        PTSD_Config::TITLE.c_str(), PTSD_Config::WINDOW_POS_X,
+        PTSD_Config::TITLE.data(), PTSD_Config::WINDOW_POS_X,
         PTSD_Config::WINDOW_POS_Y, PTSD_Config::WINDOW_WIDTH,
         PTSD_Config::WINDOW_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 

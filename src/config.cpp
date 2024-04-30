@@ -3,7 +3,7 @@
 
 #include <fstream>
 
-std::string PTSD_Config::TITLE = "Practice-Tools-for-Simple-Design";
+std::string_view PTSD_Config::TITLE = "Practice-Tools-for-Simple-Design";
 
 int PTSD_Config::WINDOW_POS_X = SDL_WINDOWPOS_UNDEFINED;
 int PTSD_Config::WINDOW_POS_Y = SDL_WINDOWPOS_UNDEFINED;
@@ -28,7 +28,7 @@ void PTSD_Config::Init() {
     }
     file >> j;
     file.close();
-    TITLE = j["title"].get<std::string>();
+    TITLE = j["title"].get<std::string_view>();
     WINDOW_POS_X = j["window_pos_x"].get<int>();
     WINDOW_POS_Y = j["window_pos_y"].get<int>();
     WINDOW_WIDTH = j["window_width"].get<int>();

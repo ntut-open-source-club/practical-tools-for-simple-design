@@ -10,7 +10,7 @@ class Context;
 
 struct PTSD_Config {
 public:
-    static std::string TITLE;
+    static std::string_view TITLE;
 
     static int WINDOW_POS_X;
 
