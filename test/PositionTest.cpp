@@ -11,15 +11,17 @@ TEST(CastingTest, PTSD2SDL) {
     float a = 4.32, b = 65.32;
     auto ptsdpos = Util::PTSDPosition(a, b);
     auto sdlpos = ptsdpos.ToSDLPosition();
-    EXPECT_NEAR(sdlpos.x, a + WINDOW_WIDTH / 2, FLOAT_TO_INT_ERROR);
-    EXPECT_NEAR(sdlpos.y, b + WINDOW_HEIGHT / 2, FLOAT_TO_INT_ERROR);
+    EXPECT_NEAR(sdlpos.x, a + static_cast<float>(WINDOW_WIDTH) / 2.0F,
+                FLOAT_TO_INT_ERROR);
+    EXPECT_NEAR(sdlpos.y, b + static_cast<float>(WINDOW_HEIGHT) / 2.0F,
+                FLOAT_TO_INT_ERROR);
 }
 
 TEST(CastingTest, SDL2PTSD) {
     int a = 74, b = 14;
     auto ptsdpos = Util::PTSDPosition::FromSDL(a, b);
-    EXPECT_EQ(ptsdpos.x, (float)a - WINDOW_WIDTH / 2);
-    EXPECT_EQ(ptsdpos.y, (float)b - WINDOW_HEIGHT / 2);
+    EXPECT_EQ(ptsdpos.x, (float)a - static_cast<float>(WINDOW_WIDTH) / 2.0F);
+    EXPECT_EQ(ptsdpos.y, (float)b - static_cast<float>(WINDOW_HEIGHT) / 2.0F);
 }
 
 TEST(CastingTest, AddingVec2) {
