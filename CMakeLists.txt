@@ -170,7 +170,6 @@ enable_testing()
 
 add_executable(Tests EXCLUDE_FROM_ALL
     ${TEST_FILES}
-    ${SRC_FILES}
 )
 target_link_libraries(Tests
     PTSD
@@ -188,7 +187,6 @@ target_compile_options(Tests PRIVATE
 
 add_executable(AudioTest EXCLUDE_FROM_ALL
     ${TEST_DIR}/Interactive/Audio.cpp
-    ${SRC_FILES}
 )
 target_link_libraries(AudioTest
     PTSD
