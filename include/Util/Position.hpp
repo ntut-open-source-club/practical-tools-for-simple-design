@@ -9,7 +9,8 @@ struct PTSDPosition;
 
 struct SDLPosition {
 public:
-    const int x, y;
+    const int x;
+    const int y;
     SDLPosition() = delete;
 
 private:
