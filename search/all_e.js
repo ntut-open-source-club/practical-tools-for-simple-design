@@ -8,5 +8,6 @@ var searchData=
   ['power_5',['POWER',['../namespaceUtil.html#a17caf66bd49f055feb4a848c4da8cdc5ac9c9c146c630ca5ef9197c73c032f4a6',1,'Util']]],
   ['practical_20tools_20for_20simple_20design_6',['Practical Tools for Simple Design',['../index.html',1,'']]],
   ['program_7',['Program',['../classCore_1_1Program.html',1,'Core']]],
-  ['ptsd_5fconfig_8',['PTSD_Config',['../structPTSD__Config.html',1,'']]]
+  ['ptsd_5fconfig_8',['PTSD_Config',['../structPTSD__Config.html',1,'']]],
+  ['ptsdposition_9',['PTSDPosition',['../structUtil_1_1PTSDPosition.html',1,'Util']]]
 ];

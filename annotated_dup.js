@@ -15,6 +15,7 @@ var annotated_dup =
     [ "fmt", null, [
       [ "formatter< glm::mat< C, R, Pre > >", "structfmt_1_1formatter_3_01glm_1_1mat_3_01C_00_01R_00_01Pre_01_4_01_4.html", null ],
       [ "formatter< glm::vec< L, Pre > >", "structfmt_1_1formatter_3_01glm_1_1vec_3_01L_00_01Pre_01_4_01_4.html", null ],
+      [ "formatter< Util::PTSDPosition >", "structfmt_1_1formatter_3_01Util_1_1PTSDPosition_01_4.html", null ],
       [ "formatter< Util::Transform >", "structfmt_1_1formatter_3_01Util_1_1Transform_01_4.html", null ]
     ] ],
     [ "Util", "namespaceUtil.html", [
@@ -25,7 +26,9 @@ var annotated_dup =
       [ "GameObject", "classUtil_1_1GameObject.html", "classUtil_1_1GameObject" ],
       [ "Image", "classUtil_1_1Image.html", "classUtil_1_1Image" ],
       [ "Input", "classUtil_1_1Input.html", null ],
+      [ "PTSDPosition", "structUtil_1_1PTSDPosition.html", null ],
       [ "Renderer", "classUtil_1_1Renderer.html", "classUtil_1_1Renderer" ],
+      [ "SDLPosition", "structUtil_1_1SDLPosition.html", null ],
       [ "SFX", "classUtil_1_1SFX.html", "classUtil_1_1SFX" ],
       [ "Text", "classUtil_1_1Text.html", "classUtil_1_1Text" ],
       [ "Time", "classUtil_1_1Time.html", null ],
