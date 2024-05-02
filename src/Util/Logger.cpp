@@ -5,7 +5,7 @@
 namespace Util {
 void Logger::Init() {
     spdlog::set_pattern("%n [%^%l%$] %v");
-    SetLevel(DEFAULT_LOG_LEVEL);
+    SetLevel(Level::INFO);
 }
 
 void Logger::SetLevel(Logger::Level level) {

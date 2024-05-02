@@ -5,6 +5,10 @@
 
 namespace Util {
 
+using sdl_count_t = Uint64;
+using second_t = float;
+using ms_t = float;
+
 /**
  * @class Time
  * @brief A singleton class that provides time-related functionalities.
@@ -25,7 +29,20 @@ public:
      *
      * @return The delta time between frames in seconds.
      */
-    static double GetDeltaTime() { return s_DeltaTime; }
+    [[deprecated("Use GetDeltaTimeMs() instead.")]]
+    static second_t GetDeltaTime() {
+        return s_DeltaTime / 1000.0F;
+    }
+
+    /**
+     * @brief Get the delta time between frames in milliseconds.
+     *
+     * This function returns the time difference between the current frame and
+     * the last frame. The time difference is measured in milliseconds.
+     *
+     * @return The delta time between frames in milliseconds.
+     */
+    static ms_t GetDeltaTimeMs() { return s_DeltaTime; }
 
     /**
      * @brief Get the elapsed time from the start of the program in
@@ -36,7 +53,7 @@ public:
      *
      * @return The elapsed time from the start of the program in milliseconds.
      */
-    static unsigned long GetElapsedTimeMs();
+    static ms_t GetElapsedTimeMs();
 
     /**
      * @brief Update the time.
@@ -48,21 +65,21 @@ public:
     static void Update();
 
 private:
-    static unsigned long s_Start;
+    static sdl_count_t s_Start;
 
     /**
      * @brief The current time.
      *
      * This variable stores the current time.
      */
-    static unsigned long s_Now;
+    static sdl_count_t s_Now;
 
     /**
      * @brief The time of the last frame.
      *
      * This variable stores the time of the last frame.
      */
-    static unsigned long s_Last;
+    static sdl_count_t s_Last;
 
     /**
      * @brief The delta time between frames.
@@ -70,7 +87,7 @@ private:
      * This variable stores the time difference between the current frame and
      * the last frame.
      */
-    static double s_DeltaTime;
+    static ms_t s_DeltaTime;
 };
 } // namespace Util
 

@@ -22,18 +22,19 @@ void Giraffe::Update() {
     auto &scale = m_Transform.scale;
     auto &rotation = m_Transform.rotation;
 
-    if (pos.y >= static_cast<float>(WINDOW_HEIGHT) / 2 ||
-        pos.y + static_cast<float>(WINDOW_HEIGHT) / 2 <= 0) {
+    if (pos.y >= static_cast<float>(PTSD_Config::WINDOW_HEIGHT) / 2 ||
+        pos.y + static_cast<float>(PTSD_Config::WINDOW_HEIGHT) / 2 <= 0) {
         dir.y *= -1;
     }
-    if (pos.x >= static_cast<float>(WINDOW_WIDTH) / 2 ||
-        pos.x + static_cast<float>(WINDOW_WIDTH) / 2 <= 0) {
+    if (pos.x >= static_cast<float>(PTSD_Config::WINDOW_WIDTH) / 2 ||
+        pos.x + static_cast<float>(PTSD_Config::WINDOW_WIDTH) / 2 <= 0) {
         dir.x *= -1;
     }
 
-    auto delta = static_cast<float>(Util::Time::GetDeltaTime());
+    // sonarcloud called it redundant, but ms_t = float is just a coincidence.
+    auto delta = static_cast<float>(Util::Time::GetDeltaTimeMs());
     Util::Transform deltaTransform{
-        dir * delta * 1000.0F, 2 * delta,
+        dir * delta, 0.002F * delta,
         glm::vec2(1, 1) * (std::sin(rotation / 2) + 1.0F) * 100.0F};
 
     pos += deltaTransform.translation;

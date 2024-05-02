@@ -7,8 +7,6 @@
 #include "Util/Text.hpp"
 #include "Util/TransformUtils.hpp"
 
-#include "config.hpp"
-
 namespace Util {
 Text::Text(const std::string &font, int fontSize, const std::string &text,
            const Util::Color &color)
@@ -57,8 +55,9 @@ void Text::Draw(const Core::Matrices &data) {
 
 void Text::InitProgram() {
     // TODO: Create `BaseProgram` from `Program` and pass it into `Drawable`
-    s_Program = std::make_unique<Core::Program>("../assets/shaders/Base.vert",
-                                                "../assets/shaders/Base.frag");
+    s_Program =
+        std::make_unique<Core::Program>(PTSD_ASSETS_DIR "/shaders/Base.vert",
+                                        PTSD_ASSETS_DIR "/shaders/Base.frag");
     s_Program->Bind();
 
     GLint location = glGetUniformLocation(s_Program->GetId(), "surface");
