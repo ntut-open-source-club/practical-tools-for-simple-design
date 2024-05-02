@@ -21,6 +21,7 @@ var hierarchy =
     [ "Util::Input", "classUtil_1_1Input.html", null ],
     [ "Core::Matrices", "structCore_1_1Matrices.html", null ],
     [ "Core::Program", "classCore_1_1Program.html", null ],
+    [ "PTSD_Config", "structPTSD__Config.html", null ],
     [ "Util::Renderer", "classUtil_1_1Renderer.html", null ],
     [ "Util::SFX", "classUtil_1_1SFX.html", null ],
     [ "Core::Shader", "classCore_1_1Shader.html", null ],

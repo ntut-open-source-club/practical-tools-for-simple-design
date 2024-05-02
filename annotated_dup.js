@@ -30,5 +30,6 @@ var annotated_dup =
       [ "Text", "classUtil_1_1Text.html", "classUtil_1_1Text" ],
       [ "Time", "classUtil_1_1Time.html", null ],
       [ "Transform", "structUtil_1_1Transform.html", "structUtil_1_1Transform" ]
-    ] ]
+    ] ],
+    [ "PTSD_Config", "structPTSD__Config.html", null ]
 ];
