@@ -14,9 +14,10 @@ Core::Matrices ConvertToUniformBufferData(const Util::Transform &transform,
 
     auto projection =
         glm::ortho<float>(0.0F, 1.0F, 0.0F, 1.0F, nearClip, farClip);
-    auto view =
-        glm::scale(eye, {1.F / WINDOW_WIDTH, 1.F / WINDOW_HEIGHT, 1.F}) *
-        glm::translate(eye, {WINDOW_WIDTH / 2, WINDOW_HEIGHT / 2, 0});
+    auto view = glm::scale(eye, {1.F / PTSD_Config::WINDOW_WIDTH,
+                                 1.F / PTSD_Config::WINDOW_HEIGHT, 1.F}) *
+                glm::translate(eye, {PTSD_Config::WINDOW_WIDTH / 2,
+                                     PTSD_Config::WINDOW_HEIGHT / 2, 0});
 
     // TODO: TRS comment
     auto model = glm::translate(eye, {transform.translation, zIndex}) *

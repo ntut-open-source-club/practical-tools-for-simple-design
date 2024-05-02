@@ -15,6 +15,8 @@ using Util::ms_t;
 namespace Core {
 Context::Context() {
     Util::Logger::Init();
+    PTSD_Config::Init();
+    Util::Logger::SetLevel(PTSD_Config::DEFAULT_LOG_LEVEL);
 
     if (SDL_Init(SDL_INIT_VIDEO) < 0) {
         LOG_ERROR("Failed to initialize SDL");
@@ -41,9 +43,10 @@ Context::Context() {
         LOG_ERROR(SDL_GetError());
     }
 
-    m_Window =
-        SDL_CreateWindow(TITLE, WINDOW_POS_X, WINDOW_POS_Y, WINDOW_WIDTH,
-                         WINDOW_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
+    m_Window = SDL_CreateWindow(
+        PTSD_Config::TITLE.data(), PTSD_Config::WINDOW_POS_X,
+        PTSD_Config::WINDOW_POS_Y, PTSD_Config::WINDOW_WIDTH,
+        PTSD_Config::WINDOW_HEIGHT, SDL_WINDOW_OPENGL | SDL_WINDOW_SHOWN);
 
     if (m_Window == nullptr) {
         LOG_ERROR("Failed to create window");
@@ -124,7 +127,8 @@ void Context::Update() {
     SDL_GL_SwapWindow(m_Window);
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-    constexpr ms_t frameTime = FPS_CAP != 0 ? 1000.0F / FPS_CAP : 0;
+    static ms_t frameTime =
+        PTSD_Config::FPS_CAP != 0 ? 1000.0F / PTSD_Config::FPS_CAP : 0;
     ms_t afterUpdate = Util::Time::GetElapsedTimeMs();
     ms_t updateTime = afterUpdate - m_BeforeUpdateTime;
     if (updateTime < frameTime) {
