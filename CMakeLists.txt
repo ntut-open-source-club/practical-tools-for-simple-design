@@ -139,7 +139,7 @@ elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
     )
     add_dependencies(PTSD PTSD_assets)
 
-    option(COPY_PTSD_CONFIG "Copy config.json to build directory" ON)
+    option(COPY_PTSD_CONFIG "Copy config.json to build directory" OFF)
     if(COPY_PTSD_CONFIG)
         add_custom_target(PTSD_Config
             COMMAND ${CMAKE_COMMAND} -E copy
