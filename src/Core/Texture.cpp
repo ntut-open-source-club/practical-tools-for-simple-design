@@ -64,6 +64,11 @@ void Texture::UpdateData(GLint format, int width, int height,
 }
 
 void Texture::UseAntiAliasing(bool useAA) {
+    /**
+     * additional docs
+     * https://www.khronos.org/opengl/wiki/Texture
+     * https://www.khronos.org/opengl/wiki/Sampler_Object#Sampling_parameters
+     */
     if (useAA) {
         m_MinFilter = GL_LINEAR_MIPMAP_LINEAR;
         m_MagFilter = GL_LINEAR;
