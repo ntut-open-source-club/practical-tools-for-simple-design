@@ -9,7 +9,7 @@
 
 namespace Util {
 Text::Text(const std::string &font, int fontSize, const std::string &text,
-           const Util::Color &color)
+           const Util::Color &color, bool useAA)
     : m_Text(text),
       m_Color(color) {
     if (s_Program == nullptr) {
@@ -38,8 +38,12 @@ Text::Text(const std::string &font, int fontSize, const std::string &text,
     m_Texture = std::make_unique<Core::Texture>(
         Core::SdlFormatToGlFormat(surface->format->format),
         surface->pitch / surface->format->BytesPerPixel, surface->h,
-        surface->pixels);
+        surface->pixels, useAA);
     m_Size = {surface->pitch / surface->format->BytesPerPixel, surface->h};
+}
+
+void Text::UseAntiAliasing(bool useAA) {
+    m_Texture->UseAntiAliasing(useAA);
 }
 
 void Text::Draw(const Core::Matrices &data) {
