@@ -3,7 +3,7 @@
 
 #include <fstream>
 
-std::string_view PTSD_Config::TITLE = "Practice-Tools-for-Simple-Design";
+std::string PTSD_Config::TITLE = "Practice-Tools-for-Simple-Design";
 
 int PTSD_Config::WINDOW_POS_X = SDL_WINDOWPOS_UNDEFINED;
 int PTSD_Config::WINDOW_POS_Y = SDL_WINDOWPOS_UNDEFINED;
@@ -17,7 +17,8 @@ unsigned int PTSD_Config::FPS_CAP = 60;
 
 template <typename T>
 inline static void AssignValueFromConfigFile(const nlohmann::json &j,
-                                             std::string_view key, T &value) {
+                                             const std::string_view key,
+                                             T &value) {
     if (j.contains(key.data())) {
         value = j[key.data()].get<T>();
     }

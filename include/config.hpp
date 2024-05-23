@@ -44,7 +44,7 @@ class Context;
 // clang-format on
 struct PTSD_Config {
 public:
-    static std::string_view TITLE;
+    static std::string TITLE;
 
     static int WINDOW_POS_X;
 
