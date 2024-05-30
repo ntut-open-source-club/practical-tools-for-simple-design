@@ -9,7 +9,7 @@
 
 void Giraffe::Start() {
     m_GiraffeText =
-        std::make_shared<GiraffeText>("../assets/fonts/Inter.ttf", 50);
+        std::make_shared<GiraffeText>(ASSETS_DIR"/fonts/Inter.ttf", 50);
     m_GiraffeText->SetZIndex(this->GetZIndex() - 1);
     m_GiraffeText->Start();
     this->AddChild(m_GiraffeText);

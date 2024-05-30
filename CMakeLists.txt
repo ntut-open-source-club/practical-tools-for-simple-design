@@ -8,14 +8,13 @@ if(MSVC)
     set(TARGET_COMPILE_OPTIONS
         /W4
     )
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_SOURCE_DIR}/build)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/build)
 else()
     set(TARGET_COMPILE_OPTIONS
         -Wall -Wextra -pedantic
     )
 endif()
+
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
 
 if(WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     # see https://github.com/ntut-open-source-club/practical-tools-for-simple-design/issues/22
@@ -213,6 +212,9 @@ target_link_libraries(AudioTest
     PTSD
     GTest::gtest_main
 )
+
+target_compile_definitions(AudioTest PRIVATE ASSETS_DIR="${PTSD_ASSETS_DIR}")
+
 target_include_directories(AudioTest SYSTEM PRIVATE
     ${INCLUDE_DIR}
     ${DEPENDENCY_INCLUDE_DIRS}
