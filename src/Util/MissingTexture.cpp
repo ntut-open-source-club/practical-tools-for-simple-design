@@ -31,4 +31,3 @@ SDL_Surface *GetMissingFontTextureSDLSurface() {
     return aSurface;
 }
 } // namespace Util
-
