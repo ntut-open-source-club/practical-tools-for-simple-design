@@ -4,6 +4,7 @@
 #include "Core/TextureUtils.hpp"
 
 #include "Util/Logger.hpp"
+#include "Util/MissingTexture.hpp"
 #include "Util/Text.hpp"
 #include "Util/TransformUtils.hpp"
 
@@ -22,17 +23,21 @@ Text::Text(const std::string &font, int fontSize, const std::string &text,
     m_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
         *s_Program, "Matrices", 0);
 
+    auto surface =
+        std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>();
     m_Font = {TTF_OpenFont(font.c_str(), fontSize), TTF_CloseFont};
 
-    auto surface =
-        std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
-            TTF_RenderUTF8_Blended_Wrapped(m_Font.get(), m_Text.c_str(),
-                                           m_Color.ToSdlColor(), 0),
-            SDL_FreeSurface,
-        };
-    if (surface == nullptr) {
-        LOG_ERROR("Failed to create text");
+    if (m_Font == nullptr) {
+        LOG_ERROR("Failed to load font: '{}'", font.c_str());
         LOG_ERROR("{}", TTF_GetError());
+        surface = {GetMissingFontTextureSDLSurface(), SDL_FreeSurface};
+    } else {
+        surface =
+            std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
+                TTF_RenderUTF8_Blended_Wrapped(m_Font.get(), m_Text.c_str(),
+                                               m_Color.ToSdlColor(), 0),
+                SDL_FreeSurface,
+            };
     }
 
     m_Texture = std::make_unique<Core::Texture>(
@@ -102,11 +107,17 @@ void Text::InitVertexArray() {
 
 void Text::ApplyTexture() {
     auto surface =
-        std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
-            TTF_RenderUTF8_Blended_Wrapped(m_Font.get(), m_Text.c_str(),
-                                           m_Color.ToSdlColor(), 0),
-            SDL_FreeSurface,
-        };
+        std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>();
+    if (m_Font == nullptr) {
+        surface = {GetMissingFontTextureSDLSurface(), SDL_FreeSurface};
+    } else {
+        surface =
+            std::unique_ptr<SDL_Surface, std::function<void(SDL_Surface *)>>{
+                TTF_RenderUTF8_Blended_Wrapped(m_Font.get(), m_Text.c_str(),
+                                               m_Color.ToSdlColor(), 0),
+                SDL_FreeSurface,
+            };
+    }
     if (surface == nullptr) {
         LOG_ERROR("Failed to create text: {}", TTF_GetError());
     }

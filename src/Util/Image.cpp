@@ -5,7 +5,6 @@
 
 #include "Core/Texture.hpp"
 #include "Core/TextureUtils.hpp"
-
 #include "Util/MissingTexture.hpp"
 #include "Util/TransformUtils.hpp"
 
@@ -17,7 +16,7 @@ std::shared_ptr<SDL_Surface> LoadSurface(const std::string &filepath) {
                                                 SDL_FreeSurface);
 
     if (surface == nullptr) {
-        surface = {GetMissingTextureSDLSurface(), SDL_FreeSurface};
+        surface = {GetMissingImageTextureSDLSurface(), SDL_FreeSurface};
         LOG_ERROR("Failed to load image: '{}'", filepath);
         LOG_ERROR("{}", IMG_GetError());
     }
@@ -39,6 +38,12 @@ Image::Image(const std::string &filepath)
         *s_Program, "Matrices", 0);
 
     auto surface = s_Store.Get(filepath);
+
+    if (surface == nullptr) {
+        LOG_ERROR("Failed to load image: '{}'", filepath);
+        LOG_ERROR("{}", IMG_GetError());
+        surface = {GetMissingImageTextureSDLSurface(), SDL_FreeSurface};
+    }
 
     m_Texture = std::make_unique<Core::Texture>(
         Core::SdlFormatToGlFormat(surface->format->format), surface->w,
