@@ -12,7 +12,6 @@
 #include "Core/VertexArray.hpp"
 
 #include "Util/AssetStore.hpp"
-#include "Util/Transform.hpp"
 
 namespace Util {
 /**
@@ -29,8 +28,10 @@ public:
      * @brief Constructor that takes a file path to the image.
      *
      * @param filepath The file path to the image.
+     * @param useAA Flag indicating whether anti-aliasing should be enabled
+     * (default is true).
      */
-    explicit Image(const std::string &filepath);
+    Image(const std::string &filepath, bool useAA = true);
 
     /**
      * @brief Retrieves the size of the image.
@@ -49,6 +50,20 @@ public:
      * @param filepath The file path to the image.
      */
     void SetImage(const std::string &filepath);
+
+    /**
+     * @brief Sets whether anti-aliasing (AA) should be enabled or disabled.
+     *
+     * @param useAA A boolean value indicating whether anti-aliasing should be
+     * enabled (true) or disabled (false).
+     *
+     * @note This function only sets the internal flag for anti-aliasing and
+     * does not directly affect rendering. The actual effect of anti-aliasing
+     * depends on the rendering pipeline and the graphics hardware capabilities.
+     *
+     * @sa https://en.wikipedia.org/wiki/Spatial_anti-aliasing
+     */
+    void UseAntiAliasing(bool useAA);
 
     /**
      * @brief Draws the image with a given transform and z-index.

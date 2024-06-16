@@ -6,7 +6,6 @@
 #include "Core/Texture.hpp"
 #include "Core/TextureUtils.hpp"
 #include "Util/MissingTexture.hpp"
-#include "Util/TransformUtils.hpp"
 
 #include "config.hpp"
 #include <glm/fwd.hpp>
@@ -25,7 +24,7 @@ std::shared_ptr<SDL_Surface> LoadSurface(const std::string &filepath) {
 }
 
 namespace Util {
-Image::Image(const std::string &filepath)
+Image::Image(const std::string &filepath, bool useAA)
     : m_Path(filepath) {
     if (s_Program == nullptr) {
         InitProgram();
@@ -47,7 +46,7 @@ Image::Image(const std::string &filepath)
 
     m_Texture = std::make_unique<Core::Texture>(
         Core::SdlFormatToGlFormat(surface->format->format), surface->w,
-        surface->h, surface->pixels);
+        surface->h, surface->pixels, useAA);
     m_Size = {surface->w, surface->h};
 }
 
@@ -57,6 +56,10 @@ void Image::SetImage(const std::string &filepath) {
     m_Texture->UpdateData(Core::SdlFormatToGlFormat(surface->format->format),
                           surface->w, surface->h, surface->pixels);
     m_Size = {surface->w, surface->h};
+}
+
+void Image::UseAntiAliasing(bool useAA) {
+    m_Texture->UseAntiAliasing(useAA);
 }
 
 void Image::Draw(const Core::Matrices &data) {
