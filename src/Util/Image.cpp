@@ -16,7 +16,7 @@ std::shared_ptr<SDL_Surface> LoadSurface(const std::string &filepath) {
                                                 SDL_FreeSurface);
 
     if (surface == nullptr) {
-        surface = {GetMissingImageTextureSDLSurface(), SDL_FreeSurface};
+        surface = {Util::GetMissingImageTextureSDLSurface(), SDL_FreeSurface};
         LOG_ERROR("Failed to load image: '{}'", filepath);
         LOG_ERROR("{}", IMG_GetError());
     }
