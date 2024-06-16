@@ -24,6 +24,6 @@ static constexpr auto MISSING_IMAGE_TEXTURE_BASE64_DECODE =
 namespace Util {
 SDL_Surface *GetMissingFontTextureSDLSurface();
 SDL_Surface *GetMissingImageTextureSDLSurface();
-}
+} // namespace Util
 
 #endif
