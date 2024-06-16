@@ -163,6 +163,11 @@ std::shared_ptr<Context> Context::GetInstance() {
 
 void Context::SetWindowIcon(const std::string &path) {
     SDL_Surface *image = IMG_Load(path.c_str());
-    SDL_SetWindowIcon(m_Window, image);
+    if (image) {
+        SDL_SetWindowIcon(m_Window, image);
+        SDL_FreeSurface(image);
+        return;
+    }
+    LOG_ERROR("Failed to load image: {}", path);
 }
 } // namespace Core
