@@ -121,9 +121,9 @@ Inheritance diagram for Util::Text:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a00b8268f4e0013914a81a64be53ae1ce"><td class="memItemLeft" align="right" valign="top"><a id="a00b8268f4e0013914a81a64be53ae1ce" name="a00b8268f4e0013914a81a64be53ae1ce"></a>
-&#160;</td><td class="memItemRight" valign="bottom"><b>Text</b> (const std::string &amp;font, int size, const std::string &amp;text, const <a class="el" href="classUtil_1_1Color.html">Util::Color</a> &amp;color=<a class="el" href="classUtil_1_1Color.html">Color</a>(127, 127, 127))</td></tr>
-<tr class="separator:a00b8268f4e0013914a81a64be53ae1ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aefd7818caf9cfd80191553f2f94c24ee"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Text.html#aefd7818caf9cfd80191553f2f94c24ee">Text</a> (const std::string &amp;font, int size, const std::string &amp;text, const <a class="el" href="classUtil_1_1Color.html">Util::Color</a> &amp;color=<a class="el" href="classUtil_1_1Color.html">Color</a>(127, 127, 127), bool useAA=true)</td></tr>
+<tr class="memdesc:aefd7818caf9cfd80191553f2f94c24ee"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for the <a class="el" href="classUtil_1_1Text.html" title="A class representing a text.">Text</a> class.  <a href="classUtil_1_1Text.html#aefd7818caf9cfd80191553f2f94c24ee">More...</a><br /></td></tr>
+<tr class="separator:aefd7818caf9cfd80191553f2f94c24ee"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a125f75e0c97ec6303d8baff10d3b3c31"><td class="memItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Text.html#a125f75e0c97ec6303d8baff10d3b3c31">GetSize</a> () const override</td></tr>
 <tr class="separator:a125f75e0c97ec6303d8baff10d3b3c31"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a23f19b1edefa474979211c28b7d3d4fa"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Text.html#a23f19b1edefa474979211c28b7d3d4fa">SetText</a> (const std::string &amp;text)</td></tr>
@@ -132,6 +132,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:a83bcae856763378dedb2105c6b443192"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Text.html#a83bcae856763378dedb2105c6b443192">SetColor</a> (const <a class="el" href="classUtil_1_1Color.html">Util::Color</a> &amp;color)</td></tr>
 <tr class="memdesc:a83bcae856763378dedb2105c6b443192"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the color of the text.  <a href="classUtil_1_1Text.html#a83bcae856763378dedb2105c6b443192">More...</a><br /></td></tr>
 <tr class="separator:a83bcae856763378dedb2105c6b443192"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aa06031674977741716ecc0f0e4af721c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Text.html#aa06031674977741716ecc0f0e4af721c">UseAntiAliasing</a> (bool useAA)</td></tr>
+<tr class="memdesc:aa06031674977741716ecc0f0e4af721c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether anti-aliasing (AA) should be enabled or disabled.  <a href="classUtil_1_1Text.html#aa06031674977741716ecc0f0e4af721c">More...</a><br /></td></tr>
+<tr class="separator:aa06031674977741716ecc0f0e4af721c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3ade9a6419c098abd16b1c3b9c9c83ce"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Text.html#a3ade9a6419c098abd16b1c3b9c9c83ce">Draw</a> (const <a class="el" href="structCore_1_1Matrices.html">Core::Matrices</a> &amp;data) override</td></tr>
 <tr class="memdesc:a3ade9a6419c098abd16b1c3b9c9c83ce"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the text with a given transform and z-index.  <a href="classUtil_1_1Text.html#a3ade9a6419c098abd16b1c3b9c9c83ce">More...</a><br /></td></tr>
 <tr class="separator:a3ade9a6419c098abd16b1c3b9c9c83ce"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -143,7 +146,66 @@ Public Member Functions</h2></td></tr>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
 <div class="textblock"><p >A class representing a text. </p>
 <p >This class encapsulates the properties and behaviors of a text. It includes properties such as texture and surface. It also includes behaviors such as drawing the text. </p>
-</div><h2 class="groupheader">Member Function Documentation</h2>
+</div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="aefd7818caf9cfd80191553f2f94c24ee" name="aefd7818caf9cfd80191553f2f94c24ee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aefd7818caf9cfd80191553f2f94c24ee">&#9670;&#160;</a></span>Text()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">Util::Text::Text </td>
+          <td>(</td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>font</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">int&#160;</td>
+          <td class="paramname"><em>size</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const std::string &amp;&#160;</td>
+          <td class="paramname"><em>text</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">const <a class="el" href="classUtil_1_1Color.html">Util::Color</a> &amp;&#160;</td>
+          <td class="paramname"><em>color</em> = <code><a class="el" href="classUtil_1_1Color.html">Color</a>(127,&#160;127,&#160;127)</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>useAA</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Constructor for the <a class="el" href="classUtil_1_1Text.html" title="A class representing a text.">Text</a> class. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">font</td><td>The font file path or name. </td></tr>
+    <tr><td class="paramname">size</td><td>The font size. </td></tr>
+    <tr><td class="paramname">text</td><td>The text content to render. </td></tr>
+    <tr><td class="paramname">color</td><td>The color of the text (default is gray). </td></tr>
+    <tr><td class="paramname">useAA</td><td>Flag indicating whether anti-aliasing should be enabled (default is true). </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
 <a id="a3ade9a6419c098abd16b1c3b9c9c83ce" name="a3ade9a6419c098abd16b1c3b9c9c83ce"></a>
 <h2 class="memtitle"><span class="permalink"><a href="#a3ade9a6419c098abd16b1c3b9c9c83ce">&#9670;&#160;</a></span>Draw()</h2>
 
@@ -169,6 +231,7 @@ Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Draws the text with a given transform and z-index. </p>
+<p >This function draws the image at the specified z-index and applies the given transform.</p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">transform</td><td>The transform to apply to the text. </td></tr>
@@ -273,6 +336,34 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="aa06031674977741716ecc0f0e4af721c" name="aa06031674977741716ecc0f0e4af721c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#aa06031674977741716ecc0f0e4af721c">&#9670;&#160;</a></span>UseAntiAliasing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Util::Text::UseAntiAliasing </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>useAA</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets whether anti-aliasing (AA) should be enabled or disabled. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">useAA</td><td>A boolean value indicating whether anti-aliasing should be enabled (true) or disabled (false).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function only sets the internal flag for anti-aliasing and does not directly affect rendering. The actual effect of anti-aliasing depends on the rendering pipeline and the graphics hardware capabilities.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://en.wikipedia.org/wiki/Spatial_anti-aliasing">https://en.wikipedia.org/wiki/Spatial_anti-aliasing</a> </dd></dl>
 
 </div>
 </div>

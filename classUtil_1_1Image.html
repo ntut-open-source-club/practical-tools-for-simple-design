@@ -121,15 +121,18 @@ Inheritance diagram for Util::Image:</div>
 <table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a7804373fecd58d06045c3f2019a10cf7"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Image.html#a7804373fecd58d06045c3f2019a10cf7">Image</a> (const std::string &amp;filepath)</td></tr>
-<tr class="memdesc:a7804373fecd58d06045c3f2019a10cf7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that takes a file path to the image.  <a href="classUtil_1_1Image.html#a7804373fecd58d06045c3f2019a10cf7">More...</a><br /></td></tr>
-<tr class="separator:a7804373fecd58d06045c3f2019a10cf7"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae232d152681a7c192b6ba5dfd122911c"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Image.html#ae232d152681a7c192b6ba5dfd122911c">Image</a> (const std::string &amp;filepath, bool useAA=true)</td></tr>
+<tr class="memdesc:ae232d152681a7c192b6ba5dfd122911c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor that takes a file path to the image.  <a href="classUtil_1_1Image.html#ae232d152681a7c192b6ba5dfd122911c">More...</a><br /></td></tr>
+<tr class="separator:ae232d152681a7c192b6ba5dfd122911c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a0c6cbb5562274d1ea8d8f37572ab2495"><td class="memItemLeft" align="right" valign="top">glm::vec2&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Image.html#a0c6cbb5562274d1ea8d8f37572ab2495">GetSize</a> () const override</td></tr>
 <tr class="memdesc:a0c6cbb5562274d1ea8d8f37572ab2495"><td class="mdescLeft">&#160;</td><td class="mdescRight">Retrieves the size of the image.  <a href="classUtil_1_1Image.html#a0c6cbb5562274d1ea8d8f37572ab2495">More...</a><br /></td></tr>
 <tr class="separator:a0c6cbb5562274d1ea8d8f37572ab2495"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a63c44b5b608111defb4756d1c107fdb9"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Image.html#a63c44b5b608111defb4756d1c107fdb9">SetImage</a> (const std::string &amp;filepath)</td></tr>
 <tr class="memdesc:a63c44b5b608111defb4756d1c107fdb9"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets the image to the specified file path.  <a href="classUtil_1_1Image.html#a63c44b5b608111defb4756d1c107fdb9">More...</a><br /></td></tr>
 <tr class="separator:a63c44b5b608111defb4756d1c107fdb9"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ab00610f01b988efcda4946a16dec76bd"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Image.html#ab00610f01b988efcda4946a16dec76bd">UseAntiAliasing</a> (bool useAA)</td></tr>
+<tr class="memdesc:ab00610f01b988efcda4946a16dec76bd"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether anti-aliasing (AA) should be enabled or disabled.  <a href="classUtil_1_1Image.html#ab00610f01b988efcda4946a16dec76bd">More...</a><br /></td></tr>
+<tr class="separator:ab00610f01b988efcda4946a16dec76bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3b92569a6554f6088f0f373d2ec4201c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Image.html#a3b92569a6554f6088f0f373d2ec4201c">Draw</a> (const <a class="el" href="structCore_1_1Matrices.html">Core::Matrices</a> &amp;data) override</td></tr>
 <tr class="memdesc:a3b92569a6554f6088f0f373d2ec4201c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Draws the image with a given transform and z-index.  <a href="classUtil_1_1Image.html#a3b92569a6554f6088f0f373d2ec4201c">More...</a><br /></td></tr>
 <tr class="separator:a3b92569a6554f6088f0f373d2ec4201c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -142,34 +145,37 @@ Public Member Functions</h2></td></tr>
 <div class="textblock"><p >A class representing an image. </p>
 <p >This class encapsulates the properties and behaviors of an image. It includes properties such as texture and surface. It also includes behaviors such as drawing the image. </p>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a7804373fecd58d06045c3f2019a10cf7" name="a7804373fecd58d06045c3f2019a10cf7"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a7804373fecd58d06045c3f2019a10cf7">&#9670;&#160;</a></span>Image()</h2>
+<a id="ae232d152681a7c192b6ba5dfd122911c" name="ae232d152681a7c192b6ba5dfd122911c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae232d152681a7c192b6ba5dfd122911c">&#9670;&#160;</a></span>Image()</h2>
 
 <div class="memitem">
 <div class="memproto">
-<table class="mlabels">
-  <tr>
-  <td class="mlabels-left">
       <table class="memname">
         <tr>
           <td class="memname">Util::Image::Image </td>
           <td>(</td>
           <td class="paramtype">const std::string &amp;&#160;</td>
-          <td class="paramname"><em>filepath</em></td><td>)</td>
+          <td class="paramname"><em>filepath</em>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
           <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>useAA</em> = <code>true</code>&#160;</td>
+        </tr>
+        <tr>
+          <td></td>
+          <td>)</td>
+          <td></td><td></td>
         </tr>
       </table>
-  </td>
-  <td class="mlabels-right">
-<span class="mlabels"><span class="mlabel">explicit</span></span>  </td>
-  </tr>
-</table>
 </div><div class="memdoc">
 
 <p>Constructor that takes a file path to the image. </p>
 <dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">filepath</td><td>The file path to the image. </td></tr>
+    <tr><td class="paramname">useAA</td><td>Flag indicating whether anti-aliasing should be enabled (default is true). </td></tr>
   </table>
   </dd>
 </dl>
@@ -270,6 +276,34 @@ Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="ab00610f01b988efcda4946a16dec76bd" name="ab00610f01b988efcda4946a16dec76bd"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ab00610f01b988efcda4946a16dec76bd">&#9670;&#160;</a></span>UseAntiAliasing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Util::Image::UseAntiAliasing </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>useAA</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets whether anti-aliasing (AA) should be enabled or disabled. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">useAA</td><td>A boolean value indicating whether anti-aliasing should be enabled (true) or disabled (false).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function only sets the internal flag for anti-aliasing and does not directly affect rendering. The actual effect of anti-aliasing depends on the rendering pipeline and the graphics hardware capabilities.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://en.wikipedia.org/wiki/Spatial_anti-aliasing">https://en.wikipedia.org/wiki/Spatial_anti-aliasing</a> </dd></dl>
 
 </div>
 </div>

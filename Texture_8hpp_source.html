@@ -109,7 +109,7 @@ $(document).ready(function(){initNavTree('Texture_8hpp_source.html',''); initRes
 <div class="line"><a id="l00006" name="l00006"></a><span class="lineno">    6</span><span class="keyword">namespace </span><a class="code hl_namespace" href="namespaceCore.html">Core</a> {</div>
 <div class="line"><a id="l00007" name="l00007"></a><span class="lineno"><a class="line" href="classCore_1_1Texture.html">    7</a></span><span class="keyword">class </span><a class="code hl_class" href="classCore_1_1Texture.html">Texture</a> {</div>
 <div class="line"><a id="l00008" name="l00008"></a><span class="lineno">    8</span><span class="keyword">public</span>:</div>
-<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <a class="code hl_class" href="classCore_1_1Texture.html">Texture</a>(GLint format, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
+<div class="line"><a id="l00009" name="l00009"></a><span class="lineno">    9</span>    <a class="code hl_class" href="classCore_1_1Texture.html">Texture</a>(GLint format, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height, <span class="keyword">const</span> <span class="keywordtype">void</span> *data, <span class="keywordtype">bool</span> useAA);</div>
 <div class="line"><a id="l00010" name="l00010"></a><span class="lineno">   10</span>    <a class="code hl_class" href="classCore_1_1Texture.html">Texture</a>(<span class="keyword">const</span> <a class="code hl_class" href="classCore_1_1Texture.html">Texture</a> &amp;) = <span class="keyword">delete</span>;</div>
 <div class="line"><a id="l00011" name="l00011"></a><span class="lineno">   11</span>    <a class="code hl_class" href="classCore_1_1Texture.html">Texture</a>(<a class="code hl_class" href="classCore_1_1Texture.html">Texture</a> &amp;&amp;texture);</div>
 <div class="line"><a id="l00012" name="l00012"></a><span class="lineno">   12</span> </div>
@@ -124,13 +124,17 @@ $(document).ready(function(){initNavTree('Texture_8hpp_source.html',''); initRes
 <div class="line"><a id="l00021" name="l00021"></a><span class="lineno">   21</span>    <span class="keywordtype">void</span> Unbind() <span class="keyword">const</span>;</div>
 <div class="line"><a id="l00022" name="l00022"></a><span class="lineno">   22</span> </div>
 <div class="line"><a id="l00023" name="l00023"></a><span class="lineno">   23</span>    <span class="keywordtype">void</span> UpdateData(GLint format, <span class="keywordtype">int</span> width, <span class="keywordtype">int</span> height, <span class="keyword">const</span> <span class="keywordtype">void</span> *data);</div>
-<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span> </div>
-<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span><span class="keyword">private</span>:</div>
-<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span>    GLuint m_TextureId;</div>
-<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>};</div>
-<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span>} <span class="comment">// namespace Core</span></div>
-<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span> </div>
-<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span><span class="preprocessor">#endif</span></div>
+<div class="line"><a id="l00024" name="l00024"></a><span class="lineno">   24</span>    <span class="keywordtype">void</span> UseAntiAliasing(<span class="keywordtype">bool</span> useAA);</div>
+<div class="line"><a id="l00025" name="l00025"></a><span class="lineno">   25</span> </div>
+<div class="line"><a id="l00026" name="l00026"></a><span class="lineno">   26</span><span class="keyword">private</span>:</div>
+<div class="line"><a id="l00027" name="l00027"></a><span class="lineno">   27</span>    GLuint m_TextureId;</div>
+<div class="line"><a id="l00028" name="l00028"></a><span class="lineno">   28</span> </div>
+<div class="line"><a id="l00029" name="l00029"></a><span class="lineno">   29</span>    GLenum m_MinFilter;</div>
+<div class="line"><a id="l00030" name="l00030"></a><span class="lineno">   30</span>    GLenum m_MagFilter;</div>
+<div class="line"><a id="l00031" name="l00031"></a><span class="lineno">   31</span>};</div>
+<div class="line"><a id="l00032" name="l00032"></a><span class="lineno">   32</span>} <span class="comment">// namespace Core</span></div>
+<div class="line"><a id="l00033" name="l00033"></a><span class="lineno">   33</span> </div>
+<div class="line"><a id="l00034" name="l00034"></a><span class="lineno">   34</span><span class="preprocessor">#endif</span></div>
 <div class="ttc" id="aclassCore_1_1Texture_html"><div class="ttname"><a href="classCore_1_1Texture.html">Core::Texture</a></div><div class="ttdef"><b>Definition:</b> Texture.hpp:7</div></div>
 <div class="ttc" id="anamespaceCore_html"><div class="ttname"><a href="namespaceCore.html">Core</a></div><div class="ttdoc">Core functionality of the framework</div><div class="ttdef"><b>Definition:</b> config.hpp:7</div></div>
 </div><!-- fragment --></div><!-- contents -->
