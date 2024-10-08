@@ -62,7 +62,7 @@ protected:
 };
 
 TEST_F(AudioTest, BGM_TEST) {
-    auto bgm = Util::BGM("../assets/audio/testbgm.mp3");
+    auto bgm = Util::BGM(ASSETS_DIR"/audio/testbgm.mp3");
 
     bgm.Play();
     EXCEPT_INPUT_YES("Do you hear the bgm?");
@@ -87,7 +87,7 @@ TEST_F(AudioTest, BGM_TEST) {
 }
 
 TEST_F(AudioTest, SFX_TEST) {
-    auto sfx = Util::SFX("../assets/audio/Click.wav");
+    auto sfx = Util::SFX(ASSETS_DIR"/audio/Click.wav");
 
     sfx.Play();
     EXCEPT_INPUT_YES("Do you hear the sfx?");
@@ -102,8 +102,8 @@ TEST_F(AudioTest, SFX_TEST) {
 }
 
 TEST_F(AudioTest, BGM_SFX_TEST) {
-    auto bgm = Util::BGM("../assets/audio/testbgm.mp3");
-    auto sfx = Util::SFX("../assets/audio/Click.wav");
+    auto bgm = Util::BGM(ASSETS_DIR"/audio/testbgm.mp3");
+    auto sfx = Util::SFX(ASSETS_DIR"/audio/Click.wav");
 
     bgm.SetVolume(100);
     sfx.SetVolume(100);
