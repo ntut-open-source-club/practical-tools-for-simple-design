@@ -1,4 +1,10 @@
 {
-    "window_width": 1024,
-    "window_height": 419.5
+   "title": "Practice-Tools-for-Simple-Design",
+   "window_pos_x": 100,
+   "window_pos_y": 100,
+   "window_width": 1280,
+   "window_height": 720,
+   "default_log_level": 2,
+   "fps_cap": 60
 }
+
