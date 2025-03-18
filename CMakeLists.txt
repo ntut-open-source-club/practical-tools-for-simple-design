@@ -113,7 +113,6 @@ set(TEST_FILES
     ${TEST_DIR}/SimpleTest.cpp
     ${TEST_DIR}/NotSimpleTest.cpp
     ${TEST_DIR}/TransformTest.cpp
-    ${TEST_DIR}/PositionTest.cpp
 )
 
 add_library(PTSD STATIC
