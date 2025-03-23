@@ -8,7 +8,7 @@ namespace Util {
 struct PTSDPosition;
 
 /**
- * @class SDLPosition
+ * @struct SDLPosition
  * @brief A class representing a position in screen coordinates.
  *
  * This class is used to store the X and Y coordinates of a point in a screen coordinate system where:
