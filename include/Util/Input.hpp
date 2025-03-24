@@ -45,12 +45,11 @@ public:
 
     /**
      * @brief Retrieves the current position of the cursor.
-     * @note The cursor position is relative to the upper-left corner of the
-     * client area of the window.
      *
-     * @return The cursor position as vec2(x, y).
+     * @return The cursor position as a PTSDPosition (x, y).
      *
      * @see Util::Input::SetCursorPosition()
+     * @see Util::PTSDPosition
      */
     static Util::PTSDPosition GetCursorPosition();
 
@@ -115,11 +114,11 @@ public:
     /**
      * @brief Sets the position of the cursor.
      * @param pos The position to set the cursor to.
-     * @note The cursor position is relative to the upper-left corner of the
-     * client area of the window.
-     * @note It also generates a mouse motion event, which leads
-     * Util::Input::IsMouseMoving() to return true in this update-cycle.
+     * @note This also triggers a mouse motion event, making Util::Input::IsMouseMoving() return true 
+     *       in the current update cycle.
+     *
      * @see Util::Input::GetCursorPosition()
+     * @see Util::PTSDPosition
      */
     static void SetCursorPosition(const Util::PTSDPosition &pos);
 
