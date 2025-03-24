@@ -77,9 +77,9 @@ public:
     void Draw(const Core::Matrices &data) override;
 
 private:
-    void InitProgram();
-    void InitVertexArray();
-    void InitUniformBuffer();
+    static void InitProgram();
+    static void InitVertexArray();
+    static void InitUniformBuffer();
 
     static constexpr int UNIFORM_SURFACE_LOCATION = 0;
 
