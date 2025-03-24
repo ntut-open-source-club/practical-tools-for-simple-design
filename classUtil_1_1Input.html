@@ -186,9 +186,10 @@ Static Public Member Functions</h2></td></tr>
 </div><div class="memdoc">
 
 <p>Retrieves the current position of the cursor. </p>
-<dl class="section note"><dt>Note</dt><dd>The cursor position is relative to the upper-left corner of the client area of the window.</dd></dl>
-<dl class="section return"><dt>Returns</dt><dd>The cursor position as vec2(x, y).</dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUtil_1_1Input.html#a4bffb3b51644907b4899b12ef63dbffc" title="Sets the position of the cursor.">Util::Input::SetCursorPosition()</a> </dd></dl>
+<dl class="section return"><dt>Returns</dt><dd>The cursor position as a <a class="el" href="structUtil_1_1PTSDPosition.html" title="A class representing a position in a Cartesian coordinates.">PTSDPosition</a> (x, y).</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUtil_1_1Input.html#a4bffb3b51644907b4899b12ef63dbffc" title="Sets the position of the cursor.">Util::Input::SetCursorPosition()</a> </dd>
+<dd>
+<a class="el" href="structUtil_1_1PTSDPosition.html" title="A class representing a position in a Cartesian coordinates.">Util::PTSDPosition</a> </dd></dl>
 
 </div>
 </div>
@@ -448,10 +449,10 @@ Static Public Member Functions</h2></td></tr>
   </table>
   </dd>
 </dl>
-<dl class="section note"><dt>Note</dt><dd>The cursor position is relative to the upper-left corner of the client area of the window. </dd>
+<dl class="section note"><dt>Note</dt><dd>This also triggers a mouse motion event, making <a class="el" href="classUtil_1_1Input.html#a0a540562f9179e8b232326e51bffc09b" title="Checks if the mouse is currently moving.">Util::Input::IsMouseMoving()</a> return true in the current update cycle.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUtil_1_1Input.html#a4dea9485773e487bb5b5181c1f2b703d" title="Retrieves the current position of the cursor.">Util::Input::GetCursorPosition()</a> </dd>
 <dd>
-It also generates a mouse motion event, which leads <a class="el" href="classUtil_1_1Input.html#a0a540562f9179e8b232326e51bffc09b" title="Checks if the mouse is currently moving.">Util::Input::IsMouseMoving()</a> to return true in this update-cycle. </dd></dl>
-<dl class="section see"><dt>See also</dt><dd><a class="el" href="classUtil_1_1Input.html#a4dea9485773e487bb5b5181c1f2b703d" title="Retrieves the current position of the cursor.">Util::Input::GetCursorPosition()</a> </dd></dl>
+<a class="el" href="structUtil_1_1PTSDPosition.html" title="A class representing a position in a Cartesian coordinates.">Util::PTSDPosition</a> </dd></dl>
 
 </div>
 </div>
