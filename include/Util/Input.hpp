@@ -54,40 +54,28 @@ public:
     static Util::PTSDPosition GetCursorPosition();
 
     /**
-     * @brief Check if a specific key is currently pressed.
-     *
-     * This function checks whether the given key is currently pressed.
-     *
-     * @param key The keycode of the key to check.
-     *
-     * @return true if `key` is currently pressed, false otherwise.
-     *
+     * @brief Checks if a specific key is currently pressed. (Level-triggered)
+     * 
+     * @param key The keycode to check.
+     * @return True if the `key` is pressed, false otherwise.
      * @see Util::Keycode
      */
     static bool IsKeyPressed(const Keycode &key);
 
     /**
-     * @brief Check if a specific key is being pressed.
-     *
-     * This function checks whether the given key is currently being pressed.
-     *
-     * @param key The keycode of the key to check.
-     *
-     * @return true if `key` is currently pressed, false otherwise.
-     *
+     * @brief Checks if a specific key was just pressed in the current frame. (Edge-triggered)
+     * 
+     * @param key The keycode to check.
+     * @return True if the `key` is currently being pressed, false otherwise.
      * @see Util::Keycode
      */
     static bool IsKeyDown(const Keycode &key);
 
     /**
-     * @brief Check if a specific key is being un-pressed.
-     *
-     * This function checks whether the given key is currently being un-pressed.
-     *
-     * @param key The keycode of the key to check.
-     *
-     * @return true if `key` is currently pressed, false otherwise.
-     *
+     * @brief Checks if a specific key was just released in the current frame. (Edge-triggered)
+     * 
+     * @param key The keycode to check.
+     * @return True if the `key` is released, false otherwise.
      * @see Util::Keycode
      */
     static bool IsKeyUp(const Keycode &key);
