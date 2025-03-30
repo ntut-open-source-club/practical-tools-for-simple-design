@@ -27,10 +27,10 @@ namespace Util {
 Image::Image(const std::string &filepath, bool useAA)
     : m_Path(filepath) {
     if (s_Program == nullptr) {
-        InitProgram();
+        Image::InitProgram();
     }
     if (s_VertexArray == nullptr) {
-        InitVertexArray();
+        Image::InitVertexArray();
     }
 
     m_UniformBuffer = std::make_unique<Core::UniformBuffer<Core::Matrices>>(
