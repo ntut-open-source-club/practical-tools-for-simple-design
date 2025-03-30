@@ -4,20 +4,19 @@ project(PracticalToolsForSimpleDesign)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
-if (MSVC)
+if(MSVC)
     set(TARGET_COMPILE_OPTIONS
         /W4
     )
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/build)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_DEBUG ${CMAKE_CURRENT_SOURCE_DIR}/build)
-    set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELEASE ${CMAKE_CURRENT_SOURCE_DIR}/build)
 else()
     set(TARGET_COMPILE_OPTIONS
         -Wall -Wextra -pedantic
     )
 endif()
 
-if (WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
+set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR})
+
+if(WIN32 AND CMAKE_CXX_COMPILER_ID STREQUAL "Clang")
     # see https://github.com/ntut-open-source-club/practical-tools-for-simple-design/issues/22
     set(CMAKE_RC_FLAGS="-C 1252")
 endif()
@@ -128,18 +127,39 @@ target_include_directories(PTSD SYSTEM PRIVATE
 target_include_directories(PTSD PRIVATE
     ${INCLUDE_DIR}
 )
-if (CMAKE_BUILD_TYPE STREQUAL "Debug")
-    target_compile_definitions(PTSD PRIVATE PTSD_ASSETS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/assets")
-else()
-    # TODO
-    message(AUTHOR_WARNING "relative PTSD_ASSETS_DIR is WIP, Please use `-DCMAKE_BUILD_TYPE=Debug` build for now.")
-    target_compile_definitions(PTSD PRIVATE PTSD_ASSETS_DIR="${CMAKE_CURRENT_SOURCE_DIR}/assets")
-endif()
-if (${PTSD_ENABLE_PCH})
-    target_precompile_headers(PTSD PRIVATE
-        include/pch.hpp
+
+if(CMAKE_BUILD_TYPE STREQUAL "Debug")
+    set(PTSD_ASSETS_DIR "${CMAKE_CURRENT_SOURCE_DIR}/assets" CACHE STRING "Path to assets directory")
+elseif(CMAKE_BUILD_TYPE STREQUAL "Release")
+    set(PTSD_ASSETS_DIR "./assets" CACHE STRING "Path to assets directory")
+    add_custom_target(PTSD_assets
+        COMMAND ${CMAKE_COMMAND} -E copy_directory
+        ${CMAKE_CURRENT_SOURCE_DIR}/assets
+        ${CMAKE_BINARY_DIR}/assets
     )
+    add_dependencies(PTSD PTSD_assets)
+
+    option(COPY_PTSD_CONFIG "Copy config.json to build directory" OFF)
+    if(COPY_PTSD_CONFIG)
+        add_custom_target(PTSD_Config
+            COMMAND ${CMAKE_COMMAND} -E copy
+            ${CMAKE_SOURCE_DIR}/config.json
+            ${CMAKE_BINARY_DIR}/config.json
+        )
+        add_dependencies(PTSD PTSD_Config)
+    else()
+        message(AUTHOR_WARNING
+            "COPY_PTSD_CONFIG is set to OFF. The default configurations will be used.")
+    endif()
+else()
+    message(AUTHOR_WARNING
+        "Unknown build type: ${CMAKE_BUILD_TYPE}. Please ensure that You have passed PTSD_ASSETS_DIR to CMake.")
 endif()
+
+if(NOT PROJECT_IS_TOP_LEVEL)
+    set(PTSD_ASSETS_DIR ${PTSD_ASSETS_DIR} PARENT_SCOPE)
+endif()
+target_compile_definitions(PTSD PRIVATE PTSD_ASSETS_DIR="${PTSD_ASSETS_DIR}")
 
 target_compile_options(PTSD PRIVATE
     ${TARGET_COMPILE_OPTIONS}
@@ -193,6 +213,9 @@ target_link_libraries(AudioTest
     PTSD
     GTest::gtest_main
 )
+
+target_compile_definitions(AudioTest PRIVATE ASSETS_DIR="${PTSD_ASSETS_DIR}")
+
 target_include_directories(AudioTest SYSTEM PRIVATE
     ${INCLUDE_DIR}
     ${DEPENDENCY_INCLUDE_DIRS}
