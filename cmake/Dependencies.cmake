@@ -8,16 +8,20 @@ set(FETCH_CONTENT_QUIET FALSE)
 FetchContent_Declare(
     glew
 
-    URL         https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0.zip
-    URL_HASH    MD5=970535b75b1b69ebd018a0fa05af63d1
-    SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/glew
+    # URL         https://github.com/nigels-com/glew/releases/download/glew-2.2.0/glew-2.2.0.zip
+    # URL_HASH    MD5=970535b75b1b69ebd018a0fa05af63d1
+    GIT_REPOSITORY  https://github.com/Perlmint/glew-cmake.git
+    GIT_TAG         918ece3da858c2e28e10f6507378af01647cb139
+    SOURCE_DIR      ${CMAKE_CURRENT_SOURCE_DIR}/lib/glew
 )
 
 FetchContent_Declare(
     sdl2
 
-    URL         https://github.com/libsdl-org/SDL/releases/download/release-2.26.5/SDL2-2.26.5.zip
-    URL_HASH    MD5=0664f3980570c4641128866e6c9f2e29
+    URL         https://github.com/libsdl-org/SDL/releases/download/release-2.32.4/SDL2-2.32.4.zip
+    # URL_HASH    MD5=ccda8e75aa61112bc541eeb78d13784d
+    # GIT_REPOSITORY  https://github.com/lidsdl-org/SDL.git
+    # GIT_TAG         2359383fc187386204c3bb22de89655a494cd128
     SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/sdl2
 )
 
@@ -26,22 +30,26 @@ FetchContent_Declare(
 
     URL         https://github.com/libsdl-org/SDL_image/releases/download/release-2.6.3/SDL2_image-2.6.3.zip
     URL_HASH    MD5=ecedb5078bbd31e7d1552e2b1443d2f6
+    # GIT_REPOSITORY  https://github.com/libsdl-org/SDL_image.git
+    # GIT_TAG         c1bf2245b0ba63a25afe2f8574d305feca25af77
     SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/sdl2_image
 )
 
 FetchContent_Declare(
     sdl2_ttf
 
-    URL         https://github.com/libsdl-org/SDL_ttf/releases/download/release-2.20.2/SDL2_ttf-2.20.2.zip
-    URL_HASH    MD5=7258258fdb2a4adb0072d337f94305f9
+    # URL         https://github.com/libsdl-org/SDL_ttf/releases/download/release-3.2.2/SDL3_ttf-3.2.2.zip
+    # URL_HASH    MD5=e4ddd51fa4825f26b5c9bc8f4b010ed1
+    GIT_REPOSITORY  https://github.com/libsdl-org/SDL_ttf.git
+    GIT_TAG         db1e6d14494bfffe464c50667a26941cc3a36324
     SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/sdl2_ttf
 )
 FetchContent_Declare(
-        sdl2_mixer
+    sdl2_mixer
 
-        URL         https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.6.3/SDL2_mixer-2.6.3.zip
-        URL_HASH    MD5=fb3e71ef072ff8dd793cec3ed384f9a0
-        SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/sdl2_mixer
+    URL         https://github.com/libsdl-org/SDL_mixer/releases/download/release-2.6.3/SDL2_mixer-2.6.3.zip
+    URL_HASH    MD5=fb3e71ef072ff8dd793cec3ed384f9a0
+    SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/sdl2_mixer
 )
 
 FetchContent_Declare( # At this time 1.11.0 has some issues formatting `const unsigned char *`
@@ -55,8 +63,8 @@ FetchContent_Declare( # At this time 1.11.0 has some issues formatting `const un
 FetchContent_Declare(
     glm
 
-    URL         https://github.com/g-truc/glm/releases/download/0.9.9.8/glm-0.9.9.8.zip
-    URL_HASH    MD5=69895110052f0d711c9c54fbf385f6f5
+    URL         https://github.com/g-truc/glm/releases/download/1.0.1/glm-1.0.1-light.7z
+    # URL_HASH    MD5=7d235d4813a2e7b1e10cc711b8e25213
     SOURCE_DIR  ${CMAKE_CURRENT_SOURCE_DIR}/lib/glm
 )
 
@@ -114,7 +122,7 @@ add_compile_definitions(GLEW_NO_GLU)
 FetchContent_GetProperties(glew)
 if (NOT ${glew_POPULATED})
     FetchContent_Populate(glew)
-    add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/lib/glew/build/cmake)
+    add_subdirectory(${glew_SOURCE_DIR} ${glew_BINARY_DIR} EXCLUDE_FROM_ALL)
 endif()
 
 FetchContent_GetProperties(imgui)
@@ -147,7 +155,7 @@ endif()
 
 set(DEPENDENCY_LINK_LIBRARIES
     ${OPENGL_LIBRARY}
-    glew_s
+    libglew_static
 
     SDL2::SDL2-static
     SDL2_image::SDL2_image-static
@@ -165,7 +173,7 @@ set(DEPENDENCY_INCLUDE_DIRS
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/sdl2/include/
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/glew/include/
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/spdlog/include/
-    ${CMAKE_CURRENT_SOURCE_DIR}/lib/glm/
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/
     ${IMGUI_INCLUDE_DIR}
     ${CMAKE_CURRENT_SOURCE_DIR}/lib/nlohmann_json/include/
 )

@@ -13,11 +13,13 @@
 #include <SDL.h>
 #include <SDL_events.h>
 #include <SDL_image.h>
+
 #include <SDL_mixer.h>
 #include <SDL_ttf.h>
 
 #include <GL/glew.h>
 
+#define GLM_ENABLE_EXPERIMENTAL
 #include <glm/glm.hpp>
 #include <glm/gtx/matrix_transform_2d.hpp>
 #include <glm/gtx/string_cast.hpp>
