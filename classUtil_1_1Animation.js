@@ -6,7 +6,7 @@ var classUtil_1_1Animation =
       [ "COOLDOWN", "classUtil_1_1Animation.html#a35566c5f2af25f6330e5ee004aeeb700a6397c936615b97b70adb188970dfc31b", null ],
       [ "ENDED", "classUtil_1_1Animation.html#a35566c5f2af25f6330e5ee004aeeb700a3032bcfd5e671852750a0304cd2b024a", null ]
     ] ],
-    [ "Animation", "classUtil_1_1Animation.html#a1267acfb8c57a7e561724ab83bdde999", null ],
+    [ "Animation", "classUtil_1_1Animation.html#ae69fb43f94e2a61a7979cf638a31df58", null ],
     [ "Draw", "classUtil_1_1Animation.html#a9cee4420c6172ea39fd66ac1c8dbca22", null ],
     [ "GetCooldown", "classUtil_1_1Animation.html#a2498ad5f0009482158b9146b11582431", null ],
     [ "GetCurrentFrameIndex", "classUtil_1_1Animation.html#ae15d637855f5f89ca5c5c66cdb0da98c", null ],
@@ -20,5 +20,6 @@ var classUtil_1_1Animation =
     [ "SetCooldown", "classUtil_1_1Animation.html#ad31ada160728faaebb5fac0f06fc1b37", null ],
     [ "SetCurrentFrame", "classUtil_1_1Animation.html#afce33acbf5d811e4e23303876c5f955c", null ],
     [ "SetInterval", "classUtil_1_1Animation.html#adff3a96241e6ba261afc21281ac76184", null ],
-    [ "SetLooping", "classUtil_1_1Animation.html#abd434f915c73c56efc93e6531cf60b69", null ]
+    [ "SetLooping", "classUtil_1_1Animation.html#abd434f915c73c56efc93e6531cf60b69", null ],
+    [ "UseAntiAliasing", "classUtil_1_1Animation.html#a4d13692e067aa7bd9422374302aae27c", null ]
 ];

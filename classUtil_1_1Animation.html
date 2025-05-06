@@ -132,9 +132,9 @@ Public Types</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a id="pub-methods" name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
-<tr class="memitem:a1267acfb8c57a7e561724ab83bdde999"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Animation.html#a1267acfb8c57a7e561724ab83bdde999">Animation</a> (const std::vector&lt; std::string &gt; &amp;paths, bool play, std::size_t interval, bool looping=true, std::size_t cooldown=100)</td></tr>
-<tr class="memdesc:a1267acfb8c57a7e561724ab83bdde999"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classUtil_1_1Animation.html" title="Class representing an animation with frames.">Animation</a> class.  <a href="classUtil_1_1Animation.html#a1267acfb8c57a7e561724ab83bdde999">More...</a><br /></td></tr>
-<tr class="separator:a1267acfb8c57a7e561724ab83bdde999"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:ae69fb43f94e2a61a7979cf638a31df58"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Animation.html#ae69fb43f94e2a61a7979cf638a31df58">Animation</a> (const std::vector&lt; std::string &gt; &amp;paths, bool play, std::size_t interval, bool looping=true, std::size_t cooldown=100, bool useAA=true)</td></tr>
+<tr class="memdesc:ae69fb43f94e2a61a7979cf638a31df58"><td class="mdescLeft">&#160;</td><td class="mdescRight">Constructor for <a class="el" href="classUtil_1_1Animation.html" title="Class representing an animation with frames.">Animation</a> class.  <a href="classUtil_1_1Animation.html#ae69fb43f94e2a61a7979cf638a31df58">More...</a><br /></td></tr>
+<tr class="separator:ae69fb43f94e2a61a7979cf638a31df58"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9dbb5e173f188d85271bed5c3db45cbb"><td class="memItemLeft" align="right" valign="top">int&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Animation.html#a9dbb5e173f188d85271bed5c3db45cbb">GetInterval</a> () const</td></tr>
 <tr class="memdesc:a9dbb5e173f188d85271bed5c3db45cbb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Get the interval between frames.  <a href="classUtil_1_1Animation.html#a9dbb5e173f188d85271bed5c3db45cbb">More...</a><br /></td></tr>
 <tr class="separator:a9dbb5e173f188d85271bed5c3db45cbb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -165,6 +165,9 @@ Public Member Functions</h2></td></tr>
 <tr class="memitem:ad31ada160728faaebb5fac0f06fc1b37"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Animation.html#ad31ada160728faaebb5fac0f06fc1b37">SetCooldown</a> (int cooldown)</td></tr>
 <tr class="memdesc:ad31ada160728faaebb5fac0f06fc1b37"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the cooldown time.  <a href="classUtil_1_1Animation.html#ad31ada160728faaebb5fac0f06fc1b37">More...</a><br /></td></tr>
 <tr class="separator:ad31ada160728faaebb5fac0f06fc1b37"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4d13692e067aa7bd9422374302aae27c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Animation.html#a4d13692e067aa7bd9422374302aae27c">UseAntiAliasing</a> (bool useAA)</td></tr>
+<tr class="memdesc:a4d13692e067aa7bd9422374302aae27c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Sets whether anti-aliasing (AA) should be enabled or disabled.  <a href="classUtil_1_1Animation.html#a4d13692e067aa7bd9422374302aae27c">More...</a><br /></td></tr>
+<tr class="separator:a4d13692e067aa7bd9422374302aae27c"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:afce33acbf5d811e4e23303876c5f955c"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classUtil_1_1Animation.html#afce33acbf5d811e4e23303876c5f955c">SetCurrentFrame</a> (std::size_t index)</td></tr>
 <tr class="memdesc:afce33acbf5d811e4e23303876c5f955c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Set the current frame of the animation.  <a href="classUtil_1_1Animation.html#afce33acbf5d811e4e23303876c5f955c">More...</a><br /></td></tr>
 <tr class="separator:afce33acbf5d811e4e23303876c5f955c"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -222,8 +225,8 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Pause</b> ()</td></tr
 </div>
 </div>
 <h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
-<a id="a1267acfb8c57a7e561724ab83bdde999" name="a1267acfb8c57a7e561724ab83bdde999"></a>
-<h2 class="memtitle"><span class="permalink"><a href="#a1267acfb8c57a7e561724ab83bdde999">&#9670;&#160;</a></span>Animation()</h2>
+<a id="ae69fb43f94e2a61a7979cf638a31df58" name="ae69fb43f94e2a61a7979cf638a31df58"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#ae69fb43f94e2a61a7979cf638a31df58">&#9670;&#160;</a></span>Animation()</h2>
 
 <div class="memitem">
 <div class="memproto">
@@ -256,7 +259,13 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Pause</b> ()</td></tr
           <td class="paramkey"></td>
           <td></td>
           <td class="paramtype">std::size_t&#160;</td>
-          <td class="paramname"><em>cooldown</em> = <code>100</code>&#160;</td>
+          <td class="paramname"><em>cooldown</em> = <code>100</code>, </td>
+        </tr>
+        <tr>
+          <td class="paramkey"></td>
+          <td></td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>useAA</em> = <code>true</code>&#160;</td>
         </tr>
         <tr>
           <td></td>
@@ -641,6 +650,34 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>Pause</b> ()</td></tr
   </table>
   </dd>
 </dl>
+
+</div>
+</div>
+<a id="a4d13692e067aa7bd9422374302aae27c" name="a4d13692e067aa7bd9422374302aae27c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="#a4d13692e067aa7bd9422374302aae27c">&#9670;&#160;</a></span>UseAntiAliasing()</h2>
+
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname">void Util::Animation::UseAntiAliasing </td>
+          <td>(</td>
+          <td class="paramtype">bool&#160;</td>
+          <td class="paramname"><em>useAA</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div><div class="memdoc">
+
+<p>Sets whether anti-aliasing (AA) should be enabled or disabled. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+  <table class="params">
+    <tr><td class="paramname">useAA</td><td>A boolean value indicating whether anti-aliasing should be enabled (true) or disabled (false).</td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>This function only sets the internal flag for anti-aliasing and does not directly affect rendering. The actual effect of anti-aliasing depends on the rendering pipeline and the graphics hardware capabilities.</dd></dl>
+<dl class="section see"><dt>See also</dt><dd><a href="https://en.wikipedia.org/wiki/Spatial_anti-aliasing">https://en.wikipedia.org/wiki/Spatial_anti-aliasing</a> </dd></dl>
 
 </div>
 </div>
