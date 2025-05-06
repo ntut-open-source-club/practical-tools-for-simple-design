@@ -114,8 +114,8 @@ public:
     /**
      * @brief Sets the position of the cursor.
      * @param pos The position to set the cursor to.
-     * @note This also triggers a mouse motion event, making Util::Input::IsMouseMoving() return true 
-     *       in the current update cycle.
+     * @note This also triggers a mouse motion event, making
+     * Util::Input::IsMouseMoving() return true in the current update cycle.
      *
      * @see Util::Input::GetCursorPosition()
      * @see Util::PTSDPosition
