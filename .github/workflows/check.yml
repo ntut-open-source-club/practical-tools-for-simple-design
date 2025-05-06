@@ -23,7 +23,7 @@ jobs:
           include-regex: ^.*\.((((c|C)(c|pp|xx|\+\+)?$)|((h|H)h?(pp|xx|\+\+)?$))|(vert|frag))$
 
       - name: Run Linter
-        uses: ZedThree/clang-tidy-review@v0.14.0
+        uses: ZedThree/clang-tidy-review@v0.21.0
         with: 
           apt_packages: ninja-build,libglu1-mesa-dev,mesa-common-dev,xorg-dev
           cmake_command: cmake -B build -G Ninja -DCMAKE_EXPORT_COMPILE_COMMANDS=on
@@ -33,4 +33,4 @@ jobs:
           config_file: .clang-tidy
         
       - name: Upload Result
-        uses: ZedThree/clang-tidy-review/upload@v0.14.0
+        uses: ZedThree/clang-tidy-review/upload@v0.21.0

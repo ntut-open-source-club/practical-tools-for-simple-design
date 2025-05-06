@@ -11,7 +11,7 @@ PTSDPosition PTSDPosition::FromSDL(int sdlx, int sdly) {
         static_cast<float>(sdlx) -
             static_cast<float>(PTSD_Config::WINDOW_WIDTH) / 2.0F,
         -(static_cast<float>(sdly) -
-            static_cast<float>(PTSD_Config::WINDOW_HEIGHT) / 2.0F)};
+          static_cast<float>(PTSD_Config::WINDOW_HEIGHT) / 2.0F)};
 }
 
 SDLPosition PTSDPosition::ToSDLPosition() const {

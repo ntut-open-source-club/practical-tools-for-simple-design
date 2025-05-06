@@ -11,7 +11,8 @@ struct PTSDPosition;
  * @struct SDLPosition
  * @brief A class representing a position in screen coordinates.
  *
- * This class is used to store the X and Y coordinates of a point in a screen coordinate system where:
+ * This class is used to store the X and Y coordinates of a point in a screen
+ * coordinate system where:
  * - The origin (0, 0) is at the upper-left corner of the window.
  * - X increases to the right.
  * - Y increases downwards.
@@ -33,7 +34,8 @@ private:
  * @struct PTSDPosition
  * @brief A class representing a position in a Cartesian coordinates.
  *
- * This class is used to store the X and Y coordinates of a point in a Cartesian coordinate system where:
+ * This class is used to store the X and Y coordinates of a point in a Cartesian
+ * coordinate system where:
  * - The origin (0, 0) is at the center of the window.
  * - X increases to the right.
  * - Y increases upwards.
@@ -47,7 +49,8 @@ struct PTSDPosition {
         : x{x},
           y{y} {};
     [[deprecated("Implicit conversion will be removed. Use explicit conversion "
-                 "instead")]] // `\_(:/)_/`
+                 "instead")]]
+    // `\_(:/)_/`
     PTSDPosition(glm::vec2 v)
         : x{v.x},
           y{v.y} {};
@@ -58,7 +61,7 @@ struct PTSDPosition {
     }
 
     [[deprecated("Implicit conversion will be removed. Use explicit conversion "
-                 "instead")]]
+                 "instead")]] //
     operator glm::vec2() const {
         return {x, y};
     }
