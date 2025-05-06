@@ -115,42 +115,32 @@ set(JSON_ImplicitConversions OFF)
 # For Windows: Prevent overriding the parent project's compiler/linker settings
 set(gtest_force_shared_crt ON CACHE BOOL "" FORCE)
 
-FetchContent_MakeAvailable(sdl2 sdl2_image sdl2_ttf sdl2_mixer spdlog glm googletest nlohmann_json)
-
 add_compile_definitions(GLEW_NO_GLU)
 
-FetchContent_GetProperties(glew)
-if (NOT ${glew_POPULATED})
-    FetchContent_Populate(glew)
-    add_subdirectory(${glew_SOURCE_DIR} ${glew_BINARY_DIR} EXCLUDE_FROM_ALL)
-endif()
+FetchContent_MakeAvailable(glew sdl2 sdl2_image sdl2_ttf sdl2_mixer spdlog glm googletest imgui nlohmann_json)
 
-FetchContent_GetProperties(imgui)
-if (NOT ${imgui_POPULATED})
-    FetchContent_Populate(imgui)
-    set(IMGUI_SOURCE
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/backends/imgui_impl_sdl2.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/backends/imgui_impl_opengl3.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/imgui.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/imgui_demo.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/imgui_draw.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/imgui_tables.cpp
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/imgui_widgets.cpp
-    )
+set(IMGUI_SOURCE
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/backends/imgui_impl_sdl2.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/backends/imgui_impl_opengl3.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/imgui.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/imgui_demo.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/imgui_draw.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/imgui_tables.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/imgui_widgets.cpp
+)
 
-    set(IMGUI_INCLUDE_DIR
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/backends/
-        ${CMAKE_CURRENT_SOURCE_DIR}/lib/sdl2/include/
-    )
+set(IMGUI_INCLUDE_DIR
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/imgui/backends/
+    ${CMAKE_CURRENT_SOURCE_DIR}/lib/sdl2/include/
+)
 
-    add_library(ImGui STATIC
-        ${IMGUI_SOURCE}
-    )
-    target_include_directories(ImGui PUBLIC
-        ${IMGUI_INCLUDE_DIR}
-    )
-endif()
+add_library(ImGui STATIC
+    ${IMGUI_SOURCE}
+)
+target_include_directories(ImGui PUBLIC
+    ${IMGUI_INCLUDE_DIR}
+)
 
 
 set(DEPENDENCY_LINK_LIBRARIES
