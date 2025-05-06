@@ -4,14 +4,21 @@
 
 namespace Util {
 Animation::Animation(const std::vector<std::string> &paths, bool play,
-                     std::size_t interval, bool looping, std::size_t cooldown)
+                     std::size_t interval, bool looping, std::size_t cooldown,
+                     bool useAA)
     : m_State(play ? State::PLAY : State::PAUSE),
       m_Interval(interval),
       m_Looping(looping),
       m_Cooldown(cooldown) {
     m_Frames.reserve(paths.size());
     for (const auto &path : paths) {
-        m_Frames.push_back(std::make_shared<Util::Image>(path));
+        m_Frames.push_back(std::make_shared<Util::Image>(path, useAA));
+    }
+}
+
+void Animation::UseAntiAliasing(bool useAA) {
+    for (const auto &frame : m_Frames) {
+        frame->UseAntiAliasing(useAA);
     }
 }
 

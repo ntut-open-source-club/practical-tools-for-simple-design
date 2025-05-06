@@ -37,7 +37,7 @@ public:
      */
     Animation(const std::vector<std::string> &paths, bool play,
               std::size_t interval, bool looping = true,
-              std::size_t cooldown = 100);
+              std::size_t cooldown = 100, bool useAA = true);
 
     /**
      * @brief Get the interval between frames.
@@ -98,6 +98,20 @@ public:
      * @param cooldown Cooldown time in milliseconds.
      */
     void SetCooldown(int cooldown) { m_Cooldown = cooldown; }
+
+    /**
+     * @brief Sets whether anti-aliasing (AA) should be enabled or disabled.
+     *
+     * @param useAA A boolean value indicating whether anti-aliasing should be
+     * enabled (true) or disabled (false).
+     *
+     * @note This function only sets the internal flag for anti-aliasing and
+     * does not directly affect rendering. The actual effect of anti-aliasing
+     * depends on the rendering pipeline and the graphics hardware capabilities.
+     *
+     * @sa https://en.wikipedia.org/wiki/Spatial_anti-aliasing
+     */
+    void UseAntiAliasing(bool useAA);
 
     /**
      * @brief Set the current frame of the animation.
